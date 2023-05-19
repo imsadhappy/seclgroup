@@ -1,0 +1,35 @@
+.type-team-member {
+
+    position: relative;
+
+    .attachment-post-thumbnail {
+        //height: 320px;
+        //width: 320px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+}
+
+.team-member {
+    &--name {
+        margin-bottom: 0
+    }
+    &--email,
+    &--linkedin {
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 20px;
+        display: inline-block;
+        padding-left: 25px;
+        margin: 20px 20px 0 0;
+        background: transparent no-repeat left;
+    }
+    &--email {
+        background-image: url('assets/email.svg');
+    }
+    &--linkedin {
+        background-image: url('assets/linkedin.svg');
+        background-position: 0 -1px;
+    }
+}

@@ -1,0 +1,45 @@
+{
+  "name": "oceaa",
+  "version": "1.0.0",
+  "description": "Oceaa theme by Pixelfarm.",
+  "author": "Pixelfarm",
+  "license": "GPL-2.0-or-later",
+  "keywords": [
+    "WordPress",
+    "Theme"
+  ],
+  "homepage": "https://github.com/imsadhappy/oceaa",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imsadhappy/oceaa.git"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "26.4.0",
+    "dir-archiver": "2.1.0",
+    "node-sass": "8.0.0",
+    "rtlcss": "4.1.0"
+  },
+  "rtlcssConfig": {
+    "options": {
+      "autoRename": false,
+      "autoRenameStrict": false,
+      "blacklist": {},
+      "clean": true,
+      "greedy": false,
+      "processUrls": false,
+      "stringMap": []
+    },
+    "plugins": [],
+    "map": false
+  }, 
+  "scripts": {
+    "watch": "node-sass sass/ -o ./ --source-map true --output-style expanded --indent-type tab --indent-width 1 -w",
+    "compile:css": "node-sass sass/ -o ./ && stylelint '*.css' --fix || true && stylelint '*.css' --fix",
+    "compile:rtl": "rtlcss style.css style-rtl.css",
+    "lint:scss": "wp-scripts lint-style 'sass/**/*.scss'",
+    "lint:js": "wp-scripts lint-js 'js/*.js'",
+    "bundle": "dir-archiver --src . --dest ../assetcare.zip --exclude .DS_Store .stylelintrc.json .eslintrc .git .gitattributes .github .gitignore .gitkeep .gittoken README.md composer.json composer.lock node_modules vendor package-lock.json package.json .travis.yml phpcs.xml.dist sass style.css.map editor-style.css.map admin-style.css.map yarn.lock",
+    "build": "wp-scripts build --webpack-src-dir=gutenberg/src/ --output-path=gutenberg/build/",
+    "start": "wp-scripts start --webpack-src-dir=gutenberg/src/ --output-path=gutenberg/build/"
+  }
+}

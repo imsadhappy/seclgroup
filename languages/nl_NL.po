@@ -1,0 +1,216 @@
+# Copyright (C) 2023  Oceaa
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version:  Oceaa 1.0.0\n"
+"Report-Msgid-Bugs-To: https://pixelfarm.nl/support/theme/oceaa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2023-04-21 14:20+0300\n"
+"PO-Revision-Date: 2023-05-01 12:10+0300\n"
+"X-Generator: Poedit 2.4.3\n"
+"X-Domain: oceaa\n"
+"Language-Team: \n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: nl\n"
+
+#. Theme Name of the theme
+msgid " Oceaa"
+msgstr " Oceaa"
+
+#. Description of the theme
+msgid " Oceaa theme by Pixelfarm."
+msgstr ""
+
+#. Author URI of the theme
+msgid "https://pixelfarm.nl/"
+msgstr ""
+
+msgid "Header"
+msgstr ""
+
+msgid "Footer Column"
+msgstr ""
+
+msgid "Add widgets here."
+msgstr "Voeg hier widgets toe."
+
+msgid "Description"
+msgstr "Omschrijving"
+
+msgid "Related posts"
+msgstr "Gerelateerde berichten"
+
+msgid "See all"
+msgstr "Bekijk alles"
+
+msgid "Read more"
+msgstr "Lees meer"
+
+msgctxt "post"
+msgid "See all"
+msgstr "Bekijk alles"
+
+msgctxt "page"
+msgid "See all"
+msgstr "Bekijk alles"
+
+msgctxt "job"
+msgid "See all"
+msgstr "Bekijk alles"
+
+msgid "Please enter text"
+msgstr "Voer tekst in"
+
+msgid "Search word"
+msgstr "Zoekwoord"
+
+msgid "Please select images"
+msgstr "Selecteer afbeeldingen"
+
+msgid "Return to homepage"
+msgstr "Naar de homepagina"
+
+msgid "View job"
+msgstr "Bekijk vacature"
+
+msgid "Download"
+msgstr "Download"
+
+msgctxt "block category"
+msgid "AsseetCare"
+msgstr ""
+
+msgid "Text Group"
+msgstr ""
+
+msgid "A custom text group with Title, Paragraph, Link and Block number."
+msgstr ""
+
+msgid "Contact Section"
+msgstr ""
+
+msgid "A custom contact section with Paragraph, Link and Photo."
+msgstr ""
+
+msgid "A list of job vacancies."
+msgstr "Een lijst met vacatures."
+
+msgid "Related Posts"
+msgstr "Gerelateerde berichten"
+
+msgid "A list of related blog posts."
+msgstr ""
+
+msgid "Jobs page"
+msgstr "Vacatures pagina"
+
+msgid "Job Description"
+msgstr ""
+
+msgid "Jobs"
+msgstr "Vacatures"
+
+msgid "Job"
+msgstr "Vacature"
+
+msgid "Job Archives"
+msgstr ""
+
+msgid "Display"
+msgstr "Weergave"
+
+msgid "All Jobs"
+msgstr ""
+
+msgid "Add New Job"
+msgstr ""
+
+msgid "Add New"
+msgstr ""
+
+msgid "New Job"
+msgstr ""
+
+msgid "Edit Job"
+msgstr ""
+
+msgid "Update Job"
+msgstr ""
+
+msgid "View Job"
+msgstr ""
+
+msgid "Search Job"
+msgstr ""
+
+msgid "Not found in Trash"
+msgstr ""
+
+msgid "Insert into job"
+msgstr ""
+
+msgid "Uploaded to this job"
+msgstr ""
+
+msgid "Job list"
+msgstr ""
+
+msgid "Job list navigation"
+msgstr ""
+
+msgid "Filter jobs list"
+msgstr ""
+
+msgid "Photo"
+msgstr ""
+
+msgid "Role"
+msgstr "Rol"
+
+msgid "LinkedIn"
+msgstr ""
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Email"
+msgstr "E-mail"
+
+msgid "E-Mail"
+msgstr "E-mail"
+
+msgid "E-mail"
+msgstr "E-mail"
+
+msgid "Phone"
+msgstr ""
+
+msgid "Website"
+msgstr ""
+
+msgid "Not found"
+msgstr "Niet gevonden"
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Set logo"
+msgstr ""
+
+msgid "Remove logo"
+msgstr ""
+
+msgid "Use as logo"
+msgstr ""
+
+msgid "Load more items"
+msgstr ""
+
+msgid "No more items"
+msgstr ""
+
+msgid "Found in"
+msgstr ""

@@ -1,0 +1,113 @@
+a {
+
+	color: $color__primary;
+	text-decoration: none;
+	transition: color .5s ease;
+
+	&:visited {
+		color: $color__primary;
+	}
+
+	&:hover,
+	&:focus,
+	&:active {
+		outline: 0;
+		color: $color__secondary;
+	}
+}
+
+body a:where(:not(.wp-element-button)) {
+	text-decoration: none;
+}
+
+body p > a {
+	text-decoration: underline;
+}
+
+.page-links {
+	clear: both;
+	margin: 0 0 1.5em;
+}
+
+.category-link,
+.term-link {
+
+	font-size: 12px;
+	line-height: 14px;
+	font-weight: 500;
+    display: inline-block;
+    padding: 8px 24px;
+    background: transparent;
+	border: 1px solid $color__tertiary;
+    margin: 10px;
+    border-radius: 24px;
+
+    &.active {
+        background: $color__tertiary;
+        &:hover,
+        &:focus,
+        &:active {
+            color: $color__primary;
+        }
+    }
+}
+
+.taxonomy-category a,
+.entry-categories a {
+	@extend .pill;
+	background: $color__tertiary;
+	color: $color__primary;
+}
+
+.custom-logo-link {
+	display: inline-block;
+	line-height: 1;
+	img {
+		max-width: 173px;
+		vertical-align: middle;
+		.mobile & {
+			max-width: 99px;
+		}
+	}
+}
+
+.button-link-left {
+	&:before {
+		content: '';
+		display: inline-block;
+		position: absolute;
+		background: transparent no-repeat left url('assets/link-arrow.svg');
+		transition: margin .3s ease;
+		width: 10px;
+		height: 10px;
+		margin: 8px 0 0 -20px;
+		transform: rotate(180deg);
+	}
+	&:hover,
+	&:focus,
+	&:active {
+		&:before {
+			margin-left: -26px;
+		}
+	}
+}
+
+.button-link-right {
+	&:after {
+		content: '';
+		display: inline-block;
+		position: absolute;
+		background: transparent no-repeat left url('assets/link-arrow.svg');
+		transition: margin .3s ease;
+		width: 10px;
+		height: 10px;
+		margin: 8px 0 0 10px;
+	}
+	&:hover,
+	&:focus,
+	&:active {
+		&:after {
+			margin-left: 16px;
+		}
+	}
+}

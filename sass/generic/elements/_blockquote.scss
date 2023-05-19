@@ -1,0 +1,55 @@
+blockquote,
+.wp-block-quote {
+    background: $color__background-body-alt no-repeat url('assets/zigzag-quote.svg') right bottom;
+    background-size: auto 100%;
+    margin: 0 auto;
+    padding: 50px 74px 100px;
+    @media (max-width: $width__mobile) {
+      padding: 30px 35px 50px;
+    }
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    &:before {
+        content: '';
+        width: 60px;
+        height: 46px;
+        display: block;
+        margin-bottom: 40px;
+        @media (max-width: $width__mobile) {
+          width: 40px;
+          margin-bottom: 20px;
+          height: 32px;
+        }
+        background: transparent center no-repeat;
+        background-image: url('assets/blockquote.svg');
+        background-size: contain;
+    }
+    &.is-style-plain {
+      background: $color__white;
+      box-shadow: 0px 4px 20px rgba(20, 23, 51, 0.2);
+      padding: 53px 40px;
+      &:before {
+        background-image: url('assets/blockquote-blue.svg');
+      }
+    }
+    p {
+      @extend .quote;
+      position: relative;
+      z-index: 1;
+      margin-top: 0;
+      &:last-of-type {
+          margin-bottom: 30px;
+      }
+    }
+    cite {
+        position: relative;
+        font-style: normal;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 22px;
+        strong, b {
+            font-weight: 800;
+        }
+    }
+}

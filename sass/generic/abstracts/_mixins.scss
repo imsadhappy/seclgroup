@@ -1,0 +1,52 @@
+// Center block
+@mixin center-block {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+// Column width with margin
+@mixin column-width($numberColumns: 3) {
+	width: map-get($columns, $numberColumns) - ( ( $columns__margin * ( $numberColumns - 1 ) ) / $numberColumns );
+}
+
+@mixin blue-hue($width, $height, $left, $right, $top, $bottom, $opacity, $stop1_opacity, $stop2) {
+	z-index: 0;
+	content: '';
+	width: $width;
+	height: $height;
+	border-radius: 50%;
+	position: absolute;
+	left: $left;
+	right: $right;
+	margin: auto;
+	top: $top;
+	bottom: $bottom;
+	opacity: $opacity;
+	background: radial-gradient(circle, rgba($color__tertiary, $stop1_opacity) 0%, rgba(16, 65, 82, 0) $stop2);
+}
+
+@mixin editor-hidden($text) {
+	&:not(.is-selected):not(.has-child-selected) {
+		border: 1px dotted;
+		height: 100px;
+		overflow: hidden;
+		cursor: pointer;
+		* {
+			visibility: hidden;
+		}
+		&:before {
+			content: $text;
+			visibility: visible;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			margin: auto;
+			height: 20px;
+			text-align: center;
+			width: 100%;
+			display: block;
+			z-index: 2;
+		}
+	}
+}

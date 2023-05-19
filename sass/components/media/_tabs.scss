@@ -1,0 +1,63 @@
+.custom-tabs-container {
+    padding: 0 30px;
+    @media (max-width: $width__min) {
+        padding: 0 15px;
+    }
+}
+
+.custom-tabs {
+    
+    @media (max-width: $width__mobile) {
+        gap: 1em;
+    }
+    
+    > * {
+
+        border-bottom: 1px solid;
+        cursor: pointer;
+        padding-bottom: 30px;
+        @media (max-width: $width__mobile) {
+            padding-bottom: 15px;
+        }
+
+        > * {
+            margin: 0;
+        }
+        &.active {
+            border-bottom-color: $color__light-blue;
+            box-shadow: 0 -3px 0 0 var(--color-light-blue) inset,
+                        0 3px 0 0 var(--color-light-blue);
+        }
+    }
+}
+
+.custom-tabs-content--active {
+    position: relative;
+    z-index: 1;
+    transform: translateY(0%);
+    opacity: 1;
+    display: block;
+    transition: transform 1s ease, opacity 1s ease;
+    transition-delay: .1s, .5s;
+}
+
+.custom-tabs-content {
+
+    > * {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+        transform: translateY(-50%);
+    }
+    > .active {
+        @extend .custom-tabs-content--active;
+    }
+}
+
+.wp-block-post-content .custom-tabs-content {
+    > * {
+        @extend .custom-tabs-content--active;
+        @include editor-hidden('edit tab content');
+        margin-top: 20px;
+    }
+}

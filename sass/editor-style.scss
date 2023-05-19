@@ -1,0 +1,47 @@
+@import 'https://fonts.googleapis.com/css?family=Manrope:300,400,500,600,700,800';
+@import "generic/abstracts";
+@import "generic/normalize";
+@import "generic/extends";
+@import "generic/typography";
+@import "generic/elements/body";
+@import "generic/elements/hr";
+//@import "generic/elements/buttons";
+@import "generic/elements/lists";
+@import "generic/elements/media";
+@import "generic/elements/tables";
+@import "generic/elements/links";
+.acf-block-preview {
+    @import "generic/elements/fields";
+    @import "generic/elements/buttons";
+}
+@import "generic/elements/gforms";
+@import "generic/elements/blockquote";
+@import "layout/loop";
+@import "layout/single/post";
+@import "layout/single/job";
+@import "components/chronology";
+@import "components/blocks";
+@import "components/media/scroller";
+@import "components/media/tabs";
+@import "utilities/helpers";
+@import "components/_sideimage-section.scss";
+@import "components/_team-section.scss";
+
+
+.is-root-container .wp-block {
+    z-index: 1;
+}
+.edit-post-visual-editor__post-title-wrapper {
+    &, h1 {
+        margin-top: 20px !important;
+        margin-bottom: 20px !important;
+        opacity: .5;
+    }
+}
+
+.is-reusable {
+    max-width: none !important;
+    > *:not(.alignfull) {
+        @extend .wrapper;
+    }
+}

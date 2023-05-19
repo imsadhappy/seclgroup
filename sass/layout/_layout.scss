@@ -1,0 +1,16 @@
+html, body, .site {
+    min-height: 100%;
+}
+
+.site {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+@import "header";
+
+@import "main";
+
+@import "footer";

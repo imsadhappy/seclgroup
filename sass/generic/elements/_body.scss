@@ -1,0 +1,42 @@
+html, body {
+	//background: $color__background-body;
+	height: 100%;
+}
+
+::-moz-selection {
+  background-color: $color__light-blue;
+  color: $color__primary;
+}
+::selection {
+  background-color: $color__light-blue;
+  color: $color__primary;
+}
+
+body {
+  --color-primary: #{$color__primary};
+  --color-secondary: #{$color__secondary};
+  --color-orange: #{$color__secondary};
+  --color-dark-blue: #{$color__primary};
+  --color-light-blue: #{$color__tertiary};
+  --color-grey: #{$color__grey};
+  --color-red: #{$color__red};
+  --content-width: #{$width__desktop};
+}
+
+html, body, * {
+  scrollbar-width: thin;
+  scrollbar-color: #{$color__primary} transparent;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #{$color__primary};
+}

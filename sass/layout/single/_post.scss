@@ -1,0 +1,107 @@
+.single article.post {
+
+    header.entry-header {
+
+        background-color: $color__grey;
+
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        @media (max-width: $width__mobile) {
+            display: block;
+        }
+
+        .entry-categories {
+            display: inline-block;
+            margin-right: 24px;
+        }
+
+        .posted-on {
+            font-size: 12px;
+            line-height: 14px;
+            font-weight: 500;
+        }
+
+        .entry-details {
+
+            padding: 80px 20px;
+            position: relative;
+            z-index: 1;
+            margin-right: 0;
+            width: 50vw;
+            max-width: $width__desktop / 2;
+
+            @media (max-width: $width__mobile) {
+                width: 100%;
+                max-width: none;
+                * { color: $color__white !important }
+            }
+        }
+
+        .posted-by {
+            margin-top: 170px;
+            img {
+                background-color: rgba($color__white, .8);
+                border-radius: 50px;
+                height: 100px;
+                width: 100px;
+                vertical-align: -50px;
+                margin-right: 20px;
+                object-fit: cover;
+            }
+        }
+
+        .entry-thumbnail {
+
+            position: absolute;
+            top: 60px;
+            width: 50vw;
+            left: 50%;
+            height: 100%;
+            @media (min-width: $width__mobile) {
+                max-width: $width__mobile - 100px;
+            }
+
+            @media (max-width: $width__mobile) {
+                top: 0;
+                left: 0;
+                width: 100vw;
+                z-index: 0;
+                &::after {
+                    content: '';
+                    width: 100vw;
+                    height: 100%;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    background-color: $color__primary;
+                    opacity: .5;
+                }
+            }
+
+            img {
+                @media (min-width: $width__mobile) {
+                     border-radius: 20px 0 0 20px;
+                }
+                @media (min-width: ($width__desktop + 140px)) {
+                    border-radius: 20px;
+                }
+                position: absolute;
+                width: 100%;
+                max-width: none;
+                object-fit: cover;
+                height: 100%;
+            }
+        }
+    }
+
+    &:not(.category-whitepapers) .entry-content {
+        > p,
+        > .wp-block-heading,
+        > ul,
+        > ol {
+            max-width: 926px;
+        }
+    }
+}

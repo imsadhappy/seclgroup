@@ -1,0 +1,116 @@
+@keyframes chronologyBounce {
+    0% { transform: translate(0,-40px); }
+    50% { transform: translate(0,-20px); }
+    100% { transform: translate(0,-40px); }
+}
+
+@keyframes chronologyComplete {
+    0% {
+        background-position-y: -100%;
+        background-image: none;
+        transform: scale(.1);
+    }
+    50% {
+        background-position-y: -100%;
+        transform: scale(1);
+    }
+    75% {
+        background-position-y: -100%;
+        transform: scale(1);
+    }
+    100% {
+        background-position-y: 50%;
+        transform: scale(1);
+    }
+}
+
+.chronology {
+
+    position: relative;
+    padding: 60px 60px 120px;
+
+    .wp-block-columns {
+        position: relative;
+        z-index: 2;
+        opacity: 0;
+        transition: transform .6s ease, opacity .4s ease-in;
+        transform: translateY(-20%);
+        &[class*="block-editor"],
+        &.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 1px;
+        border-left: 1px dashed;
+        margin: auto;
+        z-index: 0;
+    }
+
+    &:before {
+        content: '';
+        display: block;
+        position: fixed;
+        left: 0;
+        right: 0;
+        margin: -60px auto 0;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: $color__secondary;
+        background-repeat: no-repeat;
+        background-image: url('assets/arrow-down.svg');
+        background-size: 40%;
+        background-position-x: 50%;
+        background-position-y: 50%;
+        animation: chronologyBounce 1s infinite;
+        z-index: 1;
+    }
+
+    &[class*="block-editor"]:before {
+        display: none;
+    }
+
+    &.complete:before {
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        bottom: -60px;
+        background-image: url('assets/check-icon.svg');
+        animation: chronologyComplete 1s forwards;
+    }
+
+    @media (max-width: $width__mobile) {
+
+        padding: 60px 90px 60px 30px;
+
+        &:after {
+            left: auto;
+            right: 45px;
+        }
+
+        &:before {
+            left: auto;
+            right: 26px;
+            width: 40px;
+            height: 40px;
+        }
+
+        &.complete:before {
+            top: auto;
+            bottom: -30px;
+            width: 60px;
+            height: 60px;
+            right: 15px;
+        }
+    }
+}

@@ -1,0 +1,38 @@
+.search & {
+
+    display: block;
+
+    li.status-publish {
+
+        all: unset;
+        display: block;
+        background-color: $color__grey;
+        border-radius: 10px;
+        padding: 40px;
+
+        .entry-title {
+            @extend h3;
+        }
+
+        .entry-excerpt {
+            p {
+                margin-bottom: 0;
+            }
+            .entry-read-more {
+                @extend .button-link-right;
+                text-decoration: none;
+                font-weight: bold;
+            }
+        }
+
+        .posted-on {
+            padding: 0;
+            font-size: inherit;
+            font-weight: inherit;
+        }
+
+        + li {
+            margin-top: 40px;
+        }
+    }
+}

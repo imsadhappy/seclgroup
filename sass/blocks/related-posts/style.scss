@@ -1,0 +1,45 @@
+@import "../../generic/extends";
+
+.wp-block.related-posts {
+
+    .post-list {
+
+        flex-wrap: nowrap;
+        overflow: auto;
+        @extend .no-scrollbar;
+
+        > * {
+            flex-shrink: 0;
+            width: calc(100vw - 80px);
+            max-width: 592px;
+            @media (max-width: 619px) {
+                max-width: 400px;
+            }
+        }
+    }
+}
+
+@media (max-width: $width__desktop) {
+
+    .wp-block.related-posts {
+
+        margin-left: 0;
+        width: 100vw;
+
+        .post-list {
+            width: 100vw;
+            padding: 0 30px;
+            max-width: none !important;
+            margin-left: 0;
+        }
+    }
+}
+
+@media (max-width: $width__min) {
+
+    .wp-block.related-posts {
+        .post-list {
+            padding: 0 15px;
+        }
+    }
+}

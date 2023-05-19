@@ -1,0 +1,29 @@
+.button,
+.wp-element-button,
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+	@extend .base-button-style;
+}
+
+.button-smaller {
+	@extend .base-button-style;
+	padding: 12px 40px !important;
+}
+
+.has-button > :not(.components-button):not(.acf-button) {
+	@extend .base-button-style;
+	font-weight: 700 !important;
+}
+
+.has-button-smaller > :not(.components-button):not(.acf-button) {
+	@extend .button-smaller;
+	font-weight: 700 !important;
+}
+
+body .wp-element-button,
+body .wp-block-button__link {
+	color: $color__primary;
+	background-color: $color__secondary;
+}

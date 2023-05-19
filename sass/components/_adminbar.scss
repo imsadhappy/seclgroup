@@ -1,0 +1,19 @@
+#wpadminbar {
+    position: fixed !important;
+}
+
+body.admin-bar:not(.scroll-down) {
+
+    .site {
+
+    }
+
+    .site-header {
+
+        top: 32px;
+
+        @media screen and (max-width: 782px) {
+            top: 46px;
+        }
+    }
+}

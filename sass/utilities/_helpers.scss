@@ -1,0 +1,257 @@
+@import "../generic/abstracts";
+
+.hidden, [hidden] { display: none }
+
+.toggled.hidden.active { display: block }
+
+.invisible { visibility: hidden }
+
+.display-block { display: block !important }
+
+.display-inline-block { display: inline-block !important }
+
+.opacue { opacity: 1 }
+
+.transparent { opacity: 0 }
+
+.half-transparent { opacity: .5 }
+
+.color-primary { color: $color__primary }
+
+.color-white { color: $color__white }
+
+.background-primary { background-color: $color__primary }
+
+.offset {
+    position: absolute;
+    left: -100500px;
+    top: -100500px;
+}
+
+.cursor-pointer { cursor: pointer }
+
+.cursor-default { cursor: default }
+
+.fixed { position: fixed }
+
+.margin-0 {
+    margin: 0 !important;
+}
+
+.margin-auto,
+.MA { margin: auto }
+
+.fixed.margin-auto,
+.fixed.MA {
+    left: 0;
+    right: 0;
+}
+
+.float-left { float: left }
+
+.float-right { float: right }
+
+.float-none { float: none }
+
+.clear-both:before,
+.clear-both:after {
+    content: " ";
+    display: table;
+}
+
+.clear-both:after { clear: both; }
+
+.clear-both {
+    clear: both;
+}
+
+.align-left { text-align: left }
+
+.align-right { text-align: right }
+
+.align-center { text-align:center }
+
+.align-justify { text-align: justify }
+
+.alignleft {
+
+	/*rtl:ignore*/
+	float: left;
+
+	/*rtl:ignore*/
+	margin-right: 1.5em;
+	margin-bottom: 1.5em;
+}
+
+.alignright {
+
+	/*rtl:ignore*/
+	float: right;
+
+	/*rtl:ignore*/
+	margin-left: 1.5em;
+	margin-bottom: 1.5em;
+}
+
+.aligncenter {
+	clear: both;
+
+	@include center-block;
+
+	margin-bottom: 1.5em;
+}
+
+.capitalize { text-transform: capitalize }
+
+.bold { font-weight: bold }
+
+.weight-normal { font-weight: normal; }
+
+.lowercase { text-transform: lowercase }
+
+.uppercase { text-transform: uppercase }
+
+.italic { font-style: italic }
+
+.smaller {
+    font-size: 75%;
+}
+
+.ellipsed {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.no-underline {
+    &, a {
+        text-decoration: none !important;
+    }
+}
+
+.underline {
+    text-decoration: underline !important;
+}
+
+.no-selection {
+    &::-moz-selection,
+    ::-moz-selection {
+        background-color: transparent;
+        color: inherit;
+    }
+    &::selection,
+    ::selection {
+        background-color: transparent;
+        color: inherit;
+    }
+}
+
+.flex-space-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.flex-no-shrink,
+.flex-shrink-0 {
+    flex-shrink: 0;
+}
+
+.no-gap,
+.gap-0 {
+    gap: 0;
+}
+
+.overflow-x-auto {
+    overflow-x: auto;
+}
+
+.width-auto {
+    width: auto !important;
+}
+
+.no-min-width,
+.min-width-0 {
+    min-width: 0 !important;
+}
+
+.flex-basis-content {
+    flex-basis: content !important;
+}
+
+.mobile-full-width {
+    @media (max-width: $width__mobile) {
+        &, > img {
+            width: 100%
+        }
+    }
+}
+
+.mobile-hidden {
+    @media (max-width: $width__mobile) {
+        display: none !important;
+    }
+}
+
+.desktop-hidden {
+    @media (min-width: $width__mobile) {
+        display: none !important;
+    }
+    .wp-block-post-content & {
+        display: block !important;
+        @include editor-hidden('edit "desktop hidden" element');
+    }
+    .wp-block-post-content .acf-block-preview & {
+        display: none !important;
+    }
+}
+
+.margin-bottom--100 {
+    margin-bottom: -100px !important;
+}
+
+.margin-right--10 {
+    margin-right: -10px !important;
+}
+
+.border-radius-20 {
+    border-radius: 20px;
+}
+
+.border-radius-default,
+.border-radius-10,
+.border-radius {
+    border-radius: 10px;
+}
+
+.custom-counter-with-gradient {
+	font-size: 35px;
+	font-weight: 800;
+	line-height: 42px;
+	color: #00C0F0;
+	background: linear-gradient(180deg, #00C0F0 -48.53%, rgba(0, 192, 240, 0.28) 100%);
+    background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.wrapped-by-padding {
+    padding-left: calc(50vw - #{$width__desktop} / 2);
+    padding-left: clamp(30px, calc(50vw - #{$width__desktop} / 2), 100500px);
+    padding-right: calc(50vw - #{$width__desktop} / 2);
+    padding-right: clamp(30px, calc(50vw - #{$width__desktop} / 2), 100500px);
+	@media (max-width: $width__min) {
+	    padding-left: 15px;
+	    padding-right: 15px;
+	}
+    &[class*="block-editor"], .acf-block-preview & {
+        padding-left: calc(50% - #{$width__desktop} / 2);
+        padding-left: clamp(30px, calc(50% - #{$width__desktop} / 2), 100500px);
+        padding-right: calc(50% - #{$width__desktop} / 2);
+        padding-right: clamp(30px, calc(50% - #{$width__desktop} / 2), 100500px);
+    }
+}

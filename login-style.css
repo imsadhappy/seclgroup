@@ -1,0 +1,10 @@
+body {
+    background-color: #F3F3F3;
+}
+
+#login h1 a {
+    background-image: url('/icon.webp');
+    background-size: contain;
+    width: 155px;
+    height: 100px
+}

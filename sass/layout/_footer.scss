@@ -1,0 +1,142 @@
+.site-footer {
+
+    flex-shrink: 0;
+    background: $color__background-footer url(assets/zigzag-footer.svg) no-repeat left bottom;
+	background-size: 500px;
+	z-index: 2;
+	@media (max-width: $width__desktop) {
+		background-size: 300px;
+	}
+	@media (max-width: $width__mobile) {
+		background-size: 75vw;
+	}
+
+    *:not(.has-text-color) { 
+		color: $color__text-footer;
+	}
+
+    .footer-content {
+
+		@extend .wrapper;
+        padding: 80px 0;
+		@media (max-width: $width__min) {
+			padding: 40px 0;
+		}
+        display: flex;
+        align-items: stretch;
+        justify-content: space-between;
+        flex-wrap: wrap;
+		grid-gap: 60px;
+
+		.col {
+			width: calc(20% - 48px);
+		}
+
+        @media (max-width: $width__desktop) {
+			grid-gap: 40px;
+			.col {
+				width: calc(33.3% - 40px);
+			}
+			.col-5 {
+				width: calc(66.6% - 20px);
+				.wp-widget-group__inner-blocks {
+					display: flex;
+					justify-content: space-between;
+				}
+			}
+        }
+
+        @media (max-width: $width__mobile) {
+			grid-gap: 20px;
+			.col {
+				width: calc(50% - 20px);
+			}
+			.col-5 {
+				width: 100%;
+			}
+        }
+
+        @media (max-width: $width__min) {
+			.col-5 {
+				display: none;
+			}
+        }
+    }
+
+    .widget_title {
+        @extend h3;
+		color: $color__text-footer;
+		margin-bottom: 36px;
+    }
+
+    .widget_text {
+		p, ul, li {
+			font-size: 14px;
+			@media (max-width: $width__min) {
+				font-size: 12px;
+			}
+			line-height: 2;
+		}
+    }
+
+	.widget_block {
+		@extend .widget_text;
+		margin-bottom: 0;
+		p, ul, li {
+			margin-bottom: 1em;
+		}
+	}
+
+	.menu {
+        @extend .widget_text;
+		a {
+			display: block;
+			line-height: 2.6;
+			@extend .ellipsed
+		}
+	}
+
+    #copyright {
+		margin-bottom: 80px;
+        text-align: center;
+		* {
+			font-weight: 300;
+			font-size: 14px;
+			line-height: 1;
+		}
+		.divider {
+			margin: 0 16px;
+		}
+		@media (max-width: $width__mobile) {
+			margin-bottom: 50vw;
+		}
+		@media (max-width: $width__min) {
+			* {
+				font-size: 10px;
+			}
+			.divider {
+				margin: 0 4px;
+			}
+		}
+    }
+
+	.wp-block-social-links.is-style-logos-only {
+		.wp-block-social-link-anchor svg {
+			fill: $color__secondary;
+		}
+	}
+
+    a,
+    a:visited,
+    a:focus,
+    a:hover {
+		text-decoration: none;
+        color: $color__white;
+        transition: opacity .5s ease;
+    }
+
+    a:hover,
+    a:focus {
+        opacity: .75
+    }
+}
