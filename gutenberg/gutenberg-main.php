@@ -18,6 +18,17 @@ class MXLTCSGutenberg
         // server side rendering
         add_action('init', [$this, 'serverSideRendering']);
 
+        // main banner
+        add_action('init', [$this, 'mainBanner']);        
+
+    }
+
+    // main banner
+    public function mainBanner()
+    {
+
+        register_block_type( __DIR__ . '/build/main-banner' );
+
     }
 
     // responsive spacer

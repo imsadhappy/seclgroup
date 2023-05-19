@@ -51,3 +51,8 @@ new GForms_Extension;
  * Gutenberg Blocks.
  */
 require_once "$theme_gutenberg_blocks/gutenberg-main.php";
+
+/**
+ * Filters and Actions.
+ */
+require_once "$theme_includes/hooks.php";

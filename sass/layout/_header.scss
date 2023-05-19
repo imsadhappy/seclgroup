@@ -18,15 +18,14 @@
 
         display: flex;
         flex-direction: row;
-        gap: 50px;
         align-items: center;
         justify-content: space-between;
         @extend .wrapper;
 
         .site-branding {
             svg {
-                width: 225px;
-                height: 53px;
+                width: 115px;
+                height: 31px;
             }
         }
 
@@ -35,6 +34,7 @@
             display: flex;
             justify-content: flex-end;
         }
+
     }
 
     @import "../components/search-form";
@@ -74,5 +74,19 @@
         + .site-main {
             margin-top: 53px;
         }
+    }
+
+    & .secl-group-transparent-btn {
+        border: 1px solid #707380;
+        border-radius: 40px;
+        padding: 18px 24px 18px 64px;
+        background-image: url('assets/images/icon-1.png');
+        background-repeat: no-repeat;
+        background-position: left center;
+        background-position-x: 24px;
+        @media (max-width: 1220px) {
+			margin-right: 40px;
+            padding: 8px 24px 8px 64px;
+		}
     }
 }

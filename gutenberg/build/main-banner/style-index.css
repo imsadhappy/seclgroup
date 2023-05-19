@@ -1,0 +1,45 @@
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/@wordpress/scripts/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./gutenberg/src/main-banner/style.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************/
+/**
+* Front End Style
+*/
+.mxltcs-main-banner-wrapper {
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  width: 100% !important;
+  margin-top: -76px !important;
+  min-height: 100vh;
+  background-position: right bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.mxltcs-main-banner-wrapper .wp-block-mxltcs-main-banner {
+  max-width: 1320px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.mxltcs-main-banner-title,
+.editor-styles-wrapper .mxltcs-main-banner-title {
+  font-size: 96px;
+  font-weight: 600;
+  line-height: 100px;
+  letter-spacing: -0.05em;
+  max-width: 735px;
+}
+
+.mxltcs-main-banner-title em {
+  background-image: url("http://seclgroup.newdesign.local/wp-content/uploads/2023/05/outline.png");
+  font-style: inherit;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+}
+
+/*# sourceMappingURL=style-index.css.map*/

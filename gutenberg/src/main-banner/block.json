@@ -1,0 +1,46 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "mxltcs/main-banner",
+	"version": "0.1.0",
+	"title": "Main Banner",
+	"category": "widgets",
+	"icon": "format-image",
+	"description": "Add Main Banner",
+	"supports": {
+		"html": false,
+		"color": {
+			"__experimentalDefaultControls": {
+				"background": true,
+				"text": true
+			}
+		},
+		"spacing": {
+			"padding": ["top", "right", "bottom", "left"]
+		}
+	},
+	"attributes": {
+		"bgImage": {
+			"type": "string",
+			"default": ""
+		},
+		"mediaId": {
+			"type": "string",
+			"source": "attribute",
+			"selector": ".mxltcs-main-banner-wrapper",
+			"attribute": "data-image-id",
+			"default": null
+		},
+		"mediaUrl": {
+			"type": "string",
+			"source": "attribute",
+			"selector": ".mxltcs-main-banner-wrapper",
+			"attribute": "data-image-url",
+			"default": null
+		}
+	},
+	"textdomain": "mxltcs-domain",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}

@@ -1,3 +1,13 @@
+/********** Fonts **********/
+@font-face {
+	font-family: 'HalvarBreit';
+	src: url("./assets/fonts/HalvarBreit/HalvarBreit.eot");
+	src: url("./assets/fonts/HalvarBreit/HalvarBreit.eot?#iefix") format("embedded-opentype"), url("./assets/fonts/HalvarBreit/HalvarBreit.woff2") format("woff2"), url("./assets/fonts/HalvarBreit/HalvarBreit.woff") format("woff"), url("./assets/fonts/HalvarBreit/HalvarBreit.ttf") format("truetype"), url("./assets/fonts/HalvarBreit/HalvarBreit.svg#HalvarBreit") format("svg");
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
 body {
 	counter-reset: --text-group-couter;
 }
