@@ -24,18 +24,46 @@
 			"type": "string",
 			"default": ""
 		},
-		"mediaId": {
+		"mediaBGId": {
 			"type": "string",
 			"source": "attribute",
 			"selector": ".mxltcs-main-banner-wrapper",
 			"attribute": "data-image-id",
 			"default": null
 		},
-		"mediaUrl": {
+		"mediaBGUrl": {
 			"type": "string",
 			"source": "attribute",
 			"selector": ".mxltcs-main-banner-wrapper",
 			"attribute": "data-image-url",
+			"default": null
+		},
+		"mediaCircleId": {
+			"type": "string",
+			"source": "attribute",
+			"selector": ".mxltcs-main-banner-wrapper",
+			"attribute": "data-image-circle-id",
+			"default": null
+		},
+		"mediaCircleUrl": {
+			"type": "string",
+			"source": "attribute",
+			"selector": ".mxltcs-main-banner-wrapper",
+			"attribute": "data-image-circle-url",
+			"default": null
+		},
+		"mediaMoveDownId": {
+			"type": "string",
+			"source": "attribute",
+			"selector": ".mxltcs-main-banner-wrapper",
+			"attribute": "data-image-move-down-id",
+			"default": null
+		},
+		"mediaMoveDownUrl": {
+			"type": "string",
+			"source": "attribute",
+			"selector": ".mxltcs-main-banner-wrapper",
+			"attribute": "data-image-move-down-url",
 			"default": null
 		}
 	},

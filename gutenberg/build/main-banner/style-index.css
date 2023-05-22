@@ -14,15 +14,19 @@
   background-position: right bottom;
   background-repeat: no-repeat;
   background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .mxltcs-main-banner-wrapper .wp-block-mxltcs-main-banner {
+  width: 100%;
   max-width: 1320px;
   margin-left: auto;
   margin-right: auto;
-  height: 100vh;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .mxltcs-main-banner-title,
@@ -35,11 +39,57 @@
 }
 
 .mxltcs-main-banner-title em {
-  background-image: url("http://seclgroup.newdesign.local/wp-content/uploads/2023/05/outline.png");
   font-style: inherit;
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: center;
+  margin-top: -228px;
+}
+
+.mxltcs-main-banner-sub-title {
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 48px;
+  letter-spacing: -0.05em;
+  margin-top: 0;
+}
+
+.mxltcs-main-banner-sub-title strong {
+  color: #E46EC3;
+}
+
+.has-text-align-left.mxltcs-main-banner-sub-title,
+.has-text-align-left.mxltcs-main-banner-title,
+.editor-styles-wrapper .is-layout-constrained .has-text-align-left.mxltcs-main-banner-title,
+.editor-styles-wrapper .is-layout-constrained .has-text-align-left.mxltcs-main-banner-sub-title {
+  margin-left: 0 !important;
+}
+
+.mxltcs-main-banner-clients-title,
+.editor-styles-wrapper .mxltcs-main-banner-clients-title {
+  margin-top: 200px;
+  font-weight: 600;
+  margin-bottom: 40px;
+}
+
+.mxltcs-main-banner-wrapper .mx-image-width-auto {
+  margin-bottom: 60px;
+}
+
+body .mx-image-width-auto > div,
+.editor-styles-wrapper .is-layout-flex.mx-image-width-auto > .wp-block-group {
+  margin-right: 100px;
+}
+
+.wp-block-mxltcs-main-move-down a {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-transform: uppercase;
+  padding: 10px 30px 10px 0px;
+  background-repeat: no-repeat;
+  background-position: right center;
 }
 
 /*# sourceMappingURL=style-index.css.map*/
