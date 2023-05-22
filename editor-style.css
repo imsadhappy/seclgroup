@@ -920,6 +920,13 @@ h6,
 	line-height: 1.3;
 }
 
+.description {
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 40px;
+	letter-spacing: 0em;
+}
+
 body {
 	--wp--preset--font-size--small: 13px;
 	--wp--preset--font-size--medium: 20px;
@@ -3355,6 +3362,30 @@ blockquote cite strong, blockquote cite b,
 	.mx-team-members-section {
 		padding-left: 15px;
 	}
+}
+
+.mx-add-domains-wrapp {
+	display: flex;
+	align-items: stretch !important;
+	margin-top: 30px;
+}
+
+.mx-add-domains-wrapp > div {
+	flex: 1;
+}
+
+.button-right-arrow,
+.wrap-button-right-arrow a {
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 28px;
+	letter-spacing: 0em;
+	background-repeat: no-repeat;
+	background-position: right center;
+	padding: 10px 30px 10px 0px;
+	color: #090F20;
+	text-decoration: none;
+	background-image: url("./assets/images/Arrow-Right.png");
 }
 
 .is-root-container .wp-block {

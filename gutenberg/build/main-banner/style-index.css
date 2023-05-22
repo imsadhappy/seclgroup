@@ -92,4 +92,8 @@ body .mx-image-width-auto > div,
   background-position: right center;
 }
 
+.wp-block-mxltcs-main-move-down a:hover {
+  text-decoration: none;
+}
+
 /*# sourceMappingURL=style-index.css.map*/

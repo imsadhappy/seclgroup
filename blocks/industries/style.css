@@ -1,0 +1,53 @@
+.mx-industries--heading {
+	display: flex;
+	justify-content: space-between;
+}
+
+.mx-industries--heading .description {
+	margin-top: 0;
+	margin-bottom: 30px;
+}
+
+.mx-industries--heading--text .h2 {
+	margin-top: 0;
+	margin-bottom: 10px;
+}
+
+.mx-industries--heading--button .button-view-all {
+	background-image: url("../../assets/images/Arrow-Right.png");
+}
+
+.mx-industries--container {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.mx-industries--container--item {
+	width: 25%;
+	position: relative;
+	padding: 0px 4px;
+	box-sizing: border-box;
+}
+
+.mx-industries--container--item img {
+	width: 100%;
+}
+
+.mx-industries--container--item p {
+	position: absolute;
+	top: 0;
+	height: 100%;
+	margin: 0;
+	display: flex;
+	align-items: center;
+	width: 100%;
+	justify-content: center;
+	font-size: 32px;
+	font-weight: 600;
+	line-height: 38px;
+	letter-spacing: 0em;
+	text-align: center;
+	color: #FFFFFF;
+}
+
+/*# sourceMappingURL=style.css.map */

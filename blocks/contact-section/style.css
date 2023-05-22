@@ -146,6 +146,13 @@ h6,
 	line-height: 1.3;
 }
 
+.description {
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 40px;
+	letter-spacing: 0em;
+}
+
 body {
 	--wp--preset--font-size--small: 13px;
 	--wp--preset--font-size--medium: 20px;

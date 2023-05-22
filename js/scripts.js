@@ -192,4 +192,9 @@ document.addEventListener('DOMContentLoaded', function(){
         request.open('GET', ajaxurl+'?'+q);
         request.send();
     } );
+
+    // Initiate the wowjs
+    new WOW().init();
+
 } );
+

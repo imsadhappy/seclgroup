@@ -105,4 +105,16 @@ add_action( 'acf/init', function () {
         'enqueue_style' =>  "$folder/blocks/team-slider/style.css",
     ) );
 
+    // Industries
+    acf_register_block( array(
+        'name'              => "$i18n-industries",
+        'title'             => __('Industries', $i18n),
+        'description'       => __('Add a Industries section.', $i18n),
+        'render_template'   => 'blocks/industries/template.php',
+        'category'          => $i18n,
+        'icon'              => 'schedule',
+        'keywords'          => array( 'section' ),
+        'enqueue_style' =>  "$folder/blocks/industries/style.css",
+    ) );
+
 } );
