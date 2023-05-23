@@ -1,0 +1,40 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "mxltcs/tabs",
+  "version": "0.1.0",
+  "title": "Tabs Section",
+  "category": "widgets",
+  "icon": "smiley",
+  "description": "Add a Tabs Section",
+  "supports": {
+    "html": false,
+    "align": [
+      "left",
+      "right",
+      "full"
+    ],
+    "color": {
+      "__experimentalDefaultControls": {
+        "background": true,
+        "text": true
+      }
+    }
+  },
+  "attributes": {
+    "align": {
+      "type": "string",
+      "default": ""
+    },
+    "message": {
+      "type": "string",
+      "source": "text",
+      "selector": "div",
+      "default": "Hello, World!"
+    }
+  },
+  "textdomain": "mxltcs-domain",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

@@ -9,6 +9,9 @@ class MXLTCSGutenberg
     public function registerBlocks()
     {
 
+        // Tabs
+        // add_action( 'init', [$this, 'tabs'] );
+
         // responsive spacer
         add_action( 'init', [$this, 'responsiveSpacer'] );
 
@@ -20,6 +23,29 @@ class MXLTCSGutenberg
 
         // main banner
         add_action('init', [$this, 'mainBanner']);        
+
+    }
+
+    // tabs
+    public function tabs()
+    {
+
+        $asset_file = include('build/tabs/index.asset.php');
+
+        // handler
+        wp_enqueue_script(
+            'mx_tabs_script',
+            get_template_directory_uri() . '/gutenberg/src/tabs/handler.js',
+            [],
+            $asset_file['version'],
+            true
+        );
+
+        // tabs section
+        register_block_type( __DIR__ . '/build/tabs' );
+
+        // tabs item
+        register_block_type( __DIR__ . '/build/tabs/child-blocks/tabs-item' );
 
     }
 
