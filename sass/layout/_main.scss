@@ -129,6 +129,11 @@ body.search {
     text-align: center;
 }
 
+.small-container {
+	max-width: 1016px !important;
+	margin: auto;
+}
+
 @import "loop";
 
 @import "single/post";

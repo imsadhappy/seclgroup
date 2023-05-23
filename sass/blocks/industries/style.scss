@@ -1,4 +1,14 @@
 .mx-industries {
+    background: #F6F7FB;
+    max-width: 100% !important;
+    padding-top: 120px;
+    width: 100% !important;
+    &--content {
+        max-width: 1320px;
+        margin-left: auto;
+        margin-right: auto;
+        width: calc(100vw - 60px);
+    }
     &--heading {
         display: flex;
         justify-content: space-between;
@@ -45,6 +55,32 @@
                 text-align: center;
                 color: #FFFFFF;
             }
+        }
+    }
+}
+.editor-styles-wrapper .block-editor-block-list__layout.is-root-container .wp-block-acf-oceaa-industries {
+    max-width: 100%;
+}
+.full-width-section {
+    max-width: 100% !important;
+    width: 100% !important;
+}
+.bg-pink {
+    background: #F6F7FB;
+}
+.before-curve-line {
+    strong {
+        color: #E46EC3;
+        position: relative;
+        &:before {
+            content: '';
+            position: absolute;
+            width: 130px;
+            height: 34px;
+            background-repeat: no-repeat;
+            background-image: url('../../assets/images/curve-line.webp');
+            bottom: -16px;
+            left: -43px;
         }
     }
 }

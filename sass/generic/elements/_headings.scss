@@ -11,37 +11,41 @@ h6 {
 }
 
 h1 {
-	font-size: 55px;
-	font-weight: 800;
-	line-height: 1.1;
+	font-size: 40px;
+	font-weight: 700;
+	line-height: 46px;
+	letter-spacing: 0em;
 	margin: 25px 0;
 	@media (max-width: $width__mobile) {
-		font-size: 45px;
+		font-size: 35px;
 	}
 	@media (max-width: $width__min) {
-		font-size: 35px;
+		font-size: 25px;
 	}
 }
 
 h2 {
-	font-size: 40px;
+	font-size: 32px;
 	font-weight: 800;
-	line-height: 1.1;
+	line-height: 38px;
 	margin: 20px 0;
 	@media (max-width: $width__mobile) {
-		font-size: 35px;
+		font-size: 27px;
 	}
 	@media (max-width: $width__min) {
-		font-size: 30px;
+		font-size: 20px;
 	}
 }
 
 h3 {
-	font-size: 23px;
+	font-size: 24px;
 	font-weight: 800;
-	line-height: 1.2;
+	line-height: 32px;
 	margin: 13px 0;
 	@media (max-width: $width__mobile) {
+		font-size: 20px;
+	}
+	@media (max-width: $width__min) {
 		font-size: 18px;
 	}
 }
@@ -75,6 +79,22 @@ h4, h5, h6 {
 	}
 	@media (max-width: $width__mobile) {
 		font-size: 35px;
+	}
+}
+
+.big-heading {
+	font-size: 60px;
+	font-weight: 700;
+	line-height: 69px;
+	letter-spacing: 0em;
+	@media (max-width: $width__mobile) {
+		font-size: 30px;
+		line-height: 39px;
+	}
+	@media (max-width: $width__min) {
+		font-size: 20px;
+		line-height: 29px;
+
 	}
 }
 
