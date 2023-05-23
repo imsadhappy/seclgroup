@@ -793,30 +793,31 @@ h6,
 }
 
 h1, .h1, .gform_wrapper.gravity-theme[data-form-theme="gravity-theme"] .gform_heading .gform_title {
-	font-size: 55px;
-	font-weight: 800;
-	line-height: 1.1;
+	font-size: 40px;
+	font-weight: 700;
+	line-height: 46px;
+	letter-spacing: 0em;
 	margin: 25px 0;
 }
 
 @media (max-width: 781px) {
 	h1, .h1, .gform_wrapper.gravity-theme[data-form-theme="gravity-theme"] .gform_heading .gform_title {
-		font-size: 45px;
+		font-size: 35px;
 	}
 }
 
 @media (max-width: 480px) {
 	h1, .h1, .gform_wrapper.gravity-theme[data-form-theme="gravity-theme"] .gform_heading .gform_title {
-		font-size: 35px;
+		font-size: 25px;
 	}
 }
 
 
 h2,
 .h2 {
-	font-size: 40px;
+	font-size: 32px;
 	font-weight: 800;
-	line-height: 1.1;
+	line-height: 38px;
 	margin: 20px 0;
 }
 
@@ -824,7 +825,7 @@ h2,
 	
 	h2,
 	.h2 {
-		font-size: 35px;
+		font-size: 27px;
 	}
 }
 
@@ -832,7 +833,7 @@ h2,
 	
 	h2,
 	.h2 {
-		font-size: 30px;
+		font-size: 20px;
 	}
 }
 
@@ -844,13 +845,26 @@ blockquote p,
 .h3,
 .post-list .type-job .job-title,
 .search .post-list li.status-publish .entry-title {
-	font-size: 23px;
+	font-size: 24px;
 	font-weight: 800;
-	line-height: 1.2;
+	line-height: 32px;
 	margin: 13px 0;
 }
 
 @media (max-width: 781px) {
+	
+	h3,
+	.quote,
+	blockquote p,
+	.wp-block-quote p,
+	.h3,
+	.post-list .type-job .job-title,
+	.search .post-list li.status-publish .entry-title {
+		font-size: 20px;
+	}
+}
+
+@media (max-width: 480px) {
 	
 	h3,
 	.quote,
@@ -910,6 +924,27 @@ h6,
 @media (max-width: 781px) {
 	.big-text {
 		font-size: 35px;
+	}
+}
+
+.big-heading {
+	font-size: 60px;
+	font-weight: 700;
+	line-height: 69px;
+	letter-spacing: 0em;
+}
+
+@media (max-width: 781px) {
+	.big-heading {
+		font-size: 30px;
+		line-height: 39px;
+	}
+}
+
+@media (max-width: 480px) {
+	.big-heading {
+		font-size: 20px;
+		line-height: 29px;
 	}
 }
 
@@ -1255,6 +1290,39 @@ body p > a {
 .acf-block-preview body .wp-block-button__link {
 	color: #090F20;
 	background-color: #FF7733;
+}
+
+.acf-block-preview .transparent-button a {
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 24px;
+	letter-spacing: 0em;
+	border: 1px solid #707380;
+	padding: 20px 30px;
+	background: transparent;
+	border-radius: 60px;
+	position: relative;
+	padding-right: 56px;
+}
+
+.acf-block-preview .transparent-button a:after {
+	content: '';
+	position: absolute;
+	background-image: url("./assets/images/arrow-to-right.webp");
+	background-repeat: no-repeat;
+	width: 22px;
+	height: 18px;
+	background-size: contain;
+	right: 24px;
+	transition: .2s;
+}
+
+.acf-block-preview .transparent-button a:hover {
+	background: transparent;
+}
+
+.acf-block-preview .transparent-button a:hover:after {
+	right: 9px;
 }
 
 .is-layout-flow > .gform_wrapper.gravity-theme[data-form-theme="gravity-theme"] {
@@ -3386,6 +3454,44 @@ blockquote cite strong, blockquote cite b,
 	color: #090F20;
 	text-decoration: none;
 	background-image: url("./assets/images/Arrow-Right.png");
+}
+
+.services-items-section > div {
+	border-bottom: 2px solid rgba(9, 15, 32, 0.4);
+	padding: 16px 0px;
+}
+
+.transparent-button .wp-block-button__link {
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 24px;
+	letter-spacing: 0em;
+	border: 1px solid #707380;
+	padding: 20px 30px;
+	background: transparent;
+	border-radius: 60px;
+	position: relative;
+	padding-right: 56px;
+}
+
+.transparent-button .wp-block-button__link:after {
+	content: '';
+	position: absolute;
+	background-image: url("./assets/images/arrow-to-right.webp");
+	background-repeat: no-repeat;
+	width: 22px;
+	height: 18px;
+	background-size: contain;
+	right: 24px;
+	transition: .2s;
+}
+
+.transparent-button .wp-block-button__link:hover {
+	background: transparent;
+}
+
+.transparent-button .wp-block-button__link:hover:after {
+	right: 9px;
 }
 
 .is-root-container .wp-block {

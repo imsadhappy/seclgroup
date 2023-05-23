@@ -27,30 +27,31 @@ h6,
 }
 
 h1, .h1, .contact-section--text {
-	font-size: 55px;
-	font-weight: 800;
-	line-height: 1.1;
+	font-size: 40px;
+	font-weight: 700;
+	line-height: 46px;
+	letter-spacing: 0em;
 	margin: 25px 0;
 }
 
 @media (max-width: 781px) {
 	h1, .h1, .contact-section--text {
-		font-size: 45px;
+		font-size: 35px;
 	}
 }
 
 @media (max-width: 480px) {
 	h1, .h1, .contact-section--text {
-		font-size: 35px;
+		font-size: 25px;
 	}
 }
 
 
 h2,
 .h2 {
-	font-size: 40px;
+	font-size: 32px;
 	font-weight: 800;
-	line-height: 1.1;
+	line-height: 38px;
 	margin: 20px 0;
 }
 
@@ -58,7 +59,7 @@ h2,
 	
 	h2,
 	.h2 {
-		font-size: 35px;
+		font-size: 27px;
 	}
 }
 
@@ -66,7 +67,7 @@ h2,
 	
 	h2,
 	.h2 {
-		font-size: 30px;
+		font-size: 20px;
 	}
 }
 
@@ -74,13 +75,22 @@ h2,
 h3,
 .quote,
 .h3 {
-	font-size: 23px;
+	font-size: 24px;
 	font-weight: 800;
-	line-height: 1.2;
+	line-height: 32px;
 	margin: 13px 0;
 }
 
 @media (max-width: 781px) {
+	
+	h3,
+	.quote,
+	.h3 {
+		font-size: 20px;
+	}
+}
+
+@media (max-width: 480px) {
 	
 	h3,
 	.quote,
@@ -136,6 +146,27 @@ h6,
 @media (max-width: 781px) {
 	.big-text {
 		font-size: 35px;
+	}
+}
+
+.big-heading {
+	font-size: 60px;
+	font-weight: 700;
+	line-height: 69px;
+	letter-spacing: 0em;
+}
+
+@media (max-width: 781px) {
+	.big-heading {
+		font-size: 30px;
+		line-height: 39px;
+	}
+}
+
+@media (max-width: 480px) {
+	.big-heading {
+		font-size: 20px;
+		line-height: 29px;
 	}
 }
 

@@ -8,13 +8,13 @@
     margin-right: 0 !important;
     width: 100% !important;
 	margin-top: -76px !important;
-    min-height: 100vh;
     background-position: right bottom;
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    height: 100vh;
+    min-height: 950px;
 }
 .mxltcs-main-banner-wrapper .wp-block-mxltcs-main-banner {
     width: 100%;
@@ -24,6 +24,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-top: 210px;
 }
 .mxltcs-main-banner-title {
 }
@@ -60,12 +61,12 @@
 }
 .mxltcs-main-banner-clients-title,
 .editor-styles-wrapper .mxltcs-main-banner-clients-title {
-    margin-top: 200px;
+    margin-top: 192px;
     font-weight: 600;
     margin-bottom: 40px;
 }
 .mxltcs-main-banner-wrapper .mx-image-width-auto {
-    margin-bottom: 60px;
+    margin-bottom: 15px;
 }
 body .mx-image-width-auto > div,
 .editor-styles-wrapper .is-layout-flex.mx-image-width-auto > .wp-block-group {

@@ -28,69 +28,73 @@ $items = get_field('industries_items');
 
 <section <?php block_class(['mx-industries']) ?>>
 
-    <div class="mx-industries--heading">
-        
-        <div class="mx-industries--heading--text wow slideInRight">
+    <div class="mx-industries--content">
 
-            <?php
+        <div class="mx-industries--heading">
+            
+            <div class="mx-industries--heading--text wow slideInRight">
 
-            if (!empty($title)) {
-                printf('<div class="h2">%s</div>', esc_html($title));
-            }
+                <?php
 
-            if (!empty($description)) {
-                printf('<div class="description">%s</div>', esc_html($description));            
-            }
+                if (!empty($title)) {
+                    printf('<div class="h2">%s</div>', esc_html($title));
+                }
 
-            ?>
+                if (!empty($description)) {
+                    printf('<div class="description">%s</div>', esc_html($description));            
+                }
 
+                ?>
+
+            </div>
+
+            <div class="mx-industries--heading--button wow slideInLeft">
+
+                <?php echo $view_all_button(); ?>
+
+            </div>
+            
         </div>
 
-        <div class="mx-industries--heading--button wow slideInLeft">
+        <div class="mx-industries--container wow zoomIn">
 
-            <?php echo $view_all_button(); ?>
+            <?php if ( ! is_array($items) || empty($items) ) : ?>
+
+                <?php esc_html_e('Please add Items', theme_textdomain()); ?>
+
+            <?php else : ?>
+
+                <?php foreach( $items as $item ) : ?>
+
+                    <?php if ( empty($item['industries_item_image']) ) continue; ?>
+
+                    <div class="mx-industries--container--item">
+
+                        <a href="<?php echo esc_url($item['industries_items_url']); ?>">
+
+                            <?php if( ! empty($item['industries_item_image']) ) : ?>
+
+                                <img src="<?php echo esc_url($item['industries_item_image']); ?>" alt="">
+
+                            <?php endif; ?>
+
+                            <?php if( ! empty($item['industries_item_title']) ) : ?>
+
+                                <p>
+                                    <?php esc_html_e( $item['industries_item_title'] ); ?>
+                                </p>
+
+                            <?php endif; ?>                        
+                            
+                        </a>
+
+                    </div>
+
+                <?php endforeach; ?>
+
+            <?php endif; ?>
 
         </div>
-        
-    </div>
-
-    <div class="mx-industries--container wow zoomIn">
-
-        <?php if ( ! is_array($items) || empty($items) ) : ?>
-
-            <?php esc_html_e('Please add Items', theme_textdomain()); ?>
-
-        <?php else : ?>
-
-            <?php foreach( $items as $item ) : ?>
-
-                <?php if ( empty($item['industries_item_image']) ) continue; ?>
-
-                <div class="mx-industries--container--item">
-
-                    <a href="<?php echo esc_url($item['industries_items_url']); ?>">
-
-                        <?php if( ! empty($item['industries_item_image']) ) : ?>
-
-                            <img src="<?php echo esc_url($item['industries_item_image']); ?>" alt="">
-
-                        <?php endif; ?>
-
-                        <?php if( ! empty($item['industries_item_title']) ) : ?>
-
-                            <p>
-                                <?php esc_html_e( $item['industries_item_title'] ); ?>
-                            </p>
-
-                        <?php endif; ?>                        
-                        
-                    </a>
-
-                </div>
-
-            <?php endforeach; ?>
-
-        <?php endif; ?>
 
     </div>
 
