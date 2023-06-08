@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package Oceaa
+ * @package SECLGroup
  */
 
 $post_id = !empty($args) && isset($args['post_id']) ? $args['post_id'] : get_the_ID();

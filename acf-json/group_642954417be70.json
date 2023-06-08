@@ -119,7 +119,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/oceaa-text-group"
+                "value": "acf\/seclgroup-text-group"
             }
         ]
     ],

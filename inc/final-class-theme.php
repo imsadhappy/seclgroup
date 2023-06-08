@@ -2,10 +2,10 @@
 /**
  * Theme
  *
- * @package Oceaa
+ * @package SECLGroup
  */
 
-namespace Oceaa;
+namespace SECLGroup;
 
 final class Theme {
 
@@ -123,7 +123,7 @@ final class Theme {
                     break;
             default:
                 wp_enqueue_style( 'theme-style', get_stylesheet_uri(), array(), $version );
-                wp_enqueue_style( 'animate-wow', "$uri/assets/css/animate.min.css", array(), $version );                
+                wp_enqueue_style( 'animate-wow', "$uri/assets/css/animate.min.css", array(), $version );
                 wp_style_add_data( 'theme-style', 'rtl', 'replace' );
                 wp_enqueue_script( 'theme-dotdotdot', "$uri/js/dotdotdot.js", array(), $version, true );
                 wp_enqueue_script( 'wow-script', "$uri/js/wow.min.js", array(), $version );

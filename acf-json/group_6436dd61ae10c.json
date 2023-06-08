@@ -168,7 +168,7 @@
                 {
                     "param": "block",
                     "operator": "==",
-                    "value": "acf\/oceaa-jobs"
+                    "value": "acf\/seclgroup-jobs"
                 }
             ]
         ],

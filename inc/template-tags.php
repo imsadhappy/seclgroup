@@ -2,7 +2,7 @@
 /**
  * Template Tags
  *
- * @package Oceaa
+ * @package SECLGroup
  */
 
 if ( ! function_exists( 'theme_textdomain' ) ) {

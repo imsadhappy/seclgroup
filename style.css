@@ -1,21 +1,21 @@
 /*!
-Theme Name:  Oceaa
-Theme URI: https://oceaa.nl/
+Theme Name:  seclgroup
+Theme URI: https://seclgroup.nl/
 Author: Pixelfarm
 Author URI: https://pixelfarm.nl/
-Description:  Oceaa theme by Pixelfarm.
+Description:  seclgroup theme by Pixelfarm.
 Version: 0.1.0
 Tested up to: 5.4
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
 License URI: LICENSE
-Text Domain: oceaa
+Text Domain: seclgroup
 Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
 
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned.
 
- Oceaa is based on Underscores https://underscores.me/, (C) 2012-2020 Automattic, Inc.
+ seclgroup is based on Underscores https://underscores.me/, (C) 2012-2020 Automattic, Inc.
 Underscores is distributed under the terms of the GNU GPL v2 or later.
 
 Normalizing styles have been helped along thanks to the fine work of
@@ -871,7 +871,7 @@ h2,
 }
 
 @media (max-width: 781px) {
-	
+
 	h2,
 	.h2 {
 		font-size: 27px;
@@ -879,7 +879,7 @@ h2,
 }
 
 @media (max-width: 480px) {
-	
+
 	h2,
 	.h2 {
 		font-size: 20px;
@@ -902,7 +902,7 @@ blockquote p,
 }
 
 @media (max-width: 781px) {
-	
+
 	h3,
 	.quote,
 	blockquote p,
@@ -916,7 +916,7 @@ blockquote p,
 }
 
 @media (max-width: 480px) {
-	
+
 	h3,
 	.quote,
 	blockquote p,

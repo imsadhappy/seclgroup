@@ -2,7 +2,7 @@
 /**
  * Big Slider Block Template.
  *
- * @package Oceaa
+ * @package SECLGroup
  *
  */
 

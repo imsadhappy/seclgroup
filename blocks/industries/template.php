@@ -3,7 +3,7 @@
 /**
  * Industries Block Template.
  *
- * @package Oceaa
+ * @package SECLGroup
  *
  */
 
@@ -31,7 +31,7 @@ $items = get_field('industries_items');
     <div class="mx-industries--content">
 
         <div class="mx-industries--heading">
-            
+
             <div class="mx-industries--heading--text wow slideInRight">
 
                 <?php
@@ -41,7 +41,7 @@ $items = get_field('industries_items');
                 }
 
                 if (!empty($description)) {
-                    printf('<div class="description">%s</div>', esc_html($description));            
+                    printf('<div class="description">%s</div>', esc_html($description));
                 }
 
                 ?>
@@ -53,7 +53,7 @@ $items = get_field('industries_items');
                 <?php echo $view_all_button(); ?>
 
             </div>
-            
+
         </div>
 
         <div class="mx-industries--container wow zoomIn">
@@ -84,8 +84,8 @@ $items = get_field('industries_items');
                                     <?php esc_html_e( $item['industries_item_title'] ); ?>
                                 </p>
 
-                            <?php endif; ?>                        
-                            
+                            <?php endif; ?>
+
                         </a>
 
                     </div>

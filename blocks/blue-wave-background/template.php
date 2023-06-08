@@ -2,7 +2,7 @@
 /**
  * Graph Background Block Template.
  *
- * @package Oceaa
+ * @package SECLGroup
  *
  * @param   array $block The block settings and attributes.
  * @param   string $content The block inner HTML (empty).

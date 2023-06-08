@@ -2,10 +2,10 @@
 /**
  * GForms extension
  *
- * @package Oceaa
+ * @package SECLGroup
  */
 
-namespace Oceaa;
+namespace SECLGroup;
 
 class GForms_Extension {
 

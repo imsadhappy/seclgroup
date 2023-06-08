@@ -2,10 +2,10 @@
 /**
  * Job Custom Post Type
  *
- * @package Oceaa
+ * @package SECLGroup
  */
 
-namespace Oceaa;
+namespace SECLGroup;
 
 class Job extends Post_Type {
 

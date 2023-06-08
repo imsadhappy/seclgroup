@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#search-result
  *
- * @package Oceaa
+ * @package SECLGroup
  */
 
 get_template_part( 'index' );

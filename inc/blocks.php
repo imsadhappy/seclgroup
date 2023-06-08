@@ -2,7 +2,7 @@
 /**
  * Custom ACF blocks
  *
- * @package Oceaa
+ * @package SECLGroup
  */
 
 add_filter( 'block_categories_all', function ( $block_categories ) {

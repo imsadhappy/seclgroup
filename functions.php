@@ -2,10 +2,10 @@
 /**
  * Theme entry point
  *
- * @package Oceaa
+ * @package SECLGroup
  */
 
-namespace Oceaa;
+namespace SECLGroup;
 
 global $theme_includes, $theme_textdomain;
 

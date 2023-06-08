@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package Oceaa
+ * @package SECLGroup
  */
 
 $post_id = get_the_ID();

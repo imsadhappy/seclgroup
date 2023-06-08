@@ -137,7 +137,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/oceaa-related-posts"
+                "value": "acf\/seclgroup-related-posts"
             }
         ]
     ],

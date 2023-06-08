@@ -6,9 +6,9 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package Oceaa
+ * @package SECLGroup
  */
- 
+
 ?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
@@ -55,7 +55,7 @@
 
 				// inline_script('search');
 
-			?>			
+			?>
 
 		</div>
 

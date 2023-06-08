@@ -2,7 +2,7 @@
 /**
  * Team Slider Block Template.
  *
- * @package Oceaa
+ * @package SECLGroup
  *
  */
 
@@ -17,7 +17,7 @@ $slides = get_field('team_slider_items');
     <?php if( $slides ) : ?>
 
         <div class="mx-team-slider-container">
-                    
+
             <div class="mx-team-slider-wrapper owl-carousel">
 
                 <?php foreach( $slides as $slide ) : ?>
@@ -25,7 +25,7 @@ $slides = get_field('team_slider_items');
                     <div class="mx-team-slider-item">
 
                         <div class="mx-team-slider-item-teammate">
-                            
+
                             <img src="<?php echo $slide['team_slider_item_image']; ?>" alt="">
 
                             <h5><?php echo $slide['team_slider_item_name']; ?></h5>

@@ -2,10 +2,10 @@
 /**
  * Updater trait
  *
- * @package Oceaa
+ * @package SECLGroup
  */
 
-namespace Oceaa;
+namespace SECLGroup;
 
 trait Updater {
 

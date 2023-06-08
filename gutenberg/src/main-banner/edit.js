@@ -71,9 +71,9 @@ export default function edit( {attributes, setAttributes} ) {
 		let styleObj = {}
 
 		if (attributes?.mediaBGUrl) {
-			
+
 			styleObj.backgroundImage = 'url("' + attributes.mediaBGUrl + '")'
-			
+
 		}
 
 		return styleObj
@@ -92,8 +92,8 @@ export default function edit( {attributes, setAttributes} ) {
 	return [
 		<InspectorControls key="mx-settings">
 
-			<PanelBody title={__('Background Image', 'oceaa')} initialOpen={false}>
-				
+			<PanelBody title={__('Background Image', 'seclgroup')} initialOpen={false}>
+
 				<PanelRow>
 					<MediaUploadCheck>
 
@@ -127,7 +127,7 @@ export default function edit( {attributes, setAttributes} ) {
 
 			</PanelBody>
 
-			<PanelBody title={__('Circle Image', 'oceaa')} initialOpen={false}>
+			<PanelBody title={__('Circle Image', 'seclgroup')} initialOpen={false}>
 				<PanelRow>
 					<MediaUploadCheck>
 
@@ -162,7 +162,7 @@ export default function edit( {attributes, setAttributes} ) {
 
 			</PanelBody>
 
-			<PanelBody title={__('Move Down Image', 'oceaa')} initialOpen={false}>
+			<PanelBody title={__('Move Down Image', 'seclgroup')} initialOpen={false}>
 				<PanelRow>
 					<MediaUploadCheck>
 
@@ -197,7 +197,7 @@ export default function edit( {attributes, setAttributes} ) {
 			</PanelBody>
 
 		</InspectorControls>,
-		<div 
+		<div
 			key="mx-main-content"
 			{...blockProps}
 			data-image-id={attributes.mediaBGId}

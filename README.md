@@ -1,8 +1,8 @@
-#  Oceaa theme by Pixelfarm.
+#  SECLGroup theme.
 
 Based on `_s` (`underscores`).
 
-Contributors: PixelFarm
+Contributors: SECLGroup
 
 Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
 
@@ -31,7 +31,7 @@ License URI: LICENSE
 
 ### Setup
 
-To start using all the tools that come with ` Oceaa` you need to install the necessary Node.js and Composer dependencies :
+To start using all the tools that come with `SECLGroup` you need to install the necessary Node.js and Composer dependencies :
 
 ```sh
 $ composer install

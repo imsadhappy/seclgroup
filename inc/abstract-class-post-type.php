@@ -2,10 +2,10 @@
 /**
  * Custom Post Type abstract
  *
- * @package Oceaa
+ * @package SECLGroup
  */
 
-namespace Oceaa;
+namespace SECLGroup;
 
 abstract class Post_Type {
 

@@ -2,10 +2,10 @@
 /**
  * Admin trait
  *
- * @package Oceaa
+ * @package SECLGroup
  */
 
-namespace Oceaa;
+namespace SECLGroup;
 
 trait Admin {
 

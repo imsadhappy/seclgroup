@@ -274,7 +274,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/oceaa-contact-section"
+                "value": "acf\/seclgroup-contact-section"
             }
         ]
     ],

@@ -18,7 +18,7 @@ export default function Edit({ attributes, setAttributes }) {
 				<PanelBody title="Default height" initialOpen={true}>
 					<PanelRow>
 						<NumberControl
-							label={__('Default Height', 'oceaa')}
+							label={__('Default Height', 'seclgroup')}
 							value={parseInt(attributes.media_default)}
 							onChange={(media_default) => setAttributes({ media_default })}
 						/>
@@ -32,7 +32,7 @@ export default function Edit({ attributes, setAttributes }) {
 
 					<PanelRow>
 						<NumberControl
-							label={__('@media <768px', 'oceaa')}
+							label={__('@media <768px', 'seclgroup')}
 							value={attributes.media_768}
 							onChange={(media_768) => setAttributes({ media_768 })}
 						/>
@@ -40,7 +40,7 @@ export default function Edit({ attributes, setAttributes }) {
 
 					<PanelRow>
 						<NumberControl
-							label={__('@media <992px', 'oceaa')}
+							label={__('@media <992px', 'seclgroup')}
 							value={attributes.media_992}
 							onChange={(media_992) => setAttributes({ media_992 })}
 						/>
@@ -48,7 +48,7 @@ export default function Edit({ attributes, setAttributes }) {
 
 					<PanelRow>
 						<NumberControl
-							label={__('@media <1220px', 'oceaa')}
+							label={__('@media <1220px', 'seclgroup')}
 							value={attributes.media_1220}
 							onChange={(media_1220) => setAttributes({ media_1220 })}
 						/>
@@ -56,7 +56,7 @@ export default function Edit({ attributes, setAttributes }) {
 
 					<PanelRow>
 						<NumberControl
-							label={__('@media <1500px', 'oceaa')}
+							label={__('@media <1500px', 'seclgroup')}
 							value={attributes.media_1500}
 							onChange={(media_1500) => setAttributes({ media_1500 })}
 						/>
@@ -68,12 +68,12 @@ export default function Edit({ attributes, setAttributes }) {
 		</InspectorControls>,
 		<div
 			{...blockProps}
-			key="mx-main-content"			
+			key="mx-main-content"
 		>
 			<ServerSideRender
 				block={metadata.name}
 				attributes={attributes}
-			/>	
+			/>
 		</div>
 	];
 }
