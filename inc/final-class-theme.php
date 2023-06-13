@@ -9,13 +9,9 @@ namespace SECLGroup;
 
 final class Theme {
 
-    public $i18n;
-
     use Admin, Updater;
 
     function __construct() {
-
-        $this->i18n = strtolower(__NAMESPACE__);
 
         add_filter( 'max_srcset_image_width', '__return_false' );
         add_filter( 'wp_calculate_image_srcset', '__return_false' );
@@ -23,7 +19,6 @@ final class Theme {
         add_action( 'after_setup_theme', array($this, 'setup') );
         add_action( 'customize_preview_init', array($this, 'enqueue') );
         add_action( 'wp_enqueue_scripts', array($this, 'enqueue') );
-        // add_action( 'admin_enqueue_scripts', array($this, 'admin_enqueue') );
         add_action( 'login_header', array($this, 'enqueue') );
         add_action( 'admin_head', array($this, 'enqueue') );
         add_action( 'after_setup_theme', array($this, 'register_menus') );
@@ -34,8 +29,6 @@ final class Theme {
         $this->avif_support();
         $this->remove_from_admin_bar( array('customize', 'updates', 'comments') );
         $this->page_for_terms_and_conditions();
-        $this->can_load_more(array('post', 'job', 'search'));
-        $this->can_count_posts(array('job'));
     }
 
     /**
@@ -47,7 +40,7 @@ final class Theme {
      */
     public function setup() {
 
-        load_theme_textdomain( $this->i18n, get_template_directory() . '/languages' );
+        load_theme_textdomain( 'seclgroup', get_template_directory() . '/languages' );
 
         add_theme_support( 'editor-styles' );
         add_editor_style( 'editor-style.css' );
@@ -99,6 +92,9 @@ final class Theme {
                 'flex-height' => true,
             )
         );
+
+        remove_action( 'wp_body_open', 'wp_global_styles_render_svg_filters' );
+        remove_action( 'in_admin_header', 'wp_global_styles_render_svg_filters' );
     }
 
     /**
@@ -111,7 +107,7 @@ final class Theme {
 
         switch ( current_action() ) {
             case 'customize_preview_init':
-                wp_enqueue_script( "{$this->i18n}-customizer", "$uri/js/customizer.js", array( 'customize-preview' ), $version, true );
+                wp_enqueue_script( "seclgroup-customizer", "$uri/js/customizer.js", array( 'customize-preview' ), $version, true );
                     break;
             case 'login_header':
                 wp_enqueue_style( 'theme-login-style', "$uri/login-style.css", array(), $version );
@@ -142,19 +138,7 @@ final class Theme {
     public function register_menus() {
 
         register_nav_menus( array(
-            'menu-1' => esc_html__( 'Header', $this->i18n ),
-        ) );
-
-        register_nav_menus( array(
-            'menu-2' => esc_html__( 'Footer Column', $this->i18n ) . ' 1',
-        ) );
-
-        register_nav_menus( array(
-            'menu-3' => esc_html__( 'Footer Column', $this->i18n ) . ' 2',
-        ) );
-
-        register_nav_menus( array(
-            'menu-4' => esc_html__( 'Footer Column', $this->i18n ) . ' 3',
+            'menu-1' => esc_html__( 'Header', 'seclgroup' ),
         ) );
     }
 
@@ -167,21 +151,9 @@ final class Theme {
 
         register_sidebar(
             array(
-                'name'          => esc_html__( 'Footer Column', $this->i18n ) . ' 4',
+                'name'          => esc_html__( 'Footer Column', 'seclgroup' ) . ' 4',
                 'id'            => "footer-column-4",
-                'description'   => esc_html__( 'Add widgets here.', $this->i18n ),
-                'before_widget' => '<div id="%1$s" class="widget %2$s">',
-                'after_widget'  => '</div>',
-                'before_title'  => '<div class="widget-title">',
-                'after_title'   => '</div>',
-            )
-        );
-
-        register_sidebar(
-            array(
-                'name'          => esc_html__( 'Footer Column', $this->i18n ) . ' 5',
-                'id'            => "footer-column-5",
-                'description'   => esc_html__( 'Add widgets here.', $this->i18n ),
+                'description'   => esc_html__( 'Add widgets here.', 'seclgroup' ),
                 'before_widget' => '<div id="%1$s" class="widget %2$s">',
                 'after_widget'  => '</div>',
                 'before_title'  => '<div class="widget-title">',

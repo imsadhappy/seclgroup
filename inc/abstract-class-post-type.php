@@ -14,19 +14,18 @@ abstract class Post_Type {
     public $slabel = '';
     public $features = array();
 
+    abstract protected function load();
     abstract public function register();
 
     function __construct() {
+
+        $this->load();
 
         add_action( 'init', array($this, 'register'), 11 );
 
         foreach ( $this->features as $feature )
             if ( method_exists($this, $feature) )
                 $this->{$feature}();
-    }
-
-    public static function i18n() {
-        return strtolower(__NAMESPACE__);
     }
 
     protected function page_for_posts() {
@@ -37,7 +36,7 @@ abstract class Post_Type {
 
             add_settings_field(
                 $this->skey,
-                '<label for="' . $this->skey . '">' . __( $this->slabel , self::i18n() ) . ':</label>',
+                '<label for="' . $this->skey . '">' . $this->slabel . ':</label>',
                 function () {
                     echo wp_dropdown_pages(
                         array(
@@ -56,7 +55,7 @@ abstract class Post_Type {
         add_filter( 'display_post_states', function ( $post_states, $post ) {
 
             if ( intval( get_option($this->skey) ) === intval($post->ID) )
-                $post_states[$this->skey] = __( $this->slabel, self::i18n() );
+                $post_states[$this->skey] = $this->slabel;
 
             return $post_states;
         }, 10, 2 );
@@ -125,10 +124,12 @@ abstract class Post_Type {
         } );
     }
 
-    protected function pre_get_posts() {
+    protected function all_posts_per_page() {
 
         add_action( 'pre_get_posts', function( $query ) {
-            if ( $query->is_main_query() && $query->is_post_type_archive($this->post_type) ) {
+            if ( $query->is_main_query() &&
+                 ( $query->is_post_type_archive($this->post_type) ||
+                    $query->is_tax( get_object_taxonomies($this->post_type) ) ) ) {
                 $query->set( 'posts_per_page', -1 );
                 $query->set( 'orderby', array( 'menu_order' => 'ASC' ) );
             }

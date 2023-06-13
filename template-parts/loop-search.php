@@ -10,7 +10,7 @@
 $post_id = !empty($args) && isset($args['post_id']) ? $args['post_id'] : get_the_ID();
 $post_title = get_the_title($post_id);
 $post_excerpt = get_the_excerpt($post_id);
-$post_type_name = ucfirst(__(get_post_type($post_id), theme_textdomain()));
+$post_type_name = ucfirst(__(get_post_type($post_id), 'seclgroup'));
 
 ?>
 <li id="post-<?php echo $post_id; ?>" <?php post_class('', $post_id); ?>>

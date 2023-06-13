@@ -5,16 +5,6 @@
  * @package SECLGroup
  */
 
-if ( ! function_exists( 'theme_textdomain' ) ) {
-
-	function theme_textdomain() {
-
-		global $theme_textdomain;
-
-		return $theme_textdomain;
-    }
-}
-
 if ( ! function_exists( 'posted_on' ) ) {
 	/**
 	 * Prints HTML with meta information for the current post-date/time.
@@ -219,7 +209,6 @@ if ( ! function_exists( 'related_posts' ) ) {
 	 */
 	function related_posts( $post_id ) {
 
-		$i18n = theme_textdomain();
 		$related_posts = get_post_meta($post_id, 'related_posts', true);
 
 		if ( ! empty($related_posts) ) : ?>
@@ -227,8 +216,8 @@ if ( ! function_exists( 'related_posts' ) ) {
 			<div class="related-entries">
 
 				<div class="flex-space-between">
-					<div class="h3"><?php esc_html_e('Related posts', $i18n) ?></div>
-					<a href="<?php echo get_post_type_archive_link( 'post' ); ?>" class="wp-element-button mobile-hidden button-smaller"><?php esc_html_e('See all', $i18n) ?></a>
+					<div class="h3"><?php esc_html_e('Related posts', 'seclgroup') ?></div>
+					<a href="<?php echo get_post_type_archive_link( 'post' ); ?>" class="wp-element-button mobile-hidden button-smaller"><?php esc_html_e('See all', 'seclgroup') ?></a>
 				</div>
 
 				<ul class="post-list">
@@ -258,8 +247,7 @@ if ( ! function_exists( 'block_loop_template' ) ) {
 		if ( ! post_type_exists($post_type) )
 			return;
 
-		$i18n = theme_textdomain();
-		$block_name = str_replace("acf/$i18n-", '', $block['name']);
+		$block_name = str_replace("acf/seclgroup-", '', $block['name']);
 		$args = array(
 			'fields' => 'ids',
 			'post_type' => $post_type,
@@ -276,12 +264,12 @@ if ( ! function_exists( 'block_loop_template' ) ) {
 			$args['numberposts'] = get_option('posts_per_page');
 		}
 
-		$see_all_button = function($button_class = '') use ($fields, $post_type, $i18n) {
+		$see_all_button = function($button_class = '') use ($fields, $post_type) {
 			if (!empty($fields['show_see_all_button']))
 				printf('<a href="%s" class="wp-element-button button-smaller %s">%s</a>',
 						esc_url(get_post_type_archive_link($post_type)),
 						$button_class,
-						esc_html_x(empty($fields['button_text']) ? 'See all' : $fields['button_text'], $post_type, $i18n));
+						esc_html_x(empty($fields['button_text']) ? 'See all' : $fields['button_text'], $post_type, 'seclgroup'));
 		};
 
 		$posts = get_posts($args);
@@ -298,7 +286,7 @@ if ( ! function_exists( 'block_loop_template' ) ) {
 							empty($fields['heading_text']) ?
 							$block['title'] :
 							$fields['heading_text'],
-						$post_type, $i18n);
+						$post_type, 'seclgroup');
 					?></h2>
 
 					<?php $see_all_button('mobile-hidden') ?>
@@ -442,15 +430,13 @@ if ( ! function_exists( 'load_more_button' ) ) {
 
 	function load_more_button( $post_type = 'post' ) {
 
-		$i18n = theme_textdomain();
-
 		?><button type="button"
 			data-offset="<?php echo get_option('posts_per_page') ?>"
 			data-post_type="<?php echo $post_type ?>"
 			data-cat="<?php echo get_query_var( 'cat' ) ?>"
 			class="ajax-load-more ajax-count-<?php echo $post_type ?>">
-			<span><?php esc_html_e( 'Load more items', $i18n ) ?></span>
-			<span class="on-none"><?php esc_html_e( 'No more items', $i18n ) ?></span>
+			<span><?php esc_html_e( 'Load more items', 'seclgroup' ) ?></span>
+			<span class="on-none"><?php esc_html_e( 'No more items', 'seclgroup' ) ?></span>
 		</button><?php
 
 		inline_script('ajax-load-more');

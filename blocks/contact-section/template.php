@@ -21,7 +21,7 @@ $links = get_field('section_contact_links');
 $background_color = boolval(get_field('section_contact_background_color'));
 
 if ( empty($text) )
-   $text = esc_html__('Please enter text', theme_textdomain());
+   $text = esc_html__('Please enter text', 'seclgroup');
 
 ?>
 

@@ -7,52 +7,33 @@
 
 namespace SECLGroup;
 
-global $theme_includes, $theme_textdomain;
-
-$theme_includes = get_template_directory() . '/inc';
-$theme_textdomain = strtolower(__NAMESPACE__);
-$theme_gutenberg_blocks = get_template_directory() . '/gutenberg';
+$dir = get_template_directory();
 
 /**
  * Template tags.
  */
-require_once "$theme_includes/template-tags.php";
+require_once "$dir/inc/template-tags.php";
 
 /**
  * ACF blocks.
  */
-require_once "$theme_includes/blocks.php";
+require_once "$dir/inc/blocks.php";
 
 /**
  * Theme.
  */
-require_once "$theme_includes/trait-updater.php";
-require_once "$theme_includes/trait-admin.php";
-require_once "$theme_includes/final-class-theme.php";
+require_once "$dir/inc/trait-updater.php";
+require_once "$dir/inc/trait-admin.php";
+require_once "$dir/inc/final-class-theme.php";
 
 new Theme;
 
 /**
  * Custom Post Types.
  */
-require_once "$theme_includes/abstract-class-post-type.php";
-require_once "$theme_includes/class-job-post-type.php";
-
-new Job;
-
-/**
- * Extensions.
- */
-require_once "$theme_includes/class-gforms-extension.php";
-
-new GForms_Extension;
+require_once "$dir/inc/abstract-class-post-type.php";
 
 /**
  * Gutenberg Blocks.
  */
-require_once "$theme_gutenberg_blocks/gutenberg-main.php";
-
-/**
- * Filters and Actions.
- */
-require_once "$theme_includes/hooks.php";
+require_once "$dir/gutenberg/gutenberg-main.php";

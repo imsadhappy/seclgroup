@@ -60,7 +60,7 @@ $items = get_field('industries_items');
 
             <?php if ( ! is_array($items) || empty($items) ) : ?>
 
-                <?php esc_html_e('Please add Items', theme_textdomain()); ?>
+                <?php esc_html_e('Please add Items', 'seclgroup'); ?>
 
             <?php else : ?>
 

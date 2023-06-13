@@ -32,9 +32,9 @@
 	<div class="wp-block-buttons">
 		<div class="wp-block-button">
 			<a href="<?php echo home_url('/') ?>"
-				aria-label="<?php esc_html_e( 'Return to homepage', theme_textdomain() ); ?>"
+				aria-label="<?php esc_html_e( 'Return to homepage', 'seclgroup' ); ?>"
 				class="wp-block-button__link wp-element-button back-to-home">
-				<?php esc_html_e( 'Return to homepage', theme_textdomain() ); ?>
+				<?php esc_html_e( 'Return to homepage', 'seclgroup' ); ?>
 			</a>
 		</div>
 	</div>

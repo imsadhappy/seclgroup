@@ -24,7 +24,7 @@ $post_url = esc_url( get_permalink($post_id) );
 
     <a class="read-more" href="<?php echo $post_url ?>">
         <span class="screen-reader-text"><?php
-            esc_html_e('View job', theme_textdomain());
+            esc_html_e('View job', 'seclgroup');
         ?></span>
     </a>
 

@@ -1,3 +1,17 @@
+$Primary__150: #E46EC3;
+$Primary__100: #EFA7DB;
+$Primary__50: #F2C3E5;
+$Primary__0: #FFEEFA;
+
+$BG__Blue: #E2E9FB;
+$BG__Grey: #F6F7FB;
+$BG__White: #FFFFFF;
+
+$Text__Primary: #090F20;
+$Text__Secondary: #707380;
+$Text__Tertiary: #AEAFC4;
+$Text__White: #FFFFFF;
+
 $color__white: #FFFFFF;
 
 $color__grey: #F5F3F2;
@@ -26,13 +40,13 @@ $color__background-ins: $color__secondary;
 
 $color__background-header: $color__white;
 
-$color__background-footer: $color__primary;
+$color__background-footer: $BG__Blue;
 
 $color__text-screen: #21759b;
 
 $color__text-main: $color__primary;
 
-$color__text-footer: $color__white;
+$color__text-footer: $Text__Tertiary;
 
 $color__button-text: $color__primary;
 

@@ -1,51 +1,57 @@
-/********** Fonts **********/
-@font-face {
-  font-family: 'HalvarBreit';
-  src: url("./assets/fonts/HalvarBreit/HalvarBreit.eot");
-  src: url("./assets/fonts/HalvarBreit/HalvarBreit.eot?#iefix") format("embedded-opentype"), url("./assets/fonts/HalvarBreit/HalvarBreit.woff2") format("woff2"), url("./assets/fonts/HalvarBreit/HalvarBreit.woff") format("woff"), url("./assets/fonts/HalvarBreit/HalvarBreit.ttf") format("truetype"), url("./assets/fonts/HalvarBreit/HalvarBreit.svg#HalvarBreit") format("svg");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap; }
-
+@import url(assets/fonts/stylesheet.css);
 body {
-  counter-reset: --text-group-couter; }
+	counter-reset: --text-group-couter;
+}
 
 @media (min-width: 782px) {
-  .text-group {
-    display: inline-block;
-    max-width: 440px;
-    min-width: 40%; } }
+	.text-group {
+		display: inline-block;
+		max-width: 440px;
+		min-width: 40%;
+	}
+}
 
 @media (max-width: 781px) {
-  .text-group {
-    width: 100%; }
-    .text-group + .text-group {
-      margin-top: 40px; } }
+	.text-group {
+		width: 100%;
+	}
+	.text-group + .text-group {
+		margin-top: 40px;
+	}
+}
 
 .text-group:before {
-  display: inline-block;
-  counter-increment: --text-group-couter;
-  content: counters(--text-group-couter, ".", decimal-leading-zero);
-  font-size: 22px;
-  font-weight: 800;
-  line-height: 29px;
-  color: var(--color-light-blue);
-  margin-bottom: 5px; }
+	display: inline-block;
+	counter-increment: --text-group-couter;
+	content: counters(--text-group-couter, ".", decimal-leading-zero);
+	font-size: 22px;
+	font-weight: 800;
+	line-height: 29px;
+	color: var(--color-light-blue);
+	margin-bottom: 5px;
+}
 
 .text-group--heading {
-  margin: 0 0 30px; }
+	margin: 0 0 30px;
+}
 
 .text-group--link {
-  display: inline-block;
-  margin-top: 40px;
-  font-size: 18px;
-  font-weight: 800;
-  line-height: 18px;
-  background: transparent no-repeat right url("../../assets/link-arrow.svg");
-  padding-right: 20px;
-  transition: padding .3s ease; }
-  .text-group--link:hover, .text-group--link:focus, .text-group--link:active {
-    padding-right: 25px; }
+	display: inline-block;
+	margin-top: 40px;
+	font-size: 18px;
+	font-weight: 800;
+	line-height: 18px;
+	background: transparent no-repeat right url("../../assets/link-arrow.svg");
+	padding-right: 20px;
+	transition: padding .3s ease;
+}
+
+.text-group--link:hover, .text-group--link:focus, .text-group--link:active {
+	padding-right: 25px;
+}
 
 .acf-block-preview .text-group {
-  width: 100%; }
+	width: 100%;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -37,7 +37,7 @@ $see_all_button = function($button_class = '') use ($button){
 
     <?php if ( ! is_array($slides) || empty($slides) ) {
 
-        esc_html_e('Please add slides', theme_textdomain());
+        esc_html_e('Please add slides', 'seclgroup');
 
     } else { ?>
 

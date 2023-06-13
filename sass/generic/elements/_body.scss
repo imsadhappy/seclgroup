@@ -4,12 +4,12 @@ html, body {
 }
 
 ::-moz-selection {
-  background-color: $color__light-blue;
-  color: $color__primary;
+  background-color: $Primary__150;
+  color: $Text__White;
 }
 ::selection {
-  background-color: $color__light-blue;
-  color: $color__primary;
+  background-color: $Primary__150;
+  color: $Text__White;
 }
 
 body {
