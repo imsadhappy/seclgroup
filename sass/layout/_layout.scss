@@ -9,6 +9,15 @@ html, body, .site {
     flex-direction: column;
 }
 
+body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+    @media (max-width: $width__desktop) {
+        max-width: calc(100vw - 60px);
+    }
+    @media (max-width: $width__min) {
+        max-width: calc(100vw - 30px);
+    }
+}
+
 @import "header";
 
 @import "main";

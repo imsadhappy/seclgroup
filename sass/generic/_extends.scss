@@ -70,7 +70,7 @@
 
 	display: inline-block;
 	border: 0;
-	border-radius: 8px;
+	border-radius: 100px;
 	background-color: $color__button-background;
 	color: $color__button-text;
 	background-size: 300%;
@@ -79,16 +79,23 @@
 	padding: 18px 40px;
 	cursor: pointer;
 	box-shadow: none;
-	transition: background-color 1s ease-out;
+	transition: background-color .3s ease-out;
+	text-transform: uppercase;
 
+	&,
 	&:hover,
 	&:active,
 	&:focus {
-		background-color: lighten($color__button-background, 10%);
+		color: inherit;
 	}
 
 	a {
-		color: inherit;
+		&,
+		&:hover,
+		&:active,
+		&:focus {
+			color: inherit;
+		}
 	}
 }
 
@@ -139,5 +146,79 @@
 	&.tns-nav-active {
 		border-color: $color__secondary;
 		background-color: $color__secondary;
+	}
+}
+
+.button-right-arrow,
+.wrap-button-right-arrow a {
+	background-repeat: no-repeat;
+	background-position: 99% center;
+	padding: 10px 30px 10px 0px;
+	text-decoration: none;
+	background-image: url('assets/images/arrow-right-in-circle.svg');
+}
+
+.button-down-arrow,
+.wrap-button-down-arrow a {
+	background-repeat: no-repeat;
+	background-position: 99% center;
+	padding: 10px 30px 10px 0px;
+	text-decoration: none;
+	background-image: url('assets/images/arrow-down-in-circle.svg');
+}
+
+.button-up-right-arrow,
+.wrap-button-up-right-arrow a {
+	background-repeat: no-repeat;
+	background-position: 99% center;
+	padding: 10px 30px 10px 0px;
+	text-decoration: none;
+	background-image: url('assets/images/arrow-up-right-in-circle.svg');
+}
+
+.services-list {
+	> * {
+		width: 100%;
+		padding: 26px 0 20px;
+		+ * {
+			border-top: 1px solid $Text__Tertiary;
+		}
+		&:hover {
+			@extend .button-up-right-arrow;
+			padding: 26px 40px 20px 0;
+			background-size: 30px;
+		}
+		a {
+			color: inherit !important;
+			display: inline-block;
+			&:after {
+				content: '';
+				height: 3px;
+				display: block;
+				width: 0px;
+				background-color: $Text__Primary;
+				transition: width .3s ease;
+			}
+		}
+		&:hover a:after {
+			width: 100%;
+		}
+	}
+}
+
+.encircle-gif {
+	display: inline-block;
+    position: relative;
+	&:before {
+		content: '';
+		filter: hue-rotate(310deg) contrast(0.9);
+		position: absolute;
+		background-image: url('assets/images/97845a2abc7f36a12f973a0b9c67c06c.gif');
+		background-repeat: no-repeat;
+		background-size: contain;
+		z-index: -1;
+		width: 105%;
+		height: 105%;
+		margin: 0 0 -3% -3%;
 	}
 }

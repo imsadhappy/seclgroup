@@ -95,9 +95,7 @@
 
 .aligncenter {
 	clear: both;
-
 	@include center-block;
-
 	margin-bottom: 1.5em;
 }
 
@@ -254,4 +252,11 @@
         padding-right: calc(50% - #{$width__desktop} / 2);
         padding-right: clamp(30px, calc(50% - #{$width__desktop} / 2), 100500px);
     }
+}
+
+.line-height-1_5 {
+    line-height: 1.5;
+}
+.line-height-2 {
+    line-height: 2;
 }

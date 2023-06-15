@@ -1,6 +1,6 @@
 @import url(assets/fonts/stylesheet.css);
 .wrapper {
-	max-width: 1320px;
+	max-width: 1224px;
 	margin-left: auto;
 	margin-right: auto;
 	width: calc(100vw - 60px);
@@ -15,7 +15,7 @@
 .base-font-setting {
 	color: #090F20;
 	font-family: "Halvar Breit Rg", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-	font-size: 14px;
+	font-size: 16px;
 	line-height: 1.5;
 	font-weight: normal;
 }
@@ -69,8 +69,8 @@
 .base-button-style {
 	display: inline-block;
 	border: 0;
-	border-radius: 8px;
-	background-color: #FF7733;
+	border-radius: 100px;
+	background-color: #EFA7DB;
 	color: #090F20;
 	background-size: 300%;
 	line-height: 1;
@@ -78,14 +78,15 @@
 	padding: 18px 40px;
 	cursor: pointer;
 	box-shadow: none;
-	transition: background-color 1s ease-out;
+	transition: background-color .3s ease-out;
+	text-transform: uppercase;
 }
 
-.base-button-style:hover, .base-button-style:active, .base-button-style:focus {
-	background-color: #ff9966;
+.base-button-style, .base-button-style:hover, .base-button-style:active, .base-button-style:focus {
+	color: inherit;
 }
 
-.base-button-style a {
+.base-button-style a, .base-button-style a:hover, .base-button-style a:active, .base-button-style a:focus {
 	color: inherit;
 }
 
@@ -134,6 +135,83 @@
 	background-color: #FF7733;
 }
 
+.button-right-arrow,
+.wrap-button-right-arrow a {
+	background-repeat: no-repeat;
+	background-position: 99% center;
+	padding: 10px 30px 10px 0px;
+	text-decoration: none;
+	background-image: url("assets/images/arrow-right-in-circle.svg");
+}
+
+.button-down-arrow,
+.wrap-button-down-arrow a {
+	background-repeat: no-repeat;
+	background-position: 99% center;
+	padding: 10px 30px 10px 0px;
+	text-decoration: none;
+	background-image: url("assets/images/arrow-down-in-circle.svg");
+}
+
+.button-up-right-arrow, .services-list > *:hover,
+.wrap-button-up-right-arrow a {
+	background-repeat: no-repeat;
+	background-position: 99% center;
+	padding: 10px 30px 10px 0px;
+	text-decoration: none;
+	background-image: url("assets/images/arrow-up-right-in-circle.svg");
+}
+
+.services-list > * {
+	width: 100%;
+	padding: 26px 0 20px;
+}
+
+.services-list > * + * {
+	border-top: 1px solid #AEAFC4;
+}
+
+.services-list > *:hover {
+	padding: 26px 40px 20px 0;
+	background-size: 30px;
+}
+
+.services-list > * a {
+	color: inherit !important;
+	display: inline-block;
+}
+
+.services-list > * a:after {
+	content: '';
+	height: 3px;
+	display: block;
+	width: 0px;
+	background-color: #090F20;
+	transition: width .3s ease;
+}
+
+.services-list > *:hover a:after {
+	width: 100%;
+}
+
+.encircle-gif {
+	display: inline-block;
+	position: relative;
+}
+
+.encircle-gif:before {
+	content: '';
+	filter: hue-rotate(310deg) contrast(0.9);
+	position: absolute;
+	background-image: url("assets/images/97845a2abc7f36a12f973a0b9c67c06c.gif");
+	background-repeat: no-repeat;
+	background-size: contain;
+	z-index: -1;
+	width: 105%;
+	height: 105%;
+	margin: 0 0 -3% -3%;
+}
+
 .wp-block.related-posts .post-list {
 	flex-wrap: nowrap;
 	overflow: auto;
@@ -151,7 +229,7 @@
 	}
 }
 
-@media (max-width: 1320px) {
+@media (max-width: 1224px) {
 	.wp-block.related-posts {
 		margin-left: 0;
 		width: 100vw;

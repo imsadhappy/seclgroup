@@ -68,19 +68,4 @@
 .bg-pink {
     background: #F6F7FB;
 }
-.before-curve-line {
-    strong {
-        color: #E46EC3;
-        position: relative;
-        &:before {
-            content: '';
-            position: absolute;
-            width: 130px;
-            height: 34px;
-            background-repeat: no-repeat;
-            background-image: url('../../assets/images/curve-line.webp');
-            bottom: -16px;
-            left: -43px;
-        }
-    }
-}
+
