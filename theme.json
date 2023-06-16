@@ -4,8 +4,14 @@
 	"settings": {
 		"color": {
             "defaultPalette": false,
-			"gradients": [],
-			"customGradient": false,
+			"gradients": [
+				{
+					"slug": "white-to-grey",
+					"gradient": "linear-gradient(180deg, rgba(247, 249, 250, 0) 0%, #F7F9FA 100%);",
+					"name": "White to Grey"
+				}
+			],
+			"customGradient": true,
 			"defaultGradients": false,
 			"duotone": [],
 			"customDuotone": false,
@@ -13,23 +19,23 @@
 			"palette": [
 				{
 					"color": "#E46EC3",
-					"name": "Primary",
-					"slug": "primary"
+					"name": "Pink 150",
+					"slug": "pink-150"
 				},
 				{
 					"color": "#EFA7DB",
-					"name": "Secondary",
-					"slug": "secondary"
+					"name": "Pink 100",
+					"slug": "pink-100"
 				},
 				{
 					"color": "#F2C3E5",
-					"name": "Tertiary",
-					"slug": "tertiary"
+					"name": "Pink 50",
+					"slug": "pink-50"
 				},
 				{
 					"color": "#ffffff",
 					"name": "BG/White",
-					"slug": "bg"
+					"slug": "bg-white"
 				},
 				{
 					"color": "#E2E9FB",
@@ -49,7 +55,7 @@
 				{
 					"color": "#090F20",
 					"name": "Text/Primary",
-					"slug": "text"
+					"slug": "text-primary"
 				},
 				{
 					"color": "#707380",

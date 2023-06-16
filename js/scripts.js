@@ -22,6 +22,47 @@ document.addEventListener('DOMContentLoaded', function(){
     });
 });
 
+/**
+ * Tabs
+ */
+document.addEventListener('DOMContentLoaded', function(){
+    var x = 'custom-tabs';
+    document.querySelectorAll(`.${x}-container`).forEach(function(container){
+        var tabs = container.querySelector(`.${x}`),
+            content = container.querySelector(`.${x}-content`),
+            parent = container.parentNode;
+        if (!tabs || !content) {
+            return;
+        }
+        for (var i = 0; i < tabs.children.length; i++) {
+            (function(tab, i2){
+                tab.addEventListener('click', function(){
+                    for (var i3 = 0; i3 < tabs.children.length; i3++) {
+                        tabs.children[i3].classList[i3 === i2 ? 'add' : 'remove']('active');
+                    }
+                    for (var i3 = 0; i3 < content.children.length; i3++) {
+                        content.children[i3].classList[i3 === i2 ? 'add' : 'remove']('active');
+                    }
+                    if (parent.getBoundingClientRect().y < 0) {
+                        parent.scrollIntoView({ behavior: 'instant', block: 'start' });
+                    }
+                    window.dispatchEvent(new CustomEvent('resize', {detail:{initiator:'scripts.js'}}));
+                });
+            })(tabs.children[i], i);
+        }
+        document.addEventListener('click', function(event){
+            if (event.target.classList.contains(`${x}-switcher`) ||
+                event.target.parentNode.classList.contains(`${x}-switcher`)) {
+                var nexTab = tabs.querySelector('.active').nextElementSibling;
+                if (!nexTab) {
+                    nexTab = tabs.children[0];
+                }
+                nexTab.dispatchEvent(new CustomEvent('click', {detail:{initiator:'scripts.js'}}));
+            }
+        });
+    });
+});
+
 window.tnsComponents = window.tnsComponents || {
     list: [],
     load: function() {
@@ -72,6 +113,6 @@ document.addEventListener('DOMContentLoaded', function(){
             if (after === before) {
                 e.classList.toggle('reverse');
             }
-        }, 10);
+        }, 24);
     });
 });

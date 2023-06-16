@@ -66,9 +66,10 @@ nav ul.sub-menu {
 
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
-    padding: 0px 22px;
+    padding: 0;
 	width: 100%;
+	gap: 2em;
+	padding-left: 2em;
 
 	&.invisible {
 		opacity: 0;

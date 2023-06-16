@@ -12,21 +12,21 @@
     }
     
     > * {
-
-        border-bottom: 1px solid;
+        text-align: center;
         cursor: pointer;
         padding-bottom: 30px;
         @media (max-width: $width__mobile) {
             padding-bottom: 15px;
         }
-
         > * {
-            margin: 0;
+            color: $Text__Tertiary;
+            margin: 0 auto;
+            display: inline-block;
+            border-bottom: 1px dashed;
+            transition: color .2s ease;
         }
-        &.active {
-            border-bottom-color: $color__light-blue;
-            box-shadow: 0 -3px 0 0 var(--color-light-blue) inset,
-                        0 3px 0 0 var(--color-light-blue);
+        &.active > * {
+            color: $Text__Primary;
         }
     }
 }

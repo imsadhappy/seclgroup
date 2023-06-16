@@ -1,9 +1,9 @@
 body {
-    background-color: #F3F3F3;
+    background-color: #E2E9FB;
 }
 
 #login h1 a {
-    background-image: url('/icon.webp');
+    background-image: url('assets/icon.webp');
     background-size: contain;
     width: 155px;
     height: 100px
