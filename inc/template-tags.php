@@ -351,6 +351,7 @@ if ( ! function_exists( 'inline_script' ) ) {
 			$GLOBALS['inlined_scripts'][] = $script_name;
 		}
 
+
 		printf('<script id="inline-%s-js">%s</script>', $script_name, file_get_contents($script));
 	}
 }

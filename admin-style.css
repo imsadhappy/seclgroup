@@ -1,31 +1,22 @@
 .editor-styles-wrapper {
-	max-width: 100vw;
-	overflow: hidden;
-}
+  max-width: 100vw;
+  overflow: hidden; }
 
 .edit-post-fullscreen-mode-close {
-	background: transparent !important;
-}
-
-.edit-post-fullscreen-mode-close::before {
-	background: center no-repeat url("assets/icon.webp");
-	background-size: 99%;
-	box-shadow: none !important;
-}
+  background: transparent !important; }
+  .edit-post-fullscreen-mode-close::before {
+    background: center no-repeat url("assets/icon.webp");
+    background-size: 99%;
+    box-shadow: none !important; }
 
 .wp-block .acf-hidden {
-	display: block !important;
-}
-
-.wp-block .acf-hidden:before {
-	content: '';
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0;
-	left: 0;
-	background-color: rgba(255, 255, 255, 0.7);
-	z-index: 99;
-}
-
-/*# sourceMappingURL=admin-style.css.map */
+  display: block !important; }
+  .wp-block .acf-hidden:before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    z-index: 99; }

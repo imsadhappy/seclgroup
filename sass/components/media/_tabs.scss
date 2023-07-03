@@ -1,23 +1,24 @@
 .custom-tabs-container {
-    padding: 0 30px;
-    @media (max-width: $width__min) {
-        padding: 0 15px;
-    }
+
 }
 
 .custom-tabs {
-    
-    @media (max-width: $width__mobile) {
-        gap: 1em;
-    }
-    
+
+    @extend .overflow-x-auto, .no-scrollbar, .wrapped-by-padding;
+    max-width: none !important;
+    justify-content: space-between;
+
     > * {
+
         text-align: center;
         cursor: pointer;
-        padding-bottom: 30px;
-        @media (max-width: $width__mobile) {
-            padding-bottom: 15px;
+        flex-basis: content !important;
+
+        @media (max-width: $width__desktop) {
+            white-space: nowrap;
+            flex-shrink: 0;
         }
+
         > * {
             color: $Text__Tertiary;
             margin: 0 auto;
@@ -25,6 +26,7 @@
             border-bottom: 1px dashed;
             transition: color .2s ease;
         }
+
         &.active > * {
             color: $Text__Primary;
         }
@@ -39,6 +41,7 @@
     display: block;
     transition: transform 1s ease, opacity 1s ease;
     transition-delay: .1s, .5s;
+    min-height: 33vh;
 }
 
 .custom-tabs-content {
@@ -59,5 +62,6 @@
         @extend .custom-tabs-content--active;
         @include editor-hidden('edit tab content');
         margin-top: 20px;
+        min-height: 100px;
     }
 }

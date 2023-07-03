@@ -16,6 +16,7 @@
 
     .header-content {
 
+        position: relative; //for navigation
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -26,6 +27,7 @@
             svg {
                 width: 115px;
                 height: 31px;
+                vertical-align: middle;
             }
         }
 
@@ -70,23 +72,22 @@
                 display: none !important;
             }
         }
-        
+
         + .site-main {
             margin-top: 53px;
         }
     }
 
-    & .secl-group-transparent-btn {
-        border: 1px solid #707380;
-        border-radius: 40px;
-        padding: 18px 24px 18px 64px;
-        background-image: url('assets/images/icon-1.png');
-        background-repeat: no-repeat;
-        background-position: left center;
-        background-position-x: 24px;
-        @media (max-width: 1220px) {
-			margin-right: 40px;
-            padding: 8px 24px 8px 64px;
-		}
+    box-shadow: 0 0 0 100vh rgba($BG__Blue, 0);
+    transition-delay: .5s;
+
+    &.dropdown-menu-shown {
+        box-shadow: 0 0 0 100vh rgba($BG__Blue, .5);
+        transition: box-shadow .2s ease;
+
+        ~ * {
+            transition: filter .2s ease;
+            filter: blur(10px);
+        }
     }
 }

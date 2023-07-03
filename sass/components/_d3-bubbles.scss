@@ -1,0 +1,40 @@
+.d3-bubbles {
+
+  > *:not(svg) {
+    display: none;
+  }
+
+  .node {
+    cursor: default;
+    @for $i from 1 through 30 {
+      &:nth-child(#{$i}) .graph {
+        $delay: $i * .1s;
+        animation-delay: $delay;
+      }
+    }
+  }
+
+  .node circle {
+    transition: transform 200ms ease-in-out;
+  }
+
+  .graph {
+    opacity: 0;
+    animation-name: d3BubblesAnimation;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(.7,.85,.41,1.21);
+  }
+
+  @keyframes d3BubblesAnimation {
+    0% {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+}

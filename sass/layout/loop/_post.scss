@@ -5,9 +5,6 @@
     flex-direction: row;
     max-height: 424px;
     height: 110vw;
-    background: $color__background-body-alt;
-    border-radius: 20px;
-    overflow: hidden;
     width: calc(50% - 20px);
 
     .post-details {
@@ -22,13 +19,13 @@
     .post-title {
         position: relative;
         max-height: 160px;
-        margin: 30px;
+        margin: 30px 0;
         height: 100%;
     }
 
     .posted-in {
         margin: auto 0 0;
-        padding: 0 60px 0 30px;
+        padding: 0;
         a {
             display: inline-block;
             background: rgba($color__white, .75);
@@ -38,7 +35,7 @@
     }
 
     .posted-on {
-        padding: 0 30px;
+        padding: 0;
         font-size: 14px;
         line-height: 18px;
         font-weight: 700;
@@ -57,42 +54,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-        }
-    }
-
-    &.category-nieuws {
-
-        background: $color__primary;
-
-        .post-details * {
-            color: white;
-            :hover, :focus { color: $color__secondary }
-        }
-
-        .read-more {
-            background-color: $color__secondary;
-            border-color: $color__secondary;
-            &:hover, &:focus {
-                background-color: $color__white;
-                border-color: $color__white;
-            }
-        }
-    }
-
-    &.category-whitepapers {
-
-        background: $color__tertiary url('assets/zigzag-post.svg') no-repeat;
-        background-position: 150% 125%;
-
-        a:hover, a:focus { color: $color__white }
-
-        .read-more {
-            background-color: $color__white;
-            border-color: $color__white;
-            &:hover, &:focus {
-                background-color: $color__secondary;
-                border-color: $color__secondary;
-            }
         }
     }
 }

@@ -5,7 +5,7 @@
  */
 
 window.mxSideImageSlider = window.mxSideImageSlider || {
-    id: 'mx-side-image',
+    id: null,
     ready: false,
     instances: [],
     config: {
@@ -16,9 +16,15 @@ window.mxSideImageSlider = window.mxSideImageSlider || {
         navPosition: 'bottom',
         autoHeight: true
     },
+    sections: function() {
+        return document.querySelectorAll(`.${this.id}-section`);
+    },
+    sliders: function() {
+        return document.querySelectorAll(`.${this.id}-slider`);
+    },
     wrap: function() {
         const factory = this;
-        document.querySelectorAll(`.${factory.id}-section`).forEach((container) => {
+        factory.sections().forEach((container) => {
             if(!container.querySelector(`.${factory.id}-slider`)) {
                 var wrapper = document.createElement('div');
                 wrapper.classList.add(`${factory.id}-slider`);
@@ -30,14 +36,11 @@ window.mxSideImageSlider = window.mxSideImageSlider || {
     },
     create: function() {
         const factory = this;
-        document.querySelectorAll(`.${factory.id}-slider`).forEach((slider) => {
+        factory.sliders().forEach((slider) => {
             if (!slider.classList.contains('tns-slider') && slider.children.length > 0) {
                 var config = Object.assign({}, factory.config);
                 config.container = slider;
                 var instance = tns(config);
-                setTimeout(function(){
-                    factory.update(instance);
-                }, 100);
                 factory.instances.push(instance);
             }
         });
@@ -54,28 +57,73 @@ window.mxSideImageSlider = window.mxSideImageSlider || {
     watch: function() {
         const factory = this;
         factory.each(function(instance){
-            instance.events.on('transitionEnd', function(){
-                factory.update(instance);
-            });
-            instance.events.on('transitionStart', function(){
-                factory.update(instance, true);
-            });
+            let info = instance?.getInfo();
+            if (!instance || !info || !info.navItems) {
+                setTimeout(function(){
+                    factory.watch();
+                }, 100);
+            } else {
+                instance.events.on('transitionEnd', function(){
+                    factory.updateMobileNav(instance);
+                });
+                instance.events.on('transitionStart', function(){
+                    factory.updateMobileNav(instance, true);
+                });
+                instance.events.on('touchEnd', function(){
+                    factory.scrollIntoView(instance);
+                });
+                instance.events.on('dragEnd', function(){
+                    factory.scrollIntoView(instance);
+                });
+                try {
+                    for (let i = 0; i < info.navItems.length; i++) {
+                        let nav = info.navItems[i];
+                        if (nav && !nav.classList.contains('is-watched')) {
+                            nav.addEventListener('click', function(){
+                                factory.scrollIntoView(instance);
+                            });
+                            nav.classList.add('is-watched');
+                        }
+                    }
+                } catch (e) {}
+            }
         });
     },
-    update: function(instance, transitionStart) {
-        if (window.innerWidth > 782) return;
-        if (transitionStart) {
-            instance.getInfo().navContainer.classList.add('disabled');
-        } else {
-            var updateInterval = setInterval(function(){
-                var firstCol = instance.getInfo().container.querySelector('.tns-slide-active :first-child');
-                if (firstCol) {
-                    var h = firstCol.offsetHeight;
-                    instance.getInfo().navContainer.style.top = `${h}px`;
-                    instance.getInfo().navContainer.classList.remove('disabled');
-                    clearInterval(updateInterval);
-                }
+    scrollIntoView: function(instance) {
+        const factory = this;
+        const info = instance?.getInfo();
+        if (!info || !info.container) {
+            setTimeout(function(){
+                factory.scrollIntoView();
             }, 100);
+        } else {
+            if (info.container.getBoundingClientRect().y < 0) {
+                info.container.scrollIntoView({ behavior: 'instant', block: 'start' });
+            }
+        }
+    },
+    updateMobileNav: function(instance, transitionStart) {
+        if (window.innerWidth > 782) return;
+        const factory = this;
+        const info = instance?.getInfo();
+        if (!info || !info.container || !info.navContainer) {
+            setTimeout(function(){
+                factory.updateMobileNav();
+            }, 100);
+        } else {
+            if (transitionStart) {
+                info.navContainer.classList.add('disabled');
+            } else {
+                var updateInterval = setInterval(function(){
+                    var firstCol = info.container.querySelector('.tns-slide-active :first-child');
+                    if (firstCol) {
+                        var h = firstCol.offsetHeight;
+                        info.navContainer.style.top = `${h}px`;
+                        info.navContainer.classList.remove('disabled');
+                        clearInterval(updateInterval);
+                    }
+                }, 100);
+            }
         }
     },
     each: function(callback) {
@@ -89,15 +137,14 @@ window.mxSideImageSlider = window.mxSideImageSlider || {
     resize: function(event) {
         const factory = this;
         //don't rebuild if resize is vertical
-        if (factory.previousWidth === window.innerWidth && !window.adminpage) return;
+        if (factory.previousWidth == window.innerWidth || window.adminpage) return;
         clearTimeout(factory.resizeTimeout);
         factory.resizeTimeout = setTimeout(function(){
+            if (factory.sections().length === 0 && factory.sliders().length === 0) return;
             if (typeof tns !== 'function') {
                 window.tnsComponents.load();
             } else {
-                // create wrapper if doesn't exists
                 factory.wrap();
-                // rebuild slider
                 factory.rebuild();
                 factory.create();
                 factory.watch();
@@ -105,16 +152,17 @@ window.mxSideImageSlider = window.mxSideImageSlider || {
             }
         }, 100);
     },
-    init: function(){
+    init: function(selector){
         const factory = this;
+        factory.id = selector;
         if (!factory.ready) {
             window.addEventListener('resize', function(event){
                 factory.resize(event);
             });
             factory.ready = true;
         };
-        window.dispatchEvent(new Event('resize'));
+        window.dispatchEvent(new CustomEvent('resize', {detail:'side-image-slider.js'}));
     }
 };
 
-window.mxSideImageSlider.init();
+window.mxSideImageSlider.init('mx-side-image');

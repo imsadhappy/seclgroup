@@ -2,7 +2,7 @@
 
     header.entry-header {
 
-        background-color: $color__grey;
+        @extend .wrapper;
 
         position: relative;
         display: grid;
@@ -25,7 +25,7 @@
 
         .entry-details {
 
-            padding: 80px 20px;
+            padding: 20px 20px 20px 0;
             position: relative;
             z-index: 1;
             margin-right: 0;
@@ -40,7 +40,7 @@
         }
 
         .posted-by {
-            margin-top: 170px;
+            margin-top: 40px;
             img {
                 background-color: rgba($color__white, .8);
                 border-radius: 50px;
@@ -96,12 +96,9 @@
         }
     }
 
-    &:not(.category-whitepapers) .entry-content {
-        > p,
-        > .wp-block-heading,
-        > ul,
-        > ol {
-            max-width: 926px;
-        }
+    .entry-content {
+            &:where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+                    @extend .wrapper;
+            }
     }
 }

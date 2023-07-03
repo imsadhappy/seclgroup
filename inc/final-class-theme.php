@@ -9,7 +9,7 @@ namespace SECLGroup;
 
 final class Theme {
 
-    use Admin, Updater;
+    use Admin, AJAX, Updater;
 
     function __construct() {
 
@@ -29,6 +29,7 @@ final class Theme {
         $this->avif_support();
         $this->remove_from_admin_bar( array('customize', 'updates', 'comments') );
         $this->page_for_terms_and_conditions();
+        $this->use_wpcf7_popup();
     }
 
     /**
@@ -115,7 +116,6 @@ final class Theme {
             case 'admin_head':
                 wp_enqueue_style( 'theme-admin-style', "$uri/admin-style.css", array(), $version );
                 wp_enqueue_script( 'theme-scripts', "$uri/js/scripts.js", array(), $version );
-                //wp_enqueue_script( 'theme-side-image-slider', "$uri/js/side-image-slider.js", array(), $version, true );
                     break;
             default:
                 wp_enqueue_style( 'theme-style', get_stylesheet_uri(), array(), $version );
@@ -123,8 +123,9 @@ final class Theme {
                 wp_style_add_data( 'theme-style', 'rtl', 'replace' );
                 wp_enqueue_script( 'theme-dotdotdot', "$uri/js/dotdotdot.js", array(), $version, true );
                 wp_enqueue_script( 'wow-script', "$uri/js/wow.min.js", array(), $version );
-                wp_enqueue_script( 'theme-scripts', "$uri/js/scripts.js", array(), $version, true );
-                wp_enqueue_script( 'theme-side-image-slider', "$uri/js/side-image-slider.js", array(), $version, true );
+                wp_enqueue_script( 'theme-scripts', "$uri/js/scripts.js", array(), $version );
+                //wp_enqueue_script( 'theme-side-image-slider', "$uri/js/side-image-slider.js", array(), $version, true );
+                wp_enqueue_script( 'theme-d3-bubbles', "$uri/js/d3-bubbles.js", array(), $version, true );
                 wp_add_inline_script( 'theme-scripts', sprintf("window.ajaxurl = window.ajaxurl || '%s';",
                     esc_url(admin_url('admin-ajax.php'))
                 ) );

@@ -75,6 +75,14 @@
             }
         }
 
+        &.aligncenter {
+            & .components-resizable-box__container,
+            img {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
         img {
             @media (min-width: $width__mobile) {
                 max-width: none;
@@ -86,10 +94,6 @@
 
         &.is-style-rounded img {
             clip-path: circle();
-        }
-
-        &:not(.is-style-rounded):not(.cover) img:not([src*=".svg"]) {
-            border-radius: 10px;
         }
 
         &.cover:first-child {
@@ -121,6 +125,38 @@
 
         figcaption {
             margin: 1rem 0;
+        }
+
+        .wp-block-post-content &.desktop-hidden {
+            height: auto !important;
+            border: 0 !important;
+            &:before { content: none !important; }
+            img {
+                visibility: visible !important;
+                opacity: .5;
+            }
+        }
+
+        &.technology-pill {
+            background-color: $BG__Grey;
+            border-radius: 10px;
+            padding: 10px 0 10px 10px;
+            .components-resizable-box__container {
+                display: inline-block;
+                vertical-align: middle;
+            }
+            img {
+                vertical-align: middle;
+                filter: grayscale(100%);
+                transition: filter .3s ease;
+            }
+            figcaption {
+                margin: 0 10px;
+                display: inline-block;
+            }
+            &:hover img {
+                filter: grayscale(0%);
+            }
         }
     }
 
@@ -467,6 +503,21 @@
         &.is-style-bordered-circle li {
             border: 1px solid $Text__Tertiary;
             border-radius: 50%;
+        }
+    }
+
+    &-table {
+
+        &.first-td-blue {
+            td:first-child {
+                background-color: $BG__Blue;
+            }
+        }
+
+        &.border-gray {
+            td {
+                border: 1px solid #AEAFC4;
+            }
         }
     }
 }

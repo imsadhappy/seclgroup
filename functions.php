@@ -24,6 +24,7 @@ require_once "$dir/inc/blocks.php";
  */
 require_once "$dir/inc/trait-updater.php";
 require_once "$dir/inc/trait-admin.php";
+require_once "$dir/inc/trait-ajax.php";
 require_once "$dir/inc/final-class-theme.php";
 
 new Theme;

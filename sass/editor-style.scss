@@ -18,16 +18,10 @@
 @import "generic/elements/blockquote";
 @import "layout/loop";
 @import "layout/single/post";
-@import "layout/single/job";
-@import "components/chronology";
 @import "components/blocks";
 @import "components/media/scroller";
 @import "components/media/tabs";
 @import "utilities/helpers";
-@import "components/_sideimage-section.scss";
-@import "components/_team-section.scss";
-@import "components/_section-spacings.scss";
-@import "components/_services-section.scss";
 
 
 .is-root-container .wp-block {
@@ -47,4 +41,11 @@
     > *:not(.alignfull) {
         @extend .wrapper;
     }
+}
+
+.wp-block-contact-form-7-contact-form-selector {
+    min-height: 0;
+    background: transparent;
+    box-shadow: none;
+    > div { margin: auto }
 }
