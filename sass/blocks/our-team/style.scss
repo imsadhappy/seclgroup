@@ -1,12 +1,18 @@
 .wp-block-our-team {
 
-    .grid-size {
+    .masonry-size {
         width: 20%;
+        @media (max-width: 781px) {
+            width: 50%;
+        }
     }
 
     .team-member {
 
         width: 20%;
+        @media (max-width: 781px) {
+            width: 50%;
+        }
         position: relative;
         line-height: 1;
         overflow: hidden;
@@ -14,6 +20,9 @@
 
         &.display-bigger {
             width: 40%;
+            @media (max-width: 781px) {
+                width: 100%;
+            }
         }
 
         &--photo {

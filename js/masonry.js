@@ -53,7 +53,7 @@ window.MasonryLoader = window.MasonryLoader|| {
                         clearInterval(check);
                         instance.masonry = new Masonry('#'+containerId, {
                             percentPosition: true,
-                            columnWidth: `#${containerId} .grid-size`
+                            columnWidth: `#${containerId} .masonry-size`
                         });
                     }
                 }, 100);

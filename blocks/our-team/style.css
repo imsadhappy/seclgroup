@@ -1,5 +1,8 @@
-.wp-block-our-team .grid-size {
+.wp-block-our-team .masonry-size {
   width: 20%; }
+  @media (max-width: 781px) {
+    .wp-block-our-team .masonry-size {
+      width: 50%; } }
 
 .wp-block-our-team .team-member {
   width: 20%;
@@ -7,8 +10,14 @@
   line-height: 1;
   overflow: hidden;
   clip-path: inset(5px); }
+  @media (max-width: 781px) {
+    .wp-block-our-team .team-member {
+      width: 50%; } }
   .wp-block-our-team .team-member.display-bigger {
     width: 40%; }
+    @media (max-width: 781px) {
+      .wp-block-our-team .team-member.display-bigger {
+        width: 100%; } }
   .wp-block-our-team .team-member--photo {
     width: 100%;
     height: 100%;

@@ -135,6 +135,7 @@ window[moduleID] = window[moduleID] || {
                     if (container.clientWidth > 0) {
                         module.populate(container);
                         module.previousWidth = window.innerWidth;
+                        container.parentNode.style.minHeight = container.clientHeight+'px';
                     }
                 });
             }

@@ -25,7 +25,7 @@ if ( ! empty($team_members) ) : ?>
 
     <div id="<?php echo $block_id ?>">
 
-        <div class="grid-size"><!-- Masonry columnWidth template --></div>
+        <div class="masonry-size"><!-- Masonry columnWidth template --></div>
 
         <?php foreach ($team_members as $team_member) :
 
@@ -37,13 +37,13 @@ if ( ! empty($team_members) ) : ?>
             <div class="team-member display-<?php echo empty($team_member['display_bigger']) ? 'smaller' : 'bigger' ?>">
                 <img class="team-member--photo"
                     src="<?php echo esc_url($team_member['photo']) ?>"
-                    atl="<?php esc_attr_e($team_member['name']) ?>"
-                    onload="window.MasonryLoader.imageLoaded('<?php echo $block_id ?>')",
+                    alt="<?php esc_attr_e($team_member['name']) ?>"
+                    onload="window.MasonryLoader.imageLoaded('<?php echo $block_id ?>')"
                     onerror="window.MasonryLoader.imageLoaded('<?php echo $block_id ?>')">
                 <?php if (!empty($team_member['photo_alt'])) : ?>
                 <img class="team-member--photo alt"
                     src="<?php echo esc_url($team_member['photo_alt']) ?>"
-                    atl="<?php esc_attr_e($team_member['name']) ?>">
+                    alt="<?php esc_attr_e($team_member['name']) ?>">
                 <?php endif; ?>
                 <div class="team-member--details">
                     <div class="team-member--name"><?php esc_html_e($team_member['name']) ?></div>

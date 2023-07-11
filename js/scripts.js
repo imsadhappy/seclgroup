@@ -80,30 +80,25 @@ document.addEventListener('DOMContentLoaded', function(){
  */
 document.addEventListener('DOMContentLoaded', function(){
     var x = 'custom-tabs';
-    document.querySelectorAll(`.${x}-container`).forEach(function(container){
+    document.querySelectorAll(`.${x}-container`).forEach(container => {
         var tabs = container.querySelector(`.${x}`),
-            content = container.querySelector(`.${x}-content`),
-            parent = container.parentNode;
-        if (!tabs || !content) {
-            return;
-        }
+            content = container.querySelector(`.${x}-content`);
+        if (!tabs || !content) return;
         for (var i = 0; i < tabs.children.length; i++) {
-            (function(tab, i2){
-                tab.addEventListener('click', function(){
+            ((tab, i2) => {
+                tab.addEventListener('click', () => {
                     for (var i3 = 0; i3 < tabs.children.length; i3++) {
                         tabs.children[i3].classList[i3 === i2 ? 'add' : 'remove']('active');
                     }
                     for (var i3 = 0; i3 < content.children.length; i3++) {
                         content.children[i3].classList[i3 === i2 ? 'add' : 'remove']('active');
                     }
-                    if (parent.getBoundingClientRect().y < 0) {
-                        parent.scrollIntoView({ behavior: 'instant', block: 'start' });
-                    }
+                    container.scrollIntoView({ behavior: 'instant', block: 'start' });
                     window.dispatchEvent(new CustomEvent('resize', {detail:'scripts.js'}));
                 });
             })(tabs.children[i], i);
         }
-        document.addEventListener('click', function(event){
+        document.addEventListener('click', event => {
             if (event.target.classList.contains(`${x}-switcher`) ||
                 event.target.parentNode.classList.contains(`${x}-switcher`)) {
                 var nexTab = tabs.querySelector('.active').nextElementSibling;
@@ -137,10 +132,15 @@ document.addEventListener('DOMContentLoaded', () => {
  * Simple hoverscroll animation
  */
 document.addEventListener('DOMContentLoaded', () => {
+
+  if (('ontouchstart' in window) ||
+     (navigator.maxTouchPoints > 0) ||
+     (navigator.msMaxTouchPoints > 0)) return;
+
     document.querySelectorAll('.hoverscrolled').forEach(container => {
-        if (container.scrollWidth === container.clientWidth) return;
         var x = null;
         container.addEventListener('mouseenter', () => {
+            if (container.scrollWidth === container.clientWidth) return;
             x = setInterval(() => {
                 var before = container.scrollLeft;
                 container.scrollLeft += (container.classList.contains('reverse') ? -1 : 1);
@@ -150,9 +150,37 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }, 12);
         });
-        container.addEventListener('mouseleave', () => {
-            clearInterval(x)
-        });
+        container.addEventListener('mouseleave', () => clearInterval(x));
+    });
+});
+
+/**
+ * Simple hoverscroll2 animation
+ */
+document.addEventListener('DOMContentLoaded', () => {
+
+  if (('ontouchstart' in window) ||
+     (navigator.maxTouchPoints > 0) ||
+     (navigator.msMaxTouchPoints > 0)) return;
+
+    document.querySelectorAll('.hoverscrolled2').forEach(container => {
+        var x = null,
+            maxScrollLength = container.scrollWidth;
+        window.addEventListener('resize', () => maxScrollLength = container.scrollWidth);
+        function onMouseOver(event) {
+            clearInterval(x);
+            if (container.scrollWidth === container.clientWidth) return;
+            x = setInterval(() => {
+                if (event.clientX <= window.innerWidth * .25) {
+                    container.scrollLeft--;
+                } else if (event.clientX >= window.innerWidth * .75) {
+                    if ((container.scrollLeft+container.clientWidth) < maxScrollLength) container.scrollLeft++;
+                }
+            }, 12);
+        }
+        container.addEventListener('mouseenter', onMouseOver);
+        container.addEventListener('mouseover', onMouseOver);
+        container.addEventListener('mouseleave', () => clearInterval(x));
     });
 });
 
@@ -207,3 +235,37 @@ document.addEventListener('click', function(event){
         }
     }
 } );
+
+/**
+ * Word Switcher Animation
+ */
+document.addEventListener('DOMContentLoaded', () => {
+    function switchInterval() {
+        var switchers = document.querySelectorAll('.js-switch');
+        if (switchers.length === 0) {
+            clearInterval(window.jsSwitchInterval);
+            window.jsSwitchInterval = null;
+        } else {
+            switchers.forEach(switcher => {
+                var placeholder = switcher.querySelector('.placeholder');
+                if (!placeholder) {
+                    var placeholder = document.createElement('span');
+                    placeholder.classList.add('placeholder');
+                    placeholder.textContent = switcher.firstChild.textContent;
+                    switcher.appendChild(placeholder);
+                    switcher.firstChild.classList.add('active');
+                }
+                var prev = switcher.querySelector('.active'),
+                    next = prev.nextElementSibling;
+                if (!next || next.classList.contains('placeholder')) {
+                    next =  switcher.firstChild;
+                }
+                next.classList.add('active');
+                placeholder.innerHTML = next.textContent;
+                prev.classList.remove('active');
+            });
+        }
+    }
+    switchInterval();
+    window.jsSwitchInterval = window.jsSwitchInterval || setInterval(switchInterval, 2000);
+});

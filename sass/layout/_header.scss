@@ -22,6 +22,7 @@
         align-items: center;
         justify-content: space-between;
         @extend .wrapper;
+        max-width: var(--wp--style--global--wide-size);
 
         .site-branding {
             svg {

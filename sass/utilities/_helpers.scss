@@ -103,7 +103,7 @@
 
 .bold { font-weight: bold }
 
-.weight-normal { font-weight: normal; }
+.weight-normal { font-weight: normal !important; }
 
 .lowercase { text-transform: lowercase }
 
@@ -119,6 +119,10 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.nowrap {
+	&, > * { white-space: nowrap; }
 }
 
 .no-underline {
@@ -189,7 +193,7 @@
 
 .mobile-full-width {
     @media (max-width: $width__mobile) {
-        &, > img {
+        &, > img, > .wp-element-button {
             width: 100%
         }
     }

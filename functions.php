@@ -37,4 +37,4 @@ require_once "$dir/inc/abstract-class-post-type.php";
 /**
  * Gutenberg Blocks.
  */
-require_once "$dir/gutenberg/gutenberg-main.php";
+//require_once "$dir/gutenberg/gutenberg-main.php";

@@ -37,7 +37,9 @@
 
 .page-content,
 .entry-content {
-
+	> :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+		@extend .wrapper;
+	}
 }
 
 .updated:not(.published) {

@@ -34,13 +34,14 @@ if ( ! empty($case_studies) ) : ?>
             <div class="case-study <?php printf('style-%d', intval($style)) ?>">
 
                 <img class="case-study--hover-image"
-                     src="<?php printf('%s/assets/case-study-style-%d.svg', get_template_directory_uri(), intval($style)) ?>">
+                     src="<?php printf('%s/assets/case-study-style-%d.svg', get_template_directory_uri(), intval($style)) ?>"
+                     alt="<?php esc_attr_e($title) ?>">
 
                 <div class="case-study--content1">
 
                     <img class="case-study--image"
                         src="<?php echo esc_url($image) ?>"
-                        atl="<?php esc_attr_e($title) ?>">
+                        alt="<?php esc_attr_e($title) ?>">
 
                     <div class="case-study--hover-content">
 

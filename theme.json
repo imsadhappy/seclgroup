@@ -70,7 +70,8 @@
 			]
 		},
 		"layout": {
-			"contentSize": "1224px"
+			"contentSize": "1224px",
+			"wideSize": "1320px"
 		}
 	}
 }

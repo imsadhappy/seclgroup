@@ -1,14 +1,15 @@
 .site-footer {
 
-    flex-shrink: 0;
-    background: $color__background-footer;
+  flex-shrink: 0;
+  background: $color__background-footer;
 
-    *:not(.has-text-color) { 
-		color: $color__text-footer;
-	}
+  *:not(.has-text-color) {
+    color: $color__text-footer;
+  }
 
-    #copyright {
-		padding: 40px 0;
-		text-align: center;
-    }
+  #copyright {
+    padding: 40px 0;
+    @extend .wrapper;
+    text-align: center;
+  }
 }

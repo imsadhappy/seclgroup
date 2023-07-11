@@ -41,6 +41,8 @@
 
 				do_action( 'secl_group_before_menu' );
 
+				do_shortcode('[language-switcher]');
+
 				wp_nav_menu( array(
 					'theme_location' => 'menu-1',
 					'menu_id' => 'primary-menu',

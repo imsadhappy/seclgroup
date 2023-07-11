@@ -1,5 +1,7 @@
 .d3-bubbles {
 
+  min-height: 100vh;
+
   > *:not(svg) {
     display: none;
   }

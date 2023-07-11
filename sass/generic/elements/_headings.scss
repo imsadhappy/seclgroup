@@ -15,18 +15,28 @@ h6 {
 	font-weight: 500;
 	line-height: 1.2;
 	margin: #{$fs * .5px} 0;
-	@media (max-width: $width__mobile) {
-		font-size: #{$fs * .8px};
-		margin: #{$fs * .4px} 0;
-	}
-	@media (max-width: $width__min) {
-		font-size: #{$fs * .6px};
-		margin: #{$fs * .3px} 0;
+	&.responsive {
+		@media (max-width: $width__mobile) {
+			font-size: #{$fs * .8px};
+			margin: #{$fs * .4px} 0;
+		}
+		@media (max-width: $width__min) {
+			font-size: #{$fs * .6px};
+			margin: #{$fs * .3px} 0;
+		}
 	}
 }
 
 h1 {
 	@include responsive-heading(80);
+	@media (max-width: $width__mobile) {
+		font-size: 60px;
+		margin: 30px 0;
+	}
+	@media (max-width: $width__min) {
+		font-size: 50;
+		margin: 25px 0;
+	}
 }
 
 h2 {
