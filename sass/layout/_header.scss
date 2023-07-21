@@ -85,10 +85,9 @@
     &.dropdown-menu-shown {
         box-shadow: 0 0 0 100vh rgba($BG__Blue, .5);
         transition: box-shadow .2s ease;
-
         ~ * {
             transition: filter .2s ease;
-            filter: blur(10px);
+            filter: blur(6px);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace SECLGroup;
 
 final class Theme {
 
-    use Admin, AJAX, Updater;
+    use Admin, AJAX, Updater, StyleToStylesheet;
 
     function __construct() {
 
@@ -30,6 +30,7 @@ final class Theme {
         $this->remove_from_admin_bar( array('customize', 'updates', 'comments') );
         $this->page_for_terms_and_conditions();
         $this->use_wpcf7_popup();
+        $this->styles_in_wp_footer('core-block-supports');
     }
 
     /**

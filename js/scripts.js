@@ -60,25 +60,51 @@ window.DependencyLoader = window.DependencyLoader || {
 /**
  * # to javascript:void(0)
  */
-document.addEventListener('DOMContentLoaded', function(){
-    document.querySelectorAll('a[href="#"]').forEach(function(a){
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('a[href="#"]').forEach(a => {
         a.setAttribute('href', 'javascript:void(0)');
     })
 });
 
 /**
- * Simple Negative Spacers
+ * #anchor slow scrollTo
  */
-document.addEventListener('DOMContentLoaded', function(){
-    document.querySelectorAll('.wp-block-spacer.negative').forEach(function(e){
-        e.style.marginTop = `-${e.offsetHeight*2}px`;
+document.addEventListener('click', event => {
+    if (event.target.href) {
+        const url = new URL(event.target.href)
+        if (url.pathname === location.pathname
+            && url.hostname === location.hostname
+            && url.hash != '') {
+                const target = document.querySelector(url.hash)
+                const masthead = document.getElementById('masthead')
+                if (target) {
+                    event.preventDefault()
+                    let y = target.getBoundingClientRect().top + window.scrollY
+                    if (masthead) y -= masthead.clientHeight
+                    window.scroll({
+                        top: y,
+                        behavior: 'smooth'
+                    })
+                }
+            }
+    }
+});
+
+/**
+ * Negative Spacers
+ */
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.wp-block-spacer.negative').forEach(spacer =>{
+        var s = window.getComputedStyle(spacer, null)
+            h = parseInt(s.height, 10) * 2;
+        spacer.style.marginTop = `-${h}px`;
     });
 });
 
 /**
  * Tabs
  */
-document.addEventListener('DOMContentLoaded', function(){
+document.addEventListener('DOMContentLoaded', () => {
     var x = 'custom-tabs';
     document.querySelectorAll(`.${x}-container`).forEach(container => {
         var tabs = container.querySelector(`.${x}`),
@@ -117,14 +143,19 @@ document.addEventListener('DOMContentLoaded', function(){
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.autoscrolled').forEach(container => {
         if (container.scrollWidth === container.clientWidth) return;
-        setInterval(() => {
+        function autoscroll(){
             var before = container.scrollLeft;
             container.scrollLeft += (container.classList.contains('reverse') ? -1 : 1);
             var after = container.scrollLeft;
             if (after === before) {
                 container.classList.toggle('reverse');
             }
-        }, 24);
+        }
+        let x = setInterval(autoscroll, 24);
+        if (container.classList.contains('hoverstop')) {
+            container.addEventListener('mouseenter', () => clearInterval(x))
+            container.addEventListener('mouseleave', () => x = setInterval(autoscroll, 24))
+        }
     });
 });
 
@@ -187,7 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
 /**
  * Ajax Contact Form 7 Popup
  */
-document.addEventListener('click', function(event){
+document.addEventListener('click', event => {
     const x = 'wpcf7-popup--';
     if (event.target.rel && event.target.rel.indexOf(x) === 0){
         event.preventDefault();
@@ -202,7 +233,7 @@ document.addEventListener('click', function(event){
                     'action': 'wpcf7_popup',
                     'form_id': formId
                 }).toString();
-            request.onreadystatechange = function(){
+            request.onreadystatechange = function() {
                 if (this.readyState !== 4 || this.status !== 200) {
                     return;
                 } else {
@@ -224,7 +255,7 @@ document.addEventListener('click', function(event){
                         popup.appendChild(content);
                         document.body.appendChild(popup);
                         wpcf7.init(popup.querySelector('form'));
-                        setTimeout(function(){
+                        setTimeout(() => {
                             document.body.classList.add(x+'shown');
                         }, 100);
                     }
@@ -269,3 +300,39 @@ document.addEventListener('DOMContentLoaded', () => {
     switchInterval();
     window.jsSwitchInterval = window.jsSwitchInterval || setInterval(switchInterval, 2000);
 });
+
+/**
+ * Industries full-page height
+ */
+(function(containerId, childSelector) {
+    window.addEventListener('resize', () => {
+        const container = document.getElementById(containerId)
+        const masthead = document.getElementById('masthead')
+        if (!container || window.innerWidth < 782) return;
+        function setCss(h) {
+            let css = `#${containerId} ${childSelector}`
+            let style = document.getElementById(containerId+'-styles')
+            if (!style){
+                style = document.createElement('style')
+                style.setAttribute('id', containerId+'-styles')
+                document.getElementsByTagName('head')[0].appendChild(style);
+            }
+            css += `{ min-height: ${h}px }`
+            if (style.styleSheet) {
+                style.styleSheet.cssText = css;
+            } else {
+                style.textContent = css;
+            }
+        }
+        var t = 0;
+        clearTimeout(t)
+        var t = setTimeout(() => {
+            setCss(10)
+            let h = 0;
+            container.querySelectorAll(childSelector).forEach(block => {
+                if (block.clientHeight > h) h = block.clientHeight
+            })
+            setCss(window.innerHeight - (container.clientHeight - h) - (masthead?masthead.clientHeight:0))
+        }, 100)
+    })
+})('industries', '.wp-block-cover[class*="hover-"]')

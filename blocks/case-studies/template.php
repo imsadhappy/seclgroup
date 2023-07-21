@@ -31,7 +31,10 @@ if ( ! empty($case_studies) ) : ?>
 
             ?>
 
-            <div class="case-study <?php printf('style-%d', intval($style)) ?>">
+            <div class="case-study <?php printf('style-%d', intval($style)) ?>"
+                 <?php if (!empty($url)) : ?>
+                    onclick="window.location = '<?php echo esc_url($url) ?>'"
+                 <?php endif; ?>>
 
                 <img class="case-study--hover-image"
                      src="<?php printf('%s/assets/case-study-style-%d.svg', get_template_directory_uri(), intval($style)) ?>"

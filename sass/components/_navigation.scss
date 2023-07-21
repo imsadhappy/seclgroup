@@ -8,6 +8,7 @@ nav ul.sub-menu {
 .menu-header-container {
 	&.pointer {
 		cursor: pointer;
+		max-width: 60px;
 		&::before,
 		&::after {
 			content: '';
@@ -53,6 +54,8 @@ nav ul.sub-menu {
 
 .request-hand-wave-button {
 	padding: 16px 24px !important;
+	border-radius: 40px;
+	border: 1px solid;
 	&:before {
 		content: '';
 		display: inline-block;
@@ -65,6 +68,16 @@ nav ul.sub-menu {
 		animation-duration: 2.5s;
 		animation-iteration-count: infinite;
 		transform-origin: 50% 100%;
+	}
+	&:hover,
+	&:active,
+	&:focus {
+		background-color: $color__secondary;
+		color: $color__white;
+		border-color: $color__secondary;
+		&:before {
+			filter: brightness(0) invert(1);
+		}
 	}
 }
 
@@ -112,10 +125,6 @@ nav ul.sub-menu {
 				left: auto;
 			}
 		}
-	}
-
-	li {
-		//position: relative;
 	}
 
 	a {
@@ -223,7 +232,13 @@ nav ul.sub-menu {
 
 						&.menu-item-has-children {
 
-							&:hover, &:focus, &.active {
+							&:hover, &:focus {
+								.sub-menu {
+									display: none
+								}
+							}
+
+							&.active {
 
 								> a {
 									text-decoration: underline;
@@ -249,7 +264,7 @@ nav ul.sub-menu {
 										grid-column: 1 / -1;
 										height: 1px;
 										background: #eee;
-										margin: 0 40px 40px 0;
+										margin: 0 0 40px 0;
 									}
 
 									@extend .pineaple-marker;
@@ -314,11 +329,11 @@ nav ul.sub-menu {
     position: fixed;
     right: 0;
     left: 0;
-	top: 58px;
+	top: 64px;
 	.admin-bar & {
-		top: 88px;
+		top: 94px;
 		@media (max-width: 782px) {
-			top: 104px;
+			top: 110px;
 		}
 	}
 
@@ -326,7 +341,7 @@ nav ul.sub-menu {
 	bottom: 0;
 	display: flex;
 	flex-direction: column;
-    background: $color__grey;
+    background: $color__white;
     padding: 26px 0;
 	transition: transform .6s ease-out;
 	transform: translateX(150%);
@@ -360,7 +375,7 @@ nav ul.sub-menu {
 		//white-space: nowrap;
 		display: block;
 		text-decoration: none;
-		font-weight: 600;
+		//font-weight: 600;
 		padding: 10px 0;
 	}
 
@@ -375,18 +390,18 @@ nav ul.sub-menu {
 	}
 
 	.request-button {
-		border: 1px solid;
 		border-radius: 40px;
 		text-align: center;
 		margin: auto auto 0;
 		width: auto;
-		@media (max-width: $width__min) {
-			width: calc(100vw - 40px);
-		}
 		> a {
 			@extend .request-hand-wave-button;
 			display: inline-block !important;
+			@media (max-width: $width__min) {
+				width: calc(100vw - 40px);
+			}
 		}
+		padding: 0;
 	}
 
 	.menu-item-has-children {
@@ -472,5 +487,39 @@ nav ul.sub-menu {
 	&:hover, &:focus {
 		background-color: $color__secondary;
 		border-color: $color__secondary;
+	}
+}
+
+.trp {
+	&_language_switcher_shortcode {
+		margin: 0 0 0 auto;
+		padding-left: 24px;
+		padding-left: clamp(12px, 1.5vw, 32px);
+		position: relative;
+		&:after {
+			content: '';
+			width: 24px;
+			height: 24px;
+			border: 1px solid #eee;
+			border-radius: 12px;
+			display: inline-block;
+			position: absolute;
+			right: -16px;
+			top: 0;
+			background: transparent url("assets/chevron-down.svg") no-repeat center;
+			background-size: 8px;
+		}
+	}
+	&-language-switcher {
+		width: auto;
+		height: auto;
+	}
+	&-ls-shortcode-language,
+	&-ls-shortcode-current-language {
+		&, > a {
+			padding: 0 !important;
+			border: 0 !important;
+			background: transparent !important;
+		}
 	}
 }

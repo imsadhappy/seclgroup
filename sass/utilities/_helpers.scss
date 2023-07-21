@@ -160,6 +160,18 @@
     align-items: center;
 }
 
+.mobile-justify-start {
+    @media (max-width: $width__mobile) {
+        justify-content: flex-start !important;
+    }
+}
+
+.mobile-flex-1 {
+    @media (max-width: $width__mobile) {
+        flex: 1 !important;
+    }
+}
+
 .flex-column {
     flex-direction: column;
 }
@@ -280,6 +292,9 @@
 }
 .padding-16 {
     padding: 16px;
+	> p:first-child {
+		margin-top: 0;
+	}
 }
 .padding-32 {
     padding: 32px;

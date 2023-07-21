@@ -272,6 +272,12 @@
         }
 
         &.has-pineaple-background-video {
+            position: relative;
+            z-index: 1;
+            ~ * {
+                position: relative;
+                z-index: 2;
+            }
             video {
                 object-fit: contain;
                 margin: auto 0 auto auto;
@@ -303,8 +309,8 @@
         }
         &.is-style-outline {
         	> .wp-element-button {
+                @extend .base-button-style;
         		border: 1px solid $Text__Secondary;
-        		padding: 20px 30px;
         		background: transparent;
         		position: relative;
                 &:hover,
@@ -317,10 +323,11 @@
         }
         &.has-arrow-right {
             > .wp-element-button {
-                padding-right: 60px;
+                @extend .base-button-style;
                 background-size: 20px;
+                padding-right: 60px;
                 background-image: url('assets/images/arrow-to-right.webp') !important;
-                background-position: bottom 50% right 20px;
+                background-position: bottom 50% right 30px;
                 background-repeat: no-repeat;
             }
         }

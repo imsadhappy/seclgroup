@@ -21,15 +21,15 @@ get_header();
 
 			the_post(); ?>
 
-			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+			<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-				<section class="page-content"><?php
+				<div class="page-content"><?php
 
 					the_content();
 
-				?></section><!-- .page-content -->
+				?></div><!-- .page-content -->
 
-			</article><!-- #post-<?php the_ID(); ?> -->
+			</div><!-- #post-<?php the_ID(); ?> -->
 
 			<?php  endwhile; // End of the loop. ?>
 

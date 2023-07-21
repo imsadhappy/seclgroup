@@ -14,11 +14,7 @@
 <html <?php language_attributes(); ?>>
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<!-- <link rel="DNS-prefetch" href="//fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap"> -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">
@@ -39,9 +35,7 @@
 
 			<?php
 
-				do_action( 'secl_group_before_menu' );
-
-				do_shortcode('[language-switcher]');
+				echo apply_filters('the_content', '[language-switcher]');
 
 				wp_nav_menu( array(
 					'theme_location' => 'menu-1',
@@ -50,12 +44,6 @@
 				) );
 
 				inline_script('navigation');
-
-				do_action( 'secl_group_after_menu' );
-
-				// get_search_form();
-
-				// inline_script('search');
 
 			?>
 

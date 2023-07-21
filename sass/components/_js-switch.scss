@@ -1,0 +1,105 @@
+@keyframes fromBottom {
+	0% {
+		top: 100%;
+		left: 0%;
+		transform: translateY(100%);
+	}
+	20% {
+		left: 0;
+		top: 0;
+		transform: translateY(0%);
+	}
+	80% {
+		left: 0;
+		top: 0;
+		transform: translateY(0%);
+	}
+	100% {
+		top: -100%;
+		left: 0%;
+		transform: translateY(-100%);
+	}
+}
+
+@keyframes fromBottomLeft {
+	0% {
+		top: 100%;
+		left: -50%;
+		transform: translateY(100%);
+	}
+	20% {
+		left: 0;
+		top: 0;
+		transform: translateY(0%);
+	}
+	80% {
+		left: 0;
+		top: 0;
+		transform: translateY(0%);
+	}
+	100% {
+		top: -100%;
+		left: 50%;
+		transform: translateY(-100%);
+	}
+}
+
+@keyframes fromBottomRight {
+	0% {
+		top: 100%;
+		left: 50%;
+		transform: translateY(100%);
+	}
+	25% {
+		left: 0;
+		top: 0;
+		transform: translateY(0%);
+	}
+	75% {
+		left: 0;
+		top: 0;
+		transform: translateY(0%);
+	}
+	100% {
+		top: -100%;
+		left: -50%;
+		transform: translateY(-100%);
+	}
+}
+
+.js-switch {
+	color: $color__secondary;
+	overflow: hidden;
+	display: inline-block;
+	position: relative;
+    vertical-align: bottom;
+	* {
+		left: 0;
+		top: -100%;
+		position: absolute;
+		white-space: nowrap;
+	}
+	.placeholder {
+		opacity: 0;
+		left: 0;
+		top: 0;
+		position: relative;
+	}
+	:first-child {
+		left: -100%;
+		top: -100%;
+		&.active {
+			animation: fromBottomLeft 2s normal forwards;
+		}
+	}
+	:nth-last-child(2) {
+		left: 100%;
+		top: -100%;
+		&.active {
+			animation: fromBottomRight 2s normal forwards;
+		}
+	}
+	.active {
+		animation: fromBottom 2s normal forwards;
+	}
+}

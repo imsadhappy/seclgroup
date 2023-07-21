@@ -60,7 +60,7 @@
 				header.classList.add('dropdown-menu-shown');
 			});
 			li1.addEventListener('mouseleave', () => {
-				headerHoverTimeout = setTimeout(() => header.classList.remove('dropdown-menu-shown'), 300)
+				headerHoverTimeout = setTimeout(() => header.classList.remove('dropdown-menu-shown'), 100)
 			});
 			submenu.querySelectorAll('li.menu-item-has-children').forEach((li2, i) => {
 				if (i === 0) {
@@ -68,10 +68,10 @@
 					submenu.setAttribute('data-name', a1.textContent);
 					submenu.classList.add('multilayer');
 				}
-				li2.addEventListener('mouseenter', () => {
+				/*li2.addEventListener('mouseenter', () => {
 					submenu.dispatchEvent(new Event('deselect'));
 					li2.classList.add('active');
-				});
+				});*/
 				li2.addEventListener('click', () => {
 					submenu.dispatchEvent(new Event('deselect'));
 					li2.classList.add('active');
