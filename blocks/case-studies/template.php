@@ -32,7 +32,7 @@ if ( ! empty($case_studies) ) : ?>
             ?>
 
             <div class="case-study <?php printf('style-%d', intval($style)) ?>"
-                 <?php if (!empty($url)) : ?>
+                 <?php if (!empty($url) && !$is_preview) : ?>
                     onclick="window.location = '<?php echo esc_url($url) ?>'"
                  <?php endif; ?>>
 

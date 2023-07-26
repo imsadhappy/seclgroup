@@ -99,6 +99,12 @@
 	margin-bottom: 1.5em;
 }
 
+.mobile-textleft {
+    @media (max-width: $width__mobile) {
+        text-align: left;
+    }
+}
+
 .capitalize { text-transform: capitalize }
 
 .bold { font-weight: bold }
@@ -302,4 +308,16 @@
 
 .show-grayscale-images:hover img {
     filter: grayscale(0%);
+}
+
+.mobile-space-evenly {
+    @media (max-width: $width__mobile) {
+        justify-content: space-evenly !important;
+    }
+}
+
+.mobile-gap0 {
+	 @media (max-width: $width__mobile) {
+		 gap: 0;
+	 }
 }

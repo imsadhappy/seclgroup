@@ -8,34 +8,36 @@ nav ul.sub-menu {
 .menu-header-container {
 	&.pointer {
 		cursor: pointer;
-		max-width: 60px;
+		max-width: 40px;
 		&::before,
 		&::after {
 			content: '';
 			display: block;
-			width: 30px;
+			width: 22px;
 			height: 3px;
-			border-radius: 2px;
+			border-radius: 0;
 			background-color: $color__primary;
 			position: absolute;
 			right: 0px;
 			transition: all .2s ease;
 		}
 		&::before {
-			top: 23px;
-			box-shadow: 0px 8px 0px $color__primary;
+			top: 24px;
+			box-shadow: 0px 7px 0px $color__primary;
 		}
 		&::after {
-			bottom: 23px;
+			bottom: 24px;
 		}
 		.show + & {
 			&::before {
 				box-shadow: none;
 				box-shadow: 0px 0px 0px $color__primary;
-				transform: rotate(45deg) translate(5px, 5px);
+				width: 20px;
+				transform: rotate(45deg) translate(5.5px, 5px);
 			}
 			&::after {
-				transform: rotate(-45deg) translate(7px, -7px);
+				width: 20px;
+				transform: rotate(-45deg) translate(5px, -5px);
 			}
 		}
 	}
@@ -253,6 +255,8 @@ nav ul.sub-menu {
 									opacity: 1;
 									background: $color__white;
 									border-radius: 0 0 10px 10px;
+									//columns: 3;
+									//display: initial;
 									display: grid;
 									grid-template-columns: repeat(3, 1fr);
 									grid-column-gap: 40px;
@@ -284,7 +288,7 @@ nav ul.sub-menu {
 										}
 
 										a {
-											padding: 10px 0;
+											padding: 12px 40px 12px 24px !important;
 										}
 									}
 								}
@@ -351,6 +355,8 @@ nav ul.sub-menu {
 	* {
 		-webkit-touch-callout: none;
 	}
+
+	.invisible { height: 0 }
 
 	> li {
 		opacity: 0;
@@ -500,11 +506,11 @@ nav ul.sub-menu {
 			content: '';
 			width: 24px;
 			height: 24px;
-			border: 1px solid #eee;
+			border: 1px solid #ccc;
 			border-radius: 12px;
 			display: inline-block;
 			position: absolute;
-			right: -16px;
+			right: 0;
 			top: 0;
 			background: transparent url("assets/chevron-down.svg") no-repeat center;
 			background-size: 8px;
@@ -521,5 +527,13 @@ nav ul.sub-menu {
 			border: 0 !important;
 			background: transparent !important;
 		}
+		> a {
+			padding-right: 20px !important;
+		}
+	}
+	&-flag-image {
+		width: 31px !important;
+		height: 16px !important;
+		vertical-align: -3px !important;
 	}
 }

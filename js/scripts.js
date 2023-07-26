@@ -110,8 +110,17 @@ document.addEventListener('DOMContentLoaded', () => {
         var tabs = container.querySelector(`.${x}`),
             content = container.querySelector(`.${x}-content`);
         if (!tabs || !content) return;
+        function dispatch(){
+            let details = {detail:'scripts.js'}
+            window.dispatchEvent(new CustomEvent('resize', details));
+            window.dispatchEvent(new CustomEvent('tabChanged', details));
+        }
         for (var i = 0; i < tabs.children.length; i++) {
             ((tab, i2) => {
+                if (i2 === 0) {
+                    tab.classList.add('active');
+                    dispatch();
+                }
                 tab.addEventListener('click', () => {
                     for (var i3 = 0; i3 < tabs.children.length; i3++) {
                         tabs.children[i3].classList[i3 === i2 ? 'add' : 'remove']('active');
@@ -120,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         content.children[i3].classList[i3 === i2 ? 'add' : 'remove']('active');
                     }
                     container.scrollIntoView({ behavior: 'instant', block: 'start' });
-                    window.dispatchEvent(new CustomEvent('resize', {detail:'scripts.js'}));
+                    dispatch();
                 });
             })(tabs.children[i], i);
         }
@@ -271,11 +280,11 @@ document.addEventListener('click', event => {
  * Word Switcher Animation
  */
 document.addEventListener('DOMContentLoaded', () => {
-    function switchInterval() {
+    let x = 0
+    function z() {
         var switchers = document.querySelectorAll('.js-switch');
         if (switchers.length === 0) {
-            clearInterval(window.jsSwitchInterval);
-            window.jsSwitchInterval = null;
+            clearInterval(x);
         } else {
             switchers.forEach(switcher => {
                 var placeholder = switcher.querySelector('.placeholder');
@@ -297,8 +306,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
-    switchInterval();
-    window.jsSwitchInterval = window.jsSwitchInterval || setInterval(switchInterval, 2000);
+    x = setInterval(z, 2000);
 });
 
 /**
@@ -335,4 +343,63 @@ document.addEventListener('DOMContentLoaded', () => {
             setCss(window.innerHeight - (container.clientHeight - h) - (masthead?masthead.clientHeight:0))
         }, 100)
     })
-})('industries', '.wp-block-cover[class*="hover-"]')
+})('industries', '.wp-block-cover[class*="hover-"]');
+
+(function(w, d, q, o) {
+    o.get = (active) => {
+        return d.querySelectorAll((active ? '.active ' : '') + q)
+    }
+    o.minmax = () => {
+        o.min = 0
+        o.max = 0
+        const items = o.get(true)
+        if (items.length > 0) {
+            let e = items.item(0).parentNode/* svg */.parentNode
+            if (e.offsetParent) {
+                do {
+                    o.min += e.offsetTop;
+                    e = e.offsetParent;
+                } while (e);
+            }
+            o.max = o.min + items.item(0).parentNode.clientHeight
+        }
+    }
+    o.show = (items, force) => {
+        if (items.length === 0) return false;
+        const parent = items.item(0).parentNode
+        const rect = parent.getBoundingClientRect()
+        if ((rect.bottom > 0 && rect.bottom < w.innerHeight+rect.height/2) || force){
+            let t = 1000 / items.length
+            items.forEach((item, i) => {
+                t += 100
+                setTimeout(() => {
+                    item.classList.add('active')
+                }, t)
+            })
+        }
+    }
+    d.addEventListener('DOMContentLoaded', () => {
+        if (o.get().length === 0) return;
+        o.minmax()
+    })
+    let t;
+    w.addEventListener('resize', () => {
+        clearTimeout(t)
+        t = setTimeout(() => {
+            o.minmax()
+        }, 100)
+    })
+    w.addEventListener('scroll', () => {
+        let cur = w.scrollY + w.innerHeight
+        if (o.ready) return
+        if ((cur > o.min && cur < o.max + w.innerHeight)
+            || (cur > o.min && cur < o.max) ) {
+            o.show(o.get(true), true)
+            o.ready = true;
+        }
+    })
+    w.addEventListener('tabChanged', () => {
+        o.get().forEach(item => item.classList.remove('active'))
+        o.show(o.get(true))
+    })
+})(window, document, '.circle-expand-animation', {min: 0, max: 0, ready: false});
