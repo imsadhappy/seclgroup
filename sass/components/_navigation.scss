@@ -419,15 +419,19 @@ nav ul.sub-menu {
 			transition-delay: .3s;
 		}
 		> a {
+			position: relative;
 			display: inline-block !important;
 			&:after {
 				content: '';
+				display: block;
 				position: absolute;
-				margin: 8px 0 0 8px;
+				top: 7px;
+				right: -40px;
 				transition: transform .3s ease;
-				width: 10px;
-				height: 8px;
+				width: 30px;
+				height: 30px;
 				transform: rotate(-90deg);
+				z-index: -1;
 				background: transparent url('assets/chevron-down.svg') no-repeat center;
 			}
 		}

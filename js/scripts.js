@@ -58,7 +58,7 @@ window.DependencyLoader = window.DependencyLoader || {
 };
 
 /**
- * # to javascript:void(0)
+ * Link href # => javascript:void(0)
  */
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('a[href="#"]').forEach(a => {
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
- * #anchor slow scrollTo
+ * Slow scrollTo #anchor
  */
 document.addEventListener('click', event => {
     if (event.target.href) {
@@ -91,7 +91,7 @@ document.addEventListener('click', event => {
 });
 
 /**
- * Negative Spacers
+ * Negative Spacer Block
  */
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.wp-block-spacer.negative').forEach(spacer =>{
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
- * Tabs
+ * Custom Tabs
  */
 document.addEventListener('DOMContentLoaded', () => {
     var x = 'custom-tabs';
@@ -147,29 +147,68 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
- * Simple scroller animation
+ * Autoscroll, pause on hover
  */
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.autoscrolled').forEach(container => {
-        if (container.scrollWidth === container.clientWidth) return;
-        function autoscroll(){
-            var before = container.scrollLeft;
-            container.scrollLeft += (container.classList.contains('reverse') ? -1 : 1);
-            var after = container.scrollLeft;
-            if (after === before) {
-                container.classList.toggle('reverse');
+    document.querySelectorAll('.autoscrolled').forEach(e => {
+        if (e.scrollWidth === e.clientWidth) return
+        function autoScroll(){
+            let before = e.scrollLeft
+            e.scrollLeft += (e.classList.contains('reverse') ? -1 : 1)
+            let after = e.scrollLeft
+            if (after === before) e.classList.toggle('reverse')
+        }
+        let i = setInterval(autoScroll, 24)
+        if (e.classList.contains('hoverstop')) {
+            e.addEventListener('mouseenter', () => clearInterval(i))
+            e.addEventListener('mouseleave', () => i = setInterval(autoScroll, 24))
+        }
+    })
+});
+
+/**
+ * Autoscroll infinite left, pause on hover
+ */
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.autoscrolled-infinite').forEach(e => {
+        let n = -1,
+            sw = e.scrollWidth,
+            cw = e.clientWidth,
+            top = e.getBoundingClientRect().top,
+            items = e.children
+        while (items.length < 2) {
+            items = items[0].children
+            if (!items) break
+        }
+        function autoScroll(){
+            if (sw === cw || top < 0) return
+            e.scrollLeft++
+            if (sw === e.scrollLeft + cw && items && items.length > 2) {
+                items[0].parentNode.appendChild(items[++n].cloneNode(true))
+                sw = e.scrollWidth
             }
         }
-        let x = setInterval(autoscroll, 24);
-        if (container.classList.contains('hoverstop')) {
-            container.addEventListener('mouseenter', () => clearInterval(x))
-            container.addEventListener('mouseleave', () => x = setInterval(autoscroll, 24))
+        let i = setInterval(autoScroll, 24)
+        if (e.classList.contains('hoverstop')) {
+            e.addEventListener('mouseenter', () => clearInterval(i))
+            e.addEventListener('mouseleave', () => i = setInterval(autoScroll, 24))
         }
+        let t
+        window.addEventListener('resize', () => {
+            clearTimeout(t)
+            t = setTimeout(() => {
+                sw = e.scrollWidth
+                cw = e.clientWidth
+                clearInterval(i)
+                i = setInterval(autoScroll, 24)
+            }, 100)
+        })
+        window.addEventListener('scroll', () => top = e.getBoundingClientRect().top)
     });
 });
 
 /**
- * Simple hoverscroll animation
+ * Scroll on all element hover
  */
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -195,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
- * Simple hoverscroll2 animation
+ * Scroll on left/right part hover
  */
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -203,7 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
      (navigator.maxTouchPoints > 0) ||
      (navigator.msMaxTouchPoints > 0)) return;
 
-    document.querySelectorAll('.hoverscrolled2').forEach(container => {
+    document.querySelectorAll('.hoverscrolled-alt').forEach(container => {
         var x = null,
             maxScrollLength = container.scrollWidth;
         window.addEventListener('resize', () => maxScrollLength = container.scrollWidth);
@@ -277,42 +316,72 @@ document.addEventListener('click', event => {
 } );
 
 /**
- * Word Switcher Animation
+ * Word Switcher
  */
 document.addEventListener('DOMContentLoaded', () => {
-    let x = 0
-    function z() {
-        var switchers = document.querySelectorAll('.js-switch');
-        if (switchers.length === 0) {
-            clearInterval(x);
-        } else {
-            switchers.forEach(switcher => {
-                var placeholder = switcher.querySelector('.placeholder');
-                if (!placeholder) {
-                    var placeholder = document.createElement('span');
-                    placeholder.classList.add('placeholder');
-                    placeholder.textContent = switcher.firstChild.textContent;
-                    switcher.appendChild(placeholder);
-                    switcher.firstChild.classList.add('active');
-                }
-                var prev = switcher.querySelector('.active'),
-                    next = prev.nextElementSibling;
-                if (!next || next.classList.contains('placeholder')) {
-                    next =  switcher.firstChild;
-                }
-                next.classList.add('active');
-                placeholder.innerHTML = next.textContent;
-                prev.classList.remove('active');
-            });
+    const switchers = document.querySelectorAll('.js-switch')
+    if (switchers.length === 0) return
+    switchers.forEach(switcher => {
+        let placeholder = switcher.querySelector('.placeholder')
+        let placeholderWidth = 0;
+        let placeholderText;
+        for (let i = 0; i <= switcher.children.length; i++) {
+            let item = switcher.children[i]
+            if (item && item.clientWidth > placeholderWidth) {
+                placeholderWidth = item.clientWidth
+                placeholderText = item.textContent
+            }
         }
-    }
-    x = setInterval(z, 2000);
+        if (!placeholder) {
+            placeholder = document.createElement('span');
+            placeholder.classList.add('placeholder');
+            placeholder.textContent = placeholderText;
+            switcher.appendChild(placeholder);
+        }
+        if (!switcher.querySelector('.active')) {
+            switcher.firstChild.classList.add('active')
+        }
+
+        let t = setInterval(() => {
+            if (!switcher) {
+                clearInterval(t);
+                return
+            }
+            let prev = switcher.querySelector('.active'),
+                next = prev.nextElementSibling;
+            if (!next || next.classList.contains('placeholder')) {
+                next =  switcher.firstChild;
+            }
+            next.classList.add('active');
+            prev.classList.remove('active');
+        }, 2000)
+    })
+    /*
+    switchers.forEach(switcher => {
+        let placeholder = switcher.querySelector('.placeholder');
+        if (!placeholder) {
+            placeholder = document.createElement('span');
+            placeholder.classList.add('placeholder');
+            placeholder.textContent = switcher.firstChild.textContent;
+            switcher.appendChild(placeholder);
+            switcher.firstChild.classList.add('active');
+        }
+        let prev = switcher.querySelector('.active'),
+            next = prev.nextElementSibling;
+        if (!next || next.classList.contains('placeholder')) {
+            next =  switcher.firstChild;
+        }
+        next.classList.add('active');
+        placeholder.innerHTML = next.textContent;
+        prev.classList.remove('active');
+    });
+    */
 });
 
 /**
  * Industries full-page height
  */
-(function(containerId, childSelector) {
+((containerId, childSelector) => {
     window.addEventListener('resize', () => {
         const container = document.getElementById(containerId)
         const masthead = document.getElementById('masthead')
@@ -345,7 +414,10 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 })('industries', '.wp-block-cover[class*="hover-"]');
 
-(function(w, d, q, o) {
+/**
+ * SVG Bubbles animation
+ */
+((w, d, q, o) => {
     o.get = (active) => {
         return d.querySelectorAll((active ? '.active ' : '') + q)
     }
@@ -383,11 +455,10 @@ document.addEventListener('DOMContentLoaded', () => {
         o.minmax()
     })
     let t;
-    w.addEventListener('resize', () => {
+    w.addEventListener('resize', ({detail}) => {
+        if (detail) return
         clearTimeout(t)
-        t = setTimeout(() => {
-            o.minmax()
-        }, 100)
+        t = setTimeout(() => o.minmax(), 100)
     })
     w.addEventListener('scroll', () => {
         let cur = w.scrollY + w.innerHeight

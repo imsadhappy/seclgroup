@@ -126,7 +126,7 @@ final class Theme {
                 wp_enqueue_script( 'wow-script', "$uri/js/wow.min.js", array(), $version );
                 wp_enqueue_script( 'theme-scripts', "$uri/js/scripts.js", array(), $version );
                 //wp_enqueue_script( 'theme-side-image-slider', "$uri/js/side-image-slider.js", array(), $version, true );
-                wp_enqueue_script( 'theme-d3-bubbles', "$uri/js/d3-bubbles.js", array(), $version, true );
+                //wp_enqueue_script( 'theme-d3-bubbles', "$uri/js/d3-bubbles.js", array(), $version, true );
                 wp_add_inline_script( 'theme-scripts', sprintf("window.ajaxurl = window.ajaxurl || '%s';",
                     esc_url(admin_url('admin-ajax.php'))
                 ) );

@@ -354,16 +354,16 @@
     }
 
     &-separator {
-        
-        &.is-style-default { 
+
+        &.is-style-default {
             border-left: 0 !important;
             border-right: 0 !important;
             border-bottom: 0 !important;
             margin: 0;
         }
-        
+
         &.is-style-wide { width: 100% }
-        
+
         &.desktop-hidden {
             height: auto !important
         }
@@ -504,13 +504,13 @@
             > * + * {
                 margin-left: 80px !important;
             }
-            &:after {
+            /* used with autoscroll (right/left) &:after {
                 content: '';
                 display: block;
                 padding: 1px 1px 1px calc(50vw - #{$width__desktop} / 2);
                 border: 0;
                 margin-left: 0 !important;
-            }
+            }*/
         }
     }
 

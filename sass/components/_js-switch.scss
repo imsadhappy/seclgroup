@@ -76,6 +76,7 @@
 	* {
 		left: 0;
 		top: -100%;
+		margin: 0 auto;
 		position: absolute;
 		white-space: nowrap;
 	}
@@ -84,6 +85,11 @@
 		left: 0;
 		top: 0;
 		position: relative;
+	}
+	.active {
+		text-align: center;
+		right: 0;
+		animation: fromBottom 2s normal forwards;
 	}
 	:first-child {
 		left: -100%;
@@ -98,8 +104,5 @@
 		&.active {
 			animation: fromBottomRight 2s normal forwards;
 		}
-	}
-	.active {
-		animation: fromBottom 2s normal forwards;
 	}
 }

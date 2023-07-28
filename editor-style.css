@@ -2112,14 +2112,16 @@ blockquote,
     @media (max-width: 781px) {
       .wp-block-group.footer-offices * {
         text-align: center; } }
-  .wp-block-group.scrolled-logos > * + * {
-    margin-left: 80px !important; }
-  .wp-block-group.scrolled-logos:after {
-    content: '';
-    display: block;
-    padding: 1px 1px 1px calc(50vw - 1224px / 2);
-    border: 0;
-    margin-left: 0 !important; }
+  .wp-block-group.scrolled-logos {
+    /* used with autoscroll (right/left) &:after {
+                content: '';
+                display: block;
+                padding: 1px 1px 1px calc(50vw - 1224px / 2);
+                border: 0;
+                margin-left: 0 !important;
+            }*/ }
+    .wp-block-group.scrolled-logos > * + * {
+      margin-left: 80px !important; }
 
 @media (max-width: 1224px) {
   .wp-block-list--heading, .wp-block-list--footer {
@@ -2349,6 +2351,7 @@ blockquote,
   .js-switch * {
     left: 0;
     top: -100%;
+    margin: 0 auto;
     position: absolute;
     white-space: nowrap; }
   .js-switch .placeholder {
@@ -2356,6 +2359,10 @@ blockquote,
     left: 0;
     top: 0;
     position: relative; }
+  .js-switch .active {
+    text-align: center;
+    right: 0;
+    animation: fromBottom 2s normal forwards; }
   .js-switch :first-child {
     left: -100%;
     top: -100%; }
@@ -2366,8 +2373,6 @@ blockquote,
     top: -100%; }
     .js-switch :nth-last-child(2).active {
       animation: fromBottomRight 2s normal forwards; }
-  .js-switch .active {
-    animation: fromBottom 2s normal forwards; }
 
 .hidden, [hidden] {
   display: none; }
