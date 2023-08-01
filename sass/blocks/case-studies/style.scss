@@ -15,6 +15,7 @@
         flex-direction: row;
         align-items: center;
         gap: 7.5vw;
+        gap: clamp(20px, 7.5vw, 100px);
         @media (max-width: 720px) {
             gap: 100px;
         }
@@ -45,9 +46,13 @@
         }
 
         @media (max-width: 720px) {
+            padding-top: 10px;
+            padding-bottom: 10px;
             width: calc(80vw - 100px);
         }
         @media (max-width: 480px) {
+            padding-top: 10px;
+            padding-bottom: 10px;
             width: calc(100vw - 30px);
             padding-right: 20px;
             max-width: none !important;

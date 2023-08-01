@@ -396,3 +396,32 @@
 		}
 	}
 }
+
+.has-view-more {
+	.active {
+		display: block !important
+	}
+}
+
+.show-when-active {
+	display: none;
+	.active & { display: initial }
+}
+
+.hide-when-active {
+	.active & { display: none }
+}
+
+.full-page-height:not(.wp-block) {
+    height: calc(100vh - 85px);
+	@media (max-width: $width__mobile) {
+		height: auto !important;
+	}
+	max-height: 1000px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	.site-header.mobile ~ .site-main & {
+		height: calc(100vh - 50px);
+	}
+}

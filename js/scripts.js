@@ -91,6 +91,23 @@ document.addEventListener('click', event => {
 });
 
 /**
+ * View More toggler
+ */
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.has-view-more').forEach(container =>{
+        const toggled = container.querySelectorAll('.toggled'),
+              togglers = container.querySelectorAll('.toggler')
+        if (toggled.length === 0 || togglers.length === 0) return
+        togglers.forEach(toggler => {
+            toggler.addEventListener('click', () => {
+                container.classList.toggle('active')
+                toggled.forEach(e => e.classList.toggle('active'))
+            })
+        })
+    })
+});
+
+/**
  * Negative Spacer Block
  */
 document.addEventListener('DOMContentLoaded', () => {
@@ -128,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     for (var i3 = 0; i3 < content.children.length; i3++) {
                         content.children[i3].classList[i3 === i2 ? 'add' : 'remove']('active');
                     }
-                    container.scrollIntoView({ behavior: 'instant', block: 'start' });
+                    //container.scrollIntoView({ behavior: 'instant', block: 'start' });
                     dispatch();
                 });
             })(tabs.children[i], i);
@@ -152,16 +169,17 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.autoscrolled').forEach(e => {
         if (e.scrollWidth === e.clientWidth) return
+        let it = 22
         function autoScroll(){
             let before = e.scrollLeft
             e.scrollLeft += (e.classList.contains('reverse') ? -1 : 1)
             let after = e.scrollLeft
             if (after === before) e.classList.toggle('reverse')
         }
-        let i = setInterval(autoScroll, 24)
+        let i = setInterval(autoScroll, it)
         if (e.classList.contains('hoverstop')) {
             e.addEventListener('mouseenter', () => clearInterval(i))
-            e.addEventListener('mouseleave', () => i = setInterval(autoScroll, 24))
+            e.addEventListener('mouseleave', () => i = setInterval(autoScroll, it))
         }
     })
 });
@@ -172,36 +190,46 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.autoscrolled-infinite').forEach(e => {
         let n = -1,
+            it = 22,
             sw = e.scrollWidth,
             cw = e.clientWidth,
             top = e.getBoundingClientRect().top,
-            items = e.children
+            items = e.children,
+            wiw = window.innerWidth
         while (items.length < 2) {
             items = items[0].children
             if (!items) break
         }
+        function scrollRatio(){
+           if (window.devicePixelRatio <= .25) return 4
+           if (window.devicePixelRatio <= .5) return 3
+           return window.devicePixelRatio >= 1 ? 1 : 2
+        }
         function autoScroll(){
             if (sw === cw || top < 0) return
-            e.scrollLeft++
-            if (sw === e.scrollLeft + cw && items && items.length > 2) {
+            let sr = scrollRatio()
+            e.scrollLeft += sr
+            if (sw-20 <= e.scrollLeft + cw && items && items.length > 2) {
                 items[0].parentNode.appendChild(items[++n].cloneNode(true))
                 sw = e.scrollWidth
             }
         }
-        let i = setInterval(autoScroll, 24)
+        let i = setInterval(autoScroll, scrollRatio()*it)
         if (e.classList.contains('hoverstop')) {
             e.addEventListener('mouseenter', () => clearInterval(i))
-            e.addEventListener('mouseleave', () => i = setInterval(autoScroll, 24))
+            e.addEventListener('mouseleave', () => i = setInterval(autoScroll, scrollRatio()*it))
         }
         let t
         window.addEventListener('resize', () => {
+            if (wiw === window.innerWidth) return
             clearTimeout(t)
             t = setTimeout(() => {
+                wiw = window.innerWidth
                 sw = e.scrollWidth
                 cw = e.clientWidth
                 clearInterval(i)
-                i = setInterval(autoScroll, 24)
-            }, 100)
+                i = setInterval(autoScroll, scrollRatio()*it)
+            }, 300)
         })
         window.addEventListener('scroll', () => top = e.getBoundingClientRect().top)
     });
@@ -394,6 +422,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 style.setAttribute('id', containerId+'-styles')
                 document.getElementsByTagName('head')[0].appendChild(style);
             }
+            h = h > 500 ? 500 : h
             css += `{ min-height: ${h}px }`
             if (style.styleSheet) {
                 style.styleSheet.cssText = css;

@@ -5,58 +5,50 @@ h4,
 h5,
 h6 {
 	color: $color__primary;
+	font-weight: 500;
+	line-height: 1.2;
 	font-family: 'Halvar Breit Md', $default__fonts;
 	clear: both;
 	letter-spacing: 0em;
 }
 
-@mixin responsive-heading($fs) {
-	font-size: #{$fs * 1px};
-	font-weight: 500;
-	line-height: 1.2;
-	margin: #{$fs * .5px} 0;
-	&.responsive {
+@mixin responsive-heading($fs, $mobile, $min) {
+	font-size: #{$fs}px;
+	margin: #{$fs * .5}px 0;
+	&:not(.not-responsive) {
 		@media (max-width: $width__mobile) {
-			font-size: #{$fs * .8px};
-			margin: #{$fs * .4px} 0;
+			font-size: #{$fs * $mobile}px;
+			margin: #{$fs * ($mobile / 2)}px 0;
 		}
 		@media (max-width: $width__min) {
-			font-size: #{$fs * .6px};
-			margin: #{$fs * .3px} 0;
+			font-size: #{$fs * $min}px;
+			margin: #{$fs * ($min / 2)}px 0;
 		}
 	}
 }
 
 h1 {
-	@include responsive-heading(80);
-	@media (max-width: $width__mobile) {
-		font-size: 60px;
-		margin: 30px 0;
-	}
-	@media (max-width: $width__min) {
-		font-size: 50;
-		margin: 25px 0;
-	}
+	@include responsive-heading(80, .7, .5);
 }
 
 h2 {
-	@include responsive-heading(60);
+	@include responsive-heading(60, .75, .55);
 }
 
 h3 {
-	@include responsive-heading(50);
+	@include responsive-heading(50, .75, .55);
 }
 
 h4 {
-	@include responsive-heading(40);
+	@include responsive-heading(40, .75, .55);
 }
 
 h5 {
-	@include responsive-heading(32);
+	@include responsive-heading(32, .8, .7);
 }
 
 h6 {
-	@include responsive-heading(24);
+	@include responsive-heading(24, .9, .8);
 }
 
 .hero {
@@ -126,18 +118,24 @@ h6 {
 .h6 { @extend h6; }
 
 body {
+
 	--wp--preset--font-size--small: 13px;
 	--wp--preset--font-size--medium: 20px;
 	--wp--preset--font-size--large: 55px;
 	--wp--preset--font-size--x-large: 75px;
+
 	@media (max-width: $width__mobile) {
-		--wp--preset--font-size--medium: 20px;
+
+		//--wp--preset--font-size--medium: 20px;
 		--wp--preset--font-size--large: 40px;
 		--wp--preset--font-size--x-large: 55px;
+
 	}
 	@media (max-width: $width__min) {
-		--wp--preset--font-size--medium: 20px;
+
+		//--wp--preset--font-size--medium: 20px;
 		--wp--preset--font-size--large: 30px;
-		--wp--preset--font-size--x-large: 45px; 
+		--wp--preset--font-size--x-large: 45px;
+
 	}
 }

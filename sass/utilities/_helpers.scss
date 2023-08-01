@@ -109,6 +109,8 @@
 
 .bold { font-weight: bold }
 
+.bolder { font-weight: 500 }
+
 .weight-normal { font-weight: normal !important; }
 
 .lowercase { text-transform: lowercase }
@@ -170,6 +172,10 @@
     @media (max-width: $width__mobile) {
         justify-content: flex-start !important;
     }
+}
+
+.flex-1 {
+    flex: 1 !important;
 }
 
 .mobile-flex-1 {
@@ -310,14 +316,17 @@
     filter: grayscale(0%);
 }
 
-.mobile-space-evenly {
-    @media (max-width: $width__mobile) {
+@media (max-width: $width__mobile) {
+
+    .mobile-space-evenly {
         justify-content: space-evenly !important;
     }
-}
 
-.mobile-gap0 {
-	 @media (max-width: $width__mobile) {
-		 gap: 0;
-	 }
+    .mobile-gap0 {
+        gap: 0;
+    }
+
+    .mobile-font-inherit {
+        font-size: inherit !important;
+    }
 }

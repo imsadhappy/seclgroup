@@ -66,7 +66,7 @@
     }
 }
 
-@keyframes circle-expand-animation {
+@keyframes circleExpandAnimation {
     from {
         r: 0
     }
@@ -81,9 +81,9 @@
 
     &.active {
         opacity: 1;
+        transition-delay: .1s;
         circle {
-            animation-name: circle-expand-animation;
-            animation-duration: 2s;
+            animation: circleExpandAnimation 2s forwards;
         }
         path {
             opacity: 1;

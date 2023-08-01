@@ -9,7 +9,8 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 7.5vw; }
+    gap: 7.5vw;
+    gap: clamp(20px, 7.5vw, 100px); }
     @media (max-width: 720px) {
       .wp-block-case-studies > [id^="case_studies_"] {
         gap: 100px; } }
@@ -30,9 +31,13 @@
       max-width: 320px; }
     @media (max-width: 720px) {
       .wp-block-case-studies .case-study {
+        padding-top: 10px;
+        padding-bottom: 10px;
         width: calc(80vw - 100px); } }
     @media (max-width: 480px) {
       .wp-block-case-studies .case-study {
+        padding-top: 10px;
+        padding-bottom: 10px;
         width: calc(100vw - 30px);
         padding-right: 20px;
         max-width: none !important; } }
