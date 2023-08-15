@@ -312,8 +312,11 @@
     padding: 32px;
 }
 
-.show-grayscale-images:hover img {
-    filter: grayscale(0%);
+.grayscale {
+    img { filter: grayscale(100%); }
+    &:hover img {
+        filter: grayscale(0%);
+    }
 }
 
 @media (max-width: $width__mobile) {

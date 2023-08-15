@@ -35,7 +35,9 @@
 
 			<?php
 
-				echo apply_filters('the_content', '[language-switcher]');
+				include get_template_directory() . '/trp-language-switcher.php';
+
+				//echo apply_filters('the_content', '[language-switcher]');
 
 				wp_nav_menu( array(
 					'theme_location' => 'menu-1',

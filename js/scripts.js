@@ -57,6 +57,16 @@ window.DependencyLoader = window.DependencyLoader || {
     }
 };
 
+function setScrollRatio(){
+    let sr = window.devicePixelRatio >= 1 ? 1 : 2
+    if (window.devicePixelRatio <= .5) sr = 3
+    if (window.devicePixelRatio <= .25) sr = 4
+    window.scrollRatio = sr
+}
+
+setScrollRatio();
+window.addEventListener('resize', setScrollRatio);
+
 /**
  * Link href # => javascript:void(0)
  */
@@ -172,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let it = 22
         function autoScroll(){
             let before = e.scrollLeft
-            e.scrollLeft += (e.classList.contains('reverse') ? -1 : 1)
+            e.scrollLeft += (e.classList.contains('reverse') ? -1 : 1) * window.scrollRatio
             let after = e.scrollLeft
             if (after === before) e.classList.toggle('reverse')
         }
@@ -200,24 +210,18 @@ document.addEventListener('DOMContentLoaded', () => {
             items = items[0].children
             if (!items) break
         }
-        function scrollRatio(){
-           if (window.devicePixelRatio <= .25) return 4
-           if (window.devicePixelRatio <= .5) return 3
-           return window.devicePixelRatio >= 1 ? 1 : 2
-        }
         function autoScroll(){
             if (sw === cw || top < 0) return
-            let sr = scrollRatio()
-            e.scrollLeft += sr
+            e.scrollLeft += window.scrollRatio
             if (sw-20 <= e.scrollLeft + cw && items && items.length > 2) {
                 items[0].parentNode.appendChild(items[++n].cloneNode(true))
                 sw = e.scrollWidth
             }
         }
-        let i = setInterval(autoScroll, scrollRatio()*it)
+        let i = setInterval(autoScroll, window.scrollRatio*it)
         if (e.classList.contains('hoverstop')) {
             e.addEventListener('mouseenter', () => clearInterval(i))
-            e.addEventListener('mouseleave', () => i = setInterval(autoScroll, scrollRatio()*it))
+            e.addEventListener('mouseleave', () => i = setInterval(autoScroll, window.scrollRatio*it))
         }
         let t
         window.addEventListener('resize', () => {
@@ -228,7 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 sw = e.scrollWidth
                 cw = e.clientWidth
                 clearInterval(i)
-                i = setInterval(autoScroll, scrollRatio()*it)
+                i = setInterval(autoScroll, window.scrollRatio*it)
             }, 300)
         })
         window.addEventListener('scroll', () => top = e.getBoundingClientRect().top)
@@ -250,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (container.scrollWidth === container.clientWidth) return;
             x = setInterval(() => {
                 var before = container.scrollLeft;
-                container.scrollLeft += (container.classList.contains('reverse') ? -1 : 1);
+                container.scrollLeft += (container.classList.contains('reverse') ? -1 : 1) * window.scrollRatio;
                 var after = container.scrollLeft;
                 if (after === before) {
                     container.classList.toggle('reverse');
@@ -272,22 +276,60 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.hoverscrolled-alt').forEach(container => {
         var x = null,
+            y = null,
+            z = null,
+            leftBoundary = window.innerWidth * .25,
+            rightBoundary = window.innerWidth * .75,
             maxScrollLength = container.scrollWidth;
-        window.addEventListener('resize', () => maxScrollLength = container.scrollWidth);
-        function onMouseOver(event) {
-            clearInterval(x);
-            if (container.scrollWidth === container.clientWidth) return;
-            x = setInterval(() => {
-                if (event.clientX <= window.innerWidth * .25) {
-                    container.scrollLeft--;
-                } else if (event.clientX >= window.innerWidth * .75) {
-                    if ((container.scrollLeft+container.clientWidth) < maxScrollLength) container.scrollLeft++;
-                }
-            }, 12);
+        window.addEventListener('resize', () => {
+            maxScrollLength = container.scrollWidth
+            leftBoundary = window.innerWidth * .25
+            rightBoundary = window.innerWidth * .75
+        });
+        function clearAll() {
+            clearInterval(x)
+            y = null
+            z = null
         }
-        container.addEventListener('mouseenter', onMouseOver);
+        function onMouseOver(event) {
+            if (container.scrollWidth === container.clientWidth) {
+                clearAll()
+                return
+            }
+            if (event.clientX <= leftBoundary) {
+                y = true
+            } else if (event.clientX >= rightBoundary) {
+                y = false
+            } else {
+                clearAll()
+                return
+            }
+            if (y != z) {
+                clearInterval(x)
+                z = y
+                x = setInterval(() => {
+                    if (z) {
+                        container.scrollLeft -= window.scrollRatio;
+                        if (container.scrollLeft <= 1) {
+                            clearInterval(x)
+                        }
+                    } else {
+                        if ((container.scrollLeft+container.clientWidth) < maxScrollLength) {
+                            container.scrollLeft += window.scrollRatio;
+                        } else {
+                            clearInterval(x)
+                        }
+                    }
+                }, window.scrollRatio*12);
+            }
+        }
+        container.addEventListener('mouseenter', event => {
+            clearAll()
+            onMouseOver(event)
+        });
         container.addEventListener('mouseover', onMouseOver);
-        container.addEventListener('mouseleave', () => clearInterval(x));
+        container.addEventListener('mouseleave', clearAll);
+        window.addEventListener('resize', clearAll);
     });
 });
 
@@ -410,6 +452,7 @@ document.addEventListener('DOMContentLoaded', () => {
  * Industries full-page height
  */
 ((containerId, childSelector) => {
+    return;
     window.addEventListener('resize', () => {
         const container = document.getElementById(containerId)
         const masthead = document.getElementById('masthead')
@@ -422,7 +465,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 style.setAttribute('id', containerId+'-styles')
                 document.getElementsByTagName('head')[0].appendChild(style);
             }
-            h = h > 500 ? 500 : h
+            h = h > 500 ? 500 : (h < 300 ? 300 : h)
             css += `{ min-height: ${h}px }`
             if (style.styleSheet) {
                 style.styleSheet.cssText = css;

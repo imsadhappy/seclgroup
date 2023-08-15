@@ -24,7 +24,8 @@
     display: inline-block;
     flex-shrink: 0;
     padding-top: 40px;
-    padding-bottom: 40px; }
+    padding-bottom: 40px;
+    cursor: pointer; }
     .wp-block-case-studies .case-study:nth-child(odd) {
       max-width: 530px; }
     .wp-block-case-studies .case-study:nth-child(even) {
@@ -124,8 +125,11 @@
       background: #FFBC4B;
       color: black;
       border-color: #FFBC4B; }
-    .wp-block-case-studies .case-study:hover .case-study--hover-image {
+    .wp-block-case-studies .case-study:hover:nth-child(odd) .case-study--hover-image {
       transform: scale(1.5);
+      opacity: 1; }
+    .wp-block-case-studies .case-study:hover:nth-child(even) .case-study--hover-image {
+      transform: scale(1.2);
       opacity: 1; }
     .wp-block-case-studies .case-study:hover .case-study--hover-content {
       opacity: 1;

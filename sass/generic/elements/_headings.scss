@@ -14,15 +14,18 @@ h6 {
 
 @mixin responsive-heading($fs, $mobile, $min) {
 	font-size: #{$fs}px;
-	margin: #{$fs * .5}px 0;
+	margin-top: #{$fs * .5}px;
+	margin-bottom:  #{$fs * .5}px;
 	&:not(.not-responsive) {
-		@media (max-width: $width__mobile) {
+		@media (max-width: $width__mobile), (max-height: 860px) {
 			font-size: #{$fs * $mobile}px;
-			margin: #{$fs * ($mobile / 2)}px 0;
+			margin-top: #{$fs * ($mobile / 2)}px;
+			margin-bottom:  #{$fs * ($mobile / 2)}px;
 		}
-		@media (max-width: $width__min) {
+		@media (max-width: $width__min), (max-height: 400px) {
 			font-size: #{$fs * $min}px;
-			margin: #{$fs * ($min / 2)}px 0;
+			margin-top: #{$fs * ($min / 2)}px;
+			margin-bottom:  #{$fs * ($min / 2)}px;
 		}
 	}
 }

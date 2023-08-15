@@ -36,6 +36,7 @@
         flex-shrink: 0;
         padding-top: 40px;
         padding-bottom: 40px;
+        cursor: pointer;
 
         &:nth-child(odd) {
             max-width: 530px;
@@ -162,9 +163,17 @@
                 @include case-study-color(#FFBC4B)
             }
 
-            .case-study--hover-image {
-                transform: scale(1.5);
-                opacity: 1;
+            &:nth-child(odd) {
+                .case-study--hover-image {
+                    transform: scale(1.5);
+                    opacity: 1;
+                }
+            }
+            &:nth-child(even) {
+                .case-study--hover-image {
+                    transform: scale(1.2);
+                    opacity: 1;
+                }
             }
 
             .case-study--hover-content {

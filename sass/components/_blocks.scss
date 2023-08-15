@@ -275,6 +275,8 @@
             position: relative;
             z-index: 1;
             flex: 1;
+            overflow: visible !important;
+            min-height: 300px;
             ~ * {
                 position: relative;
                 z-index: 2;
@@ -335,7 +337,7 @@
     }
 
     &-spacer {
-        @media (max-width: $width__mobile) {
+        @media (max-width: $width__mobile), (max-height: 860px) {
             &.mobile-height-20 {
                 height: 20px !important;
             }
@@ -512,6 +514,20 @@
                 border: 0;
                 margin-left: 0 !important;
             }*/
+
+            > * {
+                figure ~ figure {
+                    display: none;
+                }
+                &:hover {
+                    figure:first-child {
+                        display: none;
+                        ~ figure {
+                            display: block;
+                        }
+                    }
+                }
+            }
         }
     }
 
