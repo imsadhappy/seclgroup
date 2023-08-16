@@ -104,4 +104,15 @@
         }
     }
 
+    &-form-control-wrap {
+        position: relative;
+    }
+
+    &-not-valid-tip {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+        font-size: 14px;
+    }
 }

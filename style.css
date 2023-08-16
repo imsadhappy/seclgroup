@@ -4,7 +4,7 @@ Theme URI: https://seclgroup.com/
 Author: SECLGroup
 Author URI: https://seclgroup.com/
 Description:  SECLGroup Theme
-Version: 0.6.0
+Version: 0.6.2
 Tested up to: 5.4
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
@@ -657,7 +657,10 @@ input[type="submit"], .button-smaller, .has-button-smaller > :not(.components-bu
   list-style: none; }
   .pineaple-marker li, #primary-menu > .menu-item-has-children:hover > .sub-menu.multilayer > li.menu-item-has-children.active .sub-menu li, #primary-menu > .menu-item-has-children:focus > .sub-menu.multilayer > li.menu-item-has-children.active .sub-menu li, #primary-menu > .menu-item-has-children.active > .sub-menu.multilayer > li.menu-item-has-children.active .sub-menu li {
     position: relative;
+    margin: 0 !important;
     padding: 0; }
+    .pineaple-marker li + li, #primary-menu > .menu-item-has-children:hover > .sub-menu.multilayer > li.menu-item-has-children.active .sub-menu li + li, #primary-menu > .menu-item-has-children:focus > .sub-menu.multilayer > li.menu-item-has-children.active .sub-menu li + li, #primary-menu > .menu-item-has-children.active > .sub-menu.multilayer > li.menu-item-has-children.active .sub-menu li + li {
+      border-top: 1px solid #AEAFC4; }
     .pineaple-marker li:before, #primary-menu > .menu-item-has-children:hover > .sub-menu.multilayer > li.menu-item-has-children.active .sub-menu li:before, #primary-menu > .menu-item-has-children:focus > .sub-menu.multilayer > li.menu-item-has-children.active .sub-menu li:before, #primary-menu > .menu-item-has-children.active > .sub-menu.multilayer > li.menu-item-has-children.active .sub-menu li:before {
       content: '';
       height: 22px;
@@ -676,14 +679,7 @@ input[type="submit"], .button-smaller, .has-button-smaller > :not(.components-bu
   .custom-list.no-marker {
     list-style: none; }
   .custom-list > * {
-    width: 100%;
-    margin: 0 !important;
-    padding: 40px 40px 40px 0; }
-    @media (max-width: 781px), (max-height: 860px) {
-      .custom-list > * {
-        padding: 30px 40px 30px 0; } }
-    .custom-list > * + * {
-      border-top: 1px solid #AEAFC4; }
+    width: 100%; }
     .custom-list > * a {
       color: inherit !important;
       display: inline-block; }
@@ -694,8 +690,25 @@ input[type="submit"], .button-smaller, .has-button-smaller > :not(.components-bu
     width: 0px;
     background-color: #090F20;
     transition: width .3s ease; }
-  .custom-list.with-underline > *:hover a:after {
+  .custom-list.with-underline > * a:hover:after {
     width: 100%; }
+
+#services li {
+  margin: 40px 0 80px 0; }
+  @media (max-width: 781px), (max-height: 860px) {
+    #services li {
+      margin: 30px 0 60px 0; } }
+  #services li:not(:first-child)::before {
+    content: '';
+    position: absolute;
+    display: block;
+    height: 1px;
+    width: 100%;
+    border-top: 1px solid #AEAFC4;
+    margin-top: -40px; }
+    @media (max-width: 781px), (max-height: 860px) {
+      #services li:not(:first-child)::before {
+        margin-top: -30px; } }
 
 .encircle-gif {
   display: inline-block;
@@ -771,20 +784,21 @@ input[type="submit"], .button-smaller, .has-button-smaller > :not(.components-bu
     opacity: 0;
     position: absolute;
     top: 100%;
-    margin-top: -40px;
+    margin-top: 0px;
+    z-index: -1;
     transform: translateX(-25%);
     transition: opacity .2s ease;
     transition-delay: .1s; }
-    @media (max-width: 781px), (max-height: 860px) {
-      .hover-image img {
-        margin-top: -30px; } }
     @media (max-width: 1224px) {
       .hover-image img {
         transform: translateX(-50%); } }
-  .hover-image.is-selected, .hover-image:hover {
+  .hover-image.is-selected,
+  .hover-image a:hover {
     z-index: 2; }
-    .hover-image.is-selected img, .hover-image:hover img {
-      opacity: 1; }
+    .hover-image.is-selected + img,
+    .hover-image a:hover + img {
+      opacity: 1;
+      z-index: 2; }
 
 .has-view-more .active {
   display: block !important; }
@@ -2908,6 +2922,16 @@ body.admin-bar:not(.scroll-down) .site-header {
 
 .wpcf7-popup--shown .wpcf7-popup--content {
   transform: translateY(0); }
+
+.wpcf7-form-control-wrap {
+  position: relative; }
+
+.wpcf7-not-valid-tip {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  font-size: 14px; }
 
 @keyframes fromBottom {
   0% {
