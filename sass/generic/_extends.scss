@@ -229,7 +229,7 @@
 		margin: 0 !important;
 
 		+ li {
-			border-top: 1px solid $Text__Tertiary;
+			border-top: $border__grey;
 		}
 
 		&:before {
@@ -303,7 +303,7 @@
 			display: block;
 			height: 1px;
 			width: 100%;
-			border-top: 1px solid $Text__Tertiary;
+			border-top: $border__grey;
 			margin-top: -40px;
 			@media (max-width: $width__mobile), (max-height: 860px) {
 				margin-top: -30px;

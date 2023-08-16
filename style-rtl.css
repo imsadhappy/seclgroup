@@ -4,7 +4,7 @@ Theme URI: https://seclgroup.com/
 Author: SECLGroup
 Author URI: https://seclgroup.com/
 Description:  SECLGroup Theme
-Version: 0.6.2
+Version: 0.6.3
 Tested up to: 5.4
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
@@ -660,7 +660,7 @@ input[type="submit"], .button-smaller, .has-button-smaller > :not(.components-bu
     margin: 0 !important;
     padding: 0; }
     .pineaple-marker li + li, #primary-menu > .menu-item-has-children:hover > .sub-menu.multilayer > li.menu-item-has-children.active .sub-menu li + li, #primary-menu > .menu-item-has-children:focus > .sub-menu.multilayer > li.menu-item-has-children.active .sub-menu li + li, #primary-menu > .menu-item-has-children.active > .sub-menu.multilayer > li.menu-item-has-children.active .sub-menu li + li {
-      border-top: 1px solid #AEAFC4; }
+      border-top: 1px solid #D6DAE2; }
     .pineaple-marker li:before, #primary-menu > .menu-item-has-children:hover > .sub-menu.multilayer > li.menu-item-has-children.active .sub-menu li:before, #primary-menu > .menu-item-has-children:focus > .sub-menu.multilayer > li.menu-item-has-children.active .sub-menu li:before, #primary-menu > .menu-item-has-children.active > .sub-menu.multilayer > li.menu-item-has-children.active .sub-menu li:before {
       content: '';
       height: 22px;
@@ -704,7 +704,7 @@ input[type="submit"], .button-smaller, .has-button-smaller > :not(.components-bu
     display: block;
     height: 1px;
     width: 100%;
-    border-top: 1px solid #AEAFC4;
+    border-top: 1px solid #D6DAE2;
     margin-top: -40px; }
     @media (max-width: 781px), (max-height: 860px) {
       #services li:not(:first-child)::before {
@@ -1998,13 +1998,14 @@ nav ul.sub-menu {
             position: relative;
             grid-column: 1 / -1;
             height: 1px;
-            background: #eee;
+            background: #D6DAE2;
             margin: 0 0 40px 0; }
           #primary-menu > .menu-item-has-children:hover > .sub-menu.multilayer > li.menu-item-has-children.active .sub-menu > li, #primary-menu > .menu-item-has-children:focus > .sub-menu.multilayer > li.menu-item-has-children.active .sub-menu > li, #primary-menu > .menu-item-has-children.active > .sub-menu.multilayer > li.menu-item-has-children.active .sub-menu > li {
             padding-top: 0;
-            padding-bottom: 0; }
+            padding-bottom: 0;
+            border-top: none !important; }
             #primary-menu > .menu-item-has-children:hover > .sub-menu.multilayer > li.menu-item-has-children.active .sub-menu > li:nth-child(n + 4), #primary-menu > .menu-item-has-children:focus > .sub-menu.multilayer > li.menu-item-has-children.active .sub-menu > li:nth-child(n + 4), #primary-menu > .menu-item-has-children.active > .sub-menu.multilayer > li.menu-item-has-children.active .sub-menu > li:nth-child(n + 4) {
-              border-top: 1px solid #eee; }
+              border-top: 1px solid #D6DAE2 !important; }
             #primary-menu > .menu-item-has-children:hover > .sub-menu.multilayer > li.menu-item-has-children.active .sub-menu > li a, #primary-menu > .menu-item-has-children:focus > .sub-menu.multilayer > li.menu-item-has-children.active .sub-menu > li a, #primary-menu > .menu-item-has-children.active > .sub-menu.multilayer > li.menu-item-has-children.active .sub-menu > li a {
               padding: 12px 24px 12px 40px !important; }
   #primary-menu .request-button a {

@@ -762,7 +762,7 @@ textarea,
     margin: 0 !important;
     padding: 0; }
     .pineaple-marker li + li {
-      border-top: 1px solid #AEAFC4; }
+      border-top: 1px solid #D6DAE2; }
     .pineaple-marker li:before {
       content: '';
       height: 22px;
@@ -806,7 +806,7 @@ textarea,
     display: block;
     height: 1px;
     width: 100%;
-    border-top: 1px solid #AEAFC4;
+    border-top: 1px solid #D6DAE2;
     margin-top: -40px; }
     @media (max-width: 781px), (max-height: 860px) {
       #services li:not(:first-child)::before {

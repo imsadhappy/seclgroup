@@ -267,7 +267,7 @@ nav ul.sub-menu {
 										position: relative;
 										grid-column: 1 / -1;
 										height: 1px;
-										background: #eee;
+										background: $BG_Grey2;
 										margin: 0 0 40px 0;
 									}
 
@@ -277,14 +277,15 @@ nav ul.sub-menu {
 
 										padding-top: 0;
 										padding-bottom: 0;
+										border-top: none !important;
 
 										//&:nth-child(-n + 4) {
-											//border-bottom: 1px solid #eee;
+											//border-bottom: $border__grey;
 											//margin-bottom: -1px;
 										//}
 
 										&:nth-child(n + 4) {
-											border-top: 1px solid #eee;
+											border-top: $border__grey !important;
 										}
 
 										a {
@@ -553,7 +554,7 @@ nav ul.sub-menu {
 			border: 0 !important;
 			background: transparent !important;
 			z-index: 2;
-			
+
 		}
 		> a:after {
 			content: ' ';
