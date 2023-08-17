@@ -198,6 +198,12 @@
     gap: 0;
 }
 
+@media (max-width: $width__mobile) {
+    .mobile-gap-0 {
+        gap: 0;
+    }
+}
+
 .overflow-x-auto {
     overflow-x: auto;
 }

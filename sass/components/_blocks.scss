@@ -73,7 +73,16 @@
                 display: none;
             }
         }
-
+        &.border-gray {
+            border: $border__grey;
+            + .border-gray {
+                margin-left: -1px;
+                @media (max-width: $width__mobile) {
+                    margin-top: -1px;
+                    margin-left: 0;
+                }
+            }
+        }
     }
 
     &-list--heading {
@@ -572,7 +581,7 @@
 
         &.border-gray {
             td {
-                border: 1px solid #AEAFC4;
+                border: $border__grey;
             }
         }
     }

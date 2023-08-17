@@ -1819,6 +1819,15 @@ blockquote,
   .wp-block-column:empty {
     display: none; } }
 
+.wp-block-column.border-gray {
+  border: 1px solid #D6DAE2; }
+  .wp-block-column.border-gray + .border-gray {
+    margin-left: -1px; }
+    @media (max-width: 781px) {
+      .wp-block-column.border-gray + .border-gray {
+        margin-top: -1px;
+        margin-left: 0; } }
+
 .wp-block-list--heading {
   display: flex;
   justify-content: space-between;
@@ -2206,7 +2215,7 @@ blockquote,
   background-color: #E2E9FB; }
 
 .wp-block-table.border-gray td {
-  border: 1px solid #AEAFC4; }
+  border: 1px solid #D6DAE2; }
 
 .custom-horizontal-scroller {
   scrollbar-width: thin;
@@ -2620,6 +2629,10 @@ blockquote,
 .no-gap,
 .gap-0 {
   gap: 0; }
+
+@media (max-width: 781px) {
+  .mobile-gap-0 {
+    gap: 0; } }
 
 .overflow-x-auto, .wp-block-group.scrollable, .custom-tabs {
   overflow-x: auto; }
