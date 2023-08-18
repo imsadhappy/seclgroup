@@ -23,6 +23,23 @@
     }
 }
 
+.hover-color-logos {
+    &:not(.has-child-selected) {
+        figure ~ figure {
+            display: none;
+        }
+        &:hover {
+            figure:first-child {
+                display: none;
+                ~ figure {
+                    display: block;
+                }
+            }
+        }
+        img { max-width: 100% !important }
+    }
+}
+
 .wp-block {
 
     &-columns {
@@ -524,18 +541,8 @@
                 margin-left: 0 !important;
             }*/
 
-            > * {
-                figure ~ figure {
-                    display: none;
-                }
-                &:hover {
-                    figure:first-child {
-                        display: none;
-                        ~ figure {
-                            display: block;
-                        }
-                    }
-                }
+            &:not(.has-child-selected) > * {
+                @extend .hover-color-logos;
             }
         }
     }

@@ -20,6 +20,25 @@ if ( ! empty($case_studies) ) : ?>
 
 <div <?php block_class('wp-block-case-studies', $block) ?>>
 
+    <script>function goToCaseStudy(caseStudy){
+        if (('ontouchstart' in window) ||
+            (navigator.maxTouchPoints > 0) ||
+            (navigator.msMaxTouchPoints > 0)) {
+                var clicked = parseInt(caseStudy.dataset.clicked, 10)
+                if (!clicked) {
+                    var siblings = caseStudy.parentElement.children;
+                    for (var i = 0; i < siblings.length; i++) {
+                        siblings[i].dataset.clicked = 0
+                    }
+                    caseStudy.dataset.clicked = 1
+                } else {
+                    window.location = caseStudy.dataset.url
+                }
+            } else {
+                window.location = caseStudy.dataset.url
+            }
+    };</script>
+
     <div id="<?php echo $block_id ?>">
 
         <?php foreach ($case_studies as $case_study) :
@@ -33,7 +52,8 @@ if ( ! empty($case_studies) ) : ?>
 
             <div class="case-study <?php printf('style-%d', intval($style)) ?>"
                  <?php if (!empty($url) && !$is_preview) : ?>
-                    onclick="window.location = '<?php echo esc_url($url) ?>'"
+                    onclick="goToCaseStudy(this)"
+                    data-url="<?php echo esc_url($url) ?>"
                  <?php endif; ?>>
 
                 <img class="case-study--hover-image"

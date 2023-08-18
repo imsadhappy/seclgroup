@@ -4,7 +4,7 @@ Theme URI: https://seclgroup.com/
 Author: SECLGroup
 Author URI: https://seclgroup.com/
 Description:  SECLGroup Theme
-Version: 0.6.4
+Version: 0.6.5
 Tested up to: 5.4
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
@@ -2410,6 +2410,17 @@ nav ul.sub-menu {
     transition-delay: 1s;
     fill: #090F20; }
 
+.hover-color-logos:not(.has-child-selected) figure ~ figure, .wp-block-group.scrolled-logos:not(.has-child-selected) > :not(.has-child-selected) figure ~ figure {
+  display: none; }
+
+.hover-color-logos:not(.has-child-selected):hover figure:first-child, .wp-block-group.scrolled-logos:not(.has-child-selected) > :not(.has-child-selected):hover figure:first-child {
+  display: none; }
+  .hover-color-logos:not(.has-child-selected):hover figure:first-child ~ figure, .wp-block-group.scrolled-logos:not(.has-child-selected) > :not(.has-child-selected):hover figure:first-child ~ figure {
+    display: block; }
+
+.hover-color-logos:not(.has-child-selected) img, .wp-block-group.scrolled-logos:not(.has-child-selected) > :not(.has-child-selected) img {
+  max-width: 100% !important; }
+
 .wp-block-columns {
   margin-bottom: 0; }
   @media (max-width: 1224px) {
@@ -2793,12 +2804,6 @@ nav ul.sub-menu {
             }*/ }
     .wp-block-group.scrolled-logos > * + * {
       margin-right: 80px !important; }
-    .wp-block-group.scrolled-logos > * figure ~ figure {
-      display: none; }
-    .wp-block-group.scrolled-logos > *:hover figure:first-child {
-      display: none; }
-      .wp-block-group.scrolled-logos > *:hover figure:first-child ~ figure {
-        display: block; }
 
 @media (max-width: 1224px) {
   .wp-block-list--heading, .wp-block-list--footer {
