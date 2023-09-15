@@ -546,3 +546,130 @@ document.addEventListener('DOMContentLoaded', () => {
         o.show(o.get(true))
     })
 })(window, document, '.circle-expand-animation', {min: 0, max: 0, ready: false});
+
+/**
+ * Services animation on scroll
+ */
+((w, d, id, o) => {
+
+  //if (('ontouchstart' in window) ||
+     //(navigator.maxTouchPoints > 0) ||
+     //(navigator.msMaxTouchPoints > 0)) {
+
+    o.minmax = () => {
+        o.min = 0
+        o.max = 0
+        let e = o.container
+        if (e && e.offsetParent) {
+            do {
+                o.min += e.offsetTop;
+                e = e.offsetParent;
+            } while (e);
+        }
+        o.max = o.min + o.container.clientHeight
+    }
+    o.animate = () => {
+        let shouldSkip = false
+        o.container.querySelectorAll('.hover-image').forEach(e => {
+            e.classList.remove('is-selected')
+            if (shouldSkip) {
+                return;
+            }
+            let y = e.getBoundingClientRect().y
+            let y2 = window.innerHeight
+            if (y > y2*.25 && y < y2*.75) {
+                e.classList.add('is-selected')
+                shouldSkip = true
+            }
+        })
+    }
+
+    d.addEventListener('DOMContentLoaded', () => {
+        o.container = document.getElementById(id)
+        if (!o.container) return;
+        o.minmax()
+    })
+    let t;
+    w.addEventListener('resize', ({detail}) => {
+        if (detail || !o.container) return
+        clearTimeout(t)
+        t = setTimeout(() => o.minmax(), 100)
+    })
+    let t2;
+    w.addEventListener('scroll', () => {
+        let cur = w.scrollY + w.innerHeight
+        if ((cur > o.min && cur < o.max + w.innerHeight)
+            || (cur > o.min && cur < o.max) ) {
+            clearTimeout(t2)
+            t2 = setTimeout(() => o.animate(), 100)
+        }
+    })
+
+    //}
+})(window, document, 'services', {min: 0, max: 0});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const targets = document.querySelectorAll('.technology-pill-container')
+    if (targets.length < 1) return;
+    targets.forEach(target => {
+        ((container) => {
+            let t;
+            window.addEventListener('scroll', () => {
+                clearTimeout(t)
+                t = setTimeout(() => {
+                    let cl = 'remove',
+                        rect = container.getBoundingClientRect(),
+                        y1 = window.innerHeight * .20,
+                        y2 = window.innerHeight * .60 + rect.height,
+                        y = rect.y
+                    if (y > y1 && y < y2) { cl = 'add' }
+                    container.classList[cl]('no-grayscale')
+                }, 100)
+            })
+        })(target);
+    })
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const items = document.querySelectorAll('.js-inject-content > *')
+    const container = document.querySelector('.js-inject-container')
+    if (items.length == 0 || !container) return
+    function insertContent(){
+        if (window.innerWidth > 1024 || container.classList.contains('js-inject-done')) return
+        let containerChildren = container.querySelectorAll(':scope > p')
+        let n = Math.floor(containerChildren.length / (items.length + 1))
+        let i = 1
+        items.forEach(node => {
+            let clone = node.cloneNode(true)
+            clone.classList.add('js-inject-item')
+            if (containerChildren[i+1]) {
+                container.insertBefore(clone, containerChildren[i+1])
+            } else {
+                container.appendChild(clone)
+            }
+            i += n
+        })
+        container.classList.add('js-inject-done')
+    }
+    insertContent()
+    window.addEventListener('resize', insertContent)
+});
+
+/*
+Object.defineProperty(HTMLMediaElement.prototype, 'playing', {
+    get() {
+        return !!(this.currentTime > 0 && !this.paused && !this.ended && this.readyState > 2);
+    }
+})
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('video').forEach(video => {
+        video.addEventListener('suspend', () => {
+            if (!video.playing) video.play()
+        });
+        window.addEventListener('scroll', () => {
+            if (!video.playing) video.play()
+        })
+    })
+})
+*/

@@ -101,30 +101,6 @@
       display: inline-block;
       padding: 5px 30px 5px 0;
       background: transparent url(../../assets/images/arrow-right-in-circle-white.svg) right center no-repeat; }
-    .wp-block-case-studies .case-study:hover.style-0 .case-study--tags span {
-      background: #F84F3A;
-      color: black;
-      border-color: #F84F3A; }
-    .wp-block-case-studies .case-study:hover.style-1 .case-study--tags span {
-      background: #5B9DFF;
-      color: black;
-      border-color: #5B9DFF; }
-    .wp-block-case-studies .case-study:hover.style-2 .case-study--tags span {
-      background: #E46EC3;
-      color: black;
-      border-color: #E46EC3; }
-    .wp-block-case-studies .case-study:hover.style-3 .case-study--tags span {
-      background: #6A67DB;
-      color: black;
-      border-color: #6A67DB; }
-    .wp-block-case-studies .case-study:hover.style-4 .case-study--tags span {
-      background: #97DF02;
-      color: black;
-      border-color: #97DF02; }
-    .wp-block-case-studies .case-study:hover.style-5 .case-study--tags span {
-      background: #FFBC4B;
-      color: black;
-      border-color: #FFBC4B; }
     .wp-block-case-studies .case-study:hover:nth-child(odd) .case-study--hover-image {
       transform: scale(1.5);
       opacity: 1; }
@@ -136,3 +112,30 @@
       transform: translateY(0%); }
     .wp-block-case-studies .case-study:hover .case-study--industry {
       opacity: .5; }
+    .wp-block-case-studies .case-study:hover .case-study--hover-image, .wp-block-case-studies .case-study.highlight .case-study--hover-image {
+      transform: scale(1.2);
+      opacity: 1; }
+    .wp-block-case-studies .case-study:hover.style-0 .case-study--tags span, .wp-block-case-studies .case-study.highlight.style-0 .case-study--tags span {
+      background: #F84F3A;
+      color: black;
+      border-color: #F84F3A; }
+    .wp-block-case-studies .case-study:hover.style-1 .case-study--tags span, .wp-block-case-studies .case-study.highlight.style-1 .case-study--tags span {
+      background: #5B9DFF;
+      color: black;
+      border-color: #5B9DFF; }
+    .wp-block-case-studies .case-study:hover.style-2 .case-study--tags span, .wp-block-case-studies .case-study.highlight.style-2 .case-study--tags span {
+      background: #E46EC3;
+      color: black;
+      border-color: #E46EC3; }
+    .wp-block-case-studies .case-study:hover.style-3 .case-study--tags span, .wp-block-case-studies .case-study.highlight.style-3 .case-study--tags span {
+      background: #6A67DB;
+      color: black;
+      border-color: #6A67DB; }
+    .wp-block-case-studies .case-study:hover.style-4 .case-study--tags span, .wp-block-case-studies .case-study.highlight.style-4 .case-study--tags span {
+      background: #97DF02;
+      color: black;
+      border-color: #97DF02; }
+    .wp-block-case-studies .case-study:hover.style-5 .case-study--tags span, .wp-block-case-studies .case-study.highlight.style-5 .case-study--tags span {
+      background: #FFBC4B;
+      color: black;
+      border-color: #FFBC4B; }

@@ -221,6 +221,12 @@
     flex-basis: content !important;
 }
 
+.width-100,
+.width-full,
+.full-width {
+    width: 100%
+}
+
 .mobile-full-width {
     @media (max-width: $width__mobile) {
         &, > img, > .wp-element-button {
@@ -323,6 +329,10 @@
     &:hover img {
         filter: grayscale(0%);
     }
+}
+
+.no-grayscale img {
+    filter: grayscale(0%) !important;
 }
 
 @media (max-width: $width__mobile) {

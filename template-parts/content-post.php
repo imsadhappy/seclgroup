@@ -9,44 +9,70 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<div class="two-columns">
 
-    <?php if ( ! in_category('whitepapers') ) : ?>
+    <aside class="uses-widget--blog-aside js-inject-content"><?php
+
+        related_links();
+        dynamic_sidebar('blog-aside');
+
+    ?></aside>
+
+    <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
         <header class="entry-header">
 
-            <div class="entry-details">
+            <div class="entry-meta"><?php
 
-                <div class="entry-categories"><?php
-                    echo get_the_category_list(', ')
-                ?></div>
+                posted_on();
+                posted_by();
 
-                <?php
+            ?></div>
 
-                    posted_on();
-                    the_title( '<h1 class="entry-title">', '</h1>' );
-                    posted_by();
+            <?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 
-                ?>
-
-            </div>
-
-            <?php if ( has_post_thumbnail() ) : ?>
+            <?php /* if ( has_post_thumbnail() ) : ?>
 
                 <div class="entry-thumbnail"><?php
                     echo thumbnail_with_alt(null, 'full')
                 ?></div>
 
-            <?php endif; ?>
+            <?php endif; */ ?>
 
         </header>
 
-    <?php endif; ?>
+        <section class="entry-content js-inject-container"><?php
 
-    <section class="entry-content">
+            the_content()
 
-        <?php the_content(); ?>
+        ?></section>
 
-    </section>
+        <footer class="entry-footer">
 
-</article>
+            <div class="entry-categories"><?php
+
+                echo get_the_category_list(' ')
+
+            ?></div>
+
+            <div class="entry-author">
+
+                <div class="entry-author__heading"><?php
+
+                    esc_html_e('Author', 'seclgroup')
+
+                ?></div>
+
+                <?php posted_by('extended') ?>
+
+            </div>
+
+            <?php related_posts() ?>
+
+        </footer>
+
+    </article>
+
+</div>
+
+<?php blog_content() ?>

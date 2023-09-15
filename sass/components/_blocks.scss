@@ -36,8 +36,13 @@
                 }
             }
         }
-        img { max-width: 100% !important }
     }
+}
+
+:not(.scrolled-logos) > .hover-color-logos {
+    //@media (min-width: $width__mobile) {
+        img { max-width: 100% !important }
+    //}
 }
 
 .wp-block {

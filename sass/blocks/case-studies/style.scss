@@ -144,25 +144,6 @@
 
         &:hover {
 
-            &.style-0 .case-study--tags span {
-                @include case-study-color(#F84F3A)
-            }
-            &.style-1 .case-study--tags span {
-                @include case-study-color(#5B9DFF)
-            }
-            &.style-2 .case-study--tags span {
-                @include case-study-color(#E46EC3)
-            }
-            &.style-3 .case-study--tags span {
-                @include case-study-color(#6A67DB)
-            }
-            &.style-4 .case-study--tags span {
-               @include case-study-color(#97DF02)
-            }
-            &.style-5 .case-study--tags span {
-                @include case-study-color(#FFBC4B)
-            }
-
             &:nth-child(odd) {
                 .case-study--hover-image {
                     transform: scale(1.5);
@@ -183,6 +164,32 @@
 
             .case-study--industry {
                 opacity: .5;
+            }
+        }
+
+        &:hover,
+        &.highlight {
+            .case-study--hover-image {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+            &.style-0 .case-study--tags span {
+                @include case-study-color(#F84F3A)
+            }
+            &.style-1 .case-study--tags span {
+                @include case-study-color(#5B9DFF)
+            }
+            &.style-2 .case-study--tags span {
+                @include case-study-color(#E46EC3)
+            }
+            &.style-3 .case-study--tags span {
+                @include case-study-color(#6A67DB)
+            }
+            &.style-4 .case-study--tags span {
+               @include case-study-color(#97DF02)
+            }
+            &.style-5 .case-study--tags span {
+                @include case-study-color(#FFBC4B)
             }
         }
     }

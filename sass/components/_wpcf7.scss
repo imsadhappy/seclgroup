@@ -2,7 +2,8 @@
 
     &-spinner { position: absolute }
 
-    .border-bottom &-text {
+    .border-bottom &-text,
+    .border-bottom &-textarea {
         background: transparent;
         border-bottom: 1px solid #CCC;
         border-radius: 0;
@@ -114,5 +115,9 @@
         right: 0;
         margin: auto;
         font-size: 14px;
+    }
+
+    textarea[rows] {
+        height: auto;
     }
 }

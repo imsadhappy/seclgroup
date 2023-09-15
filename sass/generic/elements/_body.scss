@@ -21,6 +21,16 @@ body {
   --color-grey: #{$color__grey};
   --color-red: #{$color__red};
   --content-width: #{$width__desktop};
+  --offset__header: #{$offset__header};
+  --mobile_offset__header: #{$mobile_offset__header};
+}
+
+body.admin-bar {
+  //--offset__header: #{$offset__header + 32};
+  --mobile_offset__header: #{$mobile_offset__header + 32};
+  @media (max-width: 782px) {
+    --mobile_offset__header: #{$mobile_offset__header + 46};
+  }
 }
 
 html, body, * {

@@ -1,0 +1,134 @@
+.posted-in {
+    margin: 12px 0 0;
+    padding: 0;
+    a {
+        @extend .pill;
+        &[rel*="current"]:after {
+            content: '\00D7';
+            margin-left: 10px;
+        }
+    }
+}
+
+.mobile-meta {
+    @media (max-width: $width__mobile) {
+        display: flex;
+        flex-direction: column-reverse;
+        .authorPosition {
+            font-size: 14px;
+        }
+    }
+}
+
+.posted-on {
+
+    float: right;
+    font-size: 14px;
+
+    * { color: $Text__Secondary; }
+
+    @media (max-width: $width__mobile) {
+        float: none;
+        margin: 0 0 0 60px;
+    }
+}
+
+.author {
+
+    line-height: 1;
+    position: relative;
+
+    @media (min-width: $width__min) {
+        white-space: nowrap;
+    }
+
+    img {
+        border: $border__grey;
+        background-color: $BG_Grey2;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        float: left;
+        margin-right: 16px;
+    }
+
+    &Name {
+        font-size: 18px;
+        @extend .bolder;
+    }
+
+    &Position,
+    &Email,
+    &Phone,
+    &Bio {
+        color: $Text__Secondary;
+    }
+
+    &SocialLinks {
+
+        float: right;
+
+        &.mobile {
+
+            @media (min-width: $width__mobile) {
+                display: none;
+            }
+
+            float: left;
+
+            a {
+                display: block;
+                margin: 16px 36px 0 14px;
+            }
+        }
+
+        a {
+            font-size: 18px;
+            width: 40px;
+            padding: 10px 6px 8px;
+            text-align: center;
+            display: inline-block;
+            border: $border__grey;
+            border-radius: 40px;
+            line-height: 1;
+            margin-top: 8px;
+            + a {
+                margin-left: 16px;
+            }
+            &:hover {
+                background-color: $Primary__150;
+                color: white;
+                border-color: $Primary__150;
+            }
+        }
+    }
+
+    &Phone,
+    &Email {
+        float: left;
+        width: 50%;
+        margin: 20px 0;
+        a {
+            @extend .h7;
+        }
+    }
+
+    &Bio {
+        clear: both;
+        @media (max-width: $width__mobile) {
+            padding-top: 14px;
+        }
+    }
+
+    @media (max-width: $width__mobile) {
+
+        &SocialLinks:not(.mobile) {
+            display: none;
+        }
+
+        &Email, &Phone {
+            float: none;
+            width: auto;
+        }
+    }
+}

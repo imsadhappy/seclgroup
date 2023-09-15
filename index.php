@@ -13,22 +13,21 @@
  */
 
 get_header();
+
 ?>
 
 	<main id="primary" class="site-main <?php echo have_posts() ? 'has' : 'no' ?>-posts">
 
-		<?php if ( have_posts() ) : ?>
-
-			<header class="page-header">
+			<?php /* header class="page-header">
 
 				<h1 class="page-title"><span><?php
 
-					if ( is_home() || is_singular() ) {
+					if ( is_singular() ) {
 						single_post_title();
 					} elseif ( is_post_type_archive() ) {
-						post_type_archive_title();
+						//post_type_archive_title();
 					} elseif ( is_category() || is_tag() || is_tax() ) {
-						single_term_title();
+						//single_term_title();
 					} elseif ( is_search() ) {
 						printf( __( 'Search Results for &#8220;%s&#8221;' ), get_search_query() );
 					} elseif ( is_author() ) {
@@ -37,59 +36,76 @@ get_header();
 
 				?></span></h1>
 
-				<?php if ( is_home() || is_category() ) category_list(); ?>
+			</header */ ?>
 
-				<?php if ( is_tax() || is_post_type_archive() ) term_list(); ?>
+			<?php if ( ! is_singular() ) : ?>
 
-			</header>
+			<div class="two-columns">
 
-			<section class="page-content">
+				<aside class="uses-widget--blog-aside"><?php
+					dynamic_sidebar('blog-aside')
+				?></aside>
 
-				<ul class="post-list">
+			<?php else : ?>
 
-				<?php
+			<div class="one-column">
 
-					$queried_loop_type = ''; //loop type, not post type - search loop has various post types
-					$queried_post_ids = array();
+			<?php endif; ?>
 
-					while ( have_posts() ) :
+				<div class="main-column">
 
-						the_post();
+					<?php
 
-						$queried_post_ids[] = get_the_ID();
-						$queried_loop_type = is_search() ? 'search' : get_post_type();
+						get_search_form(array('aria_label' => 'post_type-post'));
 
-						/*
-						* Include the Post-Type-specific template for the content.
-						* If you want to override this in a child theme, then include a file
-						* called loop-___.php (where ___ is the Post Type name) and that will be used instead.
-						*/
-						get_template_part( 'template-parts/loop', $queried_loop_type );
+						inline_script('search');
 
-					endwhile;
+						if ( have_posts() ) : ?>
 
-				?>
+						<ul class="post-list"><?php
 
-				</ul><!-- .posts-list -->
+							$queried_loop_type = ''; //loop type, not post type - search loop has various post types
+							$queried_post_ids = array();
 
-				<?php do_action("after_loop_$queried_loop_type", $queried_post_ids);
+							while ( have_posts() ) :
 
-					/*the_posts_navigation( array(
-						'prev_text' => __("Previous"),
-						'next_text' => __("Next")
-					) );*/
+								the_post();
 
-				?>
+								$queried_post_ids[] = get_the_ID();
+								$queried_loop_type = is_search() ? 'search' : get_post_type();
 
-			</section>
+								/*
+								* Include the Post-Type-specific template for the content.
+								* If you want to override this in a child theme, then include a file
+								* called loop-___.php (where ___ is the Post Type name) and that will be used instead.
+								*/
+								get_template_part( 'template-parts/loop', $queried_loop_type );
 
-		<?php else :
+							endwhile;
 
-			get_template_part( 'template-parts/content', 'none' );
+						?></ul><!-- .posts-list -->
 
-		endif; ?>
+						<?php do_action("after_loop_$queried_loop_type", $queried_post_ids); ?>
+
+						<?php the_posts_pagination(apply_filters('the_posts_pagination', array())) //see trait-pagination ?>
+
+					<?php else : ?>
+
+						<div class="no-selection">
+							<?php esc_html_e( 'No posts found.' ); ?>
+							<a href="<?php echo home_url(get_current_request_url()) ?>" rel="nofollow" class="underline"><?php esc_html_e( 'Clear search', 'seclgroup' ); ?></a>
+						</div>
+
+					<?php endif; ?>
+
+				</div>
+
+			</div><!-- close one or two columns -->
+
+			<?php if ( ! is_singular() ) blog_content() ?>
 
 	</main><!-- #main -->
 
 <?php
+
 get_footer();

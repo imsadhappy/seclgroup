@@ -34,33 +34,10 @@ body p > a {
 }
 
 .category-link,
-.term-link {
-
-	font-size: 12px;
-	line-height: 14px;
-	font-weight: 500;
-    display: inline-block;
-    padding: 8px 24px;
-    background: transparent;
-	border: 1px solid $color__tertiary;
-    margin: 10px;
-    border-radius: 24px;
-
-    &.active {
-        background: $color__tertiary;
-        &:hover,
-        &:focus,
-        &:active {
-            color: $color__primary;
-        }
-    }
-}
-
+.term-link,
 .taxonomy-category a,
 .entry-categories a {
 	@extend .pill;
-	background: $color__tertiary;
-	color: $color__primary;
 }
 
 .custom-logo-link {

@@ -1,60 +1,88 @@
 .post-list {
 
-    display: flex;
-	flex-wrap: wrap;
     list-style: none;
     padding: 0;
-	margin: 0 auto;
 
-    max-width: $width__desktop;
-	@media (max-width: 1100px) {
-		max-width: 680px !important;
-	}
+	@extend .wrapper-narrow;
 
-    grid-gap: 40px;
-	@media (max-width: $width__min) {
-		grid-gap: 20px;
-	}
-
-    .wp-block-list--heading + & {
-        margin: 40px auto 0;
-    }
-
-	[class*="wp-block"].alignfull & {
-		max-width: none;
-	}
-
-	[class*="wp-block"].scrollable & {
-		@extend .wrapped-by-padding;
+	.two-columns & {
+		margin-left: 0;
 	}
 
     @import "loop/post";
 
     @import "loop/search";
 
-    + .ajax-load-more {
-        margin: 80px auto;
-        display: block;
-        max-width: 300px !important;
-		.ajax-count-result { display: none }
-    }
+	body.blog & .posted-in a:first-child {
+		@extend .pill.active;
+	}
 }
 
-.ajax-load-more {
-	cursor: pointer;
-	.on-none {
-		font-size: 0;
-	}
-	&.wait {
-		cursor: wait;
-	}
-	&.none,
-	&[data-ajax-count-result="0"] {
-		font-size: 0;
-		cursor: default;
-		background: $color__grey !important;
-		.on-none {
-			font-size: initial;
+.pagination {
+
+	text-align: center;
+	margin-top: 64px;
+
+	.page-numbers {
+
+		@extend .pill;
+
+		padding-top: 6px;
+		padding-bottom: 6px;
+		margin: 0;
+
+		& + * {
+			margin-left: 8px;
+			margin-right: 8px;
 		}
+
+		&.prev,
+		&.next {
+			border-color: $BG__Grey;
+			background: $BG__Grey;
+			padding: 8px 6px 2px;
+			vertical-align: -4px;
+			svg path {
+				stroke: $Text__Primary;
+				stroke-width: 1.5
+			}
+			&.disabled svg path {
+				stroke: $Text__Tertiary
+			}
+		}
+
+		&.prev { margin-right: 32px !important }
+		&.next { margin-left: 32px !important }
+
+		&.current {
+			@extend .pill.active;
+		}
+	}
+}
+
+.main-column .search-form {
+
+	border-bottom: 1px dashed $Text__Tertiary;
+
+	margin-bottom: 64px;
+	@media (max-width: $width__mobile) {
+		margin-bottom: 36px;
+	}
+
+	.search-field {
+		padding: 0;
+		width: calc(100% - 48px);
+		@extend h6;
+		margin: 0 !important;
+	}
+
+	.search-submit {
+		font-size: 0 !important;
+		border: 0 !important;
+		padding: 0;
+		width: 40px;
+		height: 40px;
+		vertical-align: 6px;
+		background: transparent url('assets/images/search-icon.svg') center no-repeat;
 	}
 }

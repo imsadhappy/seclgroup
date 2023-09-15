@@ -9,7 +9,7 @@ namespace SECLGroup;
 
 final class Theme {
 
-    use Admin, AJAX, Updater, StyleToStylesheet;
+    use Admin, AJAX, Updater, Pagination, StyleToStylesheet;
 
     function __construct() {
 
@@ -23,6 +23,12 @@ final class Theme {
         add_action( 'admin_head', array($this, 'enqueue') );
         add_action( 'after_setup_theme', array($this, 'register_menus') );
         add_action( 'widgets_init', array($this, 'register_widgets') );
+        add_filter( 'the_category', array($this, 'the_category') );
+        add_filter( 'get_search_form', array($this, 'get_search_form') );
+
+        add_filter( 'excerpt_more', function ( $more ) {
+            return preg_replace( '/\[|\]/', '', $more );
+        } );
 
         $this->check_updates();
         $this->disable_comments();
@@ -31,6 +37,7 @@ final class Theme {
         $this->page_for_terms_and_conditions();
         $this->use_wpcf7_popup();
         $this->styles_in_wp_footer('core-block-supports');
+        $this->setup_pagination();
     }
 
     /**
@@ -153,8 +160,8 @@ final class Theme {
 
         register_sidebar(
             array(
-                'name'          => esc_html__( 'Footer Column', 'seclgroup' ) . ' 4',
-                'id'            => "footer-column-4",
+                'name'          => esc_html__( 'Blog Aside', 'seclgroup' ),
+                'id'            => "blog-aside",
                 'description'   => esc_html__( 'Add widgets here.', 'seclgroup' ),
                 'before_widget' => '<div id="%1$s" class="widget %2$s">',
                 'after_widget'  => '</div>',
@@ -162,5 +169,42 @@ final class Theme {
                 'after_title'   => '</div>',
             )
         );
+    }
+
+    public function the_category( $thelist ) {
+
+        if ( is_category() || is_tag() || is_tax() ) {
+            $blog_bath = str_replace(home_url(), '', get_permalink( get_option( 'page_for_posts' ) ) );
+            $thelist = \str_replace($_SERVER['REQUEST_URI'].'" rel="',
+                                    $blog_bath.'" rel="current ', $thelist);
+        }
+
+        return $thelist;
+    }
+
+    public function get_search_form( $form ) {
+
+        $location = single_post_title( '', false );
+        $path = preg_replace("/\/page\/(\d+)/", '', get_current_request_url() );
+
+        if ( empty($location) )
+            $location = post_type_archive_title( '', false );
+
+        if ( empty($location) )
+            $location = single_term_title( '', false );
+
+        $old_action = esc_url( home_url( '/' ) );
+        $new_action = esc_url( home_url( $path ) );
+        $old_placeholder = sprintf('placeholder="%s"', esc_attr_x( 'Search &hellip;', 'placeholder' ));
+        $new_placeholder = sprintf('placeholder="%s %s"',
+                                    esc_attr_x( 'Search in', 'seclgroup' ),
+                                    esc_attr($location));
+
+        $form = str_replace($old_action, $new_action, $form);
+
+        if ( ! empty($location) )
+            $form = str_replace($old_placeholder, $new_placeholder, $form);
+
+        return $form;
     }
 }

@@ -2,7 +2,11 @@
 
     display: block;
 
+    @import 'post';
+
     li.status-publish {
+
+    /*
 
         all: unset;
         display: block;
@@ -34,5 +38,7 @@
         + li {
             margin-top: 40px;
         }
+    */
+
     }
 }

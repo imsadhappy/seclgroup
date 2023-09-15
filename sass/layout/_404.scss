@@ -1,7 +1,6 @@
 &.error-404,
 &.no-posts {
 
-    background-color: $color__primary;
     overflow: hidden;
     position: relative;
     background-repeat: no-repeat;
@@ -9,21 +8,20 @@
     background-size: cover;
 
     .page-content {
-        
         margin: 0;
         padding: 150px 0;
         position: relative;
         z-index: 2;
         text-align: center;
+    }
 
-        .error-code {
-            font-size: 160px;
-            font-weight: 800;
-            line-height: 1;
-        }
+    .error-code {
+        font-size: 160px;
+        font-weight: 800;
+        line-height: 1;
+    }
 
-        .back-to-home {
-            margin: 40px auto 0;
-        }
+    .back-to-home {
+        margin: 40px auto 0;
     }
 }

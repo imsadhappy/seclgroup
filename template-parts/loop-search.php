@@ -7,6 +7,10 @@
  * @package SECLGroup
  */
 
+get_template_part( 'template-parts/loop', 'post' );
+
+/*
+
 $post_id = !empty($args) && isset($args['post_id']) ? $args['post_id'] : get_the_ID();
 $post_title = get_the_title($post_id);
 $post_excerpt = get_the_excerpt($post_id);
@@ -35,3 +39,5 @@ $post_type_name = ucfirst(__(get_post_type($post_id), 'seclgroup'));
     </div>
 
 </li><!-- #post-<?php echo $post_id; ?> -->
+
+*/

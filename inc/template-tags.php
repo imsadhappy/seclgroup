@@ -4,6 +4,12 @@
  *
  * @package SECLGroup
  */
+if ( ! function_exists( 'get_current_request_url' ) ) {
+
+	function get_current_request_url(){
+		return add_query_arg( array(), $GLOBALS['wp']->request );
+	}
+}
 
 if ( ! function_exists( 'posted_on' ) ) {
 	/**
@@ -25,7 +31,7 @@ if ( ! function_exists( 'posted_on' ) ) {
 			ucfirst( esc_html( get_the_modified_date('', $post_id) ) )
 		);
 
-		$str = sprintf('<span class="posted-on"><a href="%s" rel="bookmark">%s</a></span>', esc_url( get_permalink($post_id) ), $time_string); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		$str = sprintf('<span class="posted-on template-tags--posted_on"><a href="%s" rel="bookmark">%s</a></span>', esc_url( get_permalink($post_id) ), $time_string); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		if ( $return )
 			return $str;
@@ -38,20 +44,74 @@ if ( ! function_exists( 'posted_by' ) ) {
 	/**
 	 * Prints HTML with meta information for the current author.
 	 */
-	function posted_by() {
+	function posted_by( $extended = false ) {
 
 		$author_id = get_the_author_meta( 'ID' );
-		$avatar = get_field( 'user_avatar', "user_$author_id" );
-		$author =  esc_html( get_the_author() );
+		$cache_key = "posted_by_$author_id".($extended ? '_extended':'');
+		$cached_html = wp_cache_get($cache_key);
 
-		printf('<div class="posted-by byline">
-					<span class="author vcard">
-						<a class="url fn n" href="%s">%s%s</a>
-					</span>
-				</div>',
-				esc_url( get_author_posts_url( $author_id ) ),
-				wp_attachment_is_image($avatar) ? wp_get_attachment_image($avatar) : '',
-				$author);
+		if ( ! empty($cached_html) ) {
+			echo $cached_html;
+			return;
+		}
+
+		$avatar = get_field( 'user_avatar', "user_$author_id" );
+		$role = get_field( 'user_role', "user_$author_id" );
+		$author =  esc_html( get_the_author() );
+		$image = is_array($avatar) ? sprintf('<img src="%s" alt="%s">', $avatar['sizes']['thumbnail'], $author) : '';
+
+		$about = $phone = $email = $social_links_html = '';
+
+		if ($extended) {
+
+			$about = get_field( 'user_about', "user_$author_id" );
+
+			if ( !empty($about) )
+				$about = sprintf('<div class="authorBio">%s</div>', $about);
+
+			$phone = get_field( 'user_phone', "user_$author_id" );
+
+			if ( !empty($phone) )
+				$phone = sprintf('<div class="authorPhone">%2$s<br><a href="tel:%1$s">%1$s</a></div>', $phone, esc_html__('Phone Number', 'seclgroup'));
+
+			$email = get_field( 'user_email', "user_$author_id" );
+
+			if ( !empty($email) )
+				$email = sprintf('<div class="authorEmail">%2$s<br><a href="tel:%1$s">%1$s</a></div>', $email, esc_html__('Email', 'seclgroup'));
+
+			$social_links = get_field( 'user_social_links', "user_$author_id" );
+
+			if ( ! empty($social_links) )
+				foreach ( $social_links as $social_link )
+					$social_links_html .= sprintf('<a href="%s" target="_blank" rel="nofollow">%s</a>', $social_link['url'], $social_link['icon']);
+
+		}
+
+		$html = sprintf('<div class="posted-by byline template-tags--posted_by">
+							<span class="author vcard">
+								<span class="authorSocialLinks">%s</span>
+								<a class="url fn n" href="%s">
+									%s <span class="name authorName">%s</span><br>
+									<span class="position role authorPosition">%s</span>
+								</a>
+							</span>
+							<div class="extended">
+								<span class="authorSocialLinks mobile">%1$s</span>
+								%s %s %s
+							</div>
+						</div>',
+						$social_links_html,
+						esc_url( get_author_posts_url( $author_id ) ),
+						$image,
+						$author,
+						$role,
+						$phone,
+						$email,
+						$about);
+
+		wp_cache_set($cache_key, $html);
+
+		echo $html;
 	}
 }
 
@@ -68,7 +128,7 @@ if ( ! function_exists( 'the_logo' ) ) {
 		if ( $logo_id ) {
 
 			if ( 'image/svg+xml' === get_post_mime_type( $logo_id ) ) {
-				?><div class="site-logo">
+				?><div class="site-logo template-tags--the_logo">
 					<a href="<?php echo esc_url( home_url( '/' ) ); ?>"
 						class="custom-logo-link"
 						 aria-label="<?php esc_html_e("Homepage") ?>"
@@ -108,7 +168,7 @@ if ( ! function_exists( 'category_list' ) ) {
 		if ( count($categories) === 0 )
 			return;
 
-		?><div class="category-links">
+		?><div class="category-links template-tags--category_list">
 
 			<a class="category-link <?php echo is_home() ? 'active' : '' ?>" href="<?php echo $blog_url ?>"><?php
 				echo get_post_type_object('post')->labels->all_items;
@@ -148,7 +208,7 @@ if ( ! function_exists( 'term_list' ) ) {
 			}
 		}
 
-		?><div class="term-links"><?php
+		?><div class="term-links template-tags--term_list"><?php
 
 		foreach ( $post_types as $post_type ) :
 
@@ -207,32 +267,66 @@ if ( ! function_exists( 'related_posts' ) ) {
 	/**
 	 * Prints HTML with list of related posts.
 	 */
-	function related_posts( $post_id ) {
+	function related_posts( $post_id = false ) {
 
+		$post_id = $post_id ? $post_id : get_the_ID();
+		$show_excerpt = false;
 		$related_posts = get_post_meta($post_id, 'related_posts', true);
 
 		if ( ! empty($related_posts) ) : ?>
 
-			<div class="related-entries">
+			<div class="related-entries template-tags--related_posts">
 
-				<div class="flex-space-between">
-					<div class="h3"><?php esc_html_e('Related posts', 'seclgroup') ?></div>
-					<a href="<?php echo get_post_type_archive_link( 'post' ); ?>" class="wp-element-button mobile-hidden button-smaller"><?php esc_html_e('See all', 'seclgroup') ?></a>
-				</div>
+				<div class="related-entries__heading"><?php esc_html_e('Related Publications', 'seclgroup') ?></div>
 
 				<ul class="post-list">
 
-				<?php foreach( $related_posts as $post_id ) :
+				<?php foreach ( $related_posts as $post_id ) :
 
 					get_template_part( 'template-parts/loop',
 										get_post_type( $post_id ),
-										compact('post_id') );
+										compact('post_id', 'show_excerpt') );
 
 				endforeach; ?>
 
 				</ul><!-- .posts-list -->
 
 			</div><!-- .related-entries -->
+
+		<?php endif;
+	}
+}
+
+if ( ! function_exists( 'related_links' ) ) {
+	/**
+	 * Prints HTML with list of related links.
+	 */
+	function related_links( $post_id = false ) {
+
+		$post_id = $post_id ? $post_id : get_the_ID();
+		$related_links = get_post_meta($post_id, 'related_links', true);
+
+		if ( ! empty($related_links) ) : ?>
+
+			<div class="related-links template-tags--related_links">
+
+				<div class="related-links__heading"><?php esc_html_e('Relevant to', 'seclgroup') ?>:</div>
+
+				<ul>
+
+				<?php foreach ( $related_links as $post_id ) : ?>
+
+					<li>
+						<a href="<?php echo get_permalink($post_id) ?>"><?php
+							echo get_the_title($post_id)
+						?></a>
+					</li>
+
+				<?php endforeach; ?>
+
+				</ul>
+
+			</div><!-- .related-links -->
 
 		<?php endif;
 	}
@@ -299,7 +393,7 @@ if ( ! function_exists( 'block_loop_template' ) ) {
 
 			<ul class="post-list"><?php
 
-				foreach( $posts as $post_id )
+				foreach ( $posts as $post_id )
 					get_template_part( 'template-parts/loop', $post_type, compact('post_id', 'block', 'fields', 'page_id') );
 
 			?></ul><!-- .posts-list -->
@@ -435,11 +529,28 @@ if ( ! function_exists( 'load_more_button' ) ) {
 			data-offset="<?php echo get_option('posts_per_page') ?>"
 			data-post_type="<?php echo $post_type ?>"
 			data-cat="<?php echo get_query_var( 'cat' ) ?>"
-			class="ajax-load-more ajax-count-<?php echo $post_type ?>">
+			class="ajax-load-more ajax-count-<?php echo $post_type ?> template-tags--load_more_button">
 			<span><?php esc_html_e( 'Load more items', 'seclgroup' ) ?></span>
 			<span class="on-none"><?php esc_html_e( 'No more items', 'seclgroup' ) ?></span>
 		</button><?php
 
 		inline_script('ajax-load-more');
+	}
+}
+
+if ( ! function_exists( 'blog_content' ) ) {
+
+	function blog_content() {
+
+		$the_content = wp_cache_get('blog_content');
+
+		if ( $the_content == false ) {
+			$the_content = apply_filters( 'the_content', get_post( get_option( 'page_for_posts' ) )->post_content );
+			wp_cache_set('blog_content', $the_content);
+		}
+
+		?><div class="blog-content page-for-posts-content template-tags--blog_content">
+			<?php echo $the_content ?>
+		</div><?php
 	}
 }

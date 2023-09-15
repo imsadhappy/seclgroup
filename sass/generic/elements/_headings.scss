@@ -12,6 +12,20 @@ h6 {
 	letter-spacing: 0em;
 }
 
+.h7 {
+	color: $color__primary;
+	font-family: 'Halvar Breit Md', $default__fonts;
+	font-size: 20px;
+	font-weight: 500;
+	clear: both;
+	letter-spacing: 0em;
+	line-height: 2;
+}
+
+.bolder {
+	font-family: 'Halvar Breit Md', $default__fonts;
+}
+
 @mixin responsive-heading($fs, $mobile, $min) {
 	font-size: #{$fs}px;
 	margin-top: #{$fs * .5}px;

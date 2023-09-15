@@ -10,6 +10,12 @@
 	}
 }
 
+.wrapper-narrow {
+	max-width: 644px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 .base-font-setting {
 	color: $color__text-main;
 	font-family: $font__main;
@@ -55,14 +61,21 @@
 
 .pill {
 	display: inline-block;
-	padding: 8px 24px;
-	border-radius: 20px;
-	font-size: 12px;
-	line-height: 14px;
-	font-weight: 500;
-	transition: background .3s ease-in;
-	&:hover, &:focus, &.active {
-		background: $color__secondary;
+	padding: 4px 12px;
+	margin: 12px 6px 0 0;
+	border-radius: 0;
+	border: 1px solid $Text__Secondary;
+	font-size: 14px;
+	background: transparent;
+	color: initial;
+	transition: background .1s ease-in;
+	&:hover,
+	&:focus,
+	&.active,
+	&[rel*="current"] {
+		background: $Text__Primary;
+		color: $Text__White;
+		border-color: $Text__Primary;
 	}
 }
 
@@ -209,6 +222,8 @@
 }
 
 .arrow-up-right-in-circle-on-hover {
+	&:focus,
+	&.is-selected,
 	&:hover {
 		background: url('assets/images/arrow-up-right-in-circle.svg') no-repeat 99% center;
 		background-size: 30px;
@@ -271,6 +286,10 @@
 		}
 	}
 
+	&.no-links li {
+		padding: 16px 40px 16px 24px !important;
+	}
+
 	&.with-underline {
 		> * {
 			a {
@@ -283,8 +302,11 @@
 					transition: width .3s ease;
 				}
 			}
-			a:hover:after {
-				width: 100%;
+			&.is-selected a,
+			a:hover, a:focus {
+				&:after {
+					width: 100%;
+				}
 			}
 			@extend .arrow-up-right-in-circle-on-hover;
 		}
@@ -407,12 +429,18 @@
 		@media (max-width: $width__desktop) {
 			transform: translateX(-50%)
 		}
+		@media (max-width: $width__min) {
+			transform: none;
+			left: 0;
+		}
 		transition: opacity .2s ease;
 		transition-delay: .1s;
 	}
 	&.is-selected,
-	a:hover {
+	a:hover,
+	a:focus {
 		z-index: 2;
+		img,
 		+ img {
 			opacity: 1;
 			z-index: 2;
@@ -437,7 +465,7 @@
 
 .full-page-height:not(.wp-block) {
 	min-height: 600px;
-    height: calc(100vh - 85px);
+    height: calc(100vh - var(--offset__header));
 	@media (max-width: $width__mobile) {
 		height: auto !important;
 	}
@@ -446,6 +474,6 @@
 	flex-direction: column;
 	justify-content: flex-end;
 	.site-header.mobile ~ .site-main & {
-		height: calc(100vh - 50px);
+		height: calc(100vh - var(--mobile_offset__header));
 	}
 }
