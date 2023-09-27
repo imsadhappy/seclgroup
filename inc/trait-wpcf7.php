@@ -1,13 +1,13 @@
 <?php
 /**
- * AJAX trait
+ * WPCF7 trait
  *
  * @package SECLGroup
  */
 
 namespace SECLGroup;
 
-trait AJAX {
+trait WPCF7 {
 
     public function use_wpcf7_popup() {
 

@@ -9,7 +9,7 @@ namespace SECLGroup;
 
 final class Theme {
 
-    use Admin, AJAX, Updater, Pagination, StyleToStylesheet;
+    use Admin, WPCF7, Updater, Pagination, StyleToStylesheet;
 
     function __construct() {
 
@@ -26,9 +26,11 @@ final class Theme {
         add_filter( 'the_category', array($this, 'the_category') );
         add_filter( 'get_search_form', array($this, 'get_search_form') );
 
-        add_filter( 'excerpt_more', function ( $more ) {
-            return preg_replace( '/\[|\]/', '', $more );
+        add_filter( 'excerpt_more', function ($more) {
+            return preg_replace('/\[|\]/', '', $more);
         } );
+
+        add_filter( 'excerpt_length', function () { return 25; } );
 
         $this->check_updates();
         $this->disable_comments();

@@ -57,6 +57,11 @@ $ npm install
 
 ### Versions
 
+Version 0.7.2
+- trait ajax -> trait wpcf7
+- css changes
+- excerpt length
+
 Version 0.7.0
 
 - blog & post

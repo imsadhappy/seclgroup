@@ -4,7 +4,7 @@ Theme URI: https://seclgroup.com/
 Author: SECLGroup
 Author URI: https://seclgroup.com/
 Description:  SECLGroup Theme
-Version: 0.7.1
+Version: 0.7.2
 Tested up to: 5.4
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
@@ -509,7 +509,7 @@ select {
   .entry-categories a:focus, .post-list .type-post .posted-in a:focus, .pagination .page-numbers:focus, .single article.post .posted-in a:focus, .pill.active, .active.category-link,
   .active.term-link,
   .taxonomy-category a.active,
-  .entry-categories a.active, .post-list .type-post .posted-in a.active, body.blog .post-list .posted-in a:first-child, .pagination .active.page-numbers, .pagination .page-numbers.current, .single article.post .posted-in a.active, .single article.post .entry-footer .entry-categories a:first-child, .pill[rel*="current"], .category-link[rel*="current"],
+  .entry-categories a.active, .post-list .type-post .posted-in a.active, body.blog .post-list .posted-in a:first-child, .pagination .active.page-numbers, .pagination .page-numbers.current, .single article.post .posted-in a.active, .single article.post .entry-footer .entry-categories a:first-child, .single .related-entries .posted-in a:first-child, .pill[rel*="current"], .category-link[rel*="current"],
   .term-link[rel*="current"],
   .taxonomy-category a[rel*="current"],
   .entry-categories a[rel*="current"], .post-list .type-post .posted-in a[rel*="current"], .pagination .page-numbers[rel*="current"], .single article.post .posted-in a[rel*="current"] {
@@ -1991,9 +1991,12 @@ html, body, .site {
       margin-top: 46px; } }
 
 .single article.post .entry-author {
-  margin-top: 100px; }
+  margin-top: 120px; }
+  @media (max-width: 781px) {
+    .single article.post .entry-author {
+      margin-top: 80px; } }
   .single article.post .entry-author__heading {
-    margin-bottom: 32px !important; }
+    margin-bottom: 36px !important; }
   .single article.post .entry-author .author img {
     width: 64px;
     height: 64px;
@@ -2010,8 +2013,11 @@ html, body, .site {
 
 .single .related-entries {
   margin-top: 120px; }
+  @media (max-width: 781px) {
+    .single .related-entries {
+      margin-top: 80px; } }
   .single .related-entries__heading {
-    margin-bottom: 32px; }
+    margin-bottom: 36px !important; }
 
 .single .related-links {
   background-color: #F6F7FB;

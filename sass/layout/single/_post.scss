@@ -14,7 +14,7 @@
                 margin-bottom: 32px !important;
             }
 
-            
+
             .entry-meta {
                 @extend .mobile-meta;
             }
@@ -42,10 +42,10 @@
         }
 
         .entry-footer {
-            
+
             max-width: 644px;
             margin: 76px auto 0;
-            
+
             @media (max-width: 1024px) {
                 margin-top: 46px;
             }
@@ -59,27 +59,31 @@
 
         .entry-author {
 
-            margin-top: 100px;
+            margin-top: 120px;
+
+            @media (max-width: $width__mobile) {
+                margin-top: 80px;
+            }
 
             &__heading {
-                
+
                 @extend h5;
-                margin-bottom: 32px !important;
+                margin-bottom: 36px !important;
             }
 
             .author {
-                
+
                 img {
                     width: 64px;
                     height: 64px;
                     margin-right: 24px;
                 }
-                
+
                 &Name {
                     @extend h6;
                     line-height: 1.5;
                 }
-                
+
                 &Position {
                     color: inherit;
                 }
@@ -89,9 +93,9 @@
                 }
 
                 + .extended {
-                    
+
                     padding-left: 88px;
-                    
+
                     @media (max-width: $width__mobile) {
                         padding-left: 0;
                     }
@@ -106,9 +110,17 @@
 
         margin-top: 120px;
 
+        @media (max-width: $width__mobile) {
+            margin-top: 80px;
+        }
+
         &__heading {
             @extend h5;
-            margin-bottom: 32px;
+            margin-bottom: 36px !important;
+        }
+
+        .posted-in a:first-child {
+            @extend .pill.active
         }
     }
 
@@ -122,10 +134,10 @@
         }
 
         ul {
-            
+
             list-style: none;
             padding: 0;
-            
+
             li {
                 a {
                     @extend .button-right-arrow;
