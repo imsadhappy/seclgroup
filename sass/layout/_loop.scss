@@ -23,18 +23,20 @@
 	text-align: center;
 	margin-top: 64px;
 
+	.nav-links {
+		display: flex;
+		flex-wrap: nowrap;
+		justify-content: center;
+	}
+
 	.page-numbers {
 
 		@extend .pill;
 
-		padding-top: 6px;
-		padding-bottom: 6px;
-		margin: 0;
-
-		& + * {
-			margin-left: 8px;
-			margin-right: 8px;
-		}
+		padding: 6px 0;
+		margin: 0 8px;
+		width: 38px;
+		text-align: center;
 
 		&.prev,
 		&.next {
@@ -50,9 +52,6 @@
 				stroke: $Text__Tertiary
 			}
 		}
-
-		&.prev { margin-right: 32px !important }
-		&.next { margin-left: 32px !important }
 
 		&.current {
 			@extend .pill.active;

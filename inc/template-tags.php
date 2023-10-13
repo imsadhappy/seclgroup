@@ -72,7 +72,7 @@ if ( ! function_exists( 'posted_by' ) ) {
 			$phone = get_field( 'user_phone', "user_$author_id" );
 
 			if ( !empty($phone) )
-				$phone = sprintf('<div class="authorPhone">%2$s<br><a href="tel:%1$s">%1$s</a></div>', $phone, esc_html__('Phone Number', 'seclgroup'));
+				$phone = sprintf('<div class="authorPhone">%2$s<br><a href="tel:%1$s">%1$s</a></div>', $phone, esc_html__('Phone', 'seclgroup'));
 
 			$email = get_field( 'user_email', "user_$author_id" );
 

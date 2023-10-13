@@ -1,6 +1,9 @@
 .wpcf7 {
 
-    &-spinner { position: absolute }
+    &-spinner {
+        //position: absolute
+        display: none
+    }
 
     .border-bottom &-text,
     .border-bottom &-textarea {

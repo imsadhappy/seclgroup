@@ -17,6 +17,10 @@
         @extend h5;
         max-height: 114px;
         margin-bottom: 24px;
+        transition: color .3s ease;
+        &:hover, &:focus {
+            color: $Primary__150
+        }
     }
 
     .post-excerpt {
@@ -25,7 +29,7 @@
     }
 
     @media (max-width: $width__mobile) {
-        
+
         display: flex;
         flex-direction: column;
 

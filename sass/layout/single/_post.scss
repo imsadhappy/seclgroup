@@ -14,7 +14,6 @@
                 margin-bottom: 32px !important;
             }
 
-
             .entry-meta {
                 @extend .mobile-meta;
             }
@@ -37,6 +36,40 @@
                 color: $Text__Secondary;
                 + p, + ul, + ol, + li {
                     margin-top: 0;
+                }
+            }
+
+            a {
+
+                color: $Primary__150;
+                text-decoration: underline;
+                text-underline-offset: 4px;
+
+                &:hover, &:focus {
+                    color: inherit;
+                }
+            }
+
+            > ul > li > a {
+                text-decoration-style: dashed;
+                text-decoration-thickness: 1px;
+            }
+
+            .js-inject-item {
+
+                li { margin: 0 }
+
+                a {
+
+                    text-decoration-color: transparent;
+
+                    &:after {
+                        visibility: hidden !important;
+                    }
+
+                    &:hover, &:focus {
+                        text-decoration-color: inherit;
+                    }
                 }
             }
         }
@@ -86,10 +119,7 @@
 
                 &Position {
                     color: inherit;
-                }
-
-                &SocialLinks {
-
+                    font-size: 16px;
                 }
 
                 + .extended {

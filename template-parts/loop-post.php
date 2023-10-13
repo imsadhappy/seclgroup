@@ -20,11 +20,12 @@ $post_permalink = get_permalink($post_id);
         posted_by();
     ?></div>
 
-    <h3 class="post-title dotdotdot">
-        <a href="<?php echo esc_url( $post_permalink ) ?>" rel="bookmark"><?php
+
+    <a href="<?php echo esc_url( $post_permalink ) ?>" rel="bookmark">
+        <h3 class="post-title dotdotdot"><?php
             esc_html_e($post_title);
-        ?></a>
-    </h3>
+        ?></h3>
+    </a>
 
     <?php if ($show_excerpt) : ?>
         <a href="<?php echo esc_url( $post_permalink ) ?>" class="post-excerpt"><?php

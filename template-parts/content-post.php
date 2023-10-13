@@ -9,11 +9,10 @@
 
 ?>
 
-<div class="two-columns">
+<div class="three-columns">
 
     <aside class="uses-widget--blog-aside js-inject-content"><?php
 
-        related_links();
         dynamic_sidebar('blog-aside');
 
     ?></aside>
@@ -72,6 +71,12 @@
         </footer>
 
     </article>
+
+    <aside class="js-inject-content"><?php
+
+        related_links();
+
+    ?></aside>
 
 </div>
 
