@@ -21,7 +21,7 @@ if ( ! empty($team_members) ) : ?>
 
 <div <?php block_class('wp-block-our-team', $block) ?>>
 
-    <?php inline_script('masonry'); ?>
+    <?php inline_script('/blocks/our-team/script.js') ?>
 
     <div id="<?php echo $block_id ?>">
 

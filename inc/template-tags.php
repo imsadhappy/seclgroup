@@ -429,7 +429,7 @@ if ( ! function_exists( 'inline_script' ) ) {
 
 	function inline_script( $script_name, $once = true ) {
 
-		$script = get_template_directory() . "/js/$script_name.js";
+		$script = get_template_directory() . $script_name;
 
 		if ( ! file_exists($script) )
 			return;
@@ -534,7 +534,7 @@ if ( ! function_exists( 'load_more_button' ) ) {
 			<span class="on-none"><?php esc_html_e( 'No more items', 'seclgroup' ) ?></span>
 		</button><?php
 
-		inline_script('ajax-load-more');
+		inline_script('/js/load-more.js');
 	}
 }
 

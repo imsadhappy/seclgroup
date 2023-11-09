@@ -1,5 +1,11 @@
-.custom-tabs-container {
-
+.active-custom-tab {
+    position: relative;
+    z-index: 1;
+    //transform: translateY(0%);
+    opacity: 1;
+    transition: /*transform 1s ease, */ opacity 1s ease;
+    transition-delay: .1s /*, .5s*/;
+    //min-height: 33vh;
 }
 
 .custom-tabs {
@@ -7,6 +13,81 @@
     @extend .overflow-x-auto, .no-scrollbar, .wrapped-by-padding;
     max-width: none !important;
     justify-content: space-between;
+    
+    &.as-select {
+        display: grid;
+        list-style: none;
+        margin: -10px 0 0 -10px;
+        > * {
+            position: relative;
+            text-align: left;
+            padding: 10px 40px 10px 10px;
+            &:not(.active) {
+                font-size: inherit;
+            }
+        }
+        &:not(.wp-block) {
+            position: relative;
+            padding: 0 5px;
+            margin-bottom: -10%;
+            background: rgba(255, 255, 255, 1);
+            overflow: visible;
+            box-shadow: 0 0 0 rgba(0,0,0,0);
+            transition: all .2s ease;
+            //border-radius: 4px;
+            .is-changed > .active {
+                background-color: transparent !important;
+            }
+            .active {
+                order: -1;
+                padding-left: 5px;
+                padding-bottom: 0;
+                //box-shadow: 0 -10px 4px 14px white;
+                &:after {
+                    content: '';
+                    position: absolute;
+                    width: 20px;
+                    height: 20px;
+                    margin: 25px 0 0 20px;
+                    right: 0;
+                    transform: rotate(90deg);
+                    background: url('assets/chevron-right-xl.svg') center no-repeat;
+                    background-size: 30px;
+                    @media (max-width: $width__mobile) {
+                        margin-top: 15px;
+                    }
+                    @media (max-width: $width__min) {
+                        margin-top: 10px;
+                    }
+                }
+            }
+            > :not(.active) {
+                text-align: left;
+                z-index: -10;
+            }
+            &:hover, 
+            &:focus {
+                &:not(.is-changed) {
+                    z-index: 2;
+                    //box-shadow: 0 0 4px rgba(0,0,0,.2);
+                    :not(.active) {
+                        z-index: 0;
+                        background-color: rgba($Primary__50, .98);
+                        &:hover, &:focus {
+                            background-color: $Primary__100;
+                            //color: white;
+                        }
+                    }
+                }
+            }
+            @media (max-width: $width__mobile) {
+                margin-bottom: -20%;
+            }
+            @media (max-width: $width__min) {
+                margin-bottom: -30%;
+            }
+        }
+    }
 
     > * {
 
@@ -31,38 +112,37 @@
             color: $Text__Primary;
         }
     }
-}
+    
+    &-content {
 
-.custom-tabs-content--active {
-    position: relative;
-    z-index: 1;
-    transform: translateY(0%);
-    opacity: 1;
-    display: block;
-    transition: transform 1s ease, opacity 1s ease;
-    transition-delay: .1s, .5s;
-    //min-height: 33vh;
-}
+        position: relative;
 
-.custom-tabs-content {
-
-    > * {
-        position: absolute;
-        z-index: -1;
-        opacity: 0;
-        transform: translateY(-50%);
-    }
-    > .active {
-        @extend .custom-tabs-content--active;
-    }
-}
-
-.wp-block-post-content .custom-tabs-content {
-    > * {
-        @extend .custom-tabs-content--active;
-        @include editor-hidden('edit tab content');
-        margin-top: 20px;
-        min-height: 100px;
+        &--active {
+            @extend .active-custom-tab;
+        }
+    
+        > * {
+            top: 0;
+            left: 0;
+            position: absolute;
+            z-index: -1;
+            opacity: 0;
+            outline: none !important;
+            //transform: translateY(-50%);
+        }
+            
+        > .active {
+            @extend .active-custom-tab;
+        }
+            
+        .wp-block-post-content & {
+            > * {
+                @extend .active-custom-tab;
+                @include editor-hidden('edit tab content');
+                margin-top: 20px;
+                min-height: 100px;
+            }
+        }  
     }
 }
 
@@ -73,8 +153,8 @@
 }
 
 .circle-expand-animation {
-    
-    &, path { 
+
+    &, path {
         opacity: 0;
         transition: opacity 1s ease;
     }

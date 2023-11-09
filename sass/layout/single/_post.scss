@@ -115,11 +115,18 @@
                 &Name {
                     @extend h6;
                     line-height: 1.5;
+                    transition: color .2s ease;
                 }
 
                 &Position {
-                    color: inherit;
+                    color: $Text__Secondary !important;
                     font-size: 16px;
+                }
+
+                &:hover, &:focus {
+                    .url .name {
+                        color: $Primary__150;
+                    }
                 }
 
                 + .extended {

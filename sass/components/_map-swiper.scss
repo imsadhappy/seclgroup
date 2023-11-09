@@ -1,0 +1,91 @@
+.map-swiper {
+    @extend .overflow-x-auto, .no-scrollbar;
+    padding: 0 calc(50vw - 400px);
+    &[class*="block-editor"] {
+        padding-left: 0;
+        padding-right: 0;
+        justify-content: center;
+        figure {
+            text-align: center;
+            img {
+                max-width: 10vw;
+            }
+        }
+    }
+    position: relative;
+    //height: 90vh;
+    &-navigation {
+        position: absolute;
+        width: 64px;
+        height: 64px;
+        background: transparent center no-repeat;
+        background-size: 80%;
+        z-index: 2;
+        &-prev {
+            background-image: url('assets/chevron-left-xl.svg');
+            left: 32px;
+            @media(max-width: $width__mobile) {
+                left: 16px;
+            }
+        }
+        &-next {
+            background-image: url('assets/chevron-right-xl.svg');
+            right: 32px;
+            //margin-top: -64px;
+            @media(max-width: $width__mobile) {
+                right: 16px;
+                //margin-top: -46px;
+            }
+        }
+        &.disabled { opacity: 0 }
+        @media(max-width: $width__mobile) {
+            width: 46px;
+            height: 46px;
+        }
+    }
+    > * {
+        opacity: .6;
+        padding: 100px 0;
+        @media (max-height: 800px), (max-width: $width__mobile) {
+            padding: 50px 0;
+        }
+        transition: opacity .4s ease !important;
+        &.active,
+        &.is-selected,
+        &.has-child-selected {
+            opacity: 1;
+        }
+    }
+    &:not([class*="block-editor"]) > * {
+        * { pointer-events: none }
+        min-width: 300px;
+        max-width: 800px;
+        cursor: pointer;
+        //flex-basis: content !important;
+        @media (max-width: $width__mobile) {
+            min-width: 220px;
+        }
+        figure {
+            //max-width: 240px;
+            //width: 100%;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            img {
+                height: calc(80vw) !important;
+                max-height: calc(80vh - 200px);
+                object-fit: contain !important;
+                object-position: top;
+            }
+        }
+        &.active {
+            width: 80vw;
+            padding-left: 20px;
+            padding-right: 20px;
+            max-width: 800px;
+            flex-basis: 100% !important;
+            @media (max-width: $width__mobile) {
+                flex-basis: 80% !important;
+            }
+        }
+    }
+}

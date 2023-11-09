@@ -45,7 +45,7 @@
 					'container' => 'nav'
 				) );
 
-				inline_script('navigation');
+				inline_script('/js/navigation.js');
 
 			?>
 

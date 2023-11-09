@@ -11,7 +11,7 @@ window[moduleID] = window[moduleID] || {
     uids: 0,
     ready: false,
     instances: {},
-    dependencies: {
+    components: {
         "https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.8/d3.min.js": "script",
         "https://d3js.org/d3-hierarchy.v1.min.js": "script"
     },
@@ -142,9 +142,9 @@ window[moduleID] = window[moduleID] || {
         }, 100);
     },
 
-    onDependenciesLoaded(dependencies){
+    onComponentLoaded(components){
         const module = this;
-        if (dependencies === module.dependencies) {
+        if (components === module.components) {
             const check = setInterval(() => {
                 if (typeof window.d3 === 'object') {
                     clearInterval(check);
@@ -160,8 +160,8 @@ window[moduleID] = window[moduleID] || {
             window.addEventListener('resize', resizeEvent => {
                 module.onResize(resizeEvent, selector);
             });
-            window.DependencyLoader.load(module.dependencies, dependenciesLoadedEvent => {
-                module.onDependenciesLoaded(dependenciesLoadedEvent.detail)
+            window.ComponentLoader.load(module.components, componentsLoadedEvent => {
+                module.onComponentLoaded(componentsLoadedEvent.detail)
             });
             module.ready = true;
         } else {

@@ -32,6 +32,8 @@ final class Theme {
 
         add_filter( 'excerpt_length', function () { return 25; } );
 
+        add_shortcode( 'contact', array($this, 'contact_shortcode') );
+
         $this->check_updates();
         $this->disable_comments();
         $this->avif_support();
@@ -115,6 +117,16 @@ final class Theme {
 
         $version = wp_get_theme()->get('Version');
         $uri = get_template_directory_uri();
+        $dir = get_template_directory();
+
+        wp_enqueue_script( 'theme-component-loader', "$uri/js/component-loader.js", array(), $version );
+
+        wp_add_inline_script( 'theme-component-loader', sprintf(
+            "window.ajaxurl = window.ajaxurl || '%s';
+             window.ComponentLoader.themeURL = '%s';",
+            esc_url(admin_url('admin-ajax.php')),
+            esc_url($uri)
+        ) );
 
         switch ( current_action() ) {
             case 'customize_preview_init':
@@ -125,20 +137,15 @@ final class Theme {
                     break;
             case 'admin_head':
                 wp_enqueue_style( 'theme-admin-style', "$uri/admin-style.css", array(), $version );
-                wp_enqueue_script( 'theme-scripts', "$uri/js/scripts.js", array(), $version );
                     break;
             default:
                 wp_enqueue_style( 'theme-style', get_stylesheet_uri(), array(), $version );
-                wp_enqueue_style( 'animate-wow', "$uri/assets/css/animate.min.css", array(), $version );
                 wp_style_add_data( 'theme-style', 'rtl', 'replace' );
-                wp_enqueue_script( 'theme-dotdotdot', "$uri/js/dotdotdot.js", array(), $version, true );
-                wp_enqueue_script( 'wow-script', "$uri/js/wow.min.js", array(), $version );
-                wp_enqueue_script( 'theme-scripts', "$uri/js/scripts.js", array(), $version );
-                //wp_enqueue_script( 'theme-side-image-slider', "$uri/js/side-image-slider.js", array(), $version, true );
-                //wp_enqueue_script( 'theme-d3-bubbles', "$uri/js/d3-bubbles.js", array(), $version, true );
-                wp_add_inline_script( 'theme-scripts', sprintf("window.ajaxurl = window.ajaxurl || '%s';",
-                    esc_url(admin_url('admin-ajax.php'))
-                ) );
+                //wp_enqueue_script( 'theme-scripts', "$uri/js/scripts.js", array(), $version );
+                inline_script('/js/scripts.js');
+                wp_enqueue_script( 'theme-component-list', "$uri/js/component-list.js", array(), $version, true );
+                //wp_enqueue_script( 'wow-script', "$uri/js/wow.min.js", array(), $version );
+                //wp_enqueue_style( 'animate-wow', "$uri/assets/css/animate.min.css", array(), $version );
                     break;
         }
     }
@@ -208,5 +215,50 @@ final class Theme {
             $form = str_replace($old_placeholder, $new_placeholder, $form);
 
         return $form;
+    }
+
+    public function contact_shortcode( $atts ) {
+
+        if ( !isset($atts['type']) || !isset($atts['location']) || !function_exists('get_field') )
+            return '';
+
+        $type = $value = $template = '';
+
+        switch (strtolower($atts['type'])) {
+            case 'address':
+                    $type = 'address';
+                    $template = '<address class="contact-field contact-address contact-location-%s">%s</address>';
+                break;
+            case 'mail':
+            case 'email':
+            case 'e-mail':
+                    $type = 'email';
+                    $template = '<a class="contact-field contact-email contact-location-%1$s" href="mailto:%2$s">%2$s</a>';
+                break;
+            case 'phone':
+            case 'tel':
+            case 'telephone':
+                    $type = 'phone';
+                    $template = '<a class="contact-field contact-phone contact-location-%1$s" href="tel:+%2$s">%3$s</a>';
+                break;
+        }
+
+        $location = strtolower($atts['location']);
+        $contacts = get_field('contacts', 'option');
+
+        if ( is_array($contacts) && !empty($contacts) ) {
+            foreach ($contacts as $contact) {
+                if ( ! isset($contact['location'])
+                     || strtolower($contact['location']) !== $location )
+                        continue;
+                if ( isset($contact[$type]) )
+                    $value = nl2br($contact[$type]);
+            }
+        }
+
+        if ($type === 'phone' && !empty($value))
+            return sprintf($template, $location, preg_replace('/[^0-9]/', '', $value), $value);
+
+        return sprintf($template, $location, $value);
     }
 }

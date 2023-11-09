@@ -106,7 +106,8 @@
 
 	&:hover,
 	&:active,
-	&:focus {
+	&:focus,
+	&.is-hovered {
 		color: inherit;
 		background-color: transparent;
 		border: 1px solid $Text__Secondary;
@@ -114,6 +115,7 @@
 
 	a {
 		&,
+		&.is-hovered,
 		&:hover,
 		&:active,
 		&:focus {

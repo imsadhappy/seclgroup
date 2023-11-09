@@ -36,7 +36,8 @@
 		t = setTimeout(navigationResize, 100);
 	});
 	document.addEventListener('click', event => {
-		const targetClass = event.target.classList;
+		const targetClass = event?.target?.classList
+		if (!targetClass) return
 		if (targetClass.contains('menu-item-has-children')) {
 			event.preventDefault();
 			if (targetClass.contains('touched')) {

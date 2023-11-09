@@ -58,7 +58,7 @@ get_header();
 
 						get_search_form(array('aria_label' => 'post_type-post'));
 
-						inline_script('search');
+						inline_script('/js/search.js');
 
 						if ( have_posts() ) : ?>
 

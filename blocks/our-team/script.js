@@ -9,7 +9,7 @@ window.MasonryLoader = window.MasonryLoader|| {
     ready: false,
     instances: {},
     delayedInstances: [],
-    dependencies: {
+    components: {
         "https://unpkg.com/masonry-layout@4.2.2/dist/masonry.pkgd.min.js": "script"
     },
 
@@ -68,8 +68,8 @@ window.MasonryLoader = window.MasonryLoader|| {
     load(containerId, imageCount){
         const module = this;
         if (!module.ready) {
-            window.DependencyLoader.load(module.dependencies, dependenciesLoadedEvent => {
-                if (dependenciesLoadedEvent.detail === module.dependencies) {
+            window.ComponentLoader.load(module.components, componentsLoadedEvent => {
+                if (componentsLoadedEvent.detail === module.components) {
                     const check = setInterval(()=>{
                         if (typeof Masonry === 'function') {
                             clearInterval(check);

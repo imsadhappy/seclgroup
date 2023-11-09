@@ -2,16 +2,17 @@
  * AJAX load more
  */
 document.addEventListener('click', function(event){
-    var button = false;
-    if (event.target.classList.contains('ajax-load-more')) {
-        button = event.target;
-    } else if (event.target.parentNode.classList.contains('ajax-load-more')) {
-        button = event.target.parentNode;
+    var button = false,
+        target = event.target
+    if (target.classList.contains('ajax-load-more')) {
+        button = target;
+    } else if (target.parentNode?.classList?.contains('ajax-load-more')) {
+        button = target.parentNode;
     } else {
         return;
     }
     if (button.classList.contains('none') || button.classList.contains('wait')) {
-        return;
+        return
     } else {
         button.classList.add('wait');
         var list = button.previousElementSibling,
@@ -40,7 +41,8 @@ document.addEventListener('click', function(event){
         request.open('GET', ajaxurl+'?'+q);
         request.send();
     }
-});
+})
+
 document.addEventListener('AjaxCounted', function(event){
     var button = event.detail.target;
     if (button.classList.contains('ajax-load-more')) {
@@ -48,4 +50,4 @@ document.addEventListener('AjaxCounted', function(event){
             button.classList.add('none');
         }
     }
-});
+})

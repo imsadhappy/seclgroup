@@ -57,11 +57,19 @@ $ npm install
 
 ### Versions
 
+Version 0.8.2
+
+- contact page with map swiper
+- industries
+- js components with loader
+- block js moved to /blocks
+
 Version 0.7.9
 
 - blog & post fixes
 
 Version 0.7.2
+
 - trait ajax -> trait wpcf7
 - css changes
 - excerpt length
