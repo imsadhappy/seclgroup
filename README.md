@@ -57,6 +57,10 @@ $ npm install
 
 ### Versions
 
+Version 0.8.3
+
+- shortcode trait: solutions / services index & menu
+
 Version 0.8.2
 
 - contact page with map swiper

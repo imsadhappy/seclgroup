@@ -16,6 +16,7 @@
 	menuContainer.parentNode.insertBefore(menuClone, menuContainer);
 	const mobileMenu = document.querySelector('.menu-mobile-container');
 	mobileMenu.dataset.previousWidth = window.innerWidth;
+
 	function navigationResize() {
 		if (!menu) return;
 		let set = menu.clientWidth >= menuContainer.clientWidth ? 'add':'remove';
@@ -26,7 +27,9 @@
 		header.classList[set]('mobile');
 		mobileMenu.classList.remove('show');
 	}
+
 	navigationResize()
+
 	let t = 0
 	window.addEventListener('resize', event => {
 		if (mobileMenu.dataset.previousWidth == window.innerWidth
@@ -34,7 +37,8 @@
 		mobileMenu.dataset.previousWidth = window.innerWidth;
 		clearTimeout(t);
 		t = setTimeout(navigationResize, 100);
-	});
+	})
+
 	document.addEventListener('click', event => {
 		const targetClass = event?.target?.classList
 		if (!targetClass) return
@@ -54,26 +58,33 @@
 				&& targetClass.contains('pointer')) {
 			mobileMenu.classList.toggle('show');
 		}
-	});
+	})
+
 	if (!menu) return
+
 	let t2 = 0
 	menu.querySelectorAll(':scope > .menu-item-has-children').forEach(li1 => {
-		let a1 = li1.firstChild,
-			submenu = a1.nextElementSibling;
+
+		let a1 = li1.firstChild, submenu = a1.nextElementSibling;
+
 		if (submenu && submenu.classList.contains('sub-menu')) {
+
 			submenu.addEventListener('deselect', () => {
 				submenu
 				.querySelectorAll('li.menu-item-has-children')
-				.forEach((li2) => li2.classList.remove('active'));
-			});
+				.forEach((li2) => li2.classList.remove('active'))
+			})
+
 			li1.addEventListener('mouseenter', () => {
-				clearTimeout(t2);
-				header.classList.add('dropdown-menu-shown');
-			});
+				clearTimeout(t2)
+				header.classList.add('dropdown-menu-shown')
+			})
+
 			li1.addEventListener('mouseleave', () => {
 				t2 = setTimeout(() =>
 					header.classList.remove('dropdown-menu-shown'), 100)
-			});
+			})
+
 			submenu.querySelectorAll('li.menu-item-has-children').forEach((li2, i) => {
 				if (i === 0) {
 					li2.classList.add('active');
@@ -85,12 +96,15 @@
 					li2.classList.add('active');
 				});*/
 				li2.addEventListener('click', () => {
-					submenu.dispatchEvent(new Event('deselect'));
-					li2.classList.add('active');
-				});
-			});
+					submenu.dispatchEvent(new Event('deselect'))
+					li2.classList.add('active')
+					const li2submenu = li2.querySelector(':scope > .sub-menu')
+					if (li2submenu) li2submenu.scrollTop = 0
+				})
+			})
 		}
-	});
+	})
+
 })(
 	document.getElementById('masthead'),
 	document.getElementById('primary-menu')

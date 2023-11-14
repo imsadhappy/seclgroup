@@ -84,7 +84,7 @@
         max-width: calc(100vw - 60px);
     }
     @media (max-width: $width__min) {
-        max-width: calc(100vw - 30px);
+        max-width: calc(100vw - 30px) !important;
     }
 }
 
@@ -240,6 +240,35 @@
 
 	list-style: none;
 
+	&[class*="cols-"],
+	&[class*="grid-"] {
+		overflow: hidden;
+		li + li { transform: translateY(-1px) }
+	}
+
+	&[class*="grid-"] li {
+		display: table;
+		a {
+			display: table-cell;
+			vertical-align: middle;
+		}
+	}
+
+	/*
+		li {
+			position: relative;
+			a {
+				display: table;
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				margin-top: auto;
+				margin-bottom: auto;
+			}
+		}
+	}
+	*/
+
 	li {
 
 		position: relative;
@@ -249,7 +278,7 @@
 			border-top: $border__grey;
 		}
 
-		&:before {
+		&:not(.menu-item-object-yspl_win):before {
 			content: '';
 			height: 22px;
 			width: 14px;
@@ -269,16 +298,21 @@
 			padding: 16px 40px 16px 24px !important;
 			width: 100%;
 		}
+
+		&:empty:before {
+			display: none;
+		}
 	}
+}
+
+ul.no-marker {
+	padding-left: 0;
+	list-style: none;
 }
 
 .custom-list {
 
 	padding-left: 0;
-
-	&.no-marker {
-		list-style: none;
-	}
 
 	> * {
 		width: 100%;
@@ -311,6 +345,26 @@
 				}
 			}
 			@extend .arrow-up-right-in-circle-on-hover;
+		}
+	}
+}
+
+.techno-list {
+	@extend .custom-list, .pineaple-marker, .no-links;
+	li {
+		border-top: 0 !important;
+		border-bottom: $border__grey;
+		display: table;
+		a {
+			display: table-cell;
+			vertical-align: middle;
+		}
+		#mobile-primary-menu & {
+			padding: 10px 0 !important;
+			border: 0 !important;
+		}
+		#mobile-primary-menu &:before {
+			display: none !important;
 		}
 	}
 }
@@ -477,5 +531,22 @@
 	justify-content: flex-end;
 	.site-header.mobile ~ .site-main & {
 		height: calc(100vh - var(--mobile_offset__header));
+	}
+}
+
+.yspl_win_wrap { display: block }
+
+.style-692 {
+	.style-692 {
+		background-color: $Primary__0 !important;
+		padding: 20px 2%;
+		@media (max-width: $width__mobile) {
+			padding: 20px 15px;
+		}
+	}
+	@media (min-width: $width__mobile) {
+		.wp-block-column > .style-692 {
+			padding: 20px 4%;
+		}
 	}
 }

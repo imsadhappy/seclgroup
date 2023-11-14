@@ -9,7 +9,7 @@ namespace SECLGroup;
 
 final class Theme {
 
-    use Admin, WPCF7, Updater, Pagination, StyleToStylesheet;
+    use Admin, WPCF7, Updater, Pagination, StyleToStylesheet, Shortcodes;
 
     function __construct() {
 
@@ -25,14 +25,8 @@ final class Theme {
         add_action( 'widgets_init', array($this, 'register_widgets') );
         add_filter( 'the_category', array($this, 'the_category') );
         add_filter( 'get_search_form', array($this, 'get_search_form') );
-
-        add_filter( 'excerpt_more', function ($more) {
-            return preg_replace('/\[|\]/', '', $more);
-        } );
-
-        add_filter( 'excerpt_length', function () { return 25; } );
-
-        add_shortcode( 'contact', array($this, 'contact_shortcode') );
+        add_filter( 'excerpt_more', function($more){ return preg_replace('/\[|\]/', '', $more); });
+        add_filter( 'excerpt_length', function(){ return 25; });
 
         $this->check_updates();
         $this->disable_comments();
@@ -42,6 +36,7 @@ final class Theme {
         $this->use_wpcf7_popup();
         $this->styles_in_wp_footer('core-block-supports');
         $this->setup_pagination();
+        $this->use_shortcodes( array('contact', 'menu') );
     }
 
     /**
@@ -215,50 +210,5 @@ final class Theme {
             $form = str_replace($old_placeholder, $new_placeholder, $form);
 
         return $form;
-    }
-
-    public function contact_shortcode( $atts ) {
-
-        if ( !isset($atts['type']) || !isset($atts['location']) || !function_exists('get_field') )
-            return '';
-
-        $type = $value = $template = '';
-
-        switch (strtolower($atts['type'])) {
-            case 'address':
-                    $type = 'address';
-                    $template = '<address class="contact-field contact-address contact-location-%s">%s</address>';
-                break;
-            case 'mail':
-            case 'email':
-            case 'e-mail':
-                    $type = 'email';
-                    $template = '<a class="contact-field contact-email contact-location-%1$s" href="mailto:%2$s">%2$s</a>';
-                break;
-            case 'phone':
-            case 'tel':
-            case 'telephone':
-                    $type = 'phone';
-                    $template = '<a class="contact-field contact-phone contact-location-%1$s" href="tel:+%2$s">%3$s</a>';
-                break;
-        }
-
-        $location = strtolower($atts['location']);
-        $contacts = get_field('contacts', 'option');
-
-        if ( is_array($contacts) && !empty($contacts) ) {
-            foreach ($contacts as $contact) {
-                if ( ! isset($contact['location'])
-                     || strtolower($contact['location']) !== $location )
-                        continue;
-                if ( isset($contact[$type]) )
-                    $value = nl2br($contact[$type]);
-            }
-        }
-
-        if ($type === 'phone' && !empty($value))
-            return sprintf($template, $location, preg_replace('/[^0-9]/', '', $value), $value);
-
-        return sprintf($template, $location, $value);
     }
 }

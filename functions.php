@@ -27,6 +27,7 @@ require_once "$dir/inc/trait-admin.php";
 require_once "$dir/inc/trait-wpcf7.php";
 require_once "$dir/inc/trait-pagination.php";
 require_once "$dir/inc/trait-style-to-stylesheet.php";
+require_once "$dir/inc/trait-shortcodes.php";
 require_once "$dir/inc/final-class-theme.php";
 
 new Theme;

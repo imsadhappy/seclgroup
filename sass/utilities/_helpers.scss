@@ -1,6 +1,8 @@
 @import "../generic/abstracts";
 
-.hidden, [hidden] { display: none }
+.hidden,
+[hidden],
+.hide-invisible .invisible { display: none }
 
 .toggled.hidden.active { display: block }
 
@@ -70,7 +72,7 @@
 .align-right { text-align: right }
 
 .align-all-center *,
-.align-center { text-align:center }
+.align-center { text-align: center }
 
 .align-justify { text-align: justify }
 
@@ -100,19 +102,16 @@
 	margin-bottom: 1.5em;
 }
 
-.mobile-textleft {
-    @media (max-width: $width__mobile) {
-        text-align: left;
-    }
-}
-
 .capitalize { text-transform: capitalize }
 
 .bold { font-weight: bold }
 
 .bolder { font-weight: 500 }
 
-.weight-normal { font-weight: normal !important; }
+.weight-normal {
+    font-family: $font__main !important;
+    font-weight: normal !important;
+}
 
 .lowercase { text-transform: lowercase }
 
@@ -356,6 +355,23 @@
     justify-content: center !important;
 }
 
+.alignwide {
+	max-width: $width__wide;
+}
+
+@media (min-width: $width__mobile) {
+
+    .flex-max-50 {
+        flex-basis: 100% !important;
+        max-width: $width__desktop * .5 !important;
+    }
+
+    .flex-max-70 {
+        flex-basis: 100% !important;
+        max-width: $width__desktop * .7 !important;
+    }
+}
+
 @media (max-width: $width__mobile) {
 
     html body #page .mobile-flex-50 {
@@ -374,14 +390,28 @@
         justify-content: flex-start !important;
     }
 
+    .mobile-indent {
+        text-indent: 15px;
+    }
+
     .mobile-gap0 {
         gap: 0;
+    }
+
+    .mobile-alignfull {
+        width: 100vw;
     }
 
     .mobile-font-inherit {
         font-size: inherit !important;
     }
 
+    .mobile-align-center,
+    .mobile-center,
+    .mobile-align-all-center * { text-align: center !important }
+
+    .mobile-align-left,
+    .mobile-textleft,
     .mobile-align-all-left * { text-align: left !important }
 }
 

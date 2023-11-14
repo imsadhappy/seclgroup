@@ -3,6 +3,11 @@
     overflow: hidden;
 }
 
+.wp-block[data-type="core/widget-area"],
+.blocks-widgets-container .editor-styles-wrapper {
+    max-width: 1224px !important
+}
+
 .edit-post-fullscreen-mode-close {
 
     background: transparent !important;
@@ -27,5 +32,26 @@
         left: 0;
         background-color: rgba(255,255,255,.7);
         z-index: 99;
+    }
+}
+
+.table-view-list {
+    .hentry {
+        .row-actions {
+            height: 1px;
+            overflow: hidden;
+        }
+        .column-date {
+            br {
+                content: "";
+                &:after { content: ", "; }
+            }
+        }
+        &.is-expanded,
+        &:hover {
+            .row-actions {
+                height: auto;
+            }
+        }
     }
 }
