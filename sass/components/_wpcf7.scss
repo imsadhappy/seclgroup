@@ -2,6 +2,18 @@ $wpcf7_error: #F84F3A;
 
 .wpcf7 {
 
+    &-form {
+        &:not(.sent) .show-when-sent { display: none }
+        &.sent {
+            > *:where(:not(.wpcf7-response-output):not(.show-when-sent)) {
+                display: none;
+            }
+            .wpcf7-response-output {
+                text-align: center
+            }
+        }
+    }
+
     &-spinner {
         //position: absolute
         display: none
@@ -26,6 +38,10 @@ $wpcf7_error: #F84F3A;
     &-response-output {
         border: 0 !important;
         padding: 0 !important;
+    }
+
+    .visible-only-in-popup {
+        display: none;
     }
 
     &-popup {
@@ -56,7 +72,7 @@ $wpcf7_error: #F84F3A;
             cursor: pointer;
         }
 
-        &--close {
+        &--close:not(.button) {
             width: 42px;
             height: 42px;
             border-radius: 21px;
@@ -106,6 +122,9 @@ $wpcf7_error: #F84F3A;
             box-shadow: 0px 0px 10px 0px rgba($color__primary, 0.15);
             max-height: 100vh;
             overflow: auto;
+            .visible-only-in-popup {
+                display: block;
+            }
         }
 
         &--shown &--container {

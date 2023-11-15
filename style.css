@@ -4,7 +4,7 @@ Theme URI: https://seclgroup.com/
 Author: SECLGroup
 Author URI: https://seclgroup.com/
 Description:  SECLGroup Theme
-Version: 0.8.3
+Version: 0.8.4
 Tested up to: 5.4
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
@@ -3382,6 +3382,15 @@ body.admin-bar:not(.scroll-down) .site-header {
     body.admin-bar:not(.scroll-down) .site-header {
       top: 46px; } }
 
+.wpcf7-form:not(.sent) .show-when-sent {
+  display: none; }
+
+.wpcf7-form.sent > *:where(:not(.wpcf7-response-output):not(.show-when-sent)) {
+  display: none; }
+
+.wpcf7-form.sent .wpcf7-response-output {
+  text-align: center; }
+
 .wpcf7-spinner {
   display: none; }
 
@@ -3399,6 +3408,9 @@ body.admin-bar:not(.scroll-down) .site-header {
 .wpcf7-response-output {
   border: 0 !important;
   padding: 0 !important; }
+
+.wpcf7 .visible-only-in-popup {
+  display: none; }
 
 .wpcf7-popup--container {
   position: fixed;
@@ -3424,7 +3436,7 @@ body.admin-bar:not(.scroll-down) .site-header {
   background-color: rgba(9, 15, 32, 0.3);
   cursor: pointer; }
 
-.wpcf7-popup--close {
+.wpcf7-popup--close:not(.button) {
   width: 42px;
   height: 42px;
   border-radius: 21px;
@@ -3434,10 +3446,10 @@ body.admin-bar:not(.scroll-down) .site-header {
   top: 32px;
   right: 32px; }
   @media (max-width: 540px) {
-    .wpcf7-popup--close {
+    .wpcf7-popup--close:not(.button) {
       top: 16px;
       right: 16px; } }
-  .wpcf7-popup--close::before, .wpcf7-popup--close::after {
+  .wpcf7-popup--close:not(.button)::before, .wpcf7-popup--close:not(.button)::after {
     content: '';
     width: 24px;
     height: 1px;
@@ -3447,9 +3459,9 @@ body.admin-bar:not(.scroll-down) .site-header {
     right: 0;
     top: 0;
     bottom: 0; }
-  .wpcf7-popup--close::before {
+  .wpcf7-popup--close:not(.button)::before {
     transform: rotate(45deg) translate(20px, 8px); }
-  .wpcf7-popup--close::after {
+  .wpcf7-popup--close:not(.button)::after {
     transform: rotate(-45deg) translate(-8px, 20px); }
 
 .wpcf7-popup--content {
@@ -3469,6 +3481,8 @@ body.admin-bar:not(.scroll-down) .site-header {
   @media (max-width: 540px) {
     .wpcf7-popup--content {
       padding: 30px; } }
+  .wpcf7-popup--content .visible-only-in-popup {
+    display: block; }
 
 .wpcf7-popup--shown .wpcf7-popup--container {
   opacity: 1;
