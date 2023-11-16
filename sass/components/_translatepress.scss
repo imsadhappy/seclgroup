@@ -1,0 +1,90 @@
+@keyframes wave-animation {
+    0% { transform: rotate(0.0deg) }
+   10% { transform: rotate(14.0deg) }
+   20% { transform: rotate(-8.0deg) }
+   30% { transform: rotate(14.0deg) }
+   40% { transform: rotate(-4.0deg) }
+   50% { transform: rotate(10.0deg) }
+   60% { transform: rotate(0.0deg) }
+  100% { transform: rotate(0.0deg) }
+}
+
+.request-hand-wave-button {
+	padding: 16px 24px !important;
+	border-radius: 40px;
+	border: 1px solid;
+	&:before {
+		content: '';
+		display: inline-block;
+		width: 32px;
+		height: 32px;
+		background: transparent url('assets/images/request-hand-wave.png') no-repeat center;
+		vertical-align: -10px;
+		margin-right: 10px;
+		animation-name: wave-animation;
+		animation-duration: 2.5s;
+		animation-iteration-count: infinite;
+		transform-origin: 50% 100%;
+	}
+	&:hover,
+	&:active,
+	&:focus {
+		background-color: $color__secondary;
+		color: $color__white;
+		border-color: $color__secondary;
+		&:before {
+			filter: brightness(0) invert(1);
+		}
+	}
+}
+
+.trp {
+	&_language_switcher_shortcode {
+		margin: 0 0 0 auto;
+		padding-left: 24px;
+		padding-left: clamp(12px, 1.5vw, 32px);
+		position: relative;
+		&:after {
+			content: '';
+			width: 24px;
+			height: 24px;
+			border: 1px solid #ccc;
+			border-radius: 12px;
+			display: inline-block;
+			position: absolute;
+			right: 10px;
+			top: 0;
+			background: transparent url("assets/chevron-down.svg") no-repeat center;
+			background-size: 8px;
+			z-index: -1;
+		}
+	}
+	&-language-switcher {
+		width: auto;
+		height: auto;
+	}
+	&-ls-shortcode-language,
+	&-ls-shortcode-current-language {
+		overflow: visible !important;
+		&, > a {
+			padding: 0 !important;
+			border: 0 !important;
+			background: transparent !important;
+			z-index: 2;
+
+		}
+		> a:after {
+			content: ' ';
+			display: inline-block;
+			width: 30px;
+			height: 25px;
+			margin-bottom: -8px;
+			background: transparent;
+		}
+	}
+	&-flag-image {
+		width: 24px !important;
+		height: 16px !important;
+		vertical-align: -3px !important;
+	}
+}

@@ -86,12 +86,15 @@ trait Shortcodes {
                 } ) );
         }
 
-        return sprintf( '<ul class="menu shortcode-menu %s">%s</ul>',
+        $uid = uniqid('shortcode-');
+        $html = sprintf( '<ul class="menu shortcode-menu %s">%s</ul>',
                         $class,
                         walk_nav_menu_tree($menu, 0, (object) array(
                             'after'       => '', 'before'      => '',
                             'link_after'  => '', 'link_before' => ''
                         ))
                     );
+
+        return str_replace(' id="', " id=\"$uid--", $html);
     }
 }

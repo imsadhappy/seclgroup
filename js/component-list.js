@@ -1,8 +1,4 @@
-(Loader => {
-
-const loadComponent = (fileName) => {
-    Loader.load(`${Loader.themeURL}/js/components/${fileName}.js`)
-}
+(loadComponent => {
 
 //loadComponent('main')
 loadComponent('wpcf7-popup')
@@ -91,4 +87,7 @@ if (document.querySelectorAll('.js-switch').length > 0) {
     loadComponent('word-switcher')
 }
 
-})(window.ComponentLoader)
+})(function(fileName){
+    let src = `${window.ComponentLoader.themeURL}/js/components/${fileName}.js?ver=${window.ComponentLoader.themeVer}`
+    window.ComponentLoader.load(src)
+})

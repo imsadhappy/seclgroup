@@ -38,7 +38,10 @@ window.ComponentLoader = window.ComponentLoader || {
             components = {}
             components[singleComponent] = 'script'
         }
-        console.info('USING COMPONENT:', Object.keys(components).join(', ').replace(new RegExp(factory.themeURL, 'g'), ''))
+        console.info('USING COMPONENT:',
+                     Object.keys(components)
+                           .join(', ')
+                           .replace(new RegExp(factory.themeURL, 'g'), ''))
         var currentQueue = Object.keys(components);
         if (typeof onComponentssLoaded === 'function') {
             document.addEventListener('ComponentsLoaded', onComponentssLoaded);

@@ -46,8 +46,10 @@ if ( ! empty($case_studies) ) : ?>
                 <div class="case-study--content1">
 
                     <img class="case-study--image"
-                        src="<?php echo esc_url($image) ?>"
-                        alt="<?php esc_attr_e($title) ?>">
+                        src="<?php echo esc_url($image['url']) ?>"
+                        alt="<?php esc_attr_e($title) ?>"
+                        width="<?php echo intval($image['width']) ?>"
+                        height="<?php echo intval($image['height']) ?>">
 
                     <div class="case-study--hover-content">
 

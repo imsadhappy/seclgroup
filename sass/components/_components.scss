@@ -1,4 +1,10 @@
+@import "translatepress"; //before menus
+
 @import "navigation";
+
+@import "menus/primary";
+
+@import "menus/mobile-primary";
 
 @import "comments";
 

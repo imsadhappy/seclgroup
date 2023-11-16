@@ -57,6 +57,10 @@ $ npm install
 
 ### Versions
 
+Version 0.8.5
+
+- new mobile menu design
+
 Version 0.8.4
 
 - wpcf7 popup design update

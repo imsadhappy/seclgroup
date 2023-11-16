@@ -310,6 +310,14 @@ ul.no-marker {
 	list-style: none;
 }
 
+.hidden-scrollbar {
+	scrollbar-width: none;
+	&::-webkit-scrollbar {
+		width: 0px;
+		height: 0px;
+	}
+}
+
 .custom-list {
 
 	padding-left: 0;

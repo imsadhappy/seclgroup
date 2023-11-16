@@ -112,15 +112,17 @@ final class Theme {
 
         $version = wp_get_theme()->get('Version');
         $uri = get_template_directory_uri();
-        $dir = get_template_directory();
+        //$dir = get_template_directory();
 
         wp_enqueue_script( 'theme-component-loader', "$uri/js/component-loader.js", array(), $version );
 
         wp_add_inline_script( 'theme-component-loader', sprintf(
             "window.ajaxurl = window.ajaxurl || '%s';
-             window.ComponentLoader.themeURL = '%s';",
+             window.ComponentLoader.themeURL = '%s';
+             window.ComponentLoader.themeVer = '%s';",
             esc_url(admin_url('admin-ajax.php')),
-            esc_url($uri)
+            esc_url($uri),
+            $version
         ) );
 
         switch ( current_action() ) {

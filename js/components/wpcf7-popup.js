@@ -2,7 +2,7 @@
  * Ajax Contact Form 7 Popup
  */
 document.addEventListener('click', event => {
-    const x = 'wpcf7-popup--';
+    const x = 'wpcf7-popup--'
     const closePopup = () => document.body.classList.remove(`${x}shown`)
     const createPopup = (html, buttonText) => {
         let overlay = document.createElement('a')
@@ -14,6 +14,7 @@ document.addEventListener('click', event => {
         let content = document.createElement('div')
         content.classList.add(`${x}content`)
         content.innerHTML = html
+        content.querySelector('[name="ref_url"]').setAttribute('value', window.location.href)
         content.querySelectorAll('.js-replace-by-button-text')
                 .forEach(node => node.innerText = buttonText)
         content.querySelectorAll(`.${x}close`)
@@ -22,23 +23,23 @@ document.addEventListener('click', event => {
         return {overlay, content}
     }
     if (event.target.rel && event.target.rel.indexOf(x) === 0){
-        event.preventDefault();
-        if (typeof window.wpcf7 !== 'object') return;
-        var formId = event.target.rel.replace(x, ''),
-            popup = document.getElementById(x+formId),
-            buttonText = event.target.textContent;
+        event.preventDefault()
+        if (typeof window.wpcf7 !== 'object') return
+        const formId = event.target.rel.replace(x, '')
+        let popup = document.getElementById(x+formId)
+        const buttonText = event.target.textContent
         if (popup) {
-            document.body.classList.add(`${x}shown`);
+            document.body.classList.add(`${x}shown`)
         } else {
             var request = new XMLHttpRequest(),
                 q = new URLSearchParams({
                     'action': 'wpcf7_popup',
                     'form_id': formId
-                }).toString();
+                }).toString()
             request.onreadystatechange = function() {
                 let requestResult = this
                 if (requestResult.readyState !== 4 || requestResult.status !== 200) {
-                    return;
+                    return
                 } else {
                     if (requestResult.responseText != '') {
                         popup = document.createElement('div')
@@ -55,8 +56,8 @@ document.addEventListener('click', event => {
                     }
                 }
             }
-            request.open('GET', ajaxurl+'?'+q);
-            request.send();
+            request.open('GET', ajaxurl+'?'+q)
+            request.send()
         }
     }
-} );
+} )

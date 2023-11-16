@@ -13,7 +13,7 @@
     @extend .overflow-x-auto, .no-scrollbar, .wrapped-by-padding;
     max-width: none !important;
     justify-content: space-between;
-    
+
     &.as-select {
         display: grid;
         list-style: none;
@@ -46,18 +46,21 @@
                 &:after {
                     content: '';
                     position: absolute;
-                    width: 20px;
+                    width: 14px;
                     height: 20px;
-                    margin: 25px 0 0 20px;
+                    //margin: 25px 0 0 20px;
                     right: 0;
+                    top: calc(50% - 7px);
                     transform: rotate(90deg);
                     background: url('assets/chevron-right-xl.svg') center no-repeat;
                     background-size: 30px;
                     @media (max-width: $width__mobile) {
-                        margin-top: 15px;
+                        //margin-top: 15px;
                     }
                     @media (max-width: $width__min) {
-                        margin-top: 10px;
+                        top: calc(50% - 5px);
+                        width: 10px;
+                        height: 14px;
                     }
                 }
             }
@@ -65,7 +68,7 @@
                 text-align: left;
                 z-index: -10;
             }
-            &:hover, 
+            &:hover,
             &:focus {
                 &:not(.is-changed) {
                     z-index: 2;
@@ -112,7 +115,7 @@
             color: $Text__Primary;
         }
     }
-    
+
     &-content {
 
         position: relative;
@@ -120,7 +123,7 @@
         &--active {
             @extend .active-custom-tab;
         }
-    
+
         > * {
             top: 0;
             left: 0;
@@ -130,11 +133,11 @@
             outline: none !important;
             //transform: translateY(-50%);
         }
-            
+
         > .active {
             @extend .active-custom-tab;
         }
-            
+
         .wp-block-post-content & {
             > * {
                 @extend .active-custom-tab;
@@ -142,7 +145,7 @@
                 margin-top: 20px;
                 min-height: 100px;
             }
-        }  
+        }
     }
 }
 

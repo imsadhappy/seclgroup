@@ -834,6 +834,12 @@ ul.no-marker {
   padding-left: 0;
   list-style: none; }
 
+.hidden-scrollbar {
+  scrollbar-width: none; }
+  .hidden-scrollbar::-webkit-scrollbar {
+    width: 0px;
+    height: 0px; }
+
 .custom-list, .techno-list {
   padding-left: 0; }
   .custom-list > *, .techno-list > * {
@@ -2813,19 +2819,18 @@ blockquote,
         .custom-tabs.as-select:not(.wp-block) .active:after {
           content: '';
           position: absolute;
-          width: 20px;
+          width: 14px;
           height: 20px;
-          margin: 25px 0 0 20px;
           right: 0;
+          top: calc(50% - 7px);
           transform: rotate(90deg);
           background: url("assets/chevron-right-xl.svg") center no-repeat;
           background-size: 30px; }
-          @media (max-width: 781px) {
-            .custom-tabs.as-select:not(.wp-block) .active:after {
-              margin-top: 15px; } }
           @media (max-width: 480px) {
             .custom-tabs.as-select:not(.wp-block) .active:after {
-              margin-top: 10px; } }
+              top: calc(50% - 5px);
+              width: 10px;
+              height: 14px; } }
       .custom-tabs.as-select:not(.wp-block) > :not(.active) {
         text-align: left;
         z-index: -10; }
