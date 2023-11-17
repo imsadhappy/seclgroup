@@ -92,6 +92,76 @@
         }
     }
 
+    &.as-switcher {
+        list-style: none;
+        &:not(.wp-block) {
+            position: relative;
+            padding: 0 80px;
+            @media (max-width: $width__mobile) {
+                padding: 0 40px;
+            }
+            @media (max-width: $width__min) {
+                justify-content: center;
+                padding: 0 30px;
+                margin-left: -10px;
+            }
+            display: inline-flex;
+            flex-wrap: nowrap;
+            > * {
+                user-select: none;
+                word-break: break-all;
+                &:not(.active) {
+                    position: absolute;
+                    background: transparent;
+                    padding-left: 40px;
+                    width: 40px;
+                    @media (max-width: $width__mobile) {
+                        width: 20px;
+                        padding-left: 20px;
+                    }
+                    height: 100%;
+                    overflow: hidden;
+                    left: 0;
+                    &::before {
+                        content: '';
+                        z-index: 2;
+                        position: relative;
+                        display: block;
+                        height: 100%;
+                        width: 40px;
+                        margin-left: -40px;
+                        @media (max-width: $width__mobile) {
+                            width: 20px;
+                            margin-left: -20px;
+                        }
+                        transform: rotate(180deg);
+                        background: rgba(255,255,255,.9) url('assets/chevron-right-xl-red.svg') center no-repeat;
+                        background-size: contain;
+                    }
+                }
+                &.active {
+                    //flex: 1 1 auto !important;
+                    max-width: calc(100vw - 100px);
+                    @media (max-width: $width__min) {
+                        max-width: calc(100vw - 30px);
+                    }
+                    overflow: hidden;
+                    & + * {
+                        z-index: 2 !important;
+                    }
+                    & ~ * {
+                        z-index: -1;
+                        left: auto;
+                        right: 0;
+                        &::before {
+                            transform: rotate(0deg);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     > * {
 
         text-align: center;
