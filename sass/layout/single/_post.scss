@@ -166,6 +166,12 @@
         padding: 16px 16px 0;
         margin-bottom: 8px;
 
+        @media (min-width: 1024px) {
+            overflow: auto;
+            padding-bottom: 16px;
+            max-height: calc(100vh - #{$offset__header});
+        }
+
         &__heading {
             @extend .h7;
         }

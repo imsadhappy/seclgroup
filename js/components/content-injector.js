@@ -1,5 +1,6 @@
 ((items, container) => {
     if (items.length == 0 || !container) return
+    items = [...items].reverse()
     function insertContent(){
         if (window.innerWidth > 1024 || container.classList.contains('js-inject-done')) return
         let containerChildren = container.querySelectorAll(':scope > p')
@@ -8,8 +9,8 @@
         items.forEach(node => {
             let clone = node.cloneNode(true)
             clone.classList.add('js-inject-item')
-            if (containerChildren[i+1]) {
-                container.insertBefore(clone, containerChildren[i+1])
+            if (containerChildren[i]) {
+                container.insertBefore(clone, containerChildren[i])
             } else {
                 container.appendChild(clone)
             }

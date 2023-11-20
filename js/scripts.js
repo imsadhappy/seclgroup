@@ -65,23 +65,27 @@ document.addEventListener('DOMContentLoaded', () => {
  * Slow scrollTo #anchor
  */
 document.addEventListener('click', event => {
+    let url = null
     if (event.target.href) {
-        const url = new URL(event.target.href)
-        if (url.pathname === location.pathname
-            && url.hostname === location.hostname
-            && url.hash != '') {
-                const target = document.querySelector(url.hash)
-                const masthead = document.getElementById('masthead')
-                if (!target) return
-                event.preventDefault()
-                let y = target.getBoundingClientRect().top + window.scrollY
-                if (masthead) y -= masthead.clientHeight
-                window.scroll({
-                    top: y,
-                    behavior: 'smooth'
-                })
-            }
+        url = new URL(event.target.href)
+    } else if (event.target.parentElement?.href) {
+        url = new URL(event.target.href)
     }
+    if (url &&
+        url.pathname === location.pathname &&
+        url.hostname === location.hostname &&
+        url.hash != '') {
+            const target = document.querySelector(url.hash)
+            const masthead = document.getElementById('masthead')
+            if (!target) return
+            event.preventDefault()
+            let y = target.getBoundingClientRect().top + window.scrollY
+            if (masthead) y -= masthead.clientHeight
+            window.scroll({
+                top: y,
+                behavior: 'smooth'
+            })
+        }
 })
 
 /*

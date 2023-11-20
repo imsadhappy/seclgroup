@@ -4,7 +4,7 @@ Theme URI: https://seclgroup.com/
 Author: SECLGroup
 Author URI: https://seclgroup.com/
 Description:  SECLGroup Theme
-Version: 0.8.6
+Version: 0.8.7
 Tested up to: 5.4
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
@@ -2168,6 +2168,11 @@ html, body, .site {
   background-color: #F6F7FB;
   padding: 16px 16px 0;
   margin-bottom: 8px; }
+  @media (min-width: 1024px) {
+    .single .related-links {
+      overflow: auto;
+      padding-bottom: 16px;
+      max-height: calc(100vh - 85px); } }
   .single .related-links ul {
     list-style: none;
     padding: 0; }

@@ -2230,6 +2230,11 @@ blockquote,
   background-color: #F6F7FB;
   padding: 16px 16px 0;
   margin-bottom: 8px; }
+  @media (min-width: 1024px) {
+    .single .related-links {
+      overflow: auto;
+      padding-bottom: 16px;
+      max-height: calc(100vh - 85px); } }
   .single .related-links ul {
     list-style: none;
     padding: 0; }

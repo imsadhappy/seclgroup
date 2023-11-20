@@ -57,6 +57,11 @@ $ npm install
 
 ### Versions
 
+Version 0.8.7
+
+- minor blog design update
+- minor bug fixes
+
 Version 0.8.6
 
 - contact page switcher redesign
