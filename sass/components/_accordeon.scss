@@ -25,6 +25,9 @@
 
     > * {
         border-bottom: 1px solid #EBEDEE;
+        &:last-child.active {
+            border-color: transparent;
+        }
     }
 
     &:after {

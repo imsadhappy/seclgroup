@@ -31,7 +31,7 @@ h6 {
 	margin-top: #{$fs * .5}px;
 	margin-bottom:  #{$fs * .5}px;
 	&:not(.not-responsive) {
-		@media (max-width: $width__mobile), (max-height: 860px) {
+		@media (max-width: $width__mobile), (max-height: $height__mobile) {
 			font-size: #{$fs * $mobile}px;
 			margin-top: #{$fs * ($mobile / 2)}px;
 			margin-bottom:  #{$fs * ($mobile / 2)}px;

@@ -9,7 +9,12 @@ $wpcf7_error: #F84F3A;
                 display: none;
             }
             .wpcf7-response-output {
-                text-align: center
+                text-align: center;
+            }
+        }
+        &.invalid {
+            .wpcf7-response-output {
+                color: $wpcf7_error;
             }
         }
     }
@@ -29,6 +34,7 @@ $wpcf7_error: #F84F3A;
         }
         &-not-valid {
             border-bottom-color: $wpcf7_error;
+            margin-bottom: 21px;
             &::placeholder {
                 color: $wpcf7_error;
             }
@@ -38,6 +44,9 @@ $wpcf7_error: #F84F3A;
     &-response-output {
         border: 0 !important;
         padding: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        font-size: 14px;
     }
 
     .visible-only-in-popup {
@@ -146,7 +155,7 @@ $wpcf7_error: #F84F3A;
         color: $wpcf7_error;
         left: 0;
         right: 0;
-        margin: auto;
+        margin: -21px auto 0;
         font-size: 14px;
     }
 

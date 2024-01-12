@@ -686,6 +686,19 @@ textarea,
     border: 1px solid #707380; }
   .base-button-style a, .acf-block-preview .button a, .acf-block-preview .wp-element-button a, .acf-block-preview button a, .acf-block-preview input[type="button"] a, .acf-block-preview input[type="reset"] a, .acf-block-preview input[type="submit"] a, .acf-block-preview .button-smaller a, .acf-block-preview .has-button-smaller > :not(.components-button):not(.acf-button) a, .acf-block-preview .has-button > :not(.components-button):not(.acf-button) a, .gform_wrapper.gravity-theme[data-form-theme="gravity-theme"] form .button a, .gform_wrapper.gravity-theme[data-form-theme="gravity-theme"] form button a, .gform_wrapper.gravity-theme[data-form-theme="gravity-theme"] form input[type="button"] a, .gform_wrapper.gravity-theme[data-form-theme="gravity-theme"] form input[type="reset"] a, .gform_wrapper.gravity-theme[data-form-theme="gravity-theme"] form input[type="submit"] a, .wp-block-button__link a, .wp-block-button.is-style-outline > .wp-element-button a, .wp-block-button.has-arrow-right > .wp-element-button a, .base-button-style a.is-hovered, .acf-block-preview .button a.is-hovered, .acf-block-preview .wp-element-button a.is-hovered, .acf-block-preview button a.is-hovered, .acf-block-preview input[type="button"] a.is-hovered, .acf-block-preview input[type="reset"] a.is-hovered, .acf-block-preview input[type="submit"] a.is-hovered, .acf-block-preview .button-smaller a.is-hovered, .acf-block-preview .has-button-smaller > :not(.components-button):not(.acf-button) a.is-hovered, .acf-block-preview .has-button > :not(.components-button):not(.acf-button) a.is-hovered, .gform_wrapper.gravity-theme[data-form-theme="gravity-theme"] form .button a.is-hovered, .gform_wrapper.gravity-theme[data-form-theme="gravity-theme"] form button a.is-hovered, .gform_wrapper.gravity-theme[data-form-theme="gravity-theme"] form input[type="button"] a.is-hovered, .gform_wrapper.gravity-theme[data-form-theme="gravity-theme"] form input[type="reset"] a.is-hovered, .gform_wrapper.gravity-theme[data-form-theme="gravity-theme"] form input[type="submit"] a.is-hovered, .wp-block-button__link a.is-hovered, .wp-block-button.is-style-outline > .wp-element-button a.is-hovered, .wp-block-button.has-arrow-right > .wp-element-button a.is-hovered, .base-button-style a:hover, .acf-block-preview .button a:hover, .acf-block-preview .wp-element-button a:hover, .acf-block-preview button a:hover, .acf-block-preview input[type="button"] a:hover, .acf-block-preview input[type="reset"] a:hover, .acf-block-preview input[type="submit"] a:hover, .acf-block-preview .button-smaller a:hover, .acf-block-preview .has-button-smaller > :not(.components-button):not(.acf-button) a:hover, .acf-block-preview .has-button > :not(.components-button):not(.acf-button) a:hover, .gform_wrapper.gravity-theme[data-form-theme="gravity-theme"] form .button a:hover, .gform_wrapper.gravity-theme[data-form-theme="gravity-theme"] form button a:hover, .gform_wrapper.gravity-theme[data-form-theme="gravity-theme"] form input[type="button"] a:hover, .gform_wrapper.gravity-theme[data-form-theme="gravity-theme"] form input[type="reset"] a:hover, .gform_wrapper.gravity-theme[data-form-theme="gravity-theme"] form input[type="submit"] a:hover, .wp-block-button__link a:hover, .wp-block-button.is-style-outline > .wp-element-button a:hover, .wp-block-button.has-arrow-right > .wp-element-button a:hover, .base-button-style a:active, .acf-block-preview .button a:active, .acf-block-preview .wp-element-button a:active, .acf-block-preview button a:active, .acf-block-preview input[type="button"] a:active, .acf-block-preview input[type="reset"] a:active, .acf-block-preview input[type="submit"] a:active, .acf-block-preview .button-smaller a:active, .acf-block-preview .has-button-smaller > :not(.components-button):not(.acf-button) a:active, .acf-block-preview .has-button > :not(.components-button):not(.acf-button) a:active, .gform_wrapper.gravity-theme[data-form-theme="gravity-theme"] form .button a:active, .gform_wrapper.gravity-theme[data-form-theme="gravity-theme"] form button a:active, .gform_wrapper.gravity-theme[data-form-theme="gravity-theme"] form input[type="button"] a:active, .gform_wrapper.gravity-theme[data-form-theme="gravity-theme"] form input[type="reset"] a:active, .gform_wrapper.gravity-theme[data-form-theme="gravity-theme"] form input[type="submit"] a:active, .wp-block-button__link a:active, .wp-block-button.is-style-outline > .wp-element-button a:active, .wp-block-button.has-arrow-right > .wp-element-button a:active, .base-button-style a:focus, .acf-block-preview .button a:focus, .acf-block-preview .wp-element-button a:focus, .acf-block-preview button a:focus, .acf-block-preview input[type="button"] a:focus, .acf-block-preview input[type="reset"] a:focus, .acf-block-preview input[type="submit"] a:focus, .acf-block-preview .button-smaller a:focus, .acf-block-preview .has-button-smaller > :not(.components-button):not(.acf-button) a:focus, .acf-block-preview .has-button > :not(.components-button):not(.acf-button) a:focus, .gform_wrapper.gravity-theme[data-form-theme="gravity-theme"] form .button a:focus, .gform_wrapper.gravity-theme[data-form-theme="gravity-theme"] form button a:focus, .gform_wrapper.gravity-theme[data-form-theme="gravity-theme"] form input[type="button"] a:focus, .gform_wrapper.gravity-theme[data-form-theme="gravity-theme"] form input[type="reset"] a:focus, .gform_wrapper.gravity-theme[data-form-theme="gravity-theme"] form input[type="submit"] a:focus, .wp-block-button__link a:focus, .wp-block-button.is-style-outline > .wp-element-button a:focus, .wp-block-button.has-arrow-right > .wp-element-button a:focus {
     color: inherit; }
+  .base-button-style.as-text, .acf-block-preview .as-text.button,
+  .acf-block-preview .as-text.wp-element-button,
+  .acf-block-preview button.as-text,
+  .acf-block-preview input.as-text[type="button"],
+  .acf-block-preview input.as-text[type="reset"],
+  .acf-block-preview input.as-text[type="submit"], .acf-block-preview .as-text.button-smaller, .acf-block-preview .has-button-smaller > .as-text:not(.components-button):not(.acf-button), .acf-block-preview .has-button > .as-text:not(.components-button):not(.acf-button), .gform_wrapper.gravity-theme[data-form-theme="gravity-theme"] form .as-text.button,
+  .gform_wrapper.gravity-theme[data-form-theme="gravity-theme"] form button.as-text,
+  .gform_wrapper.gravity-theme[data-form-theme="gravity-theme"] form input.as-text[type="button"],
+  .gform_wrapper.gravity-theme[data-form-theme="gravity-theme"] form input.as-text[type="reset"],
+  .gform_wrapper.gravity-theme[data-form-theme="gravity-theme"] form input.as-text[type="submit"], .as-text.wp-block-button__link, .wp-block-button.is-style-outline > .as-text.wp-element-button, .wp-block-button.has-arrow-right > .as-text.wp-element-button {
+    background-color: transparent !important;
+    border: 0 !important;
+    padding: 0 !important; }
 
 .no-scrollbar, .wp-block-group.scrollable, .custom-tabs, .map-swiper {
   scrollbar-width: none; }
@@ -876,18 +889,24 @@ ul.no-marker {
 
 #services li {
   margin: 40px 0 80px 0; }
-  @media (max-width: 781px), (max-height: 860px) {
+  @media (max-width: 781px), (max-height: 720px) {
     #services li {
       margin: 30px 0 60px 0; } }
-  #services li:not(:first-child)::before {
+  #services li:last-child::after, #services li:not(:first-child)::before {
     content: '';
     position: absolute;
     display: block;
     height: 1px;
     width: 100%;
-    border-top: 1px solid #D6DAE2;
+    border-top: 1px solid #D6DAE2; }
+  #services li:last-child::after {
+    margin-top: 40px; }
+    @media (max-width: 781px), (max-height: 720px) {
+      #services li:last-child::after {
+        margin-top: 30px; } }
+  #services li:not(:first-child)::before {
     margin-top: -40px; }
-    @media (max-width: 781px), (max-height: 860px) {
+    @media (max-width: 781px), (max-height: 720px) {
       #services li:not(:first-child)::before {
         margin-top: -30px; } }
 
@@ -906,12 +925,16 @@ ul.no-marker {
     height: 105%;
     margin: 0 0 -3% -3%; }
 
-.simple-arrow-right, .button-in-input .only-arrow {
+.simple-arrow-right, .simple-arrow, .button-in-input .only-arrow {
   background-image: url("assets/simple-arrow-right.svg");
   background-repeat: no-repeat;
   background-position: center right 30px;
   background-size: 20px !important;
   padding-right: 50px !important; }
+
+.simple-arrow {
+  padding-right: 20px !important;
+  background-position: center; }
 
 .button-in-input .wpcf7-form-control-wrap input[type="email"] {
   box-shadow: 52px 0 0 white;
@@ -949,7 +972,7 @@ ul.no-marker {
   background-position: bottom 0 left 0;
   padding: 0 0 14px 40px;
   background-size: 110px; }
-  @media (max-width: 781px), (max-height: 860px) {
+  @media (max-width: 781px), (max-height: 720px) {
     .curve-line4 {
       padding: 0 0 14px 30px;
       background-size: 90px; } }
@@ -1099,7 +1122,7 @@ h1, .h1, .gform_wrapper.gravity-theme[data-form-theme="gravity-theme"] .gform_he
   font-size: 80px;
   margin-top: 40px;
   margin-bottom: 40px; }
-  @media (max-width: 781px), (max-height: 860px) {
+  @media (max-width: 781px), (max-height: 720px) {
     h1:not(.not-responsive), .h1:not(.not-responsive), .gform_wrapper.gravity-theme[data-form-theme="gravity-theme"] .gform_heading .gform_title:not(.not-responsive) {
       font-size: 56px;
       margin-top: 28px;
@@ -1116,7 +1139,7 @@ h2,
   font-size: 60px;
   margin-top: 30px;
   margin-bottom: 30px; }
-  @media (max-width: 781px), (max-height: 860px) {
+  @media (max-width: 781px), (max-height: 720px) {
     h2:not(.not-responsive), .h2:not(.not-responsive) {
       font-size: 45px;
       margin-top: 22.5px;
@@ -1136,7 +1159,7 @@ blockquote p,
   font-size: 50px;
   margin-top: 25px;
   margin-bottom: 25px; }
-  @media (max-width: 781px), (max-height: 860px) {
+  @media (max-width: 781px), (max-height: 720px) {
     h3:not(.not-responsive), .quote:not(.not-responsive), blockquote p:not(.not-responsive),
     .wp-block-quote p:not(.not-responsive), .h3:not(.not-responsive) {
       font-size: 37.5px;
@@ -1155,7 +1178,7 @@ h4,
   font-size: 40px;
   margin-top: 20px;
   margin-bottom: 20px; }
-  @media (max-width: 781px), (max-height: 860px) {
+  @media (max-width: 781px), (max-height: 720px) {
     h4:not(.not-responsive), .h4:not(.not-responsive) {
       font-size: 30px;
       margin-top: 15px;
@@ -1177,7 +1200,7 @@ h5,
   font-size: 32px;
   margin-top: 16px;
   margin-bottom: 16px; }
-  @media (max-width: 781px), (max-height: 860px) {
+  @media (max-width: 781px), (max-height: 720px) {
     h5:not(.not-responsive), .h5:not(.not-responsive), .post-list .type-post .post-title:not(.not-responsive), .single article.post .entry-header .entry-title:not(.not-responsive), .single article.post .entry-author__heading:not(.not-responsive), .single .related-entries__heading:not(.not-responsive) {
       font-size: 25.6px;
       margin-top: 12.8px;
@@ -1219,7 +1242,7 @@ blockquote .single article.post .entry-content p,
   font-size: 24px;
   margin-top: 12px;
   margin-bottom: 12px; }
-  @media (max-width: 781px), (max-height: 860px) {
+  @media (max-width: 781px), (max-height: 720px) {
     h6:not(.not-responsive), .h6:not(.not-responsive), .main-column .search-form .search-field:not(.not-responsive), .single article.post .entry-content h1:not(.not-responsive), .single article.post .entry-content .h1:not(.not-responsive), .single article.post .entry-content .gform_wrapper.gravity-theme[data-form-theme="gravity-theme"] .gform_heading .gform_title:not(.not-responsive), .gform_wrapper.gravity-theme[data-form-theme="gravity-theme"] .gform_heading .single article.post .entry-content .gform_title:not(.not-responsive), .single article.post .entry-content h2:not(.not-responsive), .single article.post .entry-content .h2:not(.not-responsive), .single article.post .entry-content h3:not(.not-responsive), .single article.post .entry-content .quote:not(.not-responsive), .single article.post .entry-content blockquote p:not(.not-responsive), blockquote .single article.post .entry-content p:not(.not-responsive),
     .single article.post .entry-content .wp-block-quote p:not(.not-responsive), .wp-block-quote .single article.post .entry-content p:not(.not-responsive), .single article.post .entry-content .h3:not(.not-responsive), .single article.post .entry-content h4:not(.not-responsive), .single article.post .entry-content .h4:not(.not-responsive), .single article.post .entry-content h5:not(.not-responsive), .single article.post .entry-content .h5:not(.not-responsive), .single article.post .entry-content .post-list .type-post .post-title:not(.not-responsive), .post-list .type-post .single article.post .entry-content .post-title:not(.not-responsive), .single article.post .entry-content .entry-header .entry-title:not(.not-responsive), .single article.post .entry-header .entry-content .entry-title:not(.not-responsive), .single article.post .entry-content .entry-author__heading:not(.not-responsive), .single article.post .entry-content .related-entries__heading:not(.not-responsive), .single article.post .entry-author .authorName:not(.not-responsive) {
       font-size: 21.6px;
@@ -2278,6 +2301,17 @@ blockquote,
     .wp-block-columns.industries-v2 > *:hover, .wp-block-columns.industries-v2 > *:focus {
       transform: scale(1.05);
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.08); }
+  .wp-block-columns.blue-bordered-boxes .wp-block-column:not(.empty) {
+    padding: 32px;
+    border: 2px solid #E2E9FB; }
+    .wp-block-columns.blue-bordered-boxes .wp-block-column:not(.empty):hover, .wp-block-columns.blue-bordered-boxes .wp-block-column:not(.empty):focus {
+      border-color: #090F20;
+      cursor: pointer; }
+      .wp-block-columns.blue-bordered-boxes .wp-block-column:not(.empty):hover a, .wp-block-columns.blue-bordered-boxes .wp-block-column:not(.empty):focus a {
+        text-decoration: underline;
+        text-decoration-style: dashed;
+        text-underline-offset: 8px;
+        text-decoration-thickness: 2px; }
   @media (max-width: 781px) {
     .wp-block-columns.mobile-reverse {
       flex-direction: column-reverse; }
@@ -2541,8 +2575,20 @@ blockquote,
   background-image: url("assets/images/arrow-to-right.webp") !important;
   background-position: bottom 50% right 30px;
   background-repeat: no-repeat; }
+  @media (max-width: 781px), (max-height: 720px) {
+    .wp-block-button.has-arrow-right > .wp-element-button {
+      background-image: none !important; }
+      .wp-block-button.has-arrow-right > .wp-element-button:after {
+        content: '';
+        display: inline-block;
+        width: 20px;
+        height: 16px;
+        margin: 1px 0 0 10px;
+        position: absolute;
+        background: transparent center no-repeat url("assets/arrow-right2.svg") !important;
+        background-size: 100% !important; } }
 
-@media (max-width: 781px), (max-height: 860px) {
+@media (max-width: 781px), (max-height: 720px) {
   .wp-block-spacer.mobile-height-20 {
     height: 20px !important; }
   .wp-block-spacer.mobile-height-50 {
@@ -2665,6 +2711,8 @@ blockquote,
             }*/ }
     .wp-block-group.scrolled-logos > * + * {
       margin-left: 80px !important; }
+  .wp-block-group.technology-pill-container {
+    gap: 16px; }
   .wp-block-group.hover-lines:hover *, .wp-block-group.hover-lines:focus *, .wp-block-group.hover-lines.is-hovered * {
     color: #E46EC3 !important; }
   .wp-block-group.hover-lines:hover, .wp-block-group.hover-lines:focus, .wp-block-group.hover-lines.is-hovered {
@@ -2857,7 +2905,7 @@ blockquote,
     .custom-tabs.as-switcher:not(.wp-block) {
       position: relative;
       padding: 0 80px;
-      display: inline-flex;
+      display: inline-block;
       flex-wrap: nowrap; }
       @media (max-width: 781px) {
         .custom-tabs.as-switcher:not(.wp-block) {
@@ -2869,7 +2917,8 @@ blockquote,
           margin-left: -10px; } }
       .custom-tabs.as-switcher:not(.wp-block) > * {
         user-select: none;
-        word-break: break-all; }
+        word-break: keep-all;
+        display: inline-block; }
         .custom-tabs.as-switcher:not(.wp-block) > *:not(.active) {
           position: absolute;
           background: transparent;
@@ -2997,6 +3046,8 @@ blockquote,
 
 .accordeon > * {
   border-bottom: 1px solid #EBEDEE; }
+  .accordeon > *:last-child.active {
+    border-color: transparent; }
 
 .accordeon:after {
   content: '';
@@ -3100,6 +3151,9 @@ blockquote,
       text-align: center; }
       .map-swiper[class*="block-editor"] figure img {
         max-width: 10vw; }
+  @media (max-height: 800px), (max-width: 781px) {
+    .map-swiper {
+      min-height: 70vh; } }
   .map-swiper-navigation {
     position: absolute;
     width: 64px;
@@ -3127,11 +3181,11 @@ blockquote,
         height: 46px; } }
   .map-swiper > * {
     opacity: .6;
-    padding: 100px 0;
+    padding: 140px 0;
     transition: opacity .4s ease !important; }
     @media (max-height: 800px), (max-width: 781px) {
       .map-swiper > * {
-        padding: 50px 0; } }
+        padding: 100px 0; } }
     .map-swiper > *.active, .map-swiper > *.is-selected, .map-swiper > *.has-child-selected {
       opacity: 1; }
   .map-swiper:not([class*="block-editor"]) > * {
@@ -3147,7 +3201,6 @@ blockquote,
       margin-left: auto !important;
       margin-right: auto !important; }
       .map-swiper:not([class*="block-editor"]) > * figure img {
-        height: calc(80vw) !important;
         max-height: calc(80vh - 200px);
         object-fit: contain !important;
         object-position: top; }
@@ -3201,6 +3254,7 @@ blockquote,
   left: -100500px;
   top: -100500px; }
 
+.click-child,
 .cursor-pointer {
   cursor: pointer; }
 
@@ -3389,7 +3443,9 @@ blockquote,
 
 @media (max-width: 781px) {
   .mobile-full-width, .mobile-full-width > img, .mobile-full-width > .wp-element-button {
-    width: 100%; } }
+    width: 100%; }
+  .mobile-full-width.float-right, .mobile-full-width.float-left {
+    float: none !important; } }
 
 @media (max-width: 781px) {
   .mobile-hidden {
@@ -3502,6 +3558,12 @@ blockquote,
 
 .alignwide {
   max-width: 1320px; }
+
+.mt-a {
+  margin-top: auto !important; }
+
+.mb-0 {
+  margin-bottom: 0 !important; }
 
 @media (min-width: 781px) {
   .flex-max-50 {

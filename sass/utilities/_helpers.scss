@@ -30,6 +30,7 @@
     top: -100500px;
 }
 
+.click-child,
 .cursor-pointer { cursor: pointer }
 
 .cursor-default { cursor: default }
@@ -242,6 +243,9 @@
         &, > img, > .wp-element-button {
             width: 100%
         }
+		&.float-right, &.float-left {
+			float: none !important;
+		}
     }
 }
 
@@ -357,6 +361,14 @@
 
 .alignwide {
 	max-width: $width__wide;
+}
+
+.mt-a {
+    margin-top: auto !important;
+}
+
+.mb-0 {
+    margin-bottom: 0 !important;
 }
 
 @media (min-width: $width__mobile) {

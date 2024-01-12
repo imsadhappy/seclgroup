@@ -13,7 +13,9 @@
         }
     }
     position: relative;
-    //height: 90vh;
+    @media (max-height: 800px), (max-width: $width__mobile) {
+        min-height: 70vh;
+    }
     &-navigation {
         position: absolute;
         width: 64px;
@@ -45,9 +47,9 @@
     }
     > * {
         opacity: .6;
-        padding: 100px 0;
+        padding: 140px 0;
         @media (max-height: 800px), (max-width: $width__mobile) {
-            padding: 50px 0;
+            padding: 100px 0;
         }
         transition: opacity .4s ease !important;
         &.active,
@@ -71,7 +73,7 @@
             margin-left: auto !important;
             margin-right: auto !important;
             img {
-                height: calc(80vw) !important;
+                //height: calc(80vw) !important;
                 max-height: calc(80vh - 200px);
                 object-fit: contain !important;
                 object-position: top;

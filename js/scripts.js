@@ -2,11 +2,27 @@
  * File scripts.js.
  */
 
+function scrollTo(q){
+    try {
+        const target = document.querySelector(q)
+        const masthead = document.getElementById('masthead')
+        if (!target) return
+        let y = target.getBoundingClientRect().top + window.scrollY
+        if (masthead) y -= masthead.clientHeight
+        window.scroll({
+            top: y,
+            behavior: 'smooth'
+        })
+    } catch (e) {
+        console.error(e)
+    }
+}
+
 /**
  * Scroll ratio for zoomed screens
  */
-function setScrollRatio() {
-    let sr = window.devicePixelRatio >= 1 ? 1 : 2
+function setScrollRatio(){
+    let sr = Math.ceil(window.devicePixelRatio)
     if (window.devicePixelRatio <= .5) sr = 3
     if (window.devicePixelRatio <= .25) sr = 4
     window.scrollRatio = sr
@@ -15,6 +31,12 @@ setScrollRatio()
 window.addEventListener('resize', setScrollRatio)
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    const scrollTarget = new URLSearchParams(document.location.search).get('scroll_to')
+
+    if (scrollTarget) {
+        scrollTo('#'+scrollTarget)
+    }
 
     /**
      * Link href # => javascript:void(0)
@@ -26,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
     /**
      * View More toggler
      */
-    document.querySelectorAll('.has-view-more').forEach(container =>{
+    document.querySelectorAll('.has-view-more').forEach(container => {
         const toggled = container.querySelectorAll('.toggled'),
                 togglers = container.querySelectorAll('.toggler')
         if (toggled.length === 0 || togglers.length === 0) return
@@ -41,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     /**
      * Negative Spacer Block
      */
-    document.querySelectorAll('.wp-block-spacer.negative').forEach(spacer =>{
+    document.querySelectorAll('.wp-block-spacer.negative').forEach(spacer => {
         var s = window.getComputedStyle(spacer, null)
             h = parseInt(s.height, 10) * 2;
         spacer.style.marginTop = `-${h}px`;
@@ -57,6 +79,15 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         container.addEventListener('mouseleave', () => {
             targets.forEach(child => child.classList.remove('is-hovered'))
+        })
+    })
+
+    /**
+     * Dispatch click to children
+     */
+    document.querySelectorAll('.click-child').forEach(container => {
+        container.addEventListener('click', () => {
+            container.querySelector('a, input')?.click()
         })
     })
 })
@@ -75,16 +106,8 @@ document.addEventListener('click', event => {
         url.pathname === location.pathname &&
         url.hostname === location.hostname &&
         url.hash != '') {
-            const target = document.querySelector(url.hash)
-            const masthead = document.getElementById('masthead')
-            if (!target) return
             event.preventDefault()
-            let y = target.getBoundingClientRect().top + window.scrollY
-            if (masthead) y -= masthead.clientHeight
-            window.scroll({
-                top: y,
-                behavior: 'smooth'
-            })
+            scrollTo(url.hash)
         }
 })
 

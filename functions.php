@@ -7,7 +7,7 @@
 
 namespace SECLGroup;
 
-$dir = get_template_directory();
+$dir = \get_template_directory();
 
 /**
  * Template tags.

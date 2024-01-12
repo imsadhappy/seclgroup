@@ -217,6 +217,10 @@
 						height: 100%;
 						padding-bottom: 100px;
 						overflow: auto;
+
+						> li > a {
+							background: none !important;
+						}
 					}
 				}
 			}

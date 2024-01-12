@@ -50,8 +50,38 @@
 		font-weight: 500;
 	}
 
-	> li:not([class*="has-button"]) > a {
-		padding: 30px 0 31px;
+	> li:not([class*="has-button"]) {
+		&.current-menu-item,
+		&.current-menu-ancestor {
+			//box-shadow:0 -16px 0 $BG__White inset,  0 -18px 0 $Primary__150 inset;
+			> a {
+				text-decoration: underline;
+				text-decoration-thickness: 3px;
+				text-underline-offset: 20px;
+			}
+		}
+		> a {
+			padding: 30px 0 31px;
+		}
+	}
+
+	.current-menu-item,
+	.current-menu-ancestor {
+		> a {
+
+			color: $Primary__150;
+		}
+		&.menu-item-has-children,
+		&.menu-item-has-arrow {
+			a:after {
+				background-image: url('assets/chevron-down-pink.svg') !important;
+			}
+		}
+	}
+
+	.current-menu-item > a {
+		cursor: default;
+		pointer-events: none;
 	}
 
 	.mobile & > li:not([class*="has-button"]) > a {
@@ -64,7 +94,8 @@
 		box-shadow: none;
 	}
 
-	> .menu-item-has-children {
+	> .menu-item-has-children,
+    > .menu-item-has-arrow {
 
 		> a:after {
 			content: '';
@@ -161,6 +192,8 @@
 
 								> a {
 									text-decoration: underline;
+									text-decoration-thickness: 2px;
+									text-underline-offset: 3px;
 									color: $Primary__150;
 								}
 
@@ -193,7 +226,7 @@
 										margin: 0 0 40px 0;
 									}*/
 
-									@extend .pineaple-marker, .hidden-scrollbar;
+									@extend .pineaple-marker;
 
 									> li {
 
@@ -225,7 +258,6 @@
 									}
 								}
 							}
-
 
 						}
 					}

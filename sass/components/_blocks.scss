@@ -97,6 +97,24 @@
             }
         }
 
+        &.blue-bordered-boxes {
+            .wp-block-column:not(.empty) {
+                padding: 32px;
+                border: 2px solid $BG__Blue;
+                &:hover,
+                &:focus {
+                    border-color: $Text__Primary;
+                    cursor: pointer;
+                    a {
+                        text-decoration: underline;
+                        text-decoration-style: dashed;
+                        text-underline-offset: 8px;
+                        text-decoration-thickness: 2px;
+                    }
+                }
+            }
+        }
+
         @media (max-width: $width__mobile) {
 
             &.mobile-reverse {
@@ -404,12 +422,25 @@
                 background-image: url('assets/images/arrow-to-right.webp') !important;
                 background-position: bottom 50% right 30px;
                 background-repeat: no-repeat;
+                @media (max-width: $width__mobile), (max-height: $height__mobile) {
+                    background-image: none !important;
+                    &:after {
+                        content: '';
+                        display: inline-block;
+                        width: 20px;
+                        height: 16px;
+                        margin: 1px 0 0 10px;
+                        position: absolute;
+                        background: transparent center no-repeat url('assets/arrow-right2.svg') !important;
+                        background-size: 100% !important;
+                    }
+                }
             }
         }
     }
 
     &-spacer {
-        @media (max-width: $width__mobile), (max-height: 860px) {
+        @media (max-width: $width__mobile), (max-height: $height__mobile) {
             &.mobile-height-20 {
                 height: 20px !important;
             }
@@ -595,6 +626,9 @@
             }
         }
 
+        &.technology-pill-container {
+            gap: 16px;
+        }
 
         &.hover-lines {
             @include custom-hover(#E46EC3, 'lines.svg', 50%, 50%, 90%, 90%);

@@ -4,6 +4,8 @@
  */
 ((id, o) => {
 
+    let scrollSkip = false
+
     o.minmax = () => {
         o.min = 0
         o.max = 0
@@ -42,6 +44,10 @@
 
     let t2;
     window.addEventListener('scroll', () => {
+        if (scrollSkip) {
+            clearTimeout(t2)
+            return
+        }
         let cur = window.scrollY + window.innerHeight
         if ((cur > o.min && cur < o.max + window.innerHeight)
             || (cur > o.min && cur < o.max) ) {
@@ -51,11 +57,26 @@
     })
 
     o.container = document.getElementById(id)
+
     if (o.container) {
         o.images = o.container.querySelectorAll('.hover-image')
-        /* remove is-selected on hover */
         o.images.forEach(img => {
-            img.addEventListener('mouseenter', () => o.animate(true))
+            img.addEventListener('mouseenter', () => {
+                scrollSkip = true
+                o.animate(true)
+            })
+            img.addEventListener('mouseleave', () => {
+                scrollSkip = false
+                o.animate(true)
+            })
+            img.addEventListener('touchstart', () => {
+                scrollSkip = true
+                o.animate(true)
+            })
+            img.addEventListener('touchend', () => {
+                scrollSkip = false
+                o.animate(true)
+            })
         })
         o.minmax()
     }

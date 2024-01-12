@@ -2,7 +2,6 @@
 
     let checkInnerWidth = window.innerWidth
     let t1 = null
-    let pY = 0 //scroll killswitch
 
     const navigation = (container) => {
         let x2 = `${x}-navigation`
@@ -41,9 +40,9 @@
 
     const animate = (active, container, instant) => {
         let complete = false
-        let y = window.scrollRatio
-        let y1 = (active.getBoundingClientRect().x)
-        let y2 = window.innerWidth > 800 ? ((window.innerWidth - 800) / 2) : 0
+        let y = 5 / window.devicePixelRatio
+        let y1 = Math.round(active.getBoundingClientRect().x)
+        let y2 = window.innerWidth > 800 ? Math.round((window.innerWidth - 800) / 2) : 0
         if (y1 === y2) {
             complete = true
         } else {
@@ -52,16 +51,15 @@
                 y = r
                 complete = true
             }
-            else if (r > 110) { y = 5 }
-            if (y1 < y2) { container.scrollLeft -= y }
-            else if (y1 > y2) { container.scrollLeft += y }
-            else { complete = true }
+            if (y1 < y2) {
+                container.scrollLeft -= ((y2 - y1) < y) ? y2 - y1 : y
+            } else if (y1 > y2) {
+                container.scrollLeft += ((y1 - y2) < y) ? y1 - y2 : y
+            } else {
+                complete = true
+            }
         }
-        if (pY != y1) { pY = y1 }
-        else { complete = true }
         if (complete) {
-            maxI = 0
-            pY = y1
             clearInterval(t1)
             container.dispatchEvent(new Event('animationComplete'))
         }

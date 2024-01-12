@@ -17,12 +17,17 @@ document.addEventListener('click', event => {
         const tab = label.parentNode
         const container = tab.parentNode
         if (container && container.classList.contains('accordeon')) {
-            for (let i = 0; i <= container.children.length; i++) {
-                container.children[i]?.classList?.remove('active')
+            if (tab.classList.contains('active')) {
+                tab.classList.remove('active')
+                tab.blur()
+            } else {
+                for (let i = 0; i <= container.children.length; i++) {
+                    container.children[i]?.classList?.remove('active')
+                }
+                tab.setAttribute('tabindex', '0')
+                tab.classList.add('active')
+                tab.focus()
             }
-            tab.setAttribute('tabindex', '0')
-            tab.classList.add('active')
-            tab.focus()
         }
     }
 })

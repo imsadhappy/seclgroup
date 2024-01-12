@@ -57,6 +57,11 @@ $ npm install
 
 ### Versions
 
+Version 0.9.3
+
+- minor design updates
+- minor bug fixes
+
 Version 0.8.7
 
 - minor blog design update
