@@ -886,6 +886,9 @@ ul.no-marker {
     border: 0 !important; }
   #mobile-primary-menu .techno-list li:before {
     display: none !important; }
+  @media (max-width: 781px) {
+    .techno-list li:last-child {
+      border-bottom: 0; } }
 
 #services li {
   margin: 40px 0 80px 0; }
@@ -2777,6 +2780,12 @@ blockquote,
 .wp-block-table.first-td-blue td:first-child {
   background-color: #E2E9FB; }
 
+.wp-block-table.first-td-blue.has-medium-font-size td:first-child {
+  font-size: 120%; }
+
+.wp-block-table.first-td-blue[style="font-size:24px"] td:last-child {
+  font-size: 83.3333%; }
+
 .wp-block-table.border-gray td {
   border: 1px solid #D6DAE2; }
 
@@ -3141,8 +3150,8 @@ blockquote,
       animation: fromBottomRight 2s normal forwards; }
 
 .map-swiper {
-  padding: 0 calc(50vw - 400px);
-  position: relative; }
+  position: relative;
+  padding: 0 0 0 calc(50vw - 400px); }
   .map-swiper[class*="block-editor"] {
     padding-left: 0;
     padding-right: 0;
@@ -3154,6 +3163,12 @@ blockquote,
   @media (max-height: 800px), (max-width: 781px) {
     .map-swiper {
       min-height: 70vh; } }
+  .map-swiper:after {
+    content: '';
+    display: block;
+    height: 100px;
+    flex-basis: calc(50vw - 400px);
+    flex-shrink: 0; }
   .map-swiper-navigation {
     position: absolute;
     width: 64px;

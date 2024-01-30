@@ -4,7 +4,7 @@ Theme URI: https://seclgroup.com/
 Author: SECLGroup
 Author URI: https://seclgroup.com/
 Description:  SECLGroup Theme
-Version: 0.9.3
+Version: 0.9.9
 Tested up to: 5.4
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
@@ -777,6 +777,9 @@ ul.no-marker {
     border: 0 !important; }
   #mobile-primary-menu .techno-list li:before {
     display: none !important; }
+  @media (max-width: 781px) {
+    .techno-list li:last-child {
+      border-bottom: 0; } }
 
 #services li {
   margin: 40px 0 80px 0; }
@@ -2809,6 +2812,12 @@ nav ul.sub-menu {
         #mobile-primary-menu .has-multilayer.touched > .multilayer > li.active > .sub-menu > li > a {
           background: none !important; }
 
+@media (max-width: 781px) {
+  .shortcode-menu.pineaple-marker li.invisible, .shortcode-menu.techno-list li.invisible, #primary-menu > .menu-item-has-children:hover > .sub-menu.multilayer > li.menu-item-has-children.active .shortcode-menu.sub-menu li.invisible, #primary-menu > .menu-item-has-children:focus > .sub-menu.multilayer > li.menu-item-has-children.active .shortcode-menu.sub-menu li.invisible, #primary-menu > .menu-item-has-children.active > .sub-menu.multilayer > li.menu-item-has-children.active .shortcode-menu.sub-menu li.invisible, #primary-menu > .menu-item-has-arrow:hover > .sub-menu.multilayer > li.menu-item-has-children.active .shortcode-menu.sub-menu li.invisible, #primary-menu > .menu-item-has-arrow:focus > .sub-menu.multilayer > li.menu-item-has-children.active .shortcode-menu.sub-menu li.invisible, #primary-menu > .menu-item-has-arrow.active > .sub-menu.multilayer > li.menu-item-has-children.active .shortcode-menu.sub-menu li.invisible, #mobile-primary-menu .has-multilayer.touched > .multilayer > li.active > .shortcode-menu.sub-menu li.invisible {
+    display: none; }
+  .shortcode-menu.pineaple-marker li a, .shortcode-menu.techno-list li a, #primary-menu > .menu-item-has-children:hover > .sub-menu.multilayer > li.menu-item-has-children.active .shortcode-menu.sub-menu li a, #primary-menu > .menu-item-has-children:focus > .sub-menu.multilayer > li.menu-item-has-children.active .shortcode-menu.sub-menu li a, #primary-menu > .menu-item-has-children.active > .sub-menu.multilayer > li.menu-item-has-children.active .shortcode-menu.sub-menu li a, #primary-menu > .menu-item-has-arrow:hover > .sub-menu.multilayer > li.menu-item-has-children.active .shortcode-menu.sub-menu li a, #primary-menu > .menu-item-has-arrow:focus > .sub-menu.multilayer > li.menu-item-has-children.active .shortcode-menu.sub-menu li a, #primary-menu > .menu-item-has-arrow.active > .sub-menu.multilayer > li.menu-item-has-children.active .shortcode-menu.sub-menu li a, #mobile-primary-menu .has-multilayer.touched > .multilayer > li.active > .shortcode-menu.sub-menu li a {
+    background: none !important; } }
+
 .comment-content a {
   word-wrap: break-word; }
 
@@ -3658,6 +3667,12 @@ nav ul.sub-menu {
 .wp-block-table.first-td-blue td:first-child {
   background-color: #E2E9FB; }
 
+.wp-block-table.first-td-blue.has-medium-font-size td:first-child {
+  font-size: 120%; }
+
+.wp-block-table.first-td-blue[style="font-size:24px"] td:last-child {
+  font-size: 83.3333%; }
+
 .wp-block-table.border-gray td {
   border: 1px solid #D6DAE2; }
 
@@ -3887,8 +3902,8 @@ body.admin-bar:not(.scroll-down) .site-header {
       animation: fromBottomRight 2s normal forwards; }
 
 .map-swiper {
-  padding: 0 calc(50vw - 400px);
-  position: relative; }
+  position: relative;
+  padding: 0 calc(50vw - 400px) 0 0; }
   .map-swiper[class*="block-editor"] {
     padding-right: 0;
     padding-left: 0;
@@ -3900,6 +3915,12 @@ body.admin-bar:not(.scroll-down) .site-header {
   @media (max-height: 800px), (max-width: 781px) {
     .map-swiper {
       min-height: 70vh; } }
+  .map-swiper:after {
+    content: '';
+    display: block;
+    height: 100px;
+    flex-basis: calc(50vw - 400px);
+    flex-shrink: 0; }
   .map-swiper-navigation {
     position: absolute;
     width: 64px;

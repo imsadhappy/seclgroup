@@ -380,6 +380,11 @@ ul.no-marker {
 		#mobile-primary-menu &:before {
 			display: none !important;
 		}
+		@media (max-width: $width__mobile) {
+			&:last-child {
+				border-bottom: 0;
+			}
+		}
 	}
 }
 

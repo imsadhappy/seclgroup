@@ -1,0 +1,14 @@
+.shortcode-menu {
+    &.pineaple-marker {
+        @media (max-width: $width__mobile) {
+            li {
+                &.invisible {
+                    display: none;
+                }
+                a {
+                    background: none !important;
+                }
+            }
+        }
+    }
+}
