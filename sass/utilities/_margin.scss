@@ -1,0 +1,41 @@
+.margin-0 {
+    margin: 0 !important;
+}
+
+.margin-auto,
+.MA { margin: auto }
+
+.fixed.margin-auto,
+.fixed.MA {
+    left: 0;
+    right: 0;
+}
+
+.margin-bottom--100 {
+    margin-bottom: -100px !important;
+}
+
+.margin-right--10 {
+    margin-right: -10px !important;
+}
+
+.mt-a {
+    margin-top: auto !important;
+}
+
+.mb-0 {
+    margin-bottom: 0 !important;
+}
+
+.no-gap,
+.gap-0 {
+    gap: 0;
+}
+
+@media (max-width: $width__mobile) {
+
+    .mobile-gap0,
+    .mobile-gap-0 {
+        gap: 0;
+    }
+}

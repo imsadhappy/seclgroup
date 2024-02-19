@@ -158,7 +158,7 @@
 						background: $color__white;
 						border-radius: 0 0 10px 10px;
 						padding: 10px 40px;
-						outline: 1px solid $BG_Grey2;
+						outline: $border__grey;
 						outline-offset: -40px;
 						box-shadow: 0 10px 0 $color__white inset;
 					}
@@ -207,7 +207,7 @@
 
 									opacity: 1;
 									background: $color__white;
-									//border-top: 1px solid $BG_Grey2;
+									//border-top: $border__grey;
 									border-radius: 0 0 10px 10px;
 									//columns: 3;
 									//display: initial;

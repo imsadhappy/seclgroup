@@ -1,0 +1,46 @@
+&-button {
+    &__link {
+        @extend .base-button-style;
+    }
+    &.is-style-outline {
+        > .wp-element-button {
+            @extend .base-button-style;
+            border: 1px solid $Text__Secondary;
+            background: transparent;
+            position: relative;
+            &:hover,
+            &:active,
+            &:focus {
+                background-color: $Primary__100 !important;
+                border: 1px solid transparent !important;
+            }
+        }
+        &.is-hovered > .wp-element-button {
+            background-color: $Primary__100 !important;
+            border: 1px solid transparent !important;
+        }
+    }
+    &.has-arrow-right {
+        > .wp-element-button {
+            @extend .base-button-style;
+            background-size: 20px;
+            padding-right: 60px;
+            background-image: url('assets/images/arrow-to-right.webp') !important;
+            background-position: bottom 50% right 30px;
+            background-repeat: no-repeat;
+            @media (max-width: $width__mobile), (max-height: $height__mobile) {
+                background-image: none !important;
+                &:after {
+                    content: '';
+                    display: inline-block;
+                    width: 20px;
+                    height: 16px;
+                    margin: 1px 0 0 10px;
+                    position: absolute;
+                    background: transparent center no-repeat url('assets/arrow-right2.svg') !important;
+                    background-size: 100% !important;
+                }
+            }
+        }
+    }
+}

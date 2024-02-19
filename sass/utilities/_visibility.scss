@@ -1,0 +1,36 @@
+.hidden,
+[hidden],
+.hide-invisible .invisible { display: none }
+
+.toggled.hidden.active { display: block }
+
+.invisible { visibility: hidden }
+
+.display-block { display: block !important }
+
+.display-inline-block { display: inline-block !important }
+
+.opacue { opacity: 1 }
+
+.transparent { opacity: 0 }
+
+.half-transparent { opacity: .5 }
+
+.mobile-hidden {
+    @media (max-width: $width__mobile) {
+        display: none !important;
+    }
+}
+
+.desktop-hidden {
+    @media (min-width: $width__mobile) {
+        display: none !important;
+    }
+    .wp-block-post-content & {
+        display: block !important;
+        @include editor-hidden('edit "desktop hidden" element');
+    }
+    .wp-block-post-content .acf-block-preview & {
+        display: none !important;
+    }
+}

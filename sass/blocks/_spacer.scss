@@ -1,0 +1,22 @@
+&-spacer {
+    @media (max-width: $width__mobile), (max-height: $height__mobile) {
+        &.mobile-height-20 {
+            height: 20px !important;
+        }
+        &.mobile-height-50 {
+            height: 50px !important;
+        }
+        &.mobile-height-80 {
+            height: 80px !important;
+        }
+        &.mobile-height-100 {
+            height: 100px !important;
+        }
+        &.mobile-height-200 {
+            height: 200px !important;
+        }
+        &.mobile-height-100vw {
+            height: 100vw !important;
+        }
+    }
+}

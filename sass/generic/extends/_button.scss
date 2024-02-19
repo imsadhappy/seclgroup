@@ -1,0 +1,105 @@
+.button-with-arrow {
+	display: inline-block;
+	background-repeat: no-repeat;
+	background-position: 99% center;
+	padding: 10px 30px 10px 0px;
+	text-decoration: none;
+	&:after {
+		content: '';
+		height: 1px;
+		display: block;
+		width: 0px;
+		background-color: $Text__Primary;
+		transition: width .3s ease;
+	}
+	&:hover,
+	&:focus {
+		color: $Text__Primary;
+		&:after {
+			width: 100%;
+		}
+	}
+}
+
+.button-right-arrow,
+.wrap-button-right-arrow a {
+	@extend .button-with-arrow;
+	background-image: url('assets/images/arrow-right-in-circle.svg');
+	&:hover,
+	&:focus {
+		background-image: url('assets/images/arrow-right-in-circle-active.svg');
+	}
+}
+
+.button-down-arrow,
+.wrap-button-down-arrow a {
+	@extend .button-with-arrow;
+	background-image: url('assets/images/arrow-down-in-circle.svg');
+	&:hover,
+	&:focus {
+		background-image: url('assets/images/arrow-down-in-circle-active.svg');
+	}
+}
+
+.button-up-right-arrow,
+.wrap-button-up-right-arrow a {
+	@extend .button-with-arrow;
+	background-image: url('assets/images/arrow-up-right-in-circle.svg');
+}
+
+.arrow-up-right-in-circle-on-hover {
+	&:focus,
+	&.is-selected,
+	&:hover {
+		background: url('assets/images/arrow-up-right-in-circle.svg') no-repeat 99% center;
+		background-size: 30px;
+	}
+	@media (max-width: $width__min) {
+		background: url('assets/images/arrow-up-right-in-circle.svg') no-repeat 99% center;
+		background-size: 30px;
+	}
+}
+
+.simple {
+    &-arrow-right {
+        background-image: url('assets/simple-arrow-right.svg');
+        background-repeat: no-repeat;
+        background-position: center right 30px;
+        background-size: 20px !important;
+        padding-right: 50px !important;
+    }
+
+    &-arrow {
+        @extend .simple-arrow-right;
+        padding-right: 20px !important;
+        background-position: center;
+    }
+}
+
+.button-in-input {
+
+	.wpcf7-form-control-wrap {
+		input[type="email"] {
+			box-shadow: 52px 0 0 white;
+			width: calc(100% - 68px);
+			min-width: 0;
+			max-width: 600px;
+			margin-left: -15px;
+			@media (min-width: 636px){
+				max-width: 400px;
+			}
+		}
+	}
+
+	.only-arrow {
+		@extend .simple-arrow-right;
+		background-position: center !important;
+		font-size: 0 !important;
+		height: 44px;
+	    width: 44px;
+	    padding: 0 !important;
+	    vertical-align: 6px;
+		position: relative;
+		z-index: 2;
+	}
+}

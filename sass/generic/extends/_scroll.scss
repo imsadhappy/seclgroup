@@ -1,0 +1,46 @@
+.hidden-scrollbar {
+
+	scrollbar-width: none;
+
+	&::-webkit-scrollbar {
+		width: 0px;
+		height: 0px;
+	}
+}
+
+.no-scrollbar {
+
+	scrollbar-width: none; //firefox
+
+	&::-webkit-scrollbar {
+		width: 1px;
+		height: 1px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background-color: transparent;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: transparent;
+	}
+}
+
+.scrollable {
+
+	@extend .overflow-x-auto, .no-scrollbar, .wrapped-by-padding;
+
+	> * {
+
+		@extend .flex-no-shrink;
+
+		img {
+			max-width: none !important;
+		}
+	}
+
+	&.alignfull[data-block] {
+		padding-right: 0 !important;
+		padding-left: 0 !important;
+	}
+}

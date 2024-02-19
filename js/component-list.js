@@ -63,6 +63,13 @@ if (document.querySelectorAll('.map-swiper').length > 0) {
 }
 
 /**
+ * History Scroller
+ */
+if (document.querySelectorAll('.history-scroller').length > 0) {
+    loadComponent('history-scroller')
+}
+
+/**
  * SVG Bubbles animation
  */
 if (document.querySelectorAll('.circle-expand-animation').length > 0) {
@@ -74,6 +81,20 @@ if (document.querySelectorAll('.circle-expand-animation').length > 0) {
  */
 if (document.querySelectorAll('.animated-services').length > 0) {
     loadComponent('services-animation')
+}
+
+/**
+ * Countries address svg map
+ */
+if (document.querySelectorAll('.country-address-map').length > 0) {
+    loadComponent('country-address-map')
+}
+
+/**
+ * Employees
+ */
+if (document.querySelectorAll('.employees').length > 0) {
+    loadComponent('employees')
 }
 
 /**

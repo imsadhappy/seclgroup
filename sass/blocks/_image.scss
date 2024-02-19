@@ -1,0 +1,99 @@
+&-image {
+
+    @media (max-width: $width__mobile) {
+        float: none !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    &.alignleft,
+    &.alignright {
+        @media (max-width: $width__mobile) {
+            &, img:not([src*=".svg"]) { width: 100%; }
+        }
+    }
+
+    &.aligncenter {
+        & .components-resizable-box__container,
+        img {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+    img {
+        @media (min-width: $width__mobile) {
+            max-width: none;
+        }
+        &[src*=".svg"] {
+            max-width: none;
+        }
+    }
+
+    &.is-style-rounded img {
+        clip-path: circle();
+    }
+
+    &.cover:first-child {
+        margin-top: -60px;
+    }
+
+    &.piechart {
+        position: relative;
+        text-align: right;
+        margin: -80px 0 0;
+        img[src*=".svg"] {
+            @media (max-width: $width__mobile) {
+                max-width: 25vw;
+            }
+        }
+    }
+
+    &.overflow-x-auto {
+        @media (max-width: $width__desktop) {
+            margin-left: -15px !important;
+            width: 100vw;
+            padding-right: 15px;
+            padding-left: 15px;
+            img {
+                max-width: none;
+            }
+        }
+    }
+
+    figcaption {
+        margin: 1rem 0;
+    }
+
+    .wp-block-post-content &.desktop-hidden {
+        height: auto !important;
+        border: 0 !important;
+        &:before { content: none !important; }
+        img {
+            visibility: visible !important;
+            opacity: .5;
+        }
+    }
+
+    &.technology-pill {
+        background-color: $BG__Grey;
+        border-radius: 10px;
+        padding: 10px 0 10px 10px;
+        .components-resizable-box__container {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        img {
+            vertical-align: middle;
+            filter: grayscale(100%);
+            transition: filter .3s ease;
+        }
+        figcaption {
+            margin: 0 10px;
+            display: inline-block;
+        }
+        &:hover img {
+            filter: grayscale(0%);
+        }
+    }
+}

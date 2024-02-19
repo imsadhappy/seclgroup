@@ -37,12 +37,23 @@ add_action( 'acf/init', function () {
     acf_register_block( array(
         'name'              => "seclgroup-case-studies",
         'title'             => __('Case Studies', 'seclgroup'),
-        'description'       => __('A custom slider for with Title, Image, Description & Tags.', 'seclgroup'),
+        'description'       => __('A custom slider with Title, Image, Description & Tags.', 'seclgroup'),
         'render_template'   => 'blocks/case-studies/template.php',
         'category'          => 'seclgroup',
         'icon'              => 'format-gallery',
         'keywords'          => array( 'case', 'study', 'studies' ),
         'enqueue_style' =>  "$folder/blocks/case-studies/style.css",
+    ) );
+
+    acf_register_block( array(
+        'name'              => "seclgroup-review-slider",
+        'title'             => __('Review Slider', 'seclgroup'),
+        'description'       => __('A custom slider with Title, Image, Description.', 'seclgroup'),
+        'render_template'   => 'blocks/review-slider/template.php',
+        'category'          => 'seclgroup',
+        'icon'              => 'format-gallery',
+        'keywords'          => array( 'review', 'slider' ),
+        'enqueue_style' =>  "$folder/blocks/review-slider/style.css",
     ) );
 
 } );

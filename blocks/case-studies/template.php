@@ -16,11 +16,15 @@
 $case_studies = get_field('case_studies');
 $block_id = uniqid('case_studies_');
 
-if ( ! empty($case_studies) ) : ?>
+if (empty($case_studies)) :
+
+    $is_preview ? esc_html_e('Please add content', 'seclgroup') : '';
+
+else : ?>
 
 <div <?php block_class('wp-block-case-studies', $block) ?>>
 
-    <?php inline_script('/blocks/case-studies/script.js'); ?>
+    <?php if (!$is_preview) inline_script('/blocks/case-studies/script.js'); ?>
 
     <div id="<?php echo $block_id ?>">
 

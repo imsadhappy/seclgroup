@@ -15,47 +15,79 @@
 
 $team_members = get_field('team_members');
 $block_id = uniqid('our_team_');
-$image_count = 0;
+$team_json = '';
+$member_json = function ($member, $img_size = 'large') {
+    $json_obj = '';
+    $json_str = function ($img_id) use ($member, $img_size) {
+        $img = @$member[$img_id];
+        return is_array($img) && isset($img['sizes'][$img_size]) ?
+            sprintf("$img_id: { url: '%s', width: %d, height: %d },\n",
+                            $img['sizes'][$img_size],
+                            $img['sizes']["$img_size-width"],
+                            $img['sizes']["$img_size-height"]) : '';
+    };
+    $i = 0;
+    while ($i <= 4) {
+        if (!empty(@$member["img_{$i}"])) {
+            $n = 1;
+            $json_obj .= $json_str("img_{$i}");
+            while ($n <= 8) {
+                $json_obj .= $json_str("img_{$i}_alt_{$n}");
+                $n++;
+            }
+        }
+        $i++;
+    }
+    return $json_obj;
+};
 
-if ( ! empty($team_members) ) : ?>
+if (empty($team_members)) :
 
-<div <?php block_class('wp-block-our-team', $block) ?>>
+    $is_preview ? esc_html_e('Please add images', 'seclgroup') : '';
 
-    <?php inline_script('/blocks/our-team/script.js') ?>
+else : ?>
 
-    <div id="<?php echo $block_id ?>">
+<div <?php block_class('our-team', $block) ?> id="<?php echo $block_id ?>">
 
-        <div class="masonry-size"><!-- Masonry columnWidth template --></div>
+    <?php if (!$is_preview) inline_script('/blocks/our-team/script.js') ?>
 
-        <?php foreach ($team_members as $team_member) :
+    <?php foreach ($team_members as $member) :
 
-            if (empty($team_member['photo']))
-                continue;
+    $z = 1;
 
-            $image_count++; ?>
+    while ($z <= 25):
 
-            <div class="team-member display-<?php echo empty($team_member['display_bigger']) ? 'smaller' : 'bigger' ?>">
-                <img class="team-member--photo"
-                    src="<?php echo esc_url($team_member['photo']) ?>"
-                    alt="<?php esc_attr_e($team_member['name']) ?>"
-                    onload="window.MasonryLoader.imageLoaded('<?php echo $block_id ?>')"
-                    onerror="window.MasonryLoader.imageLoaded('<?php echo $block_id ?>')">
-                <?php if (!empty($team_member['photo_alt'])) : ?>
-                <img class="team-member--photo alt"
-                    src="<?php echo esc_url($team_member['photo_alt']) ?>"
-                    alt="<?php esc_attr_e($team_member['name']) ?>">
-                <?php endif; ?>
-                <div class="team-member--details">
-                    <div class="team-member--name"><?php esc_html_e($team_member['name']) ?></div>
-                    <div class="team-member--position"><?php esc_html_e($team_member['position']) ?></div>
-                </div>
+        if (empty($member['img_1']))
+            continue;
+
+        $member_id = uniqid('our_team_member_');
+
+        if (!$is_preview)
+            $team_json .= "$member_id: { {$member_json($member)} },"; ?>
+
+        <div class="team-member" id="<?php echo $member_id ?>">
+
+            <?php if ( $is_preview ) : ?>
+                <img src="<?php echo $member['img_0']['sizes']['medium'] ?>" class="img_0">
+            <?php endif ?>
+
+            <div class="team-member--details">
+                <div class="team-member--name"><?php esc_html_e($member['name']) ?></div>
+                <div class="team-member--position"><?php esc_html_e($member['position']) ?></div>
             </div>
 
-        <?php endforeach; ?>
+        </div>
 
-    </div>
+    <?php $z++; endwhile; endforeach; ?>
 
-    <script>window.MasonryLoader.load('<?php echo $block_id ?>', <?php echo $image_count ?>);</script>
+    <?php if (!$is_preview) : ?>
+        <script>document.dispatchEvent(
+            new CustomEvent(
+                'ourTeam:init', <?php
+                    echo "{ detail: { $block_id: { $team_json } } }"
+                ?>)
+        )</script>
+    <?php endif ?>
 
 </div>
 

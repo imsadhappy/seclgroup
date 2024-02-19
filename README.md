@@ -57,6 +57,16 @@ $ npm install
 
 ### Versions
 
+Version 0.9.25
+
+- refactored scss, js
+- new blocks: review slider, our team (re-written)
+
+Version 0.9.20
+
+- refactored scss
+- about-page design
+
 Version 0.9.3
 
 - minor design updates

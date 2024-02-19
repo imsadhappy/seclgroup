@@ -1,0 +1,19 @@
+&-search {
+    @media (max-width: $width__min) {
+        &__inside-wrapper {
+            flex-direction: column;
+            [type="search"] {
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+            [type="submit"] {
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+                margin: 0;
+            }
+        }
+        .custom-cover-content & {
+            width: calc(100vw - 30px);
+        }
+    }
+}

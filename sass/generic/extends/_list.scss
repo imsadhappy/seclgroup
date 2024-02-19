@@ -1,0 +1,137 @@
+.pineaple-marker {
+
+	list-style: none;
+
+	&[class*="cols-"],
+	&[class*="grid-"] {
+		overflow: hidden;
+		li + li { transform: translateY(-1px) }
+	}
+
+	&[class*="grid-"] li {
+		display: table;
+		a {
+			display: table-cell;
+			vertical-align: middle;
+		}
+	}
+
+	/*
+		li {
+			position: relative;
+			a {
+				display: table;
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				margin-top: auto;
+				margin-bottom: auto;
+			}
+		}
+	}
+	*/
+
+	li {
+
+		position: relative;
+		margin: 0 !important;
+
+		+ li {
+			border-top: $border__grey;
+		}
+
+		&:not(.menu-item-object-yspl_win):before {
+			content: '';
+			height: 22px;
+			width: 14px;
+			display: block;
+			position: absolute;
+			top: calc(50% - 11px);
+			left: 0;
+			background: transparent url('assets/images/pineaple-list.svg') no-repeat center;
+		}
+
+		//text-indent: 24px;
+
+		padding: 0;
+
+		a {
+			@extend .arrow-up-right-in-circle-on-hover;
+			padding: 16px 40px 16px 24px !important;
+			width: 100%;
+		}
+
+		&:empty:before {
+			display: none;
+		}
+	}
+}
+
+ul.no-marker {
+	padding-left: 0;
+	list-style: none;
+}
+
+.custom-list {
+
+	padding-left: 0;
+
+	> * {
+		width: 100%;
+		a {
+			color: inherit !important;
+			display: inline-block;
+		}
+	}
+
+	&.no-links li {
+		padding: 16px 40px 16px 24px !important;
+	}
+
+	&.with-underline {
+		> * {
+			a {
+				&:after {
+					content: '';
+					height: 3px;
+					display: block;
+					width: 0px;
+					background-color: $Text__Primary;
+					transition: width .3s ease;
+				}
+			}
+			&.is-selected a,
+			a:hover, a:focus {
+				&:after {
+					width: 100%;
+				}
+			}
+			@extend .arrow-up-right-in-circle-on-hover;
+		}
+	}
+}
+
+.techno-list {
+	@extend .custom-list, .pineaple-marker, .no-links;
+	li {
+		border-top: 0 !important;
+		border-bottom: $border__grey;
+		display: table;
+		a {
+			display: table-cell;
+			vertical-align: middle;
+		}
+		#mobile-primary-menu & {
+			padding: 10px 0 !important;
+			border: 0 !important;
+		}
+		#mobile-primary-menu &:before {
+			display: none !important;
+		}
+		@media (max-width: $width__mobile) {
+			&:last-child {
+				border-bottom: 0;
+			}
+		}
+	}
+}

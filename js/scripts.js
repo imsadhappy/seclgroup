@@ -100,7 +100,7 @@ document.addEventListener('click', event => {
     if (event.target.href) {
         url = new URL(event.target.href)
     } else if (event.target.parentElement?.href) {
-        url = new URL(event.target.href)
+        url = new URL(event.target.parentElement.href)
     }
     if (url &&
         url.pathname === location.pathname &&

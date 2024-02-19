@@ -1,0 +1,91 @@
+
+.flex-space-between {
+    display: flex;
+    justify-content: space-between !important;
+    align-items: center;
+}
+
+.flex-space-around {
+    display: flex;
+    justify-content: space-around !important;
+    align-items: center;
+}
+
+.mobile-justify-start {
+    @media (max-width: $width__mobile) {
+        justify-content: flex-start !important;
+    }
+}
+
+.flex-1 {
+    flex: 1 !important;
+}
+
+.mobile-flex-1 {
+    @media (max-width: $width__mobile) {
+        flex: 1 !important;
+    }
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.flex-no-shrink,
+.flex-shrink-0 {
+    flex-shrink: 0;
+}
+
+.flex-basis-content {
+    flex-basis: content !important;
+}
+
+.space-evenly,
+.flex-space-evenly {
+    justify-content: space-evenly !important;
+}
+
+.justify-center,
+.flex-justify-center {
+    justify-content: center !important;
+}
+
+@media (min-width: $width__mobile) {
+
+    .flex-max-50 {
+        flex-basis: 100% !important;
+        max-width: $width__desktop * .5 !important;
+    }
+
+    .flex-max-70 {
+        flex-basis: 100% !important;
+        max-width: $width__desktop * .7 !important;
+    }
+}
+
+@media (max-width: $width__mobile) {
+
+    html body #page .mobile-flex-50 {
+        flex-basis: 50% !important;
+    }
+
+    .mobile-flex-start {
+        justify-content: flex-start !important;
+    }
+
+    .mobile-space-evenly {
+        justify-content: space-evenly !important;
+    }
+
+    .mobile-space-between {
+        justify-content: space-between !important;
+    }
+}
+
+@media (max-width: $width__min) {
+
+    html body #page .min-flex-100 {
+        flex-basis: 100% !important;
+    }
+
+}

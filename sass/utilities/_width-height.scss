@@ -1,0 +1,36 @@
+
+.width-auto {
+    width: auto !important;
+}
+
+.no-min-width,
+.min-width-0 {
+    min-width: 0 !important;
+}
+
+.width-100,
+.width-full,
+.full-width {
+    width: 100%
+}
+
+.height-100,
+.height-full,
+.full-height {
+    height: 100%
+}
+
+.no-min-height {
+    min-height: auto !important;
+}
+
+.mobile-full-width {
+    @media (max-width: $width__mobile) {
+        &, > img, > .wp-element-button {
+            width: 100%
+        }
+		&.float-right, &.float-left {
+			float: none !important;
+		}
+    }
+}

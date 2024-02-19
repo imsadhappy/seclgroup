@@ -3,7 +3,7 @@
  *
  * Handles toggling the navigation menu for small screens.
  */
-(function(header, menu){
+((header, menu) => {
 	const menuContainer = header?.querySelector('.menu-header-container')
 	if (!menuContainer || !header || !menu) return
 	let mobileMenu = null
@@ -37,25 +37,25 @@
 
 			ul1.setAttribute('data-name', a1.textContent)
 			ul1.addEventListener('deselect', () => {
-				ul1.querySelectorAll('.menu-item-has-children')
-					.forEach((li2) => li2.classList.remove('active'))
+				ul1.querySelectorAll('.menu-item-has-children').forEach((li2) => {
+						li2.classList.remove('active')
+						li2.querySelector('a')?.blur()
+					})
 			})
 			ul1.querySelectorAll('.menu-item-has-children').forEach((li2, i) => {
+				let activate = () => {
+					ul1.dispatchEvent(new Event('deselect'))
+					li2.classList.add('active')
+					const ul2 = li2.querySelector(':scope > .sub-menu')
+					if (ul2) ul2.scrollTop = 0
+				}
 				if (i === 0) {
 					li2.classList.add('active', 'first-active')
 					ul1.classList.add('multilayer')
 					li1.classList.add('has-multilayer')
 				}
-				/*li2.addEventListener('mouseenter', () => {
-					ul1.dispatchEvent(new Event('deselect'))
-					li2.classList.add('active')
-				})*/
-				li2.addEventListener('click', click => {
-					ul1.dispatchEvent(new Event('deselect'))
-					li2.classList.add('active')
-					const ul2 = li2.querySelector(':scope > .sub-menu')
-					if (ul2) ul2.scrollTop = 0
-				})
+				li2.addEventListener('mouseenter', activate)
+				li2.addEventListener('click', activate)
 			})
 
 			li1.addEventListener('mouseenter', () => {

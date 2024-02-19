@@ -1,0 +1,70 @@
+.hover-image {
+	position: relative;
+	img {
+		display: inline;
+		opacity: 0;
+		position: absolute;
+		top: 100%;
+		margin-top: 0px;
+		z-index: -1;
+		transform: translateX(-25%);
+		@media (max-width: $width__desktop) {
+			transform: translateX(-50%)
+		}
+		@media (max-width: $width__min) {
+			transform: none;
+			left: 0;
+		}
+		transition: opacity .2s ease;
+		transition-delay: .1s;
+	}
+	&.is-selected,
+	a:hover,
+	a:focus {
+		z-index: 2;
+		img,
+		+ img {
+			opacity: 1;
+			z-index: 2;
+		}
+	}
+}
+
+.has-view-more {
+	.active {
+		display: block !important
+	}
+}
+
+.show-when-active {
+	display: none;
+	.active & { display: initial }
+}
+
+.hide-when-active {
+	.active & { display: none }
+}
+
+.hover-color-logos {
+    &:not(.has-child-selected) {
+        figure ~ figure {
+            display: none;
+        }
+        .is-hovered &,
+        &.is-hovered,
+        &:hover {
+            figure:first-child {
+                display: none;
+                ~ figure {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+:not(.scrolled-logos) > .hover-color-logos {
+    //@media (min-width: $width__mobile) {
+        img { max-width: 100% !important }
+    //}
+}

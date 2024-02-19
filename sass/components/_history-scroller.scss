@@ -1,0 +1,59 @@
+.history-scroller {
+
+    --history-scroller-gap: 80px;
+
+    @media (max-width: $width__min) {
+        --history-scroller-gap: 10vw;
+    }
+
+    @extend .scrollable;
+
+    flex-wrap: nowrap !important;
+    gap: var(--history-scroller-gap);
+
+    & > * {
+
+        flex-basis: 90vw !important;
+        max-width: 360px !important;
+
+        .card {
+            background-color: $BG__White;
+            padding: 2em;
+            border-radius: 1em;
+            border: $border__grey;
+        }
+
+        .number {
+            position: relative;
+            display: block;
+            margin-top: 46px;
+            line-height: 32px;
+            font-size: 14px;
+            color: $Text__White;
+            &::before {
+                content: '';
+                display: block;
+                width: calc(100% + var(--history-scroller-gap));
+                height: 4px;
+                margin-bottom: -16px;
+                background-color: $Primary__100;
+                margin-left: 25%;
+            }
+            &::after {
+                content: '';
+                display: block;
+                margin: -32px auto 0;
+                background-color: $Primary__150;
+                box-shadow: 0 0 0 3px $BG__Grey;
+                width: 32px;
+                height: 32px;
+                border-radius: 16px;
+            }
+        }
+
+        &:last-child .number::before {
+            width: 100%;
+            margin-left: -25%;
+        }
+    }
+}

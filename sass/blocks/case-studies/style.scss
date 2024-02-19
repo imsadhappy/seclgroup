@@ -152,8 +152,9 @@
             }
             &:nth-child(even) {
                 .case-study--hover-image {
-                    transform: scale(1.2);
+                    transform: scale(1.25);
                     opacity: 1;
+                    top: -60px;
                 }
             }
 

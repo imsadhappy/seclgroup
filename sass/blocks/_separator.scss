@@ -1,0 +1,15 @@
+&-separator {
+
+    &.is-style-default {
+        border-left: 0 !important;
+        border-right: 0 !important;
+        border-bottom: 0 !important;
+        margin: 0;
+    }
+
+    &.is-style-wide { width: 100% }
+
+    &.desktop-hidden {
+        height: auto !important
+    }
+}

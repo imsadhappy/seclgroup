@@ -7,7 +7,6 @@ function goToCaseStudy(caseStudy){
     if (('ontouchstart' in window) ||
         (navigator.maxTouchPoints > 0) ||
         (navigator.msMaxTouchPoints > 0)) {
-
         var clicked = parseInt(caseStudy.dataset.clicked, 10)
         if (!clicked) {
             var siblings = caseStudy.parentElement.children;
@@ -18,7 +17,6 @@ function goToCaseStudy(caseStudy){
         } else {
             window.location = caseStudy.dataset.url
         }
-
     } else {
         window.location = caseStudy.dataset.url
     }

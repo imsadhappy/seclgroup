@@ -10,7 +10,7 @@ document.querySelectorAll(`.${x}-container`).forEach(container => {
     if (!tabs || !content) return;
 
     function dispatch(tab, content){
-        let detail = { tab, content }
+        let detail = { tab, content, container }
         window.dispatchEvent(new CustomEvent('resize', {detail}))
         window.dispatchEvent(new CustomEvent('tabChanged', {detail}))
         //tab.blur()

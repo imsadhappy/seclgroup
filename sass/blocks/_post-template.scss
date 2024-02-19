@@ -1,0 +1,41 @@
+&-post-template {
+
+    &.pills {
+
+        @media (max-width: $width__desktop) {
+            display: flex;
+            margin: 0;
+            padding: 0 30px;
+            @media (max-width: $width__min) {
+                padding: 0 15px;
+            }
+            width: 100vw;
+            max-width: none;
+        }
+
+        li.wp-block-post {
+
+            flex-shrink: 0;
+            display: inline-block;
+
+            .wp-block-post-title {
+                margin: 0 20px 30px 0 !important;
+                padding: 0 28px;
+                font-size: 18px !important;
+                line-height: 3;
+                @media (max-width: $width__desktop) {
+                    line-height: 2.5;
+                }
+                font-weight: 800;
+                background-color: rgba($color__white, .85);
+                border-radius: 30px;
+                margin-bottom: 30px;
+                margin-right: 30px;
+                a {
+                    padding-right: 30px;
+                    background: url(assets/arrow-right.svg) no-repeat center right;
+                }
+            }
+        }
+    }
+}

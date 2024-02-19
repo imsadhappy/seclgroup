@@ -1,0 +1,7 @@
+&-social-links {
+
+    &.is-style-bordered-circle li {
+        border: 1px solid $Text__Tertiary;
+        border-radius: 50%;
+    }
+}

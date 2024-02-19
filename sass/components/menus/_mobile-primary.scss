@@ -159,7 +159,7 @@
 			font-size: 0;
 			pointer-events: none;
 			width: 100%;
-			border-bottom: 1px solid $BG_Grey2;
+			border-bottom: $border__grey;
 			&::before {
 				display: block;
 				content: attr(rel);

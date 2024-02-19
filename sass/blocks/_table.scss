@@ -1,0 +1,26 @@
+&-table {
+
+    &.first-td-blue {
+        td {
+            &:first-child {
+                background-color: $BG__Blue;
+            }
+        }
+        &.has-medium-font-size {
+            td:first-child {
+                font-size: 120%;
+            }
+        }
+        &[style="font-size:24px"] {
+            td:last-child {
+                font-size: 83.3333%;
+            }
+        }
+    }
+
+    &.border-gray {
+        td {
+            border: $border__grey;
+        }
+    }
+}

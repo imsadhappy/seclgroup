@@ -1,0 +1,97 @@
+.base {
+
+    &-font-setting {
+        color: $color__text-main;
+        font-family: $font__main;
+        font-size: $font__size;
+        line-height: $font__line-height-body;
+        font-weight: normal;
+    }
+
+    &-input-style {
+
+        appearance:none;
+        color: $color__input-text;
+        background: $color__white;
+        padding: 13px;
+        outline: none;
+        font-size: 18px;
+        border: 0; //$input__border;
+
+        .border-bottom &,
+        &.border-bottom {
+            border-top: 0;
+            border-left: 0;
+            border-right: 0;
+            padding: 0;
+        }
+
+        border-radius: 30px;
+        .no-border-radius &,
+        &.no-border-radius { border-radius: 0 }
+
+        height: 55px;
+
+        .height-40 &,
+        &.height-40 {
+            height: 40px;
+        }
+
+        &::placeholder {
+            color: rgba($color__primary, .6);
+            opacity: 1;
+        }
+    }
+
+    &-mobile-padding {
+        @media (max-width: $width__desktop) {
+            max-width: calc(100vw - 60px);
+        }
+        @media (max-width: $width__min) {
+            max-width: calc(100vw - 30px) !important;
+        }
+    }
+
+    &-button-style {
+
+        display: inline-block;
+        border: 1px solid transparent;
+        border-radius: 100px;
+        background-color: $color__button-background;
+        color: $color__button-text;
+        background-size: 300%;
+        line-height: 1;
+        font-size: 20px !important;
+        padding: 20px 30px;
+        cursor: pointer;
+        box-shadow: none;
+        transition: background-color .3s ease-out;
+        text-transform: uppercase;
+
+        &:hover,
+        &:active,
+        &:focus,
+        &.is-hovered {
+            color: inherit;
+            background-color: transparent;
+            border: 1px solid $Text__Secondary;
+        }
+
+        a {
+            &,
+            &.is-hovered,
+            &:hover,
+            &:active,
+            &:focus {
+                color: inherit;
+            }
+        }
+
+        &.as-text {
+            background-color: transparent !important;
+            border: 0 !important;
+            padding: 0 !important;
+        }
+    }
+
+}

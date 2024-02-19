@@ -1,0 +1,82 @@
+&-group {
+
+    &.mobile-is-horizontal {
+        @media (max-width: $width__mobile) {
+            flex-direction: row !important;
+            grid-column-gap: 40px;
+            flex-wrap: wrap !important;
+            justify-content: space-between;
+        }
+    }
+
+    &.gap-5x {
+        gap: 5%;
+    }
+
+    &.gap-10x {
+        gap: 10%;
+    }
+
+    /*&.alignfull > & {
+        @media (max-width: $width__desktop) {
+            margin-left: 30px !important;
+            margin-right: 30px !important;
+        }
+        @media (max-width: $width__min) {
+            margin-left: 15px !important;
+            margin-right: 15px !important;
+        }
+    }*/
+
+    &.footer-offices {
+        display: grid !important;
+        grid-template-columns: repeat(5, 1fr);
+        grid-column-gap: 40px;
+        margin: 0 !important;
+        .contact-field,
+        p:not(.h5) {
+            display: block;
+            font-style: normal;
+            white-space: nowrap !important;
+            font-size: 14px;
+        }
+        @media (max-width: $width__mobile) {
+            * { text-align: center; }
+        }
+    }
+
+    &.scrolled-logos {
+        > * + * {
+            margin-left: 80px !important;
+        }
+        /* used with autoscroll (right/left) &:after {
+            content: '';
+            display: block;
+            padding: 1px 1px 1px calc(50vw - #{$width__desktop} / 2);
+            border: 0;
+            margin-left: 0 !important;
+        }*/
+
+        &:not(.has-child-selected) > * {
+            @extend .hover-color-logos;
+        }
+    }
+
+    &.technology-pill-container {
+        gap: 16px;
+    }
+
+    &.hover-lines {
+        @include custom-hover(#E46EC3, 'lines.svg', 50%, 50%, 90%, 90%);
+    }
+    &.hover-underline {
+        @include custom-hover(#49E4ED, 'underline.svg', 50%, 150%, 200px, 70%);
+    }
+    &.hover-encircle {
+        @include custom-hover(#5B9DFF, 'circle.svg', 50%, 0%, 260px, 90%);
+    }
+    &.hover-stars {
+        @include custom-hover(#6A67DB, 'stars.svg', 50%, 10%, 200px, 80%);
+    }
+
+}

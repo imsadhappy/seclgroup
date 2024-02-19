@@ -1,0 +1,43 @@
+.country-address-map {
+
+    @extend .scrollable;
+
+    .container {
+
+        position: relative;
+        max-width: none;
+
+        svg {
+            max-width: none !important;
+            [class*="address-"] {
+                opacity: 0;
+            }
+        }
+
+        .content {
+
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            [class*="country-"] {
+                position: absolute;
+                opacity: 0;
+                padding: 8px 16px 16px;
+                height: auto !important;
+                background-color: $BG__White;
+                border: $border__grey;
+                border-radius: 16px;
+                transition: opacity .2s ease;
+                br { display: none }
+                address { margin: 0 }
+            }
+        }
+    }
+
+    &.loaded {
+        [class*="country-"] {
+            opacity: 1 !important;
+        }
+    }
+}
