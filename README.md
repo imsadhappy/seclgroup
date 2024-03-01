@@ -57,6 +57,10 @@ $ npm install
 
 ### Versions
 
+Version 0.9.4
+
+- bug fixes
+
 Version 0.9.25
 
 - refactored scss, js

@@ -43,9 +43,11 @@
         @media (max-width: $width__mobile) {
             * { text-align: center; }
         }
+        &[data-block] { margin: auto !important }
     }
 
     &.scrolled-logos {
+        overflow: initial;
         > * + * {
             margin-left: 80px !important;
         }

@@ -4,7 +4,7 @@ Theme URI: https://seclgroup.com/
 Author: SECLGroup
 Author URI: https://seclgroup.com/
 Description:  SECLGroup Theme
-Version: 0.9.25
+Version: 0.9.4
 Tested up to: 5.4
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
@@ -1585,8 +1585,9 @@ html, body, .site {
   position: relative;
   display: flex;
   flex-direction: column; }
-  body.page .site {
-    overflow: hidden; }
+
+.alignfull {
+  overflow: hidden; }
 
 .site-header {
   z-index: 10;
@@ -3725,7 +3726,10 @@ nav ul.sub-menu {
     @media (max-width: 781px) {
       .wp-block-group.footer-offices * {
         text-align: center; } }
+    .wp-block-group.footer-offices[data-block] {
+      margin: auto !important; }
   .wp-block-group.scrolled-logos {
+    overflow: initial;
     /* used with autoscroll (right/left) &:after {
             content: '';
             display: block;
@@ -4125,10 +4129,16 @@ body.admin-bar:not(.scroll-down) .site-header {
 .history-scroller {
   --history-scroller-gap: 80px;
   flex-wrap: nowrap !important;
-  gap: var(--history-scroller-gap); }
+  gap: var(--history-scroller-gap);
+  transition: all .1s ease; }
   @media (max-width: 480px) {
     .history-scroller {
       --history-scroller-gap: 10vw; } }
+  .history-scroller-container.alignfull {
+    overflow: initial !important; }
+  .history-scroller-content {
+    position: sticky;
+    top: 0; }
   .history-scroller > * {
     flex-basis: 90vw !important;
     max-width: 360px !important; }
@@ -4453,6 +4463,9 @@ body.admin-bar:not(.scroll-down) .site-header {
     width: 100%; }
   .mobile-full-width.float-right, .mobile-full-width.float-left {
     float: none !important; } }
+
+div[style*="abstract.svg"] {
+  width: 100% !important; }
 
 .border-radius-20 {
   border-radius: 20px; }

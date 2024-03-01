@@ -3,18 +3,17 @@ html, body, .site {
 }
 
 .site {
-
     position: relative;
     display: flex;
     flex-direction: column;
-
-    body.page & {
-        overflow: hidden;
-    }
 }
 
 body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
     @extend .base-mobile-padding;
+}
+
+.alignfull {
+    overflow: hidden;
 }
 
 @import "header";

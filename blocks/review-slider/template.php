@@ -23,7 +23,7 @@ if (empty($reviews)) :
 
 else : ?>
 
-<div <?php block_class('wp-block-review-slider', $block) ?>>
+<div <?php block_class(['wp-block-review-slider', "layout-$layout"], $block) ?>>
 
     <?php if (!$is_preview) inline_script('/blocks/review-slider/script.js'); ?>
 
@@ -38,7 +38,10 @@ else : ?>
 
             ?>
 
-            <div class="review-slide">
+            <div class="review-slide" <?php
+                if (!empty($link)) : ?>
+                    onclick="window.open('<?php echo $link ?>', '_blank').focus()"
+                <?php endif ?>>
 
                 <div class="review-slide--inner <?php echo "layout-$layout" ?>">
 
@@ -59,7 +62,7 @@ else : ?>
                             ?></div>
 
                             <?php if (!empty($position)) : ?>
-                                <div class="review-slide--position"><?php
+                                <div class="review-slide--position bolder"><?php
                                     esc_html_e($position)
                                 ?></div>
                             <?php endif; ?>

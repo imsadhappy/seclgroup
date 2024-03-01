@@ -97,7 +97,7 @@
                     "label": "Date",
                     "name": "date",
                     "aria-label": "",
-                    "type": "date_picker",
+                    "type": "text",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": [
@@ -114,9 +114,11 @@
                         "class": "",
                         "id": ""
                     },
-                    "display_format": "F j, Y",
-                    "return_format": "F j, Y",
-                    "first_day": 1,
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
                     "parent_repeater": "field_65bbb575636f6"
                 },
                 {
@@ -164,6 +166,24 @@
                     "rows": 5,
                     "placeholder": "",
                     "new_lines": "",
+                    "parent_repeater": "field_65bbb575636f6"
+                },
+                {
+                    "key": "field_65d72260e0072",
+                    "label": "Link",
+                    "name": "link",
+                    "aria-label": "",
+                    "type": "url",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
                     "parent_repeater": "field_65bbb575636f6"
                 }
             ]

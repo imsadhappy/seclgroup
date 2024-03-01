@@ -3,7 +3,7 @@
  *
  * Handles our team block render.
  */
-((M, W, D) => {
+((M, I, W, D) => {
 
     if (W.adminpage) return;
 
@@ -12,13 +12,27 @@
         loaded: false,
         container: null,
         items: [],
+        rows: 1,
+        cols: 1,
         canTouch: ('ontouchstart' in W) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0),
-        data(from, key) {
-            return parseInt(from.dataset[key ?? 'i'], 10)
+        is(value) {
+            this.container.classList.add(value)
+        },
+        not(value) {
+            this.container.classList.remove(value)
+        },
+        data(from) {
+            let {i, row, col} = from.dataset
+            return {i: parseInt(i, 10),
+                    row: parseInt(row, 10),
+                    col: parseInt(col, 10)}
+        },
+        getColCount() {
+            return (W.innerWidth < 781 ? (W.innerWidth < 480 ? 1 : 3) : 5)
         },
         getAltImageNumber(target, row, col) {
-            let x = this.data(target, 'row'),
-                y = this.data(target, 'col'),
+            let x = this.data(target).row,
+                y = this.data(target).col,
                 n = 0;
             if (x < row) { //row before: 4, 5, 6
                 n = y <= col ? (y < col ? 4 : 5) : 6
@@ -29,7 +43,7 @@
             }
             return n
         },
-        getImage(item, key, data) {
+        getImage(key, item, data) {
             if (!data[key]) return
             let image = item.querySelector(`img.${key}`)
             if (!image) {
@@ -44,8 +58,8 @@
             }
             return image
         },
-        activate(item, key, data) {
-            let image = this.getImage(item, key, data)
+        activate(key, item, data) {
+            let image = this.getImage(key, item, data)
             if (!image) return
             image.classList.add('active')
         },
@@ -54,70 +68,89 @@
         },
         onmouseenter(item) {
             if (this.done) return
-            let i = this.data(item)
-            i = i+1 > 4 ? 4 : i+1
+            let i = this.data(item).i
+            i = i+1 > I ? I : i+1
             item.dataset.i = i
             this.container.querySelectorAll('img').forEach(img => {
                 img.classList.remove('active')
             })
             this.trigger('activate', {
                 item, i,
-                row: this.data(item, 'row'),
-                col: this.data(item, 'col')
+                row: i == I ? 3 /* max rows: 5 */ : this.data(item).row,
+                col: i == I ? Math.ceil(this.getColCount() / 2) : this.data(item).col
             })
-            if (i == 4) {
-                this.done = true
-                this.container.classList.remove('hovered')
-                this.container.classList.add('done')
-            } else {
-                this.container.classList.add('hovered')
+            this.is('hovered')
+            if (i == I) {
+                setTimeout(() => this.is('done'), 1000)
             }
         },
         onmouseleave(item) {
-            if (this.done) return
-            this.container.classList.remove('hovered')
+            this.not('hovered')
+            if (item.dataset.i == I) {
+                this.done = true
+            }
             this.trigger('deactivate', {
                 item,
-                i: this.data(item),
-                row: this.data(item, 'row'),
-                col: this.data(item, 'col')
+                i: this.data(item).i,
+                row: this.data(item).row,
+                col: this.data(item).col
             })
         },
         onactivate(item, data, detail) {
             let {i, row, col} = detail
-            if (detail.item == item) {
-                this.activate(item, `img_${i}`, data)
+            if (detail.item == item && i != I) {
+                this.activate(`img_${i}`, item, data)
             } else {
-                this.activate(item, i === 4 ? 'img_4' : `img_${i}_alt_${this.getAltImageNumber(item, row, col)}`, data)
+                this.activate(/*i === I ? `img_${I}` :*/ `img_${i}_alt_${this.getAltImageNumber(item, row, col)}`, item, data)
             }
         },
         ondeactivate(item, data, detail) {
             let {i, row, col} = detail
             if (detail.item == item) {
-                this.getImage(item, `img_${i+1}`, data)
+                this.getImage(`img_${i+1}`, item, data)
             } else {
-                this.getImage(item, i+1 === 4 ? 'img_4' : `img_${i+1}_alt_${this.getAltImageNumber(item, row, col)}`, data)
+                this.getImage(i+1 === I ? `img_${I}` : `img_${i+1}_alt_${this.getAltImageNumber(item, row, col)}`, item, data)
             }
         },
         onresize() {
-            let row = 1, col = 0
+            if (this.done) return
             this.items.forEach(({item}) => {
-                item.dataset.row = row
-                item.dataset.col = ++col
-                if (col == (W.innerWidth < 781 ? 3 : 5)) {
-                    row++
-                    col = 0
+                item.dataset.row = this.rows
+                item.dataset.col = this.cols
+                if (this.cols == this.getColCount()) {
+                    this.cols = 1
+                    this.rows++
+                } else {
+                    this.cols++
                 }
+
             })
         },
         onscroll() {
+            if (this.done) return
+            let offset = this.container.getBoundingClientRect().y - W.innerHeight
             if (this.loaded) {
-                console.log(this.canTouch)
-            } else if ((this.container.getBoundingClientRect().y - W.innerHeight - 200) < 0) {
+                if (!this.canTouch || window.innerWidth > 480) return
+                if (offset < 200) {
+                    this.is('hovered')
+                    this.items.forEach(({item, data}, n) => {
+                        item.querySelectorAll('img.active').forEach(img => img.classList.remove('active'))
+                        if (n+1 === this.items.length && item.getBoundingClientRect().y < W.innerHeight) {
+                            this.is('done')
+                        } else {
+                            if (item.getBoundingClientRect().y < W.innerHeight / 2 || n === 0) {
+                                this.activate(`img_0`, item, data)
+                            } else {
+                                this.activate(`img_1_alt_1`, item, data)
+                            }
+                        }
+                    })
+                }
+            } else if (offset - 200 < 0) {
                 this.items.forEach(({item, data}) => {
                     this.watch(item, data)
-                    this.activate(item, `img_0`, data) //load
-                    this.getImage(item, `img_1`, data) //preload
+                    this.activate(`img_0`, item, data) //load
+                    this.getImage(`img_1`, item, data) //preload
                 })
                 this.loaded = true
             }
@@ -155,4 +188,4 @@
 
     D.addEventListener(`${M}:init`, ({detail}) => instance.init(detail))
 
-})('ourTeam', window, document)
+})('ourTeam', 4, window, document)

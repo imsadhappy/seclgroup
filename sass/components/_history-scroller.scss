@@ -1,7 +1,6 @@
 .history-scroller {
 
     --history-scroller-gap: 80px;
-
     @media (max-width: $width__min) {
         --history-scroller-gap: 10vw;
     }
@@ -10,6 +9,20 @@
 
     flex-wrap: nowrap !important;
     gap: var(--history-scroller-gap);
+    transition: all .1s ease;
+
+    &-before {
+        //min-height: 100px;
+    }
+
+    &-container.alignfull {
+        overflow: initial !important;
+    }
+
+    &-content {
+        position: sticky;
+        top: 0;
+    }
 
     & > * {
 

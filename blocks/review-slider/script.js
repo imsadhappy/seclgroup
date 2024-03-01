@@ -16,12 +16,20 @@ window[moduleID] = window[moduleID] || {
         gutter: 40,
         controlsPosition: 'bottom',
         slideBy: 'page',
-        fixedWidth: false,
+        fixedWidth: false
         //navAsThumbnails: true
     },
     components: {
         "https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.js": "script",
         "https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css": "style"
+    },
+    updateInstance(instance, i) {
+        if (i) {
+            this.instances[i] = instance
+        } else {
+            this.instances.push(instance)
+        }
+        window.dispatchEvent(new CustomEvent(`${moduleID}:updateInstance`, {detail:instance}))
     },
     create() {
         const module = this
@@ -36,16 +44,22 @@ window[moduleID] = window[moduleID] || {
                         fixedWidth: 480
                     }
                 }
+            } else if (wrapper.classList.contains('layout-default')) {
+                config.autoHeight = true
             }
-            module.instances.push(tns(config))
+            module.updateInstance(tns(config))
         })
     },
     rebuild() {
         const module = this
         module.each((instance, i) => {
             try {
-                if (instance.destroy) { instance.destroy() }
-                if (instance.rebuild) { module.instances[i] = instance.rebuild() }
+                if (instance.destroy) {
+                    instance.destroy()
+                }
+                if (instance.rebuild) {
+                    module.updateInstance(instance.rebuild(), i)
+                }
             } catch (e) {}
         })
     },
@@ -80,6 +94,9 @@ window[moduleID] = window[moduleID] || {
                 window.dispatchEvent(new Event('resize'))
                 module.loaded = true
             })
+            window.addEventListener(`${moduleID}:updateInstance`, ({detail}) => {
+                document.querySelectorAll(`.tns-ovh`).forEach(ovh => ovh.classList.add('active'))
+            });
             module.ready = true
         }
     }

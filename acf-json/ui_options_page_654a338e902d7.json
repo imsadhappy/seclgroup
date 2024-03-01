@@ -1,0 +1,21 @@
+{
+    "key": "ui_options_page_654a338e902d7",
+    "title": "Contacts",
+    "active": true,
+    "menu_order": 0,
+    "page_title": "Contacts",
+    "menu_slug": "contacts",
+    "parent_slug": "options-general.php",
+    "advanced_configuration": 0,
+    "icon_url": "",
+    "menu_title": "",
+    "position": "",
+    "redirect": false,
+    "description": "",
+    "update_button": "Update",
+    "updated_message": "Options Updated",
+    "capability": "edit_posts",
+    "data_storage": "options",
+    "post_id": "",
+    "autoload": 0
+}

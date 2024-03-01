@@ -5,6 +5,14 @@
  * @package SECLGroup
  */
 
+add_filter( 'style_loader_src', function( $src, $handle ) {
+
+    if ( strpos($handle, 'block-acf-seclgroup') === 0 )
+        $src = str_replace(constant('ACF_VERSION'), wp_get_theme()->get('Version'), $src);
+
+    return $src;
+}, 10, 2 );
+
 add_filter( 'block_categories_all', function ( $block_categories ) {
 
     array_unshift( $block_categories, array(
@@ -26,7 +34,7 @@ add_action( 'acf/init', function () {
     acf_register_block( array(
         'name'              => "seclgroup-our-team",
         'title'             => __('Our Team', 'seclgroup'),
-        'description'       => __('A custom masonry grid with Name, Position & Photo.', 'seclgroup'),
+        'description'       => __('Grid outputs Team Members (custom post type) Name, Position & Photo.', 'seclgroup'),
         'render_template'   => 'blocks/our-team/template.php',
         'category'          => 'seclgroup',
         'icon'              => 'groups',

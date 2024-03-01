@@ -2,7 +2,8 @@
   position: relative;
   margin: 16px;
   width: calc(100% - 32px);
-  overflow: hidden; }
+  overflow: hidden;
+  background-color: #F2C3E5; }
   @media (max-width: 920px) {
     .team-member {
       margin: 8px;
@@ -36,7 +37,7 @@
     padding: 5px 10px;
     max-width: calc(100% - 20px);
     text-align: center;
-    z-index: 4; }
+    z-index: -1; }
     @media (max-width: 480px) {
       .team-member--details {
         display: none; } }
@@ -45,7 +46,9 @@
     font-size: 18px; }
   .team-member--position {
     font-size: 14px; }
-  .hovered .team-member--details {
+  .team-member.clicked .team-member--details {
+    z-index: 4; }
+  .done > .team-member .team-member--details {
     z-index: -1; }
 
 .our-team {
@@ -55,11 +58,14 @@
   overflow: hidden;
   gap: 0;
   grid-template-columns: repeat(5, 1fr); }
+  .our-team--container {
+    position: relative; }
   @media (max-width: 781px) {
     .our-team {
       grid-template-columns: repeat(3, 1fr); } }
-  .our-team--container {
-    position: relative; }
+  @media (max-width: 480px) {
+    .our-team {
+      grid-template-columns: 1fr; } }
   .our-team--result:not([data-block]) {
     position: absolute;
     opacity: 0;
@@ -68,19 +74,21 @@
     top: 0;
     bottom: 0;
     margin: auto;
-    padding: 2% 30px 4%;
     z-index: -1;
     transition: opacity .4s ease;
     width: 60%;
     max-height: fit-content;
-    max-width: 730px; }
+    max-width: 730px;
+    padding: 2% 30px 4%; }
     @media (max-width: 781px) {
       .our-team--result:not([data-block]) {
         width: 100%;
         padding: 5% 16px 7%; } }
     @media (max-width: 480px) {
       .our-team--result:not([data-block]) {
-        padding: 2% 16px 4%; } }
+        padding: 35% 16px;
+        min-height: 20%;
+        top: auto; } }
   .our-team:not(.hovered) img {
     position: absolute;
     z-index: 1; }
@@ -90,7 +98,7 @@
   .our-team.done img {
     position: absolute;
     z-index: 1; }
-  .our-team.done .img_4 {
+  .our-team.done .img_0 {
     position: relative !important;
     z-index: 3 !important; }
   .our-team.done ~ .our-team--result {

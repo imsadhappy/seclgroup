@@ -2,7 +2,7 @@
  * File scripts.js.
  */
 
-function scrollTo(q){
+function jumpTo(q){
     try {
         const target = document.querySelector(q)
         const masthead = document.getElementById('masthead')
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const scrollTarget = new URLSearchParams(document.location.search).get('scroll_to')
 
     if (scrollTarget) {
-        scrollTo('#'+scrollTarget)
+        jumpTo('#'+scrollTarget)
     }
 
     /**
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 /**
- * Slow scrollTo #anchor
+ * Slow jumpTo #anchor
  */
 document.addEventListener('click', event => {
     let url = null
@@ -107,7 +107,7 @@ document.addEventListener('click', event => {
         url.hostname === location.hostname &&
         url.hash != '') {
             event.preventDefault()
-            scrollTo(url.hash)
+            jumpTo(url.hash)
         }
 })
 
