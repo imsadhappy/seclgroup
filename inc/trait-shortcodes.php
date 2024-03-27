@@ -59,7 +59,10 @@ trait Shortcodes {
             }
         }
 
-        if ($type === 'phone' && !empty($value))
+        if (empty($value))
+            return '';
+
+        if ($type === 'phone')
             return sprintf($template, $location, preg_replace('/[^0-9]/', '', $value), $value);
 
         return sprintf($template, $location, $value);

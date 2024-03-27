@@ -81,7 +81,7 @@
             })
             this.is('hovered')
             if (i == I) {
-                setTimeout(() => this.is('done'), 1000)
+                setTimeout(() => this.is('done'), 333)
             }
         },
         onmouseleave(item) {

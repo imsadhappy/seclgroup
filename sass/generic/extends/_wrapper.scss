@@ -2,9 +2,9 @@
 	max-width: $width__desktop;
 	margin-left: auto;
 	margin-right: auto;
-	width: calc(100vw - 60px);
+	width: calc(100vw - #{$margin});
 	@media (max-width: $width__min) {
-		width: calc(100vw - 30px);
+		width: calc(100vw - #{$margin / 2});
 	}
 
     &-narrow {

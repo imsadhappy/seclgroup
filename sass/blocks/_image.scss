@@ -80,7 +80,7 @@
         border-radius: 10px;
         padding: 10px 0 10px 10px;
         .components-resizable-box__container {
-            display: inline-block;
+            display: inline-block !important;
             vertical-align: middle;
         }
         img {
@@ -90,6 +90,7 @@
         }
         figcaption {
             margin: 0 10px;
+            font-size: 14px;
             display: inline-block;
         }
         &:hover img {

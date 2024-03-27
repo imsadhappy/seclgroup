@@ -55,6 +55,8 @@
       outline: 0;
       padding: 0;
       background-color: #F6F7FB; }
+      .has-bg-grey-background-color .wp-block-review-slider .tns-nav button {
+        background-color: #F2C3E5; }
     .wp-block-review-slider .tns-nav-active {
       background-color: #E46EC3 !important; }
   .wp-block-review-slider .tns-controls {
@@ -65,7 +67,7 @@
       width: 40px;
       height: 40px;
       font-size: 0 !important;
-      background: rgba(255, 255, 255, 0.9) url("../../assets/chevron-right-xl-red.svg") center no-repeat;
+      background: transparent url("../../assets/chevron-right-xl-red.svg") center no-repeat;
       border: 0;
       outline: 0;
       padding: 0; }

@@ -20,7 +20,6 @@ $post_permalink = get_permalink($post_id);
         posted_by();
     ?></div>
 
-
     <a href="<?php echo esc_url( $post_permalink ) ?>" rel="bookmark">
         <h3 class="post-title dotdotdot"><?php
             esc_html_e($post_title);

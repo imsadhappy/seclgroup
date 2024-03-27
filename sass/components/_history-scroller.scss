@@ -11,10 +11,6 @@
     gap: var(--history-scroller-gap);
     transition: all .1s ease;
 
-    &-before {
-        //min-height: 100px;
-    }
-
     &-container.alignfull {
         overflow: initial !important;
     }
@@ -26,8 +22,11 @@
 
     & > * {
 
+        display: flex;
+        flex-direction: column;
         flex-basis: 90vw !important;
         max-width: 360px !important;
+        justify-content: flex-end;
 
         .card {
             background-color: $BG__White;
@@ -39,7 +38,7 @@
         .number {
             position: relative;
             display: block;
-            margin-top: 46px;
+            padding-top: 46px;
             line-height: 32px;
             font-size: 14px;
             color: $Text__White;

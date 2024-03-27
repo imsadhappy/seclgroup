@@ -57,6 +57,10 @@ $ npm install
 
 ### Versions
 
+Version 0.9.10
+
+- projects cpt (project list & logo blocks)
+
 Version 0.9.4
 
 - bug fixes

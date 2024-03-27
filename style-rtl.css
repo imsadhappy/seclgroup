@@ -4,7 +4,7 @@ Theme URI: https://seclgroup.com/
 Author: SECLGroup
 Author URI: https://seclgroup.com/
 Description:  SECLGroup Theme
-Version: 0.9.4
+Version: 0.9.6
 Tested up to: 5.4
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
@@ -1587,7 +1587,9 @@ html, body, .site {
   flex-direction: column; }
 
 .alignfull {
-  overflow: hidden; }
+  overflow: hidden;
+  overflow-x: clip;
+  overflow-y: visible; }
 
 .site-header {
   z-index: 10;
@@ -4140,8 +4142,11 @@ body.admin-bar:not(.scroll-down) .site-header {
     position: sticky;
     top: 0; }
   .history-scroller > * {
+    display: flex;
+    flex-direction: column;
     flex-basis: 90vw !important;
-    max-width: 360px !important; }
+    max-width: 360px !important;
+    justify-content: flex-end; }
     .history-scroller > * .card {
       background-color: #FFFFFF;
       padding: 2em;
@@ -4150,7 +4155,7 @@ body.admin-bar:not(.scroll-down) .site-header {
     .history-scroller > * .number {
       position: relative;
       display: block;
-      margin-top: 46px;
+      padding-top: 46px;
       line-height: 32px;
       font-size: 14px;
       color: #FFFFFF; }

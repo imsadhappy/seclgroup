@@ -554,3 +554,25 @@ if ( ! function_exists( 'blog_content' ) ) {
 		</div><?php
 	}
 }
+
+if ( ! function_exists( 'project_logo' ) ) {
+
+	function project_logo( $img, $block = [] ) {
+
+		?><figure class="wp-block-project-logo" <?php block_class('wp-block-project-logo', $block) ?>>
+			<img src="<?php echo esc_url($img['url']) ?>" alt="<?php echo esc_attr($img['alt']) ?>" />
+		</figure><?php
+	}
+}
+
+if ( ! function_exists( 'project_stain' ) ) {
+
+	function project_stain( $post_id, $class = "project--hover-image") {
+
+		?><img class="<?php esc_attr_e($class) ?>"
+			src="<?php printf('%s/assets/case-study-style-%d.svg',
+						get_template_directory_uri(),
+						intval(get_field('project_style', $post_id))) ?>"
+			alt="<?php esc_attr_e(get_the_title($post_id)) ?>"><?php
+	}
+}

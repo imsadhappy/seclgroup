@@ -221,6 +221,14 @@
 						> li > a {
 							background: none !important;
 						}
+
+						ul.techno-list {
+							> li {
+								> a {
+									padding: 0 !important;
+								}
+							}
+						}
 					}
 				}
 			}

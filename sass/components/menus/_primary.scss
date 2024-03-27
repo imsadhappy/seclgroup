@@ -51,6 +51,9 @@
 	}
 
 	> li:not([class*="has-button"]) {
+		> a {
+			padding: 30px 0 31px;
+		}
 		&.current-menu-item,
 		&.current-menu-ancestor {
 			//box-shadow:0 -16px 0 $BG__White inset,  0 -18px 0 $Primary__150 inset;
@@ -58,23 +61,10 @@
 				text-decoration: underline;
 				text-decoration-thickness: 3px;
 				text-underline-offset: 20px;
-			}
-		}
-		> a {
-			padding: 30px 0 31px;
-		}
-	}
-
-	.current-menu-item,
-	.current-menu-ancestor {
-		> a {
-
-			color: $Primary__150;
-		}
-		&.menu-item-has-children,
-		&.menu-item-has-arrow {
-			a:after {
-				background-image: url('assets/chevron-down-pink.svg') !important;
+				color: $Primary__150;
+				&:after {
+					background-image: url('assets/chevron-down-pink.svg') !important;
+				}
 			}
 		}
 	}
@@ -256,6 +246,19 @@
 											> .yspl_win_wrap { display: block }
 										}
 									}
+
+									//.yspl-widget-area > .yspl_win_widget_nav {
+										ul.techno-list {
+											> li {
+												> a {
+													padding: 0 30px 0 0 !important;
+													&::after {
+														margin-right: -35px !important;
+													}
+												}
+											}
+										}
+									//}
 								}
 							}
 

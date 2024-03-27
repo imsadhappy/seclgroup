@@ -1,0 +1,26 @@
+&-project-logo {
+
+    width: 88px;
+    height: 80px;
+    padding: 8px 12px 8px 12px;
+    border: 1px solid $Text__Secondary;
+    box-sizing: border-box;
+
+    img {
+        width: 64px;
+        height: 64px;
+        object-fit: contain;
+        box-sizing: border-box;
+    }
+
+    @media (max-width: $width__mobile) {
+
+        width: 64px;
+        height: 64px;
+
+        img {
+            width: 46px;
+            height: 46px;
+        }
+    }
+}

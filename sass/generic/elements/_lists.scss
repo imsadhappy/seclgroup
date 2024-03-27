@@ -52,13 +52,27 @@ ul, ol {
 	&.cols-4 {
 		column-count: 4;
 	}
-	&.grid-3 {
+	&[class*="grid-"] {
 		display: flex;
 		flex-wrap: wrap;
+	}
+	&.grid-2 {
+		gap: 2%;
+		> li {
+			flex: 0 0 49%;
+		}
+	}
+	&.grid-3 {
+		gap: 2%;
 		> li {
 			flex: 0 0 32%;
 		}
+	}
+	&.grid-4 {
 		gap: 2%;
+		> li {
+			flex: 0 0 23.5%;
+		}
 	}
 	@media (max-width: $width__mobile) {
 		&[class*="grid-"] {

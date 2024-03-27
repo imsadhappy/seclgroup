@@ -11,7 +11,7 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-	<header class="entry-header"><?php
+	<?php /* header class="entry-header"><?php
 
 		if ( is_singular() ) {
 
@@ -54,7 +54,7 @@
 
 		?></div><!-- .entry-thumbnail -->
 
-	<?php endif; ?>
+	<?php endif */ ?>
 
 	<section class="entry-content"><?php
 

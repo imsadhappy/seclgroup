@@ -3,25 +3,6 @@
  *
  * Scripts for case studies ACF block
  */
-function goToCaseStudy(caseStudy){
-    if (('ontouchstart' in window) ||
-        (navigator.maxTouchPoints > 0) ||
-        (navigator.msMaxTouchPoints > 0)) {
-        var clicked = parseInt(caseStudy.dataset.clicked, 10)
-        if (!clicked) {
-            var siblings = caseStudy.parentElement.children;
-            for (var i = 0; i < siblings.length; i++) {
-                siblings[i].dataset.clicked = 0
-            }
-            caseStudy.dataset.clicked = 1
-        } else {
-            window.location = caseStudy.dataset.url
-        }
-    } else {
-        window.location = caseStudy.dataset.url
-    }
-}
-
 document.addEventListener('DOMContentLoaded', () => {
     const targets = document.querySelectorAll('.case-study')
     if (targets.length < 1) return;

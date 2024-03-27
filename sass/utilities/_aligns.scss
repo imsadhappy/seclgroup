@@ -26,6 +26,12 @@
 
 .align-justify { text-align: justify }
 
+.alignfull {
+	overflow: hidden;
+	overflow-x: clip;
+	overflow-y: visible;
+}
+
 .alignleft {
 
 	/*rtl:ignore*/
@@ -53,7 +59,15 @@
 }
 
 .alignwide {
-	max-width: $width__wide;
+	@media (min-width: $width__desktop) {
+		max-width: $width__wide !important;
+	}
+	margin-left: auto !important;
+	margin-right: auto !important;
+	@media (max-width: #{$width__wide + $margin}) {
+		max-width: calc(100vw - $margin) !important;
+	}
+	@extend .base-mobile-padding;
 }
 
 @media (max-width: $width__mobile) {

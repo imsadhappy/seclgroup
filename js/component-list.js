@@ -6,9 +6,9 @@ loadComponent('wpcf7-popup')
 /**
  * Dotdotdot
  */
-if (document.querySelectorAll('.dotdotdot').length > 0) {
-    loadComponent('dotdotdot')
-}
+//if (document.querySelectorAll('.dotdotdot').length > 0) {
+    //loadComponent('dotdotdot')
+//}
 
 /**
  * JS Content Injectors (used in blog)

@@ -2,7 +2,7 @@
 	li {
 		margin: 40px 0 80px 0;
 		@media (max-width: $width__mobile), (max-height: $height__mobile) {
-			margin: 30px 0 60px 0;
+			margin: #{$margin / 2} 0 $margin 0;
 		}
 		&:last-child::after,
 		&:not(:first-child)::before {
@@ -16,13 +16,13 @@
 		&:last-child::after {
 			margin-top: 40px;
 			@media (max-width: $width__mobile), (max-height: $height__mobile) {
-				margin-top: 30px;
+				margin-top: #{$margin / 2};
 			}
 		}
 		&:not(:first-child)::before {
 			margin-top: -40px;
 			@media (max-width: $width__mobile), (max-height: $height__mobile) {
-				margin-top: -30px;
+				margin-top: #{$margin * -1};
 			}
 		}
 	}

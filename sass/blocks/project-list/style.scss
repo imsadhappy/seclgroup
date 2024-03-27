@@ -1,0 +1,142 @@
+@import "../../generic/abstracts/columns";
+@import "../../generic/extends/wrapper";
+
+.project {
+
+    &--title {
+        margin-bottom: 0 !important;
+    }
+
+    &--explore {
+
+        margin-top: 40px;
+
+        @media (min-width: $width__mobile) {
+            margin-top: 100px;
+        }
+
+        .wp-element-button {
+            text-align: center;
+        }
+    }
+
+    &--thumbnail {
+        position: relative;
+        img:not([class*="--hover-image"]) {
+            aspect-ratio: 4 / 5;
+            width: calc(100% - 24px) !important;
+            max-height: 80vh;
+            object-fit: cover;
+        }
+    }
+
+    &--hover-image {
+        position: absolute;
+        left: 0;
+        top: -40px;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        z-index: -1;
+        transition: transform .2s ease-in, opacity .4s ease;
+    }
+
+    &--industry {
+        position: absolute;
+        right: 20px;
+        top: 0;
+        transform-origin: top right;
+        transform: rotate(-90deg);
+        text-transform: uppercase;
+        white-space: nowrap;
+        &:before {
+            content: '•';
+            margin-right: 5px;
+        }
+    }
+
+    &-item {
+        cursor: pointer;
+    }
+
+    &-item:hover > &--thumbnail > &--hover-image {
+        transform: scale(1.6);
+        opacity: 1;
+    }
+
+    &-list:not(.related) &-item {
+
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        margin-top: 100px;
+        margin-bottom: 100px;
+        gap: 20%;
+        > * {
+            flex-basis: 40%;
+        }
+        @media (max-width: $width__desktop) {
+            gap: 10%;
+            > * {
+                flex-basis: 45%;
+            }
+        }
+
+        &:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+
+        + * {
+            margin-top: 0;
+        }
+
+        @media (max-width: $width__mobile) {
+
+            flex-direction: column !important;
+            gap: 40px;
+
+            > * {
+                flex-basis: 100%;
+                width: 100%;
+            }
+        }
+    }
+
+    &-list {
+
+        @extend .wrapper;
+
+        ul.post-list {
+            max-width: none;
+            list-style: none;
+        }
+    }
+
+    &-list.related {
+
+        ul.post-list {
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8%;
+
+            @media (max-width: $width__mobile) {
+                grid-template-columns: 1fr;
+                grid-row-gap: 60px;
+            }
+
+            li {
+                flex-direction: column;
+            }
+        }
+
+        &.desktop-hidden-logo .wp-block-project-logo {
+            margin-top: 20px;
+            @media (min-width: $width__mobile) {
+                display: none;
+            }
+        }
+    }
+}
+
+@import "../case-studies";

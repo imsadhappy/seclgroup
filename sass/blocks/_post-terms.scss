@@ -1,0 +1,13 @@
+&-post-terms {
+
+    &.taxonomy-project-category a {
+        @extend .pill;
+        &:first-child {
+            @extend .pill.active;
+        }
+    }
+
+    &.taxonomy-project-category &__separator {
+        display: none !important;
+    }
+}

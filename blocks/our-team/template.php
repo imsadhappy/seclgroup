@@ -44,11 +44,11 @@ else : ?>
 
     <?php if (!$is_preview) inline_script('/blocks/our-team/script.js');
 
+    $n = count($team_members);
+
     foreach ($team_members as $member) :
 
-    $z = 1;
-
-    while ($z <= 25):
+        $z = 1; while ($n < 25 && $z <= ceil(25 / $n)) :
 
         $member_id = uniqid('our_team_member_');
 
@@ -68,7 +68,9 @@ else : ?>
 
         </div>
 
-    <?php $z++; endwhile; endforeach; ?>
+    <?php $z++; endwhile; ?>
+
+    <?php endforeach; ?>
 
     <?php if (!$is_preview) : ?>
         <script>document.dispatchEvent(

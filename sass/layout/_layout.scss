@@ -14,6 +14,8 @@ body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alig
 
 .alignfull {
     overflow: hidden;
+    overflow-x: clip;
+    overflow-y: visible;
 }
 
 @import "header";

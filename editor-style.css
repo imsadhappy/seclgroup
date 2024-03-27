@@ -583,11 +583,11 @@ textarea,
     opacity: 1; }
 
 @media (max-width: 1224px) {
-  .base-mobile-padding, .wp-block-cover__inner-container {
-    max-width: calc(100vw - 60px); } }
+  .base-mobile-padding, .wp-block-cover__inner-container, .alignwide {
+    max-width: calc(100vw - 60px) !important; } }
 
 @media (max-width: 480px) {
-  .base-mobile-padding, .wp-block-cover__inner-container {
+  .base-mobile-padding, .wp-block-cover__inner-container, .alignwide {
     max-width: calc(100vw - 30px) !important; } }
 
 .base-button-style, .acf-block-preview .button,
@@ -672,9 +672,9 @@ textarea,
 .pill, .category-link,
 .term-link,
 .taxonomy-category a,
-.entry-categories a, .post-list .type-post .posted-in a, .search .post-list .type-post .posted-in a, .pagination .page-numbers, .single article.post .posted-in a {
+.entry-categories a, .post-list .type-post .posted-in a, .search .post-list .type-post .posted-in a, .pagination .page-numbers, .single article.post .posted-in a, .wp-block-post-terms.taxonomy-project-category a {
   display: inline-block;
-  padding: 4px 12px;
+  padding: 8px 12px;
   margin: 12px 6px 0 0;
   border-radius: 0;
   border: 1px solid #707380;
@@ -685,16 +685,16 @@ textarea,
   .pill:hover, .category-link:hover,
   .term-link:hover,
   .taxonomy-category a:hover,
-  .entry-categories a:hover, .post-list .type-post .posted-in a:hover, .pagination .page-numbers:hover, .single article.post .posted-in a:hover, .pill:focus, .category-link:focus,
+  .entry-categories a:hover, .post-list .type-post .posted-in a:hover, .pagination .page-numbers:hover, .single article.post .posted-in a:hover, .wp-block-post-terms.taxonomy-project-category a:hover, .pill:focus, .category-link:focus,
   .term-link:focus,
   .taxonomy-category a:focus,
-  .entry-categories a:focus, .post-list .type-post .posted-in a:focus, .pagination .page-numbers:focus, .single article.post .posted-in a:focus, .pill.active, .active.category-link,
+  .entry-categories a:focus, .post-list .type-post .posted-in a:focus, .pagination .page-numbers:focus, .single article.post .posted-in a:focus, .wp-block-post-terms.taxonomy-project-category a:focus, .pill.active, .active.category-link,
   .active.term-link,
   .taxonomy-category a.active,
-  .entry-categories a.active, .post-list .type-post .posted-in a.active, body.blog .post-list .posted-in a:first-child, .pagination .active.page-numbers, .pagination .page-numbers.current, .single article.post .posted-in a.active, .single article.post .entry-footer .entry-categories a:first-child, .single .related-entries .posted-in a:first-child, .pill[rel*="current"], .category-link[rel*="current"],
+  .entry-categories a.active, .post-list .type-post .posted-in a.active, body.blog .post-list .posted-in a:first-child, .pagination .active.page-numbers, .pagination .page-numbers.current, .single article.post .posted-in a.active, .single article.post .entry-footer .entry-categories a:first-child, .single .related-entries .posted-in a:first-child, .wp-block-post-terms.taxonomy-project-category a.active, .wp-block-post-terms.taxonomy-project-category a:first-child, .pill[rel*="current"], .category-link[rel*="current"],
   .term-link[rel*="current"],
   .taxonomy-category a[rel*="current"],
-  .entry-categories a[rel*="current"], .post-list .type-post .posted-in a[rel*="current"], .pagination .page-numbers[rel*="current"], .single article.post .posted-in a[rel*="current"] {
+  .entry-categories a[rel*="current"], .post-list .type-post .posted-in a[rel*="current"], .pagination .page-numbers[rel*="current"], .single article.post .posted-in a[rel*="current"], .wp-block-post-terms.taxonomy-project-category a[rel*="current"] {
     background: #090F20;
     color: #FFFFFF;
     border-color: #090F20; }
@@ -800,12 +800,12 @@ textarea,
 .wrap-button-up-right-arrow a {
   background-image: url("assets/images/arrow-up-right-in-circle.svg"); }
 
-.arrow-up-right-in-circle-on-hover:focus, .pineaple-marker li a:focus, .techno-list li a:focus, .custom-list.with-underline > :focus, .with-underline.techno-list > :focus, .arrow-up-right-in-circle-on-hover.is-selected, .pineaple-marker li a.is-selected, .techno-list li a.is-selected, .custom-list.with-underline > .is-selected, .with-underline.techno-list > .is-selected, .arrow-up-right-in-circle-on-hover:hover, .pineaple-marker li a:hover, .techno-list li a:hover, .custom-list.with-underline > :hover, .with-underline.techno-list > :hover {
+.arrow-up-right-in-circle-on-hover:focus, .pineaple-marker li a:focus, .techno-list li a:focus, .custom-list.with-underline > :focus, .with-underline.techno-list > :focus, .techno-list li a:focus::after, .arrow-up-right-in-circle-on-hover.is-selected, .pineaple-marker li a.is-selected, .techno-list li a.is-selected, .custom-list.with-underline > .is-selected, .with-underline.techno-list > .is-selected, .techno-list li a.is-selected::after, .arrow-up-right-in-circle-on-hover:hover, .pineaple-marker li a:hover, .techno-list li a:hover, .custom-list.with-underline > :hover, .with-underline.techno-list > :hover, .techno-list li a:hover::after {
   background: url("assets/images/arrow-up-right-in-circle.svg") no-repeat 99% center;
   background-size: 30px; }
 
 @media (max-width: 480px) {
-  .arrow-up-right-in-circle-on-hover, .pineaple-marker li a, .techno-list li a, .custom-list.with-underline > *, .with-underline.techno-list > * {
+  .arrow-up-right-in-circle-on-hover, .pineaple-marker li a, .techno-list li a, .custom-list.with-underline > *, .with-underline.techno-list > *, .techno-list li a:hover::after, .techno-list li a:focus::after, .techno-list li a.is-selected::after {
     background: url("assets/images/arrow-up-right-in-circle.svg") no-repeat 99% center;
     background-size: 30px; } }
 
@@ -914,15 +914,32 @@ ul.no-marker {
 .techno-list li {
   border-top: 0 !important;
   border-bottom: 1px solid #D6DAE2;
-  display: table; }
+  padding: 16px 0 16px 24px !important;
+  /*#mobile-primary-menu & {
+			padding-top: 10px !important;
+			border: 0 !important;
+		}
+		
+		#mobile-primary-menu &:before {
+			display: none !important;
+		}*/ }
   .techno-list li a {
     display: table-cell;
-    vertical-align: middle; }
-  #mobile-primary-menu .techno-list li {
-    padding: 10px 0 !important;
-    border: 0 !important; }
-  #mobile-primary-menu .techno-list li:before {
-    display: none !important; }
+    vertical-align: middle;
+    padding: 0 30px 0 0 !important;
+    background: none !important;
+    position: relative; }
+    .techno-list li a:hover::after, .techno-list li a:focus::after, .techno-list li a.is-selected::after {
+      content: '';
+      display: block;
+      position: absolute;
+      height: 30px;
+      width: 30px;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto; }
   @media (max-width: 781px) {
     .techno-list li:last-child {
       border-bottom: 0; } }
@@ -948,7 +965,7 @@ ul.no-marker {
     margin-top: -40px; }
     @media (max-width: 781px), (max-height: 720px) {
       #services li:not(:first-child)::before {
-        margin-top: -30px; } }
+        margin-top: -60px; } }
 
 .encircle-gif {
   display: inline-block;
@@ -1473,12 +1490,24 @@ ul.cols-3, ol.cols-3 {
 ul.cols-4, ol.cols-4 {
   column-count: 4; }
 
-ul.grid-3, ol.grid-3 {
+ul[class*="grid-"], ol[class*="grid-"] {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap; }
+
+ul.grid-2, ol.grid-2 {
+  gap: 2%; }
+  ul.grid-2 > li, ol.grid-2 > li {
+    flex: 0 0 49%; }
+
+ul.grid-3, ol.grid-3 {
   gap: 2%; }
   ul.grid-3 > li, ol.grid-3 > li {
     flex: 0 0 32%; }
+
+ul.grid-4, ol.grid-4 {
+  gap: 2%; }
+  ul.grid-4 > li, ol.grid-4 > li {
+    flex: 0 0 23.5%; }
 
 @media (max-width: 781px) {
   ul[class*="grid-"], ol[class*="grid-"] {
@@ -2545,7 +2574,7 @@ blockquote,
   border-radius: 10px;
   padding: 10px 0 10px 10px; }
   .wp-block-image.technology-pill .components-resizable-box__container {
-    display: inline-block;
+    display: inline-block !important;
     vertical-align: middle; }
   .wp-block-image.technology-pill img {
     vertical-align: middle;
@@ -2553,6 +2582,7 @@ blockquote,
     transition: filter .3s ease; }
   .wp-block-image.technology-pill figcaption {
     margin: 0 10px;
+    font-size: 14px;
     display: inline-block; }
   .wp-block-image.technology-pill:hover img {
     filter: grayscale(0%); }
@@ -2933,6 +2963,28 @@ blockquote,
 .wp-block-table.border-gray td {
   border: 1px solid #D6DAE2; }
 
+.wp-block-post-terms.taxonomy-project-category .wp-block-post-terms__separator {
+  display: none !important; }
+
+.wp-block-project-logo {
+  width: 88px;
+  height: 80px;
+  padding: 8px 12px 8px 12px;
+  border: 1px solid #707380;
+  box-sizing: border-box; }
+  .wp-block-project-logo img {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    box-sizing: border-box; }
+  @media (max-width: 781px) {
+    .wp-block-project-logo {
+      width: 64px;
+      height: 64px; }
+      .wp-block-project-logo img {
+        width: 46px;
+        height: 46px; } }
+
 .custom-horizontal-scroller {
   scrollbar-width: thin;
   scrollbar-color: #E2E9FB transparent;
@@ -2966,7 +3018,7 @@ blockquote,
   height: 60px;
   border-radius: 30px;
   right: 5vw;
-  margin-top: -30px;
+  margin-top: -60px;
   outline: none;
   box-shadow: -40px 0 0 0 var(--color-grey), 2.5vw 0 0 2.5vw var(--color-grey) !important;
   background: var(--color-secondary) no-repeat center url("assets/slider-arrow-right.svg") !important;
@@ -3387,8 +3439,11 @@ blockquote,
     position: sticky;
     top: 0; }
   .history-scroller > * {
+    display: flex;
+    flex-direction: column;
     flex-basis: 90vw !important;
-    max-width: 360px !important; }
+    max-width: 360px !important;
+    justify-content: flex-end; }
     .history-scroller > * .card {
       background-color: #FFFFFF;
       padding: 2em;
@@ -3397,7 +3452,7 @@ blockquote,
     .history-scroller > * .number {
       position: relative;
       display: block;
-      margin-top: 46px;
+      padding-top: 46px;
       line-height: 32px;
       font-size: 14px;
       color: #FFFFFF; }
@@ -3538,6 +3593,11 @@ blockquote,
 .align-justify {
   text-align: justify; }
 
+.alignfull {
+  overflow: hidden;
+  overflow-x: clip;
+  overflow-y: visible; }
+
 .alignleft {
   /*rtl:ignore*/
   float: left;
@@ -3560,7 +3620,14 @@ blockquote,
   margin-bottom: 1.5em; }
 
 .alignwide {
-  max-width: 1320px; }
+  margin-left: auto !important;
+  margin-right: auto !important; }
+  @media (min-width: 1224px) {
+    .alignwide {
+      max-width: 1320px !important; } }
+  @media (max-width: 1380px) {
+    .alignwide {
+      max-width: calc(100vw - $margin) !important; } }
 
 @media (max-width: 781px) {
   .mobile-alignfull {

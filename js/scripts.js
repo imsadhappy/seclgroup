@@ -18,6 +18,26 @@ function jumpTo(q){
     }
 }
 
+function goToProject(project){
+    if (window.adminpage) return
+    if (('ontouchstart' in window) ||
+        (navigator.maxTouchPoints > 0) ||
+        (navigator.msMaxTouchPoints > 0)) {
+        var clicked = parseInt(project.dataset.clicked, 10)
+        if (!clicked) {
+            var siblings = project.parentElement.children;
+            for (var i = 0; i < siblings.length; i++) {
+                siblings[i].dataset.clicked = 0
+            }
+            project.dataset.clicked = 1
+        } else {
+            window.location = project.dataset.url
+        }
+    } else {
+        window.location = project.dataset.url
+    }
+}
+
 /**
  * Scroll ratio for zoomed screens
  */
@@ -102,13 +122,15 @@ document.addEventListener('click', event => {
     } else if (event.target.parentElement?.href) {
         url = new URL(event.target.parentElement.href)
     }
-    if (url &&
-        url.pathname === location.pathname &&
-        url.hostname === location.hostname &&
-        url.hash != '') {
+    if (url && url.hash != ''
+        && url.pathname === location.pathname
+        && url.hostname === location.hostname) {
             event.preventDefault()
             jumpTo(url.hash)
         }
+    if (event.target.parentElement?.classList.contains('taxonomy-project-category')) {
+        event.preventDefault()
+    }
 })
 
 /*
