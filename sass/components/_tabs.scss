@@ -11,7 +11,11 @@
 .custom-tabs {
 
     @extend .overflow-x-auto, .no-scrollbar, .wrapped-by-padding;
-    max-width: none !important;
+
+    html body & {
+        max-width: none !important;
+    }
+
     justify-content: space-between;
 
     &.as-select {

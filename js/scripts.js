@@ -2,7 +2,21 @@
  * File scripts.js.
  */
 
-function jumpTo(q){
+const setScrollRatio = () => {
+    /**
+     * Scroll ratio for zoomed screens
+     */
+    let i = Math.ceil(window.devicePixelRatio)
+    if (window.devicePixelRatio < 1) i = 2
+    if (window.devicePixelRatio <= .5) i = 3
+    if (window.devicePixelRatio <= .25) i = 4
+    window.scrollRatio = i
+}
+
+const slowScrollToTarget = q => {
+    /**
+     * Slow scrollTo #anchor
+     */
     try {
         const target = document.querySelector(q)
         const masthead = document.getElementById('masthead')
@@ -18,7 +32,7 @@ function jumpTo(q){
     }
 }
 
-function goToProject(project){
+const goToProject = project => {
     if (window.adminpage) return
     if (('ontouchstart' in window) ||
         (navigator.maxTouchPoints > 0) ||
@@ -38,25 +52,25 @@ function goToProject(project){
     }
 }
 
-/**
- * Scroll ratio for zoomed screens
- */
-function setScrollRatio(){
-    let sr = Math.ceil(window.devicePixelRatio)
-    if (window.devicePixelRatio <= .5) sr = 3
-    if (window.devicePixelRatio <= .25) sr = 4
-    window.scrollRatio = sr
-}
-setScrollRatio()
 window.addEventListener('resize', setScrollRatio)
 
+document.addEventListener('DOMContentLoaded', setScrollRatio)
+
 document.addEventListener('DOMContentLoaded', () => {
-
     const scrollTarget = new URLSearchParams(document.location.search).get('scroll_to')
-
     if (scrollTarget) {
-        jumpTo('#'+scrollTarget)
+        slowScrollToTarget('#'+scrollTarget)
     }
+})
+
+document.addEventListener('DOMContentLoaded', () => {
+    if (window.scrollY > 0) {
+        window.dispatchEvent(new Event('scroll'))
+        window.dispatchEvent(new Event('resize'))
+    }
+})
+
+document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * Link href # => javascript:void(0)
@@ -73,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 togglers = container.querySelectorAll('.toggler')
         if (toggled.length === 0 || togglers.length === 0) return
         togglers.forEach(toggler => {
-            toggler.addEventListener('click', () => {
+            toggler.addEventListener('click', click => {
                 container.classList.toggle('active')
                 toggled.forEach(e => e.classList.toggle('active'))
             })
@@ -94,10 +108,10 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     document.querySelectorAll('.dispatch-hover').forEach(container => {
         let targets = container.querySelectorAll('.receive-hover')
-        container.addEventListener('mouseenter', () => {
+        container.addEventListener('mouseenter', mouseenter => {
             targets.forEach(child => child.classList.add('is-hovered'))
         })
-        container.addEventListener('mouseleave', () => {
+        container.addEventListener('mouseleave', mouseleave => {
             targets.forEach(child => child.classList.remove('is-hovered'))
         })
     })
@@ -106,15 +120,14 @@ document.addEventListener('DOMContentLoaded', () => {
      * Dispatch click to children
      */
     document.querySelectorAll('.click-child').forEach(container => {
-        container.addEventListener('click', () => {
-            container.querySelector('a, input')?.click()
-        })
+        let a = container.querySelector('a, input')
+        if (a) {
+            container.classList.add('has-a')
+            container.addEventListener('click', click => a.click())
+        }
     })
 })
 
-/**
- * Slow jumpTo #anchor
- */
 document.addEventListener('click', event => {
     let url = null
     if (event.target.href) {
@@ -126,8 +139,11 @@ document.addEventListener('click', event => {
         && url.pathname === location.pathname
         && url.hostname === location.hostname) {
             event.preventDefault()
-            jumpTo(url.hash)
-        }
+            slowScrollToTarget(url.hash)
+    }
+})
+
+document.addEventListener('click', event => {
     if (event.target.parentElement?.classList.contains('taxonomy-project-category')) {
         event.preventDefault()
     }

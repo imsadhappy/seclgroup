@@ -6,7 +6,7 @@
 
 .wp-block-case-studies {
 
-    @media (max-width: 480px) {
+    @media (max-width: $width__min) {
         padding: 0 !important;
     }
 
@@ -16,13 +16,13 @@
         align-items: center;
         gap: 7.5vw;
         gap: clamp(20px, 7.5vw, 100px);
-        @media (max-width: 720px) {
+        @media (max-width: $height__mobile) {
             gap: 100px;
         }
-        @media (max-width: 480px) {
+        @media (max-width: $width__min) {
             gap: 0;
             flex-direction: column;
-            overflow: hidden;
+            overflow: hidden !important;
         }
     }
 
@@ -38,25 +38,23 @@
         padding-bottom: 40px;
         cursor: pointer;
 
-        &:nth-child(odd) {
+        &:nth-child(odd) > * {
             max-width: 530px;
         }
-
-        &:nth-child(even) {
+        &:nth-child(even) > * {
             max-width: 320px;
         }
 
-        @media (max-width: 720px) {
+        @media (max-width: $height__mobile) {
             padding-top: 10px;
             padding-bottom: 10px;
             width: calc(80vw - 100px);
         }
-        @media (max-width: 480px) {
-            padding-top: 10px;
-            padding-bottom: 10px;
+
+        @media (max-width: $width__min) {
             width: calc(100vw - 30px);
-            padding-right: 20px;
-            max-width: none !important;
+            padding: 10px;
+            > * { max-width: none !important; }
         }
 
         .wp-post-image {
@@ -70,9 +68,11 @@
         &--hover-image {
             position: absolute;
             left: 0;
-            top: -40px;
+            top: 0;
+            bottom: 0;
+            margin: auto;
             width: 100%;
-            height: 100%;
+            height: auto;
             opacity: 0;
             z-index: -1;
             transition: transform .2s ease-in, opacity .4s ease;
@@ -81,39 +81,45 @@
         &--industry {
             position: absolute;
             right: 0;
-            top: 40px;
+            top: 0;
             transform-origin: top right;
             transform: rotate(-90deg);
             text-transform: uppercase;
             white-space: nowrap;
-            @media (max-width: 480px) {
-                right: 20px;
-            }
             &:before {
                 content: '•';
                 margin-right: 5px;
             }
         }
 
-        &--tags {
-            span {
-                display: inline-block;
-                border: 1px solid black;
-                margin: 0 10px 10px 0;
-                padding: 6px 8px;
-                transition: all .2s ease;
-                &:first-child {
-                    background: black;
-                    color: white;
-                }
+        &--tags span {
+            display: inline-block;
+            border: 1px solid black;
+            margin: 0 10px 10px 0;
+            padding: 6px 8px;
+            transition: all .2s ease;
+            &:first-child {
+                background: black;
+                color: white;
             }
         }
 
-        &--content1 {
+        &--container {
+            position: relative;
+            aspect-ratio: 3 / 4;
+            @media (max-height: $height__hd) and (min-width: $width__min) {
+                max-height: 60vh;
+            }
+        }
+
+        &--content {
             position: relative;
             overflow: hidden;
-            max-height: 650px;
-            @media (max-width: 480px) {
+            max-height: 60vh;
+            @media (min-height: $height__hd) {
+                max-height: 650px;
+            }
+            @media (max-width: $width__min) {
                 img {
                     width: 100%;
                 }

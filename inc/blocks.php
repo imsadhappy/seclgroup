@@ -74,4 +74,15 @@ add_action( 'acf/init', function () {
         'enqueue_style' =>  "$folder/blocks/project-list/style.css",
     ) );
 
+    acf_register_block( array(
+        'name'              => "seclgroup-pagination",
+        'title'             => __('Pagination', 'seclgroup'),
+        'description'       => __('A custom block pagination', 'seclgroup'),
+        'render_template'   => 'blocks/pagination/template.php',
+        'category'          => 'seclgroup',
+        'icon'              => 'image-flip-horizontal',
+        'keywords'          => array( 'pagination' ),
+        //'enqueue_style' =>  "$folder/blocks/pagination/style.css",
+    ) );
+
 } );

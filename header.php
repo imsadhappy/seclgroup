@@ -35,7 +35,7 @@
 
 			<?php
 
-				//include get_template_directory() . '/trp-language-switcher.php';
+				include get_template_directory() . '/trp-language-switcher.php';
 
 				//echo apply_filters('the_content', '[language-switcher]');
 

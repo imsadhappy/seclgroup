@@ -126,7 +126,7 @@
       .wp-block-case-studies > [id^="case_studies_"] {
         gap: 0;
         flex-direction: column;
-        overflow: hidden; } }
+        overflow: hidden !important; } }
   .wp-block-case-studies .case-study {
     position: relative;
     display: inline-block;
@@ -134,9 +134,9 @@
     padding-top: 40px;
     padding-bottom: 40px;
     cursor: pointer; }
-    .wp-block-case-studies .case-study:nth-child(odd) {
+    .wp-block-case-studies .case-study:nth-child(odd) > * {
       max-width: 530px; }
-    .wp-block-case-studies .case-study:nth-child(even) {
+    .wp-block-case-studies .case-study:nth-child(even) > * {
       max-width: 320px; }
     @media (max-width: 720px) {
       .wp-block-case-studies .case-study {
@@ -145,11 +145,10 @@
         width: calc(80vw - 100px); } }
     @media (max-width: 480px) {
       .wp-block-case-studies .case-study {
-        padding-top: 10px;
-        padding-bottom: 10px;
         width: calc(100vw - 30px);
-        padding-right: 20px;
-        max-width: none !important; } }
+        padding: 10px; }
+        .wp-block-case-studies .case-study > * {
+          max-width: none !important; } }
     .wp-block-case-studies .case-study .wp-post-image {
       display: block;
       aspect-ratio: 4 / 5;
@@ -159,23 +158,22 @@
     .wp-block-case-studies .case-study--hover-image {
       position: absolute;
       left: 0;
-      top: -40px;
+      top: 0;
+      bottom: 0;
+      margin: auto;
       width: 100%;
-      height: 100%;
+      height: auto;
       opacity: 0;
       z-index: -1;
       transition: transform .2s ease-in, opacity .4s ease; }
     .wp-block-case-studies .case-study--industry {
       position: absolute;
       right: 0;
-      top: 40px;
+      top: 0;
       transform-origin: top right;
       transform: rotate(-90deg);
       text-transform: uppercase;
       white-space: nowrap; }
-      @media (max-width: 480px) {
-        .wp-block-case-studies .case-study--industry {
-          right: 20px; } }
       .wp-block-case-studies .case-study--industry:before {
         content: '•';
         margin-right: 5px; }
@@ -188,12 +186,21 @@
       .wp-block-case-studies .case-study--tags span:first-child {
         background: black;
         color: white; }
-    .wp-block-case-studies .case-study--content1 {
+    .wp-block-case-studies .case-study--container {
+      position: relative;
+      aspect-ratio: 3 / 4; }
+      @media (max-height: 1080px) and (min-width: 480px) {
+        .wp-block-case-studies .case-study--container {
+          max-height: 60vh; } }
+    .wp-block-case-studies .case-study--content {
       position: relative;
       overflow: hidden;
-      max-height: 650px; }
+      max-height: 60vh; }
+      @media (min-height: 1080px) {
+        .wp-block-case-studies .case-study--content {
+          max-height: 650px; } }
       @media (max-width: 480px) {
-        .wp-block-case-studies .case-study--content1 img {
+        .wp-block-case-studies .case-study--content img {
           width: 100%; } }
     .wp-block-case-studies .case-study--hover-content {
       opacity: 0;

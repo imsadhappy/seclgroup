@@ -79,7 +79,19 @@
     }
 
     .employee {
-        figure:not([data-block]):last-child { display: none }
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0;
+        &:not([data-block]) {
+            grid-template-rows: 1fr;
+            grid-auto-rows: 0;
+            overflow: hidden;
+        }
+        figure:not([data-block]):last-child {
+            order: 2;
+            visibility: hidden;
+            transform: translateY(-50%);
+        }
     }
 
     &.active,
@@ -95,8 +107,15 @@
 
         .employee {
             figure {
-                &:not([data-block]):first-child { display: none }
-                &:last-child { display: block }
+                &:not([data-block]):first-child {
+                    order: 2;
+                    visibility: hidden;
+                }
+                &:last-child {
+                    order: 1;
+                    visibility: visible;
+                    transform: translateY(0%);
+                }
             }
         }
     }
@@ -107,6 +126,13 @@
     gap: 0 !important;
     display: inline-flex !important;
     &[data-block] {
+        max-width: fit-content !important;
+        display: flex !important;
+        justify-content: center;
         flex-wrap: wrap !important;
+        img {
+            display: block !important;
+            margin: auto !important
+        }
     }
 }

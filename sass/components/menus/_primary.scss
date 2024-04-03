@@ -50,6 +50,14 @@
 		font-weight: 500;
 	}
 
+	li:not(.menu-item-has-children) > a[href="javascript:void(0)"] {
+		&, &:hover, &:focus {
+			cursor: default;
+			color: inherit;
+			background-image: none !important;
+		}
+	}
+
 	> li:not([class*="has-button"]) {
 		> a {
 			padding: 30px 0 31px;
@@ -69,10 +77,10 @@
 		}
 	}
 
-	.current-menu-item > a {
+	/*.current-menu-item > a {
 		cursor: default;
 		pointer-events: none;
-	}
+	}*/
 
 	.mobile & > li:not([class*="has-button"]) > a {
 		padding: 14px 0 15px;

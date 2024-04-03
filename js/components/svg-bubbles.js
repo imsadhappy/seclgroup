@@ -3,6 +3,7 @@
  */
 ((W, q, o) => {
     o.get = (active) => document.querySelectorAll((active ? '.active ' : '') + q)
+
     o.minmax = () => {
         o.min = 0
         o.max = 0
@@ -19,6 +20,7 @@
             o.max = o.min + svg.clientHeight
         }
     }
+
     o.show = (force) => {
         const items = o.get(true)
         if (items.length === 0) return false
@@ -34,6 +36,15 @@
         }
     }
 
+    o.onscroll = () => {
+        let y = W.scrollY + W.innerHeight
+        if (o.ready) return
+        if ((y > o.min && y < o.max + W.innerHeight) || (y > o.min && y < o.max) ) {
+            o.show(true)
+            o.ready = true;
+        }
+    }
+
     let t;
     W.addEventListener('resize', ({detail}) => {
         if (detail) return
@@ -41,15 +52,7 @@
         t = setTimeout(() => o.minmax(), 100)
     })
 
-    W.addEventListener('scroll', () => {
-        let cur = W.scrollY + W.innerHeight
-        if (o.ready) return
-        if ((cur > o.min && cur < o.max + W.innerHeight)
-            || (cur > o.min && cur < o.max) ) {
-            o.show(true)
-            o.ready = true;
-        }
-    })
+    W.addEventListener('scroll', () => o.onscroll())
 
     W.addEventListener('tabChanged', ({detail}) => {
         if (o.get(true).item(0).parentNode/* svg */.parentNode != detail?.content) return
@@ -59,6 +62,10 @@
 
     if (o.get().length > 0) {
         o.minmax()
+    }
+
+    if (W.scrollY > 0) {
+        o.onscroll()
     }
 
 })(window, '.circle-expand-animation', {min: 0, max: 0, ready: false});

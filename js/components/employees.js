@@ -91,7 +91,7 @@
         }
 
         function fillVoid() {
-            let n = 0
+            let n = -1
             while (container.scrollWidth < W.innerWidth) {
                 let clone = container.children[++n].cloneNode(true)
                 clone.classList.remove('ready')

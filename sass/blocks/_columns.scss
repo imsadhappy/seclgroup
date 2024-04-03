@@ -14,7 +14,7 @@
     &.industries-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        @media (max-width: 1080px) {
+        @media (max-width: $height__hd) {
             grid-template-columns: repeat(2, 1fr);
         }
         @media (max-width: $width__min) {
@@ -37,8 +37,9 @@
         .wp-block-column:not(.empty) {
             padding: 32px;
             border: 2px solid $BG__Blue;
-            &:hover,
-            &:focus {
+            cursor: default;
+            &.has-a:hover,
+            &.has-a:focus {
                 border-color: $Text__Primary;
                 cursor: pointer;
                 a {

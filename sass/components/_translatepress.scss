@@ -44,47 +44,56 @@
 		padding-left: 24px;
 		padding-left: clamp(12px, 1.5vw, 32px);
 		position: relative;
-		&:after {
-			content: '';
-			width: 24px;
-			height: 24px;
-			border: 1px solid #ccc;
-			border-radius: 12px;
-			display: inline-block;
-			position: absolute;
-			right: 10px;
-			top: 0;
-			background: transparent url("assets/chevron-down.svg") no-repeat center;
-			background-size: 8px;
-			z-index: -1;
-		}
 	}
 	&-language-switcher {
 		width: auto;
 		height: auto;
+		padding-right: 40px;
 	}
 	&-ls-shortcode-language,
 	&-ls-shortcode-current-language {
 		overflow: visible !important;
+		position: relative;
 		&, > a {
-			padding: 0 !important;
 			border: 0 !important;
 			background: transparent !important;
 			z-index: 2;
-
+			display: block;
+			white-space: nowrap;
+			line-height: 1;
 		}
-		> a:after {
-			content: ' ';
-			display: inline-block;
-			width: 30px;
-			height: 25px;
-			margin-bottom: -8px;
-			background: transparent;
+		a[href="javascript:void(0)"] {
+			color: inherit !important;
+			&:after {
+				content: '';
+				width: 24px;
+				height: 24px;
+				border: 1px solid #ccc;
+				border-radius: 12px;
+				display: inline-block;
+				background: transparent url("assets/chevron-down.svg") no-repeat center;
+				background-size: 8px;
+				margin-left: 6px;
+				vertical-align: -6px;
+			}
+		}
+		
+		a:not([href="javascript:void(0)"]) {
+			position: absolute;
+			display: none;
+			width: 100%;
+			padding: 4px 0;
+		}
+
+		&:hover {
+			transform: translateY(-50%);
+			a:not([href="javascript:void(0)"]) {
+				display: block;
+			}
 		}
 	}
 	&-flag-image {
-		width: 24px !important;
-		height: 16px !important;
-		vertical-align: -3px !important;
+		vertical-align: -2px;
+		margin-right: 6px;
 	}
 }

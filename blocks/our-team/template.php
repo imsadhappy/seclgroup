@@ -16,7 +16,7 @@
 $team_members = get_posts(['post_type' => 'team-member', 'numberposts' => -1]);
 $block_id = uniqid('our_team_');
 $team_json = '';
-$imgs_json = function ($post_id, $img_size = 'large') {
+$imgs_json = function ($post_id, $img_size = 'medium') {
     $img = wp_get_attachment_image_src(get_post_thumbnail_id($post_id), $img_size);
     $json_obj = "img_0: { url: '{$img[0]}', width: {$img[1]}, height: {$img[2]} },\n";
     $json_str = function ($img_id, $img) use ($img_size) {
@@ -44,11 +44,11 @@ else : ?>
 
     <?php if (!$is_preview) inline_script('/blocks/our-team/script.js');
 
-    $n = count($team_members);
+    //$n = count($team_members);
 
     foreach ($team_members as $member) :
 
-        $z = 1; while ($n < 25 && $z <= ceil(25 / $n)) :
+        //$z = 1; while ($n < 25 && $z <= ceil(25 / $n)) :
 
         $member_id = uniqid('our_team_member_');
 
@@ -68,7 +68,7 @@ else : ?>
 
         </div>
 
-    <?php $z++; endwhile; ?>
+    <?php //$z++; endwhile; ?>
 
     <?php endforeach; ?>
 

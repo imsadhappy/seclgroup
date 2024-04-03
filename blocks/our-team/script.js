@@ -12,8 +12,6 @@
         loaded: false,
         container: null,
         items: [],
-        rows: 1,
-        cols: 1,
         canTouch: ('ontouchstart' in W) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0),
         is(value) {
             this.container.classList.add(value)
@@ -114,6 +112,8 @@
         },
         onresize() {
             if (this.done) return
+            this.rows = 1
+            this.cols = 1
             this.items.forEach(({item}) => {
                 item.dataset.row = this.rows
                 item.dataset.col = this.cols
@@ -150,7 +150,7 @@
                 this.items.forEach(({item, data}) => {
                     this.watch(item, data)
                     this.activate(`img_0`, item, data) //load
-                    this.getImage(`img_1`, item, data) //preload
+                    //this.getImage(`img_1`, item, data) //preload
                 })
                 this.loaded = true
             }

@@ -44,44 +44,51 @@ if ( boolval( get_field('as_slider') ) ) : ?>
 
             ?>
 
-            <div class="case-study
-                <?php printf('style-%d', intval(get_field('project_style', $post_id))) ?>"
+            <div class="case-study <?php printf('style-%d', intval(get_field('project_style', $post_id))) ?>"
                 onclick="goToProject(this)"
                 data-url="<?php echo esc_url($post_permalink) ?>">
 
-                <?php project_stain($post_id, "case-study--hover-image") ?>
+                <div class="case-study--container">
 
-                <div class="case-study--content1">
+                    <?php project_stain($post_id, "case-study--hover-image") ?>
 
-                    <?php echo thumbnail_with_alt($post_id, 'full') ?>
+                    <div class="case-study--content">
 
-                    <div class="case-study--hover-content">
+                        <?php echo thumbnail_with_alt($post_id, 'full') ?>
 
-                        <div class="case-study--description"><?php
-                            echo get_the_excerpt($post_id)
-                        ?></div>
+                        <div class="case-study--hover-content">
 
-                        <a class="case-study--read-more" href="<?php echo esc_url($post_permalink) ?>"><?php
-                            esc_html_e('Project details', 'seclgroup')
-                        ?></a>
+                            <div class="case-study--description"><?php
+                                echo get_the_excerpt($post_id)
+                            ?></div>
+
+                            <a class="case-study--read-more" href="<?php echo esc_url($post_permalink) ?>"><?php
+                                esc_html_e('Project details', 'seclgroup')
+                            ?></a>
+
+                        </div>
 
                     </div>
 
+                    <?php if (!empty($industry)) : ?>
+                        <div class="case-study--industry"><?php
+                            esc_html_e( $industry )
+                        ?></div>
+                    <?php endif; ?>
+
                 </div>
 
-                <?php if (!empty($industry)) : ?>
-                    <div class="case-study--industry"><?php
-                        esc_html_e( $industry )
+                <div class="case-study--meta">
+
+                    <div class="case-study--title h5"><?php
+                        esc_html_e( $post_title )
                     ?></div>
-                <?php endif; ?>
 
-                <div class="case-study--title h5"><?php
-                    esc_html_e( $post_title )
-                ?></div>
+                    <div class="taxonomy-project-category wp-block-post-terms case-study--tags"><?php
+                        echo get_the_term_list( $post_id, 'project-category' )
+                    ?></div>
 
-                <div class="taxonomy-project-category wp-block-post-terms case-study--tags"><?php
-                    echo get_the_term_list( $post_id, 'project-category' )
-                ?></div>
+                </div>
 
             </div>
 

@@ -16,8 +16,9 @@ window[moduleID] = window[moduleID] || {
         gutter: 40,
         controlsPosition: 'bottom',
         slideBy: 'page',
-        fixedWidth: false
-        //navAsThumbnails: true
+        fixedWidth: false,
+        lazyload: true /* bugfix */
+        /* navAsThumbnails: true */
     },
     components: {
         "https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.js": "script",
@@ -34,7 +35,7 @@ window[moduleID] = window[moduleID] || {
     create() {
         const module = this
         document.querySelectorAll(`.${moduleID}`).forEach(wrapper => {
-            if (wrapper.classList.contains('tns-slider') || wrapper.children.length === 0) return
+            if (wrapper.classList.contains('tns-slider') || wrapper.children.length < 2) return
             let config = Object.assign({
                 container: wrapper
             }, module.baseConfig)

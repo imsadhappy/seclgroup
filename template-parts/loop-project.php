@@ -18,6 +18,8 @@ $post_permalink = get_permalink($post_id);
 $logo = get_field('project_logo', $post_id);
 $industry = get_field('project_industry', $post_id);
 
+//if (is_admin() || wp_doing_ajax() || intval(get_field('paged')) == get_query_var('paged')) :
+
 ?>
 
 <li id="project-<?php echo $post_id ?>"
@@ -72,3 +74,5 @@ $industry = get_field('project_industry', $post_id);
     </div>
 
 </li><!-- #project-<?php echo $post_id ?> -->
+
+<?php //endif;
