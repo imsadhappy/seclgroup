@@ -45,6 +45,15 @@
             max-width: 320px;
         }
 
+        @media (max-height: 900px) {
+            &:nth-child(odd) > * {
+                max-width: 320px;
+            }
+            &:nth-child(even) > * {
+                max-width: 240px;
+            }
+        }
+
         @media (max-width: $height__mobile) {
             padding-top: 10px;
             padding-bottom: 10px;
@@ -68,6 +77,7 @@
         &--hover-image {
             position: absolute;
             left: 0;
+            right: 0;
             top: 0;
             bottom: 0;
             margin: auto;
@@ -108,14 +118,14 @@
             position: relative;
             aspect-ratio: 3 / 4;
             @media (max-height: $height__hd) and (min-width: $width__min) {
-                max-height: 60vh;
+                max-height: 70vh;
             }
         }
 
         &--content {
             position: relative;
             overflow: hidden;
-            max-height: 60vh;
+            max-height: 70vh;
             @media (min-height: $height__hd) {
                 max-height: 650px;
             }
@@ -133,6 +143,10 @@
             right: 10px;
             bottom: 10px;
             padding: 0 40px 30px 40px;
+            @media (max-height: 900px) {
+                padding: 0 20px 15px 20px;
+                font-size: 14px;
+            }
             max-height: calc(100% - 20px);
             background: black;
             transform: translateY(50%);
@@ -150,37 +164,20 @@
             background: transparent url(../../assets/images/arrow-right-in-circle-white.svg) right center no-repeat;
         }
 
-        &:hover {
-
-            &:nth-child(odd) {
-                .case-study--hover-image {
-                    transform: scale(1.5);
-                    opacity: 1;
-                }
-            }
-            &:nth-child(even) {
-                .case-study--hover-image {
-                    transform: scale(1.25);
-                    opacity: 1;
-                    top: -60px;
-                }
-            }
-
-            .case-study--hover-content {
-                opacity: 1;
-                transform: translateY(0%);
-            }
-
-            .case-study--industry {
-                opacity: .5;
-            }
-        }
-
         &:hover,
         &.highlight {
-            .case-study--hover-image {
-                transform: scale(1.2);
-                opacity: 1;
+            .case-study {
+                &--hover-image {
+                    transform: scale(1.4);
+                    opacity: 1;
+                }
+                &--industry {
+                    opacity: .5;
+                }
+                &--hover-content {
+                    opacity: 1;
+                    transform: translateY(0%);
+                }
             }
             &.style-0 .case-study--tags a {
                 @include case-study-color(#F84F3A)

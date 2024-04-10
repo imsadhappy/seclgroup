@@ -13,6 +13,7 @@
  */
 
 get_header();
+
 ?>
 
 	<main id="primary" class="site-main">
@@ -21,7 +22,7 @@ get_header();
 
 			the_post(); ?>
 
-			<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+			<div id="page-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 				<div class="page-content"><?php
 
@@ -29,7 +30,7 @@ get_header();
 
 				?></div><!-- .page-content -->
 
-			</div><!-- #post-<?php the_ID(); ?> -->
+			</div><!-- #page-<?php the_ID(); ?> -->
 
 			<?php  endwhile; // End of the loop. ?>
 

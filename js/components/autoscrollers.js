@@ -2,6 +2,7 @@
  * Autoscroll, pause on hover
  */
 document.querySelectorAll('.autoscrolled').forEach(e => {
+    e.classList.add('ready')
     if (e.scrollWidth === e.clientWidth) return
     let it = 22
     function autoScroll(){
@@ -21,8 +22,9 @@ document.querySelectorAll('.autoscrolled').forEach(e => {
  * Autoscroll infinite left, pause on hover
  */
 document.querySelectorAll('.autoscrolled-infinite').forEach(e => {
+    e.classList.add('ready')
     let n = -1,
-        it = 22,
+        i = null, t = null,
         sw = e.scrollWidth,
         cw = e.clientWidth,
         top = e.getBoundingClientRect().top,
@@ -32,6 +34,10 @@ document.querySelectorAll('.autoscrolled-infinite').forEach(e => {
         items = items[0].children
         if (!items) break
     }
+    function init(){
+        clearInterval(i)
+        i = setInterval(autoScroll, window.scrollRatio*22)
+    }
     function autoScroll(){
         if (sw === cw || top < 0) return
         e.scrollLeft += window.scrollRatio
@@ -40,12 +46,11 @@ document.querySelectorAll('.autoscrolled-infinite').forEach(e => {
             sw = e.scrollWidth
         }
     }
-    let i = setInterval(autoScroll, window.scrollRatio*it)
     if (e.classList.contains('hoverstop')) {
         e.addEventListener('mouseenter', () => clearInterval(i))
-        e.addEventListener('mouseleave', () => i = setInterval(autoScroll, window.scrollRatio*it))
+        e.addEventListener('mouseleave', init)
     }
-    let t
+    init()
     window.addEventListener('resize', () => {
         if (wiw === window.innerWidth) return
         clearTimeout(t)
@@ -53,8 +58,7 @@ document.querySelectorAll('.autoscrolled-infinite').forEach(e => {
             wiw = window.innerWidth
             sw = e.scrollWidth
             cw = e.clientWidth
-            clearInterval(i)
-            i = setInterval(autoScroll, window.scrollRatio*it)
+            init()
         }, 300)
     })
     window.addEventListener('scroll', () => top = e.getBoundingClientRect().top)

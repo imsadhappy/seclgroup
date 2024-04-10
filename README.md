@@ -57,6 +57,12 @@ $ npm install
 
 ### Versions
 
+Version 0.9.40
+
+- bug fixes
+- removed unused gutenberg blocks
+- exported latest ACF
+
 Version 0.9.20
 
 - pre-release bug fixes & updates

@@ -25,6 +25,7 @@
 
     > * {
         border-bottom: 1px solid #EBEDEE;
+        outline: none !important;
         &:last-child.active {
             border-color: transparent;
         }

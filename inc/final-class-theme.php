@@ -27,6 +27,7 @@ final class Theme {
         add_filter( 'get_search_form', array($this, 'get_search_form') );
         add_filter( 'excerpt_more', function($more){ return preg_replace('/\[|\]/', '', $more); });
         add_filter( 'excerpt_length', function(){ return 25; });
+        add_filter( 'term_links-project-category', array($this, 'project_category_term_links') );
 
         $this->check_updates();
         $this->disable_comments();
@@ -139,8 +140,10 @@ final class Theme {
                 wp_enqueue_style( 'theme-style', get_stylesheet_uri(), array(), $version );
                 wp_style_add_data( 'theme-style', 'rtl', 'replace' );
                 //wp_enqueue_script( 'theme-scripts', "$uri/js/scripts.js", array(), $version );
-                inline_script('/js/scripts.js');
+                inline_script('/js/pre-scripts.js');
+                //inline_script('/js/component-list.js');
                 wp_enqueue_script( 'theme-component-list', "$uri/js/component-list.js", array(), $version, true );
+                wp_enqueue_script( 'theme-post-scripts', "$uri/js/post-scripts.js", array(), $version, true );
                 //wp_enqueue_script( 'wow-script', "$uri/js/wow.min.js", array(), $version );
                 //wp_enqueue_style( 'animate-wow', "$uri/assets/css/animate.min.css", array(), $version );
                     break;
@@ -212,5 +215,14 @@ final class Theme {
             $form = str_replace($old_placeholder, $new_placeholder, $form);
 
         return $form;
+    }
+
+    public function project_category_term_links ( $links ) {
+
+        return array_map( function($link){
+            $link = str_replace('<a href="', '<a href="#" data-exhref="', $link);
+            $link = str_replace('rel="tag"', 'rel="nofollow noindex"', $link);
+            return $link;
+        }, $links );
     }
 }

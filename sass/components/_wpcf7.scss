@@ -162,4 +162,13 @@ $wpcf7_error: #F84F3A;
     textarea[rows] {
         height: auto;
     }
+
+    @media (max-width: $width__desktop) {
+        .js-inject-item &, aside & {
+            max-width: calc(100% - 30px);
+            margin: auto
+        }
+    }
 }
+
+.grecaptcha-badge { display: none !important }

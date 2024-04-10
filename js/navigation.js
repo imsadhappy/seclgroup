@@ -123,7 +123,8 @@
 		setupMultilayerMenu(mobileMenu.firstChild)
 		navigationResize()
 		attachEventListeners()
-	}, 333)
+		menuContainer.classList.add('ready')
+	}, 33)
 })(
 	document.getElementById('masthead'),
 	document.getElementById('primary-menu')

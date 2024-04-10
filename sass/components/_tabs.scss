@@ -16,6 +16,10 @@
         max-width: none !important;
     }
 
+    &[data-block] {
+        padding: 0 !important;
+    }
+
     justify-content: space-between;
 
     &.as-select {
@@ -172,6 +176,12 @@
         text-align: center;
         cursor: pointer;
         flex-basis: content !important;
+
+        &[data-block] {
+            white-space: nowrap;
+            flex-grow: 1 !important;
+            flex-shrink: 0;
+        }
 
         @media (max-width: $width__desktop) {
             white-space: nowrap;

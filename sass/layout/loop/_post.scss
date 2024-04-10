@@ -15,7 +15,7 @@
 
     .post-title {
         @extend h5;
-        max-height: 114px;
+        //max-height: 114px;
         margin-bottom: 24px;
         transition: color .3s ease;
         &:hover, &:focus {

@@ -64,19 +64,19 @@
             img.addEventListener('mouseenter', () => {
                 scrollSkip = true
                 o.animate(true)
-            })
+            }, {passive: true})
             img.addEventListener('mouseleave', () => {
                 scrollSkip = false
                 o.animate(true)
-            })
+            }, {passive: true})
             img.addEventListener('touchstart', () => {
                 scrollSkip = true
                 o.animate(true)
-            })
+            }, {passive: true})
             img.addEventListener('touchend', () => {
                 scrollSkip = false
                 o.animate(true)
-            })
+            }, {passive: true})
         })
         o.minmax()
     }

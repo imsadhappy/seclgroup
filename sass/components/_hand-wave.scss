@@ -1,0 +1,40 @@
+@keyframes wave-animation {
+    0% { transform: rotate(0.0deg) }
+   10% { transform: rotate(14.0deg) }
+   20% { transform: rotate(-8.0deg) }
+   30% { transform: rotate(14.0deg) }
+   40% { transform: rotate(-4.0deg) }
+   50% { transform: rotate(10.0deg) }
+   60% { transform: rotate(0.0deg) }
+  100% { transform: rotate(0.0deg) }
+}
+
+.request-hand-wave-button {
+	padding: 16px 24px !important;
+	border-radius: 40px;
+	border: 1px solid;
+	cursor: pointer !important;
+	&:before {
+		content: '';
+		display: inline-block;
+		width: 32px;
+		height: 32px;
+		background: transparent url('assets/images/request-hand-wave.png') no-repeat center;
+		vertical-align: -10px;
+		margin-right: 10px;
+		animation-name: wave-animation;
+		animation-duration: 2.5s;
+		animation-iteration-count: infinite;
+		transform-origin: 50% 100%;
+	}
+	&:hover,
+	&:active,
+	&:focus {
+		background-color: $color__secondary;
+		color: $color__white;
+		border-color: $color__secondary;
+		&:before {
+			filter: brightness(0) invert(1);
+		}
+	}
+}

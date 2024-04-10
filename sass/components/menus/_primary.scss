@@ -50,7 +50,8 @@
 		font-weight: 500;
 	}
 
-	li:not(.menu-item-has-children) > a[href="javascript:void(0)"] {
+	li:not(.menu-item-has-children) > a[href="javascript:void(0)"],
+	li:not(.menu-item-has-children) > a[href="#"] {
 		&, &:hover, &:focus {
 			cursor: default;
 			color: inherit;

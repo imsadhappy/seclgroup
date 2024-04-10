@@ -83,14 +83,14 @@ if ( ! function_exists( 'posted_by' ) ) {
 
 			if ( ! empty($social_links) )
 				foreach ( $social_links as $social_link )
-					$social_links_html .= sprintf('<a href="%s" target="_blank" rel="nofollow">%s</a>', $social_link['url'], $social_link['icon']);
+					$social_links_html .= sprintf('<a href="%s" target="_blank" rel="me" title="%s">%s</a>', $social_link['url'], $author, $social_link['icon']);
 
 		}
 
 		$html = sprintf('<div class="posted-by byline template-tags--posted_by">
 							<span class="author vcard">
 								<span class="authorSocialLinks">%s</span>
-								<a class="url fn n" href="%s">
+								<a class="url fn n" href="#" data-exhref="%s" rel="nofollow noindex">
 									%s <span class="name authorName">%s</span><br>
 									<span class="position role authorPosition">%s</span>
 								</a>
@@ -570,9 +570,10 @@ if ( ! function_exists( 'project_stain' ) ) {
 	function project_stain( $post_id, $class = "project--hover-image") {
 
 		?><img class="<?php esc_attr_e($class) ?>"
-			src="<?php printf('%s/assets/case-study-style-%d.svg',
+			src="<?php printf('%s/assets/case-study-style-%d.svg?ver=%s',
 						get_template_directory_uri(),
-						intval(get_field('project_style', $post_id))) ?>"
+						intval(get_field('project_style', $post_id)),
+						wp_get_theme()->get('Version')) ?>"
 			alt="<?php esc_attr_e(get_the_title($post_id)) ?>"><?php
 	}
 }

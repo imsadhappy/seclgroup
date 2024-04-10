@@ -65,7 +65,7 @@
 	margin-left: auto !important;
 	margin-right: auto !important;
 	@media (max-width: #{$width__wide + $margin}) {
-		max-width: calc(100vw - $margin) !important;
+		max-width: calc(100vw - #{$margin}) !important;
 	}
 	@extend .base-mobile-padding;
 }

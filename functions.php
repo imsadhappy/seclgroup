@@ -36,8 +36,3 @@ new Theme;
  * Custom Post Types.
  */
 //require_once "$dir/inc/abstract-class-post-type.php";
-
-/**
- * Gutenberg Blocks.
- */
-//require_once "$dir/gutenberg/gutenberg-main.php";

@@ -6,6 +6,11 @@ nav ul.sub-menu {
 }
 
 .menu-header-container {
+	opacity: 0;
+	&.ready {
+		opacity: 1;
+	}
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 	&.pointer {
 		cursor: pointer;
 		max-width: 40px;

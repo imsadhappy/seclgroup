@@ -125,7 +125,7 @@
 	flex-direction: column;
 	justify-content: flex-end;
 	.site-header.mobile ~ .site-main & {
-		height: calc(100vh - var(--mobile_offset__header));
+		height: calc(100vh - var(--mobile_offset__header)) !important;
 	}
 }
 

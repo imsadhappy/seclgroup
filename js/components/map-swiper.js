@@ -17,7 +17,7 @@
         if (!prev) {
             prev = document.createElement('a')
             prev.classList.add(x2, `${x2}-prev`)
-            prev.setAttribute('href', 'javascript:void(0)')
+            prev.setAttribute('href', '#')
             container.parentElement.insertBefore(prev, container)
             prev.addEventListener('click', () => {
                 let target = container.querySelector(':scope > .active').previousElementSibling
@@ -27,7 +27,7 @@
         if (!next) {
             next = document.createElement('a')
             next.classList.add(x2, `${x2}-next`)
-            next.setAttribute('href', 'javascript:void(0)')
+            next.setAttribute('href', '#')
             container.parentElement.insertBefore(next, container.nextElementSibling)
             next.addEventListener('click', () => {
                 let target = container.querySelector(':scope > .active').nextElementSibling

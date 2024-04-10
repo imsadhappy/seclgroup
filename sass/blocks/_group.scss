@@ -47,7 +47,19 @@
     }
 
     &.scrolled-logos {
-        overflow: initial;
+
+        &:not([data-block]) {
+            opacity: 0;
+            overflow: hidden;
+            height: 46px;
+        }
+
+        .ready > & {
+            opacity: 1;
+            overflow: initial;
+            height: auto;
+        }
+
         > * + * {
             margin-left: 80px !important;
         }

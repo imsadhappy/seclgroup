@@ -10,9 +10,6 @@
 		z-index: -1;
 		transform: translateX(-25%);
 		@media (max-width: $width__desktop) {
-			transform: translateX(-50%)
-		}
-		@media (max-width: $width__min) {
 			transform: none;
 			left: 0;
 		}

@@ -9,6 +9,7 @@ window[moduleID] = window[moduleID] || {
     ready: false,
     loaded: false,
     instances: [],
+    resizeInterval: null,
     baseConfig: {
         loop: false,
         mouseDrag: false,
@@ -76,9 +77,10 @@ window[moduleID] = window[moduleID] || {
         const module = this
         //don't rebuild if resize is vertical
         if (module.previousWidth === window.innerWidth || window.adminpage) return
-        clearTimeout(module.resizeTimeout)
-        module.resizeTimeout = setTimeout(() => {
+        clearInterval(module.resizeInterval)
+        module.resizeInterval = setInterval(() => {
             if (typeof tns === 'function') {
+                clearInterval(module.resizeInterval)
                 module.rebuild()
                 module.create()
                 module.previousWidth = window.innerWidth
@@ -97,6 +99,7 @@ window[moduleID] = window[moduleID] || {
             })
             window.addEventListener(`${moduleID}:updateInstance`, ({detail}) => {
                 document.querySelectorAll(`.tns-ovh`).forEach(ovh => ovh.classList.add('active'))
+                detail.updateSliderHeight()
             });
             module.ready = true
         }

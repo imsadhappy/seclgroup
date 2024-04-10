@@ -8,7 +8,7 @@ if (!function_exists('trp_custom_language_switcher')) {
                 'language_code' => 'en_US',
                 'short_language_name' => 'en',
                 'flag_link' => get_template_directory_uri() . '/assets/flags/us.svg',
-                'current_page_url' => 'javascript:void(0)'
+                'current_page_url' => '#'
             ],
             'uk' => [
                 'language_name' => 'UA',
@@ -24,7 +24,7 @@ if (!function_exists('trp_custom_language_switcher')) {
 if (function_exists('trp_custom_language_switcher')) :
 
 $print_language_link = function($language, $disabled = false){
-    ?><a href="<?php echo get_locale() == $language['language_code'] ? 'javascript:void(0)' : $language['current_page_url']?>"
+    ?><a href="<?php echo get_locale() == $language['language_code'] ? '#' : $language['current_page_url']?>"
         <?php if ($disabled) echo 'class="trp-ls-shortcode-disabled-language trp-ls-disabled-language"' ?>
         rel="alternate"
         hreflang="<?php echo get_locale() == $language['language_code'] ? 'x-default' : $language['short_language_name']?>"

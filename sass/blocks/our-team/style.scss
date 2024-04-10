@@ -130,9 +130,20 @@
             position: absolute;
             z-index: 1;
         }
+        img.active {
+            position: relative !important;
+            z-index: 3 !important;
+        }
+    }
+
+    body.wpcf7-popup--shown &.done {
         .img_0 {
             position: relative !important;
             z-index: 3 !important;
+        }
+        img.active {
+            position: absolute !important;
+            z-index: 1 !important;
         }
     }
 

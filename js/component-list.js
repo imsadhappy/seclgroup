@@ -108,7 +108,11 @@ if (document.querySelectorAll('.js-switch').length > 0) {
     loadComponent('word-switcher')
 }
 
-})(function(fileName){
+if (document.querySelectorAll('video.lazy').length > 0) {
+    loadComponent('video-lazyload')
+}
+
+})(fileName => {
     let src = `${window.ComponentLoader.themeURL}/js/components/${fileName}.js?ver=${window.ComponentLoader.themeVer}`
     window.ComponentLoader.load(src)
 })

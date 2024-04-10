@@ -1,10 +1,11 @@
 #services {
+
 	li {
 		margin: 40px 0 80px 0;
 		line-height: 1.5;
-		
+
 		a:empty { display: none }
-		
+
 		&:last-child::after,
 		&:not(:first-child)::before {
 			content: '';
@@ -14,11 +15,11 @@
 			width: 100%;
 			border-top: $border__grey;
 		}
-		
+
 		&:last-child::after {
 			margin-top: 40px;
 		}
-		
+
 		&:not(:first-child)::before {
 			margin-top: -40px;
 		}
@@ -26,14 +27,23 @@
 		@media (max-width: $width__mobile), (max-height: $height__mobile) {
 
 			margin: 20px 0 40px 0;
-			padding-right: 50px;
-			
+
 			&:last-child::after {
 				margin-top: 20px;
 			}
-			
+
 			&:not(:first-child)::before {
 				margin-top: -20px;
+			}
+
+			background: none !important;
+
+			a {
+				display: block;
+				width: 100%;
+				padding-right: 50px;
+				background: url('assets/images/arrow-up-right-in-circle.svg') no-repeat 99% center;
+				background-size: 30px;
 			}
 		}
 	}
