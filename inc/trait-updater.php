@@ -16,6 +16,8 @@ trait Updater {
         if ( empty($current_theme_github) )
             return;
 
+
+
         $this->{'theme'} = get_stylesheet();
         $this->{'current_version'} = wp_get_theme()->get('Version');
 
@@ -111,7 +113,8 @@ trait Updater {
         if ( ! isset($args['headers']) || ! is_array($args['headers']) )
             $args['headers'] = array();
 
-        $args['headers']['Authorization'] = "token {$this->repository_token}";
+        if (!empty($this->repository_token)) //if public repository
+            $args['headers']['Authorization'] = "token {$this->repository_token}";
 
         return $args;
     }
