@@ -6,7 +6,7 @@
 (findParent => {
 	document.addEventListener('submit', event => {
 		const searchField = event.target.querySelector('.search-field')
-		if (searchField && searchField.value === '') {
+		if (searchField && (searchField.value === '' || searchField.value === ' ')) {
 			event.preventDefault()
 		}
 	})

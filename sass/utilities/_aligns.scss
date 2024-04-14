@@ -64,16 +64,14 @@
 	}
 	margin-left: auto !important;
 	margin-right: auto !important;
-	@media (max-width: #{$width__wide + $margin}) {
-		max-width: calc(100vw - #{$margin}) !important;
-	}
 	@extend .base-mobile-padding;
 }
 
 @media (max-width: $width__mobile) {
 
     .mobile-alignfull {
-        width: 100vw;
+        width: 100%;
+		max-width: none !important;
     }
 
     .mobile-align-center,

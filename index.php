@@ -32,7 +32,7 @@ get_header();
 
 				get_search_form(array('aria_label' => 'post_type-post'));
 
-				inline_script('/js/search.js');
+				inline_script('/js/components/search.js');
 
 				if ( have_posts() ) : ?>
 

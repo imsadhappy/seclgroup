@@ -1,14 +1,18 @@
 (loadComponent => {
 
-//loadComponent('main')
-loadComponent('wpcf7-popup')
-
 /**
  * Dotdotdot
  */
 //if (document.querySelectorAll('.dotdotdot').length > 0) {
     //loadComponent('dotdotdot')
 //}
+
+/**
+ * Search
+ */
+if (document.querySelectorAll('.search-form').length > 0) {
+    loadComponent('search')
+}
 
 /**
  * JS Content Injectors (used in blog)

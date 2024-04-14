@@ -23,7 +23,7 @@ document.querySelectorAll('.autoscrolled').forEach(e => {
  */
 document.querySelectorAll('.autoscrolled-infinite').forEach(e => {
     e.classList.add('ready')
-    let n = -1,
+    let itemCount = -1,
         i = null, t = null,
         sw = e.scrollWidth,
         cw = e.clientWidth,
@@ -36,13 +36,13 @@ document.querySelectorAll('.autoscrolled-infinite').forEach(e => {
     }
     function init(){
         clearInterval(i)
-        i = setInterval(autoScroll, window.scrollRatio*22)
+        i = setInterval(autoScroll, 60)
     }
     function autoScroll(){
         if (sw === cw || top < 0) return
         e.scrollLeft += window.scrollRatio
         if (sw-20 <= e.scrollLeft + cw && items && items.length > 2) {
-            items[0].parentNode.appendChild(items[++n].cloneNode(true))
+            items[0].parentNode.appendChild(items[++itemCount].cloneNode(true))
             sw = e.scrollWidth
         }
     }

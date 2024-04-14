@@ -1,3 +1,4 @@
+/*
 @font-face {
     font-family: 'Halvar Breit Blk';
     src: url('HalvarBreit-BlkSlanted.eot');
@@ -64,6 +65,21 @@
 }
 
 @font-face {
+    font-family: 'Halvar Breit XTh SuSlanted';
+    src: url('HalvarBreit-XThSuSlanted.eot');
+    src: local('Halvar Breitschrift ExtraThin SuperSlanted'), local('HalvarBreit-XThSuSlanted'),
+        url('HalvarBreit-XThSuSlanted.eot?#iefix') format('embedded-opentype'),
+        url('HalvarBreit-XThSuSlanted.woff2') format('woff2'),
+        url('HalvarBreit-XThSuSlanted.woff') format('woff'),
+        url('HalvarBreit-XThSuSlanted.ttf') format('truetype');
+    font-weight: 100;
+    font-style: italic;
+    font-display: swap;
+}
+
+*/
+
+@font-face {
     font-family: 'Halvar Breit Md';
     src: url('HalvarBreit-Md.eot');
     src: local('Halvar Breitschrift Medium'), local('HalvarBreit-Md'),
@@ -76,18 +92,7 @@
     font-display: swap;
 }
 
-@font-face {
-    font-family: 'Halvar Breit XTh SuSlanted';
-    src: url('HalvarBreit-XThSuSlanted.eot');
-    src: local('Halvar Breitschrift ExtraThin SuperSlanted'), local('HalvarBreit-XThSuSlanted'),
-        url('HalvarBreit-XThSuSlanted.eot?#iefix') format('embedded-opentype'),
-        url('HalvarBreit-XThSuSlanted.woff2') format('woff2'),
-        url('HalvarBreit-XThSuSlanted.woff') format('woff'),
-        url('HalvarBreit-XThSuSlanted.ttf') format('truetype');
-    font-weight: 100;
-    font-style: italic;
-    font-display: swap;
-}
+/*
 
 @font-face {
     font-family: 'Halvar Breit Rg';
@@ -349,6 +354,8 @@
     font-display: swap;
 }
 
+*/
+
 @font-face {
     font-family: 'Halvar Breit Rg';
     src: url('HalvarBreit-Rg.eot');
@@ -361,4 +368,3 @@
     font-style: normal;
     font-display: swap;
 }
-

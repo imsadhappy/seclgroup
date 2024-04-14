@@ -1,7 +1,7 @@
 /**
  * Ajax Contact Form 7 Popup
  */
-document.addEventListener('click', event => {
+export default event => {
 
     const x = 'wpcf7-popup--'
 
@@ -68,4 +68,4 @@ document.addEventListener('click', event => {
             fetchPopup(popup, formId, event.target.textContent)
         }
     }
-} )
+}

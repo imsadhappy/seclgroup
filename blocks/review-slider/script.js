@@ -7,7 +7,6 @@
 
 window[moduleID] = window[moduleID] || {
     ready: false,
-    loaded: false,
     instances: [],
     resizeInterval: null,
     baseConfig: {
@@ -31,7 +30,8 @@ window[moduleID] = window[moduleID] || {
         } else {
             this.instances.push(instance)
         }
-        window.dispatchEvent(new CustomEvent(`${moduleID}:updateInstance`, {detail:instance}))
+        instance.updateSliderHeight()
+        instance.events.on('transitionEnd', () => instance.updateSliderHeight())
     },
     create() {
         const module = this
@@ -51,6 +51,7 @@ window[moduleID] = window[moduleID] || {
             }
             module.updateInstance(tns(config))
         })
+        document.querySelectorAll(`.tns-ovh`).forEach(ovh => ovh.classList.add('active'))
     },
     rebuild() {
         const module = this
@@ -90,17 +91,10 @@ window[moduleID] = window[moduleID] || {
     init(){
         const module = this
         if (!module.ready) {
-            window.addEventListener('resize', () => {
-                module.resize()
-            })
+            window.addEventListener('resize', () => module.resize())
             window.ComponentLoader.load(module.components, () => {
                 window.dispatchEvent(new Event('resize'))
-                module.loaded = true
             })
-            window.addEventListener(`${moduleID}:updateInstance`, ({detail}) => {
-                document.querySelectorAll(`.tns-ovh`).forEach(ovh => ovh.classList.add('active'))
-                detail.updateSliderHeight()
-            });
             module.ready = true
         }
     }

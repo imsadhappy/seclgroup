@@ -113,7 +113,8 @@ final class Theme {
 
         $version = wp_get_theme()->get('Version');
         $uri = get_template_directory_uri();
-        //$dir = get_template_directory();
+        $dir = get_template_directory();
+        $build = include( "$dir/js/build/index.asset.php" );
 
         wp_enqueue_script( 'theme-component-loader', "$uri/js/component-loader.js", array(), $version );
 
@@ -125,6 +126,22 @@ final class Theme {
             esc_url($uri),
             $version
         ) );
+
+        wp_register_script(
+            'theme-component-list',
+            "$uri/js/component-list.js",
+            array('theme-component-loader'),
+            $version,
+            array( 'in_footer' => true )
+        );
+
+        wp_register_script(
+            'theme-scripts',
+            "$uri/js/build/index.js",
+            $build['dependencies'],
+            $build['version'],
+            array( 'in_footer' => true )
+        );
 
         switch ( current_action() ) {
             case 'customize_preview_init':
@@ -139,11 +156,8 @@ final class Theme {
             default:
                 wp_enqueue_style( 'theme-style', get_stylesheet_uri(), array(), $version );
                 wp_style_add_data( 'theme-style', 'rtl', 'replace' );
-                //wp_enqueue_script( 'theme-scripts', "$uri/js/scripts.js", array(), $version );
-                inline_script('/js/pre-scripts.js');
-                //inline_script('/js/component-list.js');
-                wp_enqueue_script( 'theme-component-list', "$uri/js/component-list.js", array(), $version, true );
-                wp_enqueue_script( 'theme-post-scripts', "$uri/js/post-scripts.js", array(), $version, true );
+                wp_enqueue_script( 'theme-component-list' );
+                wp_enqueue_script( 'theme-scripts' );
                 //wp_enqueue_script( 'wow-script', "$uri/js/wow.min.js", array(), $version );
                 //wp_enqueue_style( 'animate-wow', "$uri/assets/css/animate.min.css", array(), $version );
                     break;

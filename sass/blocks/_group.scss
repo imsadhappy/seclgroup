@@ -48,6 +48,8 @@
 
     &.scrolled-logos {
 
+        flex-wrap: nowrap !important;
+
         &:not([data-block]) {
             opacity: 0;
             overflow: hidden;
@@ -60,8 +62,9 @@
             height: auto;
         }
 
-        > * + * {
-            margin-left: 80px !important;
+        > * {
+            margin-right: 40px !important;
+            margin-left: 40px !important;
         }
         /* used with autoscroll (right/left) &:after {
             content: '';
@@ -73,6 +76,16 @@
 
         &:not(.has-child-selected) > * {
             @extend .hover-color-logos;
+        }
+
+        @media (max-height: 667px), (max-width: 480px) {
+            > * {
+                margin-right: 10px !important;
+                margin-left: 10px !important;
+            }
+            figure {
+                transform: scale(.75);
+            }
         }
     }
 

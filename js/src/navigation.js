@@ -3,9 +3,14 @@
  *
  * Handles toggling the navigation menu for small screens.
  */
-((header, menu) => {
+export default () => {
+
+	const header = document.getElementById('masthead')
+	const menu = document.getElementById('primary-menu')
 	const menuContainer = header?.querySelector('.menu-header-container')
+
 	if (!menuContainer || !header || !menu) return
+
 	let mobileMenu = null
 
 	const createMobileMenu = container => {
@@ -90,9 +95,9 @@
 					container.classList.remove('has-touched', 'has-touched-multilayer')
 				} else {
 					container.querySelectorAll(':scope > .touched')
-							 .forEach(targetSibling =>
-								 targetSibling.classList.remove('touched')
-							 )
+							.forEach(targetSibling =>
+								targetSibling.classList.remove('touched')
+							)
 					targetClass.add('touched')
 					container.classList.add('has-touched')
 					if (targetClass.contains('has-multilayer')) {
@@ -125,7 +130,4 @@
 		attachEventListeners()
 		menuContainer.classList.add('ready')
 	}, 33)
-})(
-	document.getElementById('masthead'),
-	document.getElementById('primary-menu')
-)
+}

@@ -534,7 +534,7 @@ if ( ! function_exists( 'load_more_button' ) ) {
 			<span class="on-none"><?php esc_html_e( 'No more items', 'seclgroup' ) ?></span>
 		</button><?php
 
-		inline_script('/js/load-more.js');
+		inline_script('/js/components/load-more.js');
 	}
 }
 

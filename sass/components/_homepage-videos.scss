@@ -1,0 +1,47 @@
+#ananas-video {
+    width:100%;
+    height:100%;
+    max-height: 45vh;
+    transform: translate(-20%, 10%) scale(1.5);
+    z-index: -1;
+    position: relative;
+
+    @media (max-width: $width__mobile) {
+        transform: translateX(-4%) scale(1);
+        width: 100vw;
+        height: 30vh;
+        object-fit: cover;
+    }
+
+	@media (max-height: 667px), (max-width: $width__min) {
+		object-fit: contain;
+		height: 40vh;
+		margin-top: -5vh;
+		margin-bottom: -5vh;
+	}
+}
+
+@media (max-height: 667px), (max-width: $width__min) {
+	.ananas-cols {
+		gap: 0;
+	}
+	.ananas-col {
+		margin-top: -5%
+	}
+}
+
+#planet-video {
+	width:100%;
+	height:100%;
+	transform: scale(1.3);
+	position: relative;
+	margin-left: -10%;
+	@media (max-width: $width__mobile) {
+		width: 100vw;
+		margin-left: -6.5%;
+		transform: none;
+	}
+}
+@media (max-width: $width__mobile) {
+	.column-with-planet-video { order: -1 }
+}

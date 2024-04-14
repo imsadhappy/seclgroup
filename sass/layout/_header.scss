@@ -11,7 +11,7 @@
     position: fixed;
 
     + .site-main {
-        margin-top: var(--offset__header);
+        padding-top: var(--offset__header);
     }
 
     .header-content {
@@ -75,7 +75,7 @@
         }
 
         + .site-main {
-            margin-top: var(--mobile_offset__header);
+            padding-top: var(--mobile_offset__header);
         }
     }
 

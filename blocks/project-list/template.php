@@ -44,8 +44,7 @@ if ( boolval( get_field('as_slider') ) ) : ?>
 
             ?>
 
-            <div class="case-study <?php printf('style-%d', intval(get_field('project_style', $post_id))) ?>"
-                onclick="goToProject(this)"
+            <div class="case-study go-to-project <?php printf('style-%d', intval(get_field('project_style', $post_id))) ?>"
                 data-url="<?php echo esc_url($post_permalink) ?>">
 
                 <div class="case-study--container">

@@ -57,6 +57,10 @@ $ npm install
 
 ### Versions
 
+Version 1.0.0
+
+- release
+
 Version 0.9.40
 
 - bug fixes

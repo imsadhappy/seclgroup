@@ -135,6 +135,7 @@
 	.style-692 {
 		background-color: $Primary__0 !important;
 		padding: 20px 2%;
+		max-width: 100% !important;
 		@media (max-width: $width__mobile) {
 			padding: 20px 15px;
 		}
@@ -144,4 +145,17 @@
 			padding: 20px 4%;
 		}
 	}
+}
+
+.style-693 {
+	padding: 20px 2%;
+	@media (max-width: $width__mobile) {
+		padding: 20px 15px;
+	}
+}
+
+@media (min-width: 1024px) {
+  .max-width-243 {
+	  max-width: 243px
+  }
 }
