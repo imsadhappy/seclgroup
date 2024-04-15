@@ -10,7 +10,7 @@
 /**
  * Search
  */
-if (document.querySelectorAll('.search-form').length > 0) {
+if (document.querySelector('.search-form')) {
     loadComponent('search')
 }
 
@@ -25,8 +25,8 @@ if (document.querySelectorAll('.js-inject-content > *').length > 0 &&
 /**
  * Autoscrollers
  */
-if (document.querySelectorAll('.autoscrolled').length > 0
-    || document.querySelectorAll('.autoscrolled-infinite').length > 0) {
+if (document.querySelector('.autoscrolled') ||
+    document.querySelector('.autoscrolled-infinite')) {
         loadComponent('autoscrollers')
     }
 
@@ -36,84 +36,100 @@ if (document.querySelectorAll('.autoscrolled').length > 0
 if ( !('ontouchstart' in window)
         && !(navigator.maxTouchPoints)
         && !(navigator.msMaxTouchPoints)
-        && (document.querySelectorAll('.hoverscrolled').length > 0
-            || document.querySelectorAll('.hoverscrolled-alt').length > 0 ) ) {
+        && (document.querySelector('.hoverscrolled') ||
+            document.querySelector('.hoverscrolled-alt')) ) {
         loadComponent('hoverscrollers')
     }
 
-if (document.querySelectorAll('.technology-pill-container').length > 0) {
+if (document.querySelector('.technology-pill-container')) {
     loadComponent('technology-pills')
 }
 
 /**
  * Custom Tabs
  */
-if (document.querySelectorAll('.custom-tabs-container').length > 0) {
+if (document.querySelector('.custom-tabs-container')) {
     loadComponent('custom-tabs')
 }
 
 /**
  * Simple Accordeon
  */
-if (document.querySelectorAll('.accordeon').length > 0) {
+if (document.querySelector('.accordeon')) {
     loadComponent('simple-accordeon')
 }
 
 /**
  * Map Swiper
  */
-if (document.querySelectorAll('.map-swiper').length > 0) {
+if (document.querySelector('.map-swiper')) {
     loadComponent('map-swiper')
 }
 
 /**
  * History Scroller
  */
-if (document.querySelectorAll('.history-scroller').length > 0) {
+if (document.querySelector('.history-scroller')) {
     loadComponent('history-scroller')
 }
 
 /**
  * SVG Bubbles animation
  */
-if (document.querySelectorAll('.circle-expand-animation').length > 0) {
+if (document.querySelector('.circle-expand-animation')) {
     loadComponent('svg-bubbles')
 }
 
 /**
  * Services animation on scroll
  */
-if (document.querySelectorAll('.animated-services').length > 0) {
+if (document.querySelector('.animated-services')) {
     loadComponent('services-animation')
 }
 
 /**
  * Countries address svg map
  */
-if (document.querySelectorAll('.country-address-map').length > 0) {
+if (document.querySelector('.country-address-map')) {
     loadComponent('country-address-map')
 }
 
 /**
  * Employees
  */
-if (document.querySelectorAll('.employees').length > 0) {
+if (document.querySelector('.employees')) {
     loadComponent('employees')
 }
 
 /**
- * Industries full-page height (NOT USED)
- */
-
-/**
  * Word Switcher
  */
-if (document.querySelectorAll('.js-switch').length > 0) {
+if (document.querySelector('.js-switch')) {
     loadComponent('word-switcher')
 }
 
-if (document.querySelectorAll('video.lazy').length > 0) {
+/**
+ * Video Lazyload & playpause
+ */
+if (document.querySelector('video')) {
     loadComponent('video-lazyload')
+}
+
+if (document.querySelector('.has-view-more')) {
+    loadComponent('view-more')
+}
+
+if (document.querySelector('.wp-block-spacer.negative')) {
+    loadComponent('negative-spacer')
+}
+
+if (document.querySelector('.go-to-project')) {
+    loadComponent('go-to-project')
+}
+
+if (document.querySelector('.dispatch-hover') ||
+    document.querySelector('.click-child')) {
+    loadComponent('dispatch-to-children')
 }
 
 })(fileName => {

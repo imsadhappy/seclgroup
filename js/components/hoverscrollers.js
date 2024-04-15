@@ -2,53 +2,53 @@
  * Scroll on all element hover
  */
 document.querySelectorAll('.hoverscrolled').forEach(container => {
-    var x = null;
+    let x = null
     container.addEventListener('mouseenter', () => {
-        if (container.scrollWidth === container.clientWidth) return;
+        if (container.scrollWidth === container.clientWidth) return
         x = setInterval(() => {
-            var before = container.scrollLeft;
-            container.scrollLeft += (container.classList.contains('reverse') ? -1 : 1) * window.scrollRatio;
-            var after = container.scrollLeft;
+            let before = container.scrollLeft
+            container.scrollLeft += (container.classList.contains('reverse') ? -1 : 1) * window.scrollRatio
+            let after = container.scrollLeft
             if (after === before) {
-                container.classList.toggle('reverse');
+                container.classList.toggle('reverse')
             }
-        }, 12);
-    });
-    container.addEventListener('mouseleave', () => clearInterval(x));
-});
+        }, 12)
+    })
+    container.addEventListener('mouseleave', () => clearInterval(x))
+})
 
 /**
  * Scroll on left/right part hover
  */
 document.querySelectorAll('.hoverscrolled-alt').forEach(container => {
-    var x = null,
-        y = null,
-        z = null,
-        leftBoundary = window.innerWidth * .25,
-        rightBoundary = window.innerWidth * .75,
-        maxScrollLength = container.scrollWidth;
-    window.addEventListener('resize', () => {
-        maxScrollLength = container.scrollWidth
-        leftBoundary = window.innerWidth * .25
-        rightBoundary = window.innerWidth * .75
-    });
-    function clearAll() {
+    let x, y, z, leftX, rightX;
+    const setBounds = () => {
+        leftX = window.innerWidth * .25
+        rightX = window.innerWidth * .75
+    }
+    const clearAll = () => {
         clearInterval(x)
         y = null
         z = null
     }
-    function onMouseOver(event) {
-        if (container.scrollWidth === container.clientWidth) {
-            clearAll()
-            return
+    const set0 = () => {
+        if (container.classList.contains('mobile-not-scrollable') && window.innerWidth <= 480) {
+            container.scrollLeft = 0
+            return true
+        } else {
+            return false
         }
-        if (event.clientX <= leftBoundary) {
+    }
+    const onMouseOver = event => {
+        if (container.scrollWidth === container.clientWidth || set0()) {
+            return clearAll()
+        }
+        if (event.clientX <= leftX) {
             y = true
-        } else if (event.clientX >= rightBoundary) {
+        } else if (event.clientX >= rightX) {
             y = false
         } else {
-            clearAll()
-            return
+            return clearAll()
         }
         if (y != z) {
             clearInterval(x)
@@ -60,20 +60,25 @@ document.querySelectorAll('.hoverscrolled-alt').forEach(container => {
                         clearInterval(x)
                     }
                 } else {
-                    if ((container.scrollLeft+container.clientWidth) < maxScrollLength) {
+                    if ((container.scrollLeft+container.clientWidth) < container.scrollWidth) {
                         container.scrollLeft += window.scrollRatio;
                     } else {
                         clearInterval(x)
                     }
                 }
-            }, window.scrollRatio*12);
+            }, window.scrollRatio*12)
         }
     }
+    setBounds()
     container.addEventListener('mouseenter', event => {
         clearAll()
         onMouseOver(event)
-    });
-    container.addEventListener('mouseover', onMouseOver);
-    container.addEventListener('mouseleave', clearAll);
-    window.addEventListener('resize', clearAll);
-});
+    })
+    container.addEventListener('mouseover', onMouseOver)
+    container.addEventListener('mouseleave', clearAll)
+    window.addEventListener('resize', () => {
+        clearAll()
+        setBounds()
+        set0()
+    })
+})

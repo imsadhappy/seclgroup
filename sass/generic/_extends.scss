@@ -115,15 +115,11 @@
 @import "extends/toggler";
 
 .full-page-height:not(.wp-block) {
-	min-height: 600px;
-    height: calc(100vh - var(--offset__header));
-	@media (max-width: $width__mobile) {
-		height: auto !important;
-	}
-	max-height: 1000px;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
+	max-height: 1000px;
+    height: calc(100vh - var(--offset__header));
 	.site-header.mobile ~ .site-main & {
 		height: calc(100vh - var(--mobile_offset__header)) !important;
 	}

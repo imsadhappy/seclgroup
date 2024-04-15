@@ -8,6 +8,7 @@
     width: calc(100% - 32px);
     overflow: hidden;
     background-color: #ddd;
+    cursor: pointer;
 
     @media (max-width: 920px) {
         margin: 8px;
@@ -59,10 +60,16 @@
     &--name {
         font-weight: bold;
         font-size: 18px;
+        text-shadow: 1px 1px 1px rgba(#000000, 0.2),
+                     -1px 1px 1px rgba(#000000, 0.2),
+                     1px -1px 1px rgba(#000000, 0.2);
     }
 
     &--position {
         font-size: 14px;
+        text-shadow: 1px 1px 1px rgba(#000000, 0.2),
+                     -1px 1px 1px rgba(#000000, 0.2),
+                     1px -1px 1px rgba(#000000, 0.2);
     }
 
     &.clicked &--details { z-index: 4 }

@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     targets.forEach(target => {
         ((container) => {
             let t;
+            setTimeout(() => container.classList.add('ready'), 333)
             window.addEventListener('scroll', () => {
                 if (window.innerWidth > 480) return
                 clearTimeout(t)

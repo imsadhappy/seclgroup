@@ -7,7 +7,12 @@ nav ul.sub-menu {
 
 .menu-header-container {
 	&:not(.ready) {
-		display: none;
+		overflow: hidden;
+		visibility: hidden;
+		flex: 0 0 100% !important;
+		@media (max-width: $width__mobile) {
+			flex: 0 0 40px !important;
+		}
 	}
 	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 	&.pointer {

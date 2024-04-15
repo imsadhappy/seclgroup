@@ -58,6 +58,10 @@ $ npm install
 
 ### Versions
 
+Version 1.0.1
+
+- perf optimization
+
 Version 1.0.0
 
 - release

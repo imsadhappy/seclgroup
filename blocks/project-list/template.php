@@ -17,9 +17,7 @@ if ( boolval( get_field('as_slider') ) ) : ?>
 
 <div <?php block_class('wp-block-case-studies', $block) ?>>
 
-    <?php if (!$is_preview) inline_script('/blocks/project-list/script.js'); ?>
-
-    <div id="<?php echo uniqid('case_studies_') ?>" class="scrollable hoverscrolled-alt">
+    <div id="<?php echo uniqid('case_studies_') ?>" class="scrollable hoverscrolled-alt mobile-not-scrollable">
 
         <?php
 
@@ -94,6 +92,8 @@ if ( boolval( get_field('as_slider') ) ) : ?>
         <?php endforeach; ?>
 
     </div>
+
+    <?php if (!$is_preview) inline_script('/blocks/project-list/script.js'); ?>
 
 </div>
 

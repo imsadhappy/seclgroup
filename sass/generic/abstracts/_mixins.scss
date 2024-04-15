@@ -71,15 +71,19 @@
 }
 
 @mixin custom-cover-hover($color, $image, $x, $y, $sizeX, $sizeY) {
-    &:hover {
+    & {
         overflow: hidden;
-        .wp-block-cover {
+		.wp-block-cover {
+			&__image-background {
+				transition: transform .4s ease-in;
+			}
+		}
+		&:hover .wp-block-cover {
             &__inner-container * {
                 color: #{$color} !important;
             }
             &__image-background {
                 transform: scale(1.1);
-                transition: transform .4s ease-in;
             }
             &__background {
                 @include custom-background($image, $x, $y, $sizeX, $sizeY);

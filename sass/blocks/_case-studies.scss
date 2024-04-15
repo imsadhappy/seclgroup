@@ -31,6 +31,10 @@
 
     .case-study {
 
+        &:not([data-block]):not(.ready) {
+            display: none !important;
+        }
+
         position: relative;
         display: inline-block;
         flex-shrink: 0;
