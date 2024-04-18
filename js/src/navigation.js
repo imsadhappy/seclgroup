@@ -104,8 +104,7 @@ export default () => {
 						container.classList.add('has-touched-multilayer')
 					}
 				}
-			} else if (event.target === menuContainer
-					&& targetClass.contains('pointer')) {
+			} else if (event.target === menuContainer && targetClass.contains('pointer')) {
 				mobileMenu.classList.toggle('show')
 				document.body.classList.toggle('mobile-menu-active')
 				if (!mobileMenu.classList.contains('show')) {

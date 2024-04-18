@@ -37,7 +37,7 @@ $industry = get_field('project_industry', $post_id);
                 ?></div>
             <?php endif; ?>
 
-            <?php echo thumbnail_with_alt($post_id, 'large') ?>
+            <?php echo thumbnail_with_alt($post_id, 'full') ?>
 
         <?php endif ?>
 

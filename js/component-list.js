@@ -2,42 +2,29 @@
 
 /**
  * Dotdotdot
- */
-//if (document.querySelectorAll('.dotdotdot').length > 0) {
-    //loadComponent('dotdotdot')
-//}
+ *//*
+if (document.querySelectorAll('.dotdotdot').length > 0) {
+    loadComponent('dotdotdot')
+}
+*/
 
-/**
- * Search
- */
 if (document.querySelector('.search-form')) {
     loadComponent('search')
 }
 
-/**
- * JS Content Injectors (used in blog)
- */
-if (document.querySelectorAll('.js-inject-content > *').length > 0 &&
-    document.querySelector('.js-inject-container')) {
-        loadComponent('content-injector')
-    }
+if (document.querySelectorAll('.js-inject-content > *').length > 0 && document.querySelector('.js-inject-container')) {
+    loadComponent('content-injector')
+}
 
-/**
- * Autoscrollers
- */
-if (document.querySelector('.autoscrolled') ||
-    document.querySelector('.autoscrolled-infinite')) {
-        loadComponent('autoscrollers')
-    }
+if (document.querySelector('.autoscrolled') || document.querySelector('.autoscrolled-infinite')) {
+    loadComponent('autoscrollers')
+}
 
-/**
- * Hoverscrollers
- */
-if ( !('ontouchstart' in window)
-        && !(navigator.maxTouchPoints)
-        && !(navigator.msMaxTouchPoints)
-        && (document.querySelector('.hoverscrolled') ||
-            document.querySelector('.hoverscrolled-alt')) ) {
+if ( !('ontouchstart' in window) &&
+     !(navigator.maxTouchPoints) &&
+     !(navigator.msMaxTouchPoints) &&
+     (document.querySelector('.hoverscrolled') ||
+      document.querySelector('.hoverscrolled-alt')) ) {
         loadComponent('hoverscrollers')
     }
 
@@ -45,72 +32,42 @@ if (document.querySelector('.technology-pill-container')) {
     loadComponent('technology-pills')
 }
 
-/**
- * Custom Tabs
- */
 if (document.querySelector('.custom-tabs-container')) {
     loadComponent('custom-tabs')
 }
 
-/**
- * Simple Accordeon
- */
 if (document.querySelector('.accordeon')) {
     loadComponent('simple-accordeon')
 }
 
-/**
- * Map Swiper
- */
 if (document.querySelector('.map-swiper')) {
     loadComponent('map-swiper')
 }
 
-/**
- * History Scroller
- */
 if (document.querySelector('.history-scroller')) {
     loadComponent('history-scroller')
 }
 
-/**
- * SVG Bubbles animation
- */
 if (document.querySelector('.circle-expand-animation')) {
     loadComponent('svg-bubbles')
 }
 
-/**
- * Services animation on scroll
- */
 if (document.querySelector('.animated-services')) {
     loadComponent('services-animation')
 }
 
-/**
- * Countries address svg map
- */
 if (document.querySelector('.country-address-map')) {
     loadComponent('country-address-map')
 }
 
-/**
- * Employees
- */
 if (document.querySelector('.employees')) {
     loadComponent('employees')
 }
 
-/**
- * Word Switcher
- */
 if (document.querySelector('.js-switch')) {
     loadComponent('word-switcher')
 }
 
-/**
- * Video Lazyload & playpause
- */
 if (document.querySelector('video')) {
     loadComponent('video-lazyload')
 }
@@ -127,8 +84,7 @@ if (document.querySelector('.go-to-project')) {
     loadComponent('go-to-project')
 }
 
-if (document.querySelector('.dispatch-hover') ||
-    document.querySelector('.click-child')) {
+if (document.querySelector('.dispatch-hover') || document.querySelector('.click-child')) {
     loadComponent('dispatch-to-children')
 }
 

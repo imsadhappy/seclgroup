@@ -85,6 +85,7 @@
 			min-width: 0;
 			max-width: 600px;
 			margin-left: -15px;
+			padding-left: 26px;
 			@media (min-width: 636px){
 				max-width: 400px;
 			}
@@ -101,5 +102,18 @@
 	    vertical-align: 6px;
 		position: relative;
 		z-index: 2;
+	}
+}
+
+.scroll-down a {
+	padding: 5px 30px 5px 0;
+	text-decoration: none;
+	background: url('assets/scroll-down.svg') no-repeat 99% center;
+	background-size: 22px 24px !important;
+	&:focus,
+	&.is-selected,
+	&:hover {
+		text-decoration: underline;
+		background: url('assets/scroll-down-active.svg') no-repeat 99% center;
 	}
 }

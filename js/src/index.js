@@ -21,6 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.querySelector('.ananas-cols')) {
         setTimeout(() => {
             document.querySelectorAll('.ananas-cols > *').forEach(col => col.classList.add('ready'))
-        }, 333)
+        }, 100)
     }
 })

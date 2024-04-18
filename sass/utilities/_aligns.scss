@@ -62,6 +62,9 @@
 	@media (min-width: $width__desktop) {
 		max-width: $width__wide !important;
 	}
+	@media (max-width: #{$width__wide + 60px}) {
+		max-width: calc(100vw - 60px) !important;
+	}
 	margin-left: auto !important;
 	margin-right: auto !important;
 	@extend .base-mobile-padding;

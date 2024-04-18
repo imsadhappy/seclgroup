@@ -58,6 +58,12 @@ $ npm install
 
 ### Versions
 
+Version 1.0.2
+
+- bug fixes
+- perf optimization
+- added enqueue trait with 2 strategies: inline & file-based
+
 Version 1.0.1
 
 - perf optimization

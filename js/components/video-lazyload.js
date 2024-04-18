@@ -7,34 +7,32 @@ Object.defineProperty(HTMLMediaElement.prototype, 'playing', {
     }
 })
 
-if ('IntersectionObserver' in window) {
-    const lazyVideoObserver = new IntersectionObserver(entries => {
-        entries.forEach(video => {
-            if (video.isIntersecting) {
-                for (var source in video.target.children) {
-                var videoSource = video.target.children[source]
+const lazyVideoObserver = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
+    entries.forEach(video => {
+        if (video.isIntersecting) {
+            for (let source in video.target.children) {
+                let videoSource = video.target.children[source]
                 if (typeof videoSource.tagName === 'string' && videoSource.tagName === 'SOURCE') {
                     videoSource.src = videoSource.dataset.src
                 }
-                }
-                video.target.load()
-                video.target.classList.remove('lazy')
-                lazyVideoObserver.unobserve(video.target)
             }
-        })
+            video.target.load()
+            video.target.classList.remove('lazy')
+            lazyVideoObserver.unobserve(video.target)
+        }
     })
-    setTimeout(() => {
-        document.querySelectorAll('video.lazy').forEach(video => {
-            lazyVideoObserver.observe(video)
-        })
-    }, 999)
-}
+}) : {observe:() => {}}
 
-document.querySelectorAll('video').forEach(video => {
-    video.addEventListener('suspend', () => {
-        if (!video.playing) video.play()
+setTimeout(() => {
+    document.querySelectorAll('video').forEach(video => {
+        video.addEventListener('suspend', () => {
+            if (!video.playing) video.play()
+        })
+        window.addEventListener('scroll', () => {
+            //if (!video.playing) video.play()
+        })
+        if (video.classList.contains('lazy')) {
+            lazyVideoObserver.observe(video)
+        }
     })
-    window.addEventListener('scroll', () => {
-        if (!video.playing) video.play()
-    })
-})
+}, 111)

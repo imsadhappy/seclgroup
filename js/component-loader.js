@@ -1,7 +1,6 @@
 /**
  * File component-loader.js.
  */
-
 window.ComponentLoader = window.ComponentLoader || {
     list: [],
     script(src){

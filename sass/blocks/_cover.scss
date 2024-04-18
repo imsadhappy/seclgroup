@@ -1,12 +1,12 @@
 &-cover {
 
-    padding: 0;
+    padding: 0 !important;
 
-    h1, h2, h3, h4, h5, h6, p {
+    /*h1, h2, h3, h4, h5, h6, p {
         &:not(.has-text-color) {
             color: $color__primary;
         }
-    }
+    }*/
 
     &[class*="block-editor"] {
         margin-top: 0;

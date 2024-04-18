@@ -4,17 +4,16 @@
 document.querySelectorAll('.autoscrolled').forEach(e => {
     e.classList.add('ready')
     if (e.scrollWidth === e.clientWidth) return
-    let it = 22
     function autoScroll(){
         let before = e.scrollLeft
         e.scrollLeft += (e.classList.contains('reverse') ? -1 : 1) * window.scrollRatio
         let after = e.scrollLeft
         if (after === before) e.classList.toggle('reverse')
     }
-    let i = setInterval(autoScroll, it)
+    let i = setInterval(autoScroll, 24)
     if (e.classList.contains('hoverstop')) {
         e.addEventListener('mouseenter', () => clearInterval(i))
-        e.addEventListener('mouseleave', () => i = setInterval(autoScroll, it))
+        e.addEventListener('mouseleave', () => i = setInterval(autoScroll, 24))
     }
 })
 
@@ -36,7 +35,7 @@ document.querySelectorAll('.autoscrolled-infinite').forEach(e => {
     }
     function init(){
         clearInterval(i)
-        i = setInterval(autoScroll, 60)
+        i = setInterval(autoScroll, 24)
     }
     function autoScroll(){
         if (sw === cw || top < 0) return
@@ -59,7 +58,7 @@ document.querySelectorAll('.autoscrolled-infinite').forEach(e => {
             sw = e.scrollWidth
             cw = e.clientWidth
             init()
-        }, 300)
+        }, 100)
     })
     window.addEventListener('scroll', () => top = e.getBoundingClientRect().top)
 })

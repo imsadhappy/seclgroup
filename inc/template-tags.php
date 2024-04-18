@@ -425,28 +425,50 @@ if ( ! function_exists( 'block_class' ) ) {
 	}
 }
 
-if ( ! function_exists( 'inline_script' ) ) {
+if ( ! function_exists( 'inline_file' ) ) {
 
-	function inline_script( $script_name, $once = true ) {
+	function inline_file( $f_name, $f_type = 'script', $inline_once = true ) {
 
-		$script = get_template_directory() . $script_name;
+		$f_path = get_template_directory() . $f_name;
 
-		if ( ! file_exists($script) )
+		if ( ! file_exists($f_path) )
 			return;
 
-		if ( $once ) {
+		if ( $inline_once ) {
 
-			if ( ! isset($GLOBALS['inlined_scripts']) )
-				$GLOBALS['inlined_scripts'] = array();
+			if ( ! isset($GLOBALS["inlined_{$f_type}s"]) )
+				$GLOBALS["inlined_{$f_type}s"] = array();
 
-			if ( in_array($script_name, $GLOBALS['inlined_scripts']) )
+			if ( in_array($f_path, $GLOBALS["inlined_{$f_type}s"]) )
 				return;
 
-			$GLOBALS['inlined_scripts'][] = $script_name;
+			$GLOBALS["inlined_{$f_type}s"][] = $f_path;
 		}
 
+		$f_content = "\n".file_get_contents($f_path)."\n";
+		$f_content = str_replace('url("', 'url("' . get_template_directory_uri() . '/', $f_content);
 
-		printf('<script id="inline-%s-js">%s</script>', $script_name, file_get_contents($script));
+		printf("\n".'<%1$s id="%2$s-%3$s">%4$s</%1$s>'."\n",
+				$f_type,
+				strtolower(wp_get_theme()->get('Name')),
+				str_replace('.', '-', basename($f_path)),
+				$f_content);
+	}
+}
+
+if ( ! function_exists( 'inline_script' ) ) {
+
+	function inline_script( $script_name, $inline_once = true ) {
+
+		inline_file($script_name, 'script', $inline_once);
+	}
+}
+
+if ( ! function_exists( 'inline_style' ) ) {
+
+	function inline_style( $style_name, $inline_once = true ) {
+
+		inline_file($style_name, 'style', $inline_once);
 	}
 }
 

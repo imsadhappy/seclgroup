@@ -9,18 +9,19 @@ namespace SECLGroup;
 
 final class Theme {
 
-    use Admin, WPCF7, Updater, Pagination, StyleToStylesheet, Shortcodes;
+    use Admin,
+        WPCF7,
+        Updater,
+        Pagination,
+        StyleToStylesheet,
+        Shortcodes,
+        Enqueue;
 
     function __construct() {
 
         add_filter( 'max_srcset_image_width', '__return_false' );
         add_filter( 'wp_calculate_image_srcset', '__return_false' );
-
         add_action( 'after_setup_theme', array($this, 'setup') );
-        add_action( 'customize_preview_init', array($this, 'enqueue') );
-        add_action( 'wp_enqueue_scripts', array($this, 'enqueue') );
-        add_action( 'login_header', array($this, 'enqueue') );
-        add_action( 'admin_head', array($this, 'enqueue') );
         add_action( 'after_setup_theme', array($this, 'register_menus') );
         add_action( 'widgets_init', array($this, 'register_widgets') );
         add_filter( 'the_category', array($this, 'the_category') );
@@ -29,6 +30,7 @@ final class Theme {
         add_filter( 'excerpt_length', function(){ return 25; });
         add_filter( 'term_links-project-category', array($this, 'project_category_term_links') );
 
+        $this->enqueue();
         $this->check_updates();
         $this->disable_comments();
         $this->avif_support();
@@ -107,64 +109,6 @@ final class Theme {
     }
 
     /**
-     * Enqueue scripts and styles.
-     */
-    public function enqueue() {
-
-        $version = wp_get_theme()->get('Version');
-        $uri = get_template_directory_uri();
-        $dir = get_template_directory();
-        $build = include( "$dir/js/build/index.asset.php" );
-
-        wp_enqueue_script( 'theme-component-loader', "$uri/js/component-loader.js", array(), $version );
-
-        wp_add_inline_script( 'theme-component-loader', sprintf(
-            "window.ajaxurl = window.ajaxurl || '%s';
-             window.ComponentLoader.themeURL = '%s';
-             window.ComponentLoader.themeVer = '%s';",
-            esc_url(admin_url('admin-ajax.php')),
-            esc_url($uri),
-            $version
-        ) );
-
-        wp_register_script(
-            'theme-component-list',
-            "$uri/js/component-list.js",
-            array('theme-component-loader'),
-            $version,
-            array( 'in_footer' => true )
-        );
-
-        wp_register_script(
-            'theme-scripts',
-            "$uri/js/build/index.js",
-            $build['dependencies'],
-            $build['version'],
-            array( 'in_footer' => true )
-        );
-
-        switch ( current_action() ) {
-            case 'customize_preview_init':
-                wp_enqueue_script( "seclgroup-customizer", "$uri/js/customizer.js", array( 'customize-preview' ), $version, true );
-                    break;
-            case 'login_header':
-                wp_enqueue_style( 'theme-login-style', "$uri/login-style.css", array(), $version );
-                    break;
-            case 'admin_head':
-                wp_enqueue_style( 'theme-admin-style', "$uri/admin-style.css", array(), $version );
-                    break;
-            default:
-                wp_enqueue_style( 'theme-style', get_stylesheet_uri(), array(), $version );
-                wp_style_add_data( 'theme-style', 'rtl', 'replace' );
-                wp_enqueue_script( 'theme-component-list' );
-                wp_enqueue_script( 'theme-scripts' );
-                //wp_enqueue_script( 'wow-script', "$uri/js/wow.min.js", array(), $version );
-                //wp_enqueue_style( 'animate-wow', "$uri/assets/css/animate.min.css", array(), $version );
-                    break;
-        }
-    }
-
-    /**
      * Register menus.
      */
     public function register_menus() {
@@ -231,7 +175,7 @@ final class Theme {
         return $form;
     }
 
-    public function project_category_term_links ( $links ) {
+    public function project_category_term_links( $links ) {
 
         return array_map( function($link){
             $link = str_replace('<a href="', '<a href="#" data-exhref="', $link);

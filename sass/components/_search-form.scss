@@ -1,5 +1,5 @@
 .search-field {
-    background: $color__white url(assets/search-icon.svg) left center no-repeat;
+    background: $color__white url('assets/search-icon.svg') left center no-repeat;
 }
 
 .search-form {
@@ -11,7 +11,7 @@
         width: 38px;
         height: 38px;
         border-radius: 18px;
-        background: $color__secondary url(assets/search-icon.svg) center no-repeat;
+        background: $color__secondary url('assets/search-icon.svg') center no-repeat;
         cursor: pointer;
         > * {
             position: absolute;
