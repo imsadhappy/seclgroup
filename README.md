@@ -58,6 +58,11 @@ $ npm install
 
 ### Versions
 
+Version 1.0.3
+
+- bug fixes
+- code snippets
+
 Version 1.0.2
 
 - bug fixes

@@ -43,6 +43,9 @@
         cursor: pointer;
 
         &:nth-child(odd) > * {
+            max-width: 450px;
+        }
+        &:first-child > * {
             max-width: 530px;
         }
         &:nth-child(even) > * {
@@ -51,7 +54,10 @@
 
         @media (max-height: 900px) {
             &:nth-child(odd) > * {
-                max-width: 320px;
+                max-width: 310px;
+            }
+            &:first-child > * {
+                max-width: 380px;
             }
             &:nth-child(even) > * {
                 max-width: 240px;
@@ -122,14 +128,14 @@
             position: relative;
             aspect-ratio: 3 / 4;
             @media (max-height: $height__hd) and (min-width: $width__min) {
-                max-height: 70vh;
+                max-height: 75vh;
             }
         }
 
         &--content {
             position: relative;
             overflow: hidden;
-            max-height: 70vh;
+            height: 100%;
             @media (min-height: $height__hd) {
                 max-height: 650px;
             }

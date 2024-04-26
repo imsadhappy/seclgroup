@@ -1,3 +1,5 @@
+/** Version 1.0.3 */
+
 import navigation from './navigation'
 import wpcf7Popup from './wpcf7-popup'
 import onAnyElementClick from './on-any-element-click'
@@ -14,9 +16,12 @@ document.addEventListener('DOMContentLoaded', () => {
         window.dispatchEvent(new Event('scroll'))
         window.dispatchEvent(new Event('resize'))
     }
-    const scrollTarget = new URLSearchParams(document.location.search).get('scroll_to')
-    if (scrollTarget) {
-        slowScrollToTarget('#'+scrollTarget)
+    if (window.location.hash) {
+        scroll(0,0)
+        setTimeout(()=>{
+            scroll(0,0)
+            slowScrollToTarget(window.location.hash)
+        },1)
     }
     if (document.querySelector('.ananas-cols')) {
         setTimeout(() => {

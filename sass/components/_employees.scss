@@ -37,12 +37,11 @@
             bottom: -18px;
             border-right: $border__grey;
             background-color: $BG__White;
-            width: 64px;
             position: absolute;
-            height: 64px;
             right: -1px;
             bottom: -21px;
-            clip-path: path("m0.85106,45c53.616,1.426 63.514,6.573 63.514,23.5l0,-39.5l0,-29c-5.26951,10.82979 -0.32625,38.25532 -8.57448,40.57446l-54.93952,4.42554z");
+            width: 44px;
+            height: 37px;
         }
 
         &:not([data-block])::after {

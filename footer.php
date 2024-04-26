@@ -30,6 +30,8 @@
 
 <?php wp_footer(); ?>
 
+<?php print(get_field('body_end', 'options')) ?>
+
 </body>
 
 </html>

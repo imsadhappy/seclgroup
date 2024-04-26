@@ -20,8 +20,9 @@ $wpcf7_error: #F84F3A;
     }
 
     &-spinner {
-        //position: absolute
-        display: none
+        position: absolute !important;
+        width: 0 !important;
+        height: 0 !important;
     }
 
     .border-bottom & {
@@ -152,11 +153,11 @@ $wpcf7_error: #F84F3A;
 
     &-not-valid-tip {
         position: absolute;
-        color: $wpcf7_error;
+        color: $wpcf7_error !important;
         left: 0;
         right: 0;
         margin: -21px auto 0;
-        font-size: 14px;
+        font-size: 14px !important;
     }
 
     textarea[rows] {

@@ -442,15 +442,17 @@ if ( ! function_exists( 'inline_file' ) ) {
 			if ( in_array($f_path, $GLOBALS["inlined_{$f_type}s"]) )
 				return;
 
-			$GLOBALS["inlined_{$f_type}s"][] = $f_path;
+			$GLOBALS["inlined_{$f_type}s"][] = $f_path; //unique file path, not name!
 		}
 
 		$f_content = "\n".file_get_contents($f_path)."\n";
 		$f_content = str_replace('url("', 'url("' . get_template_directory_uri() . '/', $f_content);
+		$f_dir = basename(dirname($f_name));
 
-		printf("\n".'<%1$s id="%2$s-%3$s">%4$s</%1$s>'."\n",
+		printf("\n".'<%1$s id="%2$s-%3$s%4$s">%5$s</%1$s>'."\n",
 				$f_type,
 				strtolower(wp_get_theme()->get('Name')),
+				empty($f_dir) || 'js' == $f_dir ? '' : $f_dir . '-',
 				str_replace('.', '-', basename($f_path)),
 				$f_content);
 	}

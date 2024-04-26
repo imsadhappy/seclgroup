@@ -31,7 +31,7 @@
     }
 
     &.is-style-rounded img {
-        clip-path: circle();
+        clip-path: circle(40%);
     }
 
     &.cover:first-child {

@@ -19,10 +19,11 @@ trait Enqueue {
         $this->strategy = get_theme_mod($this->theme.'_enqueue_strategy', $strategy);
 
         add_action( 'customize_preview_init', array($this, 'select_action') );
-        add_action( 'wp_enqueue_scripts', array($this, 'register'), 11 );
-        add_action( 'wp_enqueue_scripts', array($this, 'select_action'), 12 );
+        add_action( 'wp_enqueue_scripts', array($this, 'register'), 999 );
+        add_action( 'wp_enqueue_scripts', array($this, 'select_action'), 1000 );
         add_action( 'login_header', array($this, 'select_action') );
         add_action( 'admin_head', array($this, 'select_action') );
+        add_action( 'wp_head', array($this, 'select_action'), 999 );
         add_action( 'wp_footer', array($this, 'select_action') );
         add_action( 'customize_register', function ($wp_customize) {
             $this->customize_register($wp_customize);
@@ -62,17 +63,20 @@ trait Enqueue {
                 wp_enqueue_style( $this->theme.'-admin-style' );
                     break;
             case 'wp_enqueue_scripts':
-                if ( $this->strategy == 'inline') {
-                    inline_style( '/style.css' );
-                    inline_script( '/js/component-loader.js' );
-                    $this->inline_scripts();
-                } else {
+                if ( $this->strategy != 'inline') {
                     wp_enqueue_style( $this->theme.'-style' );
                     wp_style_add_data( $this->theme.'-style', 'rtl', 'replace' );
                     wp_enqueue_script( $this->theme.'-component-loader' );
                     $this->inline_scripts();
                     wp_enqueue_script( $this->theme.'-component-list' );
                     wp_enqueue_script( $this->theme.'-build-index' );
+                }
+                    break;
+            case 'wp_head':
+                if ( $this->strategy == 'inline') {
+                    inline_style( '/style.css' );
+                    inline_script( '/js/component-loader.js' );
+                    $this->inline_scripts();
                 }
                     break;
             case 'wp_footer':
