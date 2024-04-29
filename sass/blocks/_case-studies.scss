@@ -31,8 +31,12 @@
 
     .case-study {
 
-        &:not([data-block]):not(.ready) {
+        &:not(.ready) {
             display: none !important;
+        }
+
+        .acf-block-preview & {
+            display: inline-block !important;
         }
 
         position: relative;

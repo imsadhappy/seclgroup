@@ -13,6 +13,11 @@
  * @param   array $context The context provided to the block by the post or it's parent block.
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    http_response_code(403);
+	exit; // Exit if accessed directly.
+}
+
 $team_members = get_posts(['post_type' => 'team-member', 'numberposts' => -1]);
 $block_id = uniqid('our_team_');
 $team_json = '';

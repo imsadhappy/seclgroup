@@ -6,6 +6,10 @@
  *
  * @package SECLGroup
  */
+if ( ! defined( 'ABSPATH' ) ) {
+    http_response_code(403);
+	exit; // Exit if accessed directly.
+}
 
 $post_id = !empty($args) && isset($args['post_id']) ? $args['post_id'] : get_the_ID();
 $show_excerpt = !empty($args) && isset($args['show_excerpt']) ? $args['show_excerpt'] : true;

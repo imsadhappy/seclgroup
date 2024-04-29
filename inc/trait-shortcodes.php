@@ -7,6 +7,11 @@
 
 namespace SECLGroup;
 
+if ( ! defined( 'ABSPATH' ) ) {
+    http_response_code(403);
+	exit; // Exit if accessed directly.
+}
+
 trait Shortcodes {
 
     public function use_shortcodes( $shotcodes = array() ) {

@@ -7,6 +7,11 @@
 
 namespace SECLGroup;
 
+if ( ! defined( 'ABSPATH' ) ) {
+    http_response_code(403);
+	exit; // Exit if accessed directly.
+}
+
 trait WPCF7 {
 
     public function use_wpcf7_popup() {

@@ -13,6 +13,11 @@
  * @param   array $context The context provided to the block by the post or it's parent block.
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    http_response_code(403);
+	exit; // Exit if accessed directly.
+}
+
 if ($is_preview) {
     ?><div style="text-align:center; font-size: 20px; padding: 20px 0; line-height: 60px;">
         Pagination <span class="dashicons dashicons-image-flip-horizontal" style="font-size: 60px"></span>

@@ -13,6 +13,11 @@
  * @param   array $context The context provided to the block by the post or it's parent block.
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    http_response_code(403);
+	exit; // Exit if accessed directly.
+}
+
 $reviews = get_field('review_slider');
 $layout = get_field('review_slider_layout');
 $block_id = uniqid('review_slider_');

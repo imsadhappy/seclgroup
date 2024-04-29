@@ -7,6 +7,11 @@
 
 namespace SECLGroup;
 
+if ( ! defined( 'ABSPATH' ) ) {
+    http_response_code(403);
+	exit; // Exit if accessed directly.
+}
+
 abstract class Post_Type {
 
     public $post_type = '';

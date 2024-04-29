@@ -5,6 +5,11 @@
  * @package SECLGroup
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    http_response_code(403);
+	exit; // Exit if accessed directly.
+}
+
 add_filter( 'style_loader_src', function( $src, $handle ) {
 
     if ( strpos($handle, 'block-acf-seclgroup') === 0 )

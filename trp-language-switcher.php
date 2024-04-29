@@ -1,5 +1,10 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+    http_response_code(403);
+	exit; // Exit if accessed directly.
+}
+
 if (!function_exists('trp_custom_language_switcher')) {
     function trp_custom_language_switcher () {
         return [

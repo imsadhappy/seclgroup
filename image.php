@@ -6,6 +6,10 @@
  *
  * @package SECLGroup
  */
+if ( ! defined( 'ABSPATH' ) ) {
+    http_response_code(403);
+	exit; // Exit if accessed directly.
+}
 
 if ( $post->post_parent ) {
     wp_redirect( get_permalink($post->post_parent) );
