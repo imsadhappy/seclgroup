@@ -8,7 +8,7 @@ body.admin-bar:not(.scroll-down) {
 
         top: 32px;
 
-        @media screen and (max-width: 782px) {
+        @media screen and (max-width: $width__mobile) {
             top: 46px;
         }
     }

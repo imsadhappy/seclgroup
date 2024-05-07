@@ -6,7 +6,7 @@
 	top: 64px;
 	.admin-bar & {
 		top: 94px;
-		@media (max-width: 782px) {
+		@media (max-width: $width__mobile) {
 			top: 110px;
 		}
 	}
