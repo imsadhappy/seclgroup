@@ -78,12 +78,12 @@ if ( ! function_exists( 'posted_by' ) ) {
 			$phone = get_field( 'user_phone', "user_$author_id" );
 
 			if ( !empty($phone) )
-				$phone = sprintf('<div class="authorPhone">%2$s<br><a href="tel:%1$s">%1$s</a></div>', $phone, esc_html__('Phone', 'seclgroup'));
+				$phone = sprintf('<div class="authorPhone">%2$s<br><a href="tel:%1$s" target="_blank" rel="nofollow">%1$s</a></div>', $phone, esc_html__('Phone', 'seclgroup'));
 
 			$email = get_field( 'user_email', "user_$author_id" );
 
 			if ( !empty($email) )
-				$email = sprintf('<div class="authorEmail">%2$s<br><a href="tel:%1$s">%1$s</a></div>', $email, esc_html__('Email', 'seclgroup'));
+				$email = sprintf('<div class="authorEmail">%2$s<br><a href="mailto:%1$s" target="_blank" rel="nofollow">%1$s</a></div>', $email, esc_html__('Email', 'seclgroup'));
 
 			$social_links = get_field( 'user_social_links', "user_$author_id" );
 
