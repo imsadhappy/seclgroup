@@ -23,13 +23,23 @@ trait Enqueue {
         $this->theme = strtolower(wp_get_theme()->get('Name'));
         $this->strategy = get_theme_mod($this->theme.'_enqueue_strategy', $strategy);
 
-        add_action( 'customize_preview_init', array($this, 'select_action') );
-        add_action( 'wp_enqueue_scripts', array($this, 'register'), 999 );
-        add_action( 'wp_enqueue_scripts', array($this, 'select_action'), 1000 );
-        add_action( 'login_header', array($this, 'select_action') );
-        add_action( 'admin_head', array($this, 'select_action') );
-        add_action( 'wp_head', array($this, 'select_action'), 999 );
-        add_action( 'wp_footer', array($this, 'select_action') );
+        // admin
+        add_action( 'admin_enqueue_scripts',    array($this, 'register'), 999 );
+        add_action( 'admin_head',               array($this, 'select_action') );
+
+        // login
+        add_action( 'login_enqueue_scripts',    array($this, 'register'), 999 );
+        add_action( 'login_header',             array($this, 'select_action') );
+
+        // front
+        add_action( 'wp_enqueue_scripts',       array($this, 'register'), 999 );
+        add_action( 'wp_enqueue_scripts',       array($this, 'select_action'), 1000 );
+        add_action( 'wp_head',                  array($this, 'select_action'), 999 );
+        add_action( 'wp_footer',                array($this, 'select_action') );
+
+        // customizer
+        add_action( 'customize_preview_init',   array($this, 'register'), 999 );
+        add_action( 'customize_preview_init',   array($this, 'select_action'), 1000 );
         add_action( 'customize_register', function ($wp_customize) {
             $this->customize_register($wp_customize);
         } );
@@ -46,13 +56,23 @@ trait Enqueue {
         $dir = get_template_directory();
         $build = include( "$dir/js/build/index.asset.php" );
 
-        wp_register_style( $this->theme.'-style', get_stylesheet_uri(), array(), $version );
-        wp_register_style( $this->theme.'-login-style', "$uri/login-style.css", array(), $version );
-        wp_register_style( $this->theme.'-admin-style', "$uri/admin-style.css", array(), $version );
-        wp_register_script( $this->theme.'-customizer', "$uri/js/customizer.js", array( 'customize-preview' ), $version, array( 'in_footer' => true ) );
-        wp_register_script( $this->theme.'-component-loader', "$uri/js/component-loader.js", array(), $version, array( 'in_footer' => false ) );
-        wp_register_script( $this->theme.'-component-list', "$uri/js/component-list.js", array($this->theme.'-component-loader'), $version, array( 'in_footer' => true ) );
-        wp_register_script( $this->theme.'-build-index', "$uri/js/build/index.js", $build['dependencies'], $build['version'], array( 'in_footer' => true ) );
+        switch ( current_action() ) {
+            case 'login_enqueue_scripts':
+                wp_register_style( $this->theme.'-login-style', "$uri/login-style.css", array(), $version );
+                    break;
+            case 'admin_enqueue_scripts':
+                wp_register_style( $this->theme.'-admin-style', "$uri/admin-style.css", array(), $version );
+                    break;
+            case 'customize_preview_init':
+                wp_register_script( $this->theme.'-customizer', "$uri/js/customizer.js", array( 'customize-preview' ), $version, array( 'in_footer' => true ) );
+                    break;
+            default:
+                wp_register_style( $this->theme.'-style', get_stylesheet_uri(), array(), $version );
+                wp_register_script( $this->theme.'-component-loader', "$uri/js/component-loader.js", array(), $version, array( 'in_footer' => false ) );
+                wp_register_script( $this->theme.'-component-list', "$uri/js/component-list.js", array($this->theme.'-component-loader'), $version, array( 'in_footer' => true ) );
+                wp_register_script( $this->theme.'-build-index', "$uri/js/build/index.js", $build['dependencies'], $build['version'], array( 'in_footer' => true ) );
+                    break;
+        }
     }
 
     public function select_action() {
