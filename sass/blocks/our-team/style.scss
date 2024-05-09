@@ -81,6 +81,9 @@
 
     &--container {
         position: relative;
+        @media (min-width: $width__mobile) {
+            min-height: 1428px;
+        }
     }
 
     display: grid;

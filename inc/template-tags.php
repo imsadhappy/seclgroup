@@ -604,6 +604,7 @@ if ( ! function_exists( 'project_stain' ) ) {
 						get_template_directory_uri(),
 						intval(get_field('project_style', $post_id)),
 						wp_get_theme()->get('Version')) ?>"
-			alt="<?php esc_attr_e(get_the_title($post_id)) ?>"><?php
+			alt="<?php esc_attr_e(get_the_title($post_id)) ?>"
+			style="opacity: 0"><?php
 	}
 }

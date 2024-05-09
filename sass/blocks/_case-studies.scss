@@ -19,6 +19,9 @@
         @media (max-width: $height__mobile) {
             gap: 100px;
         }
+        @media (min-width: $width__min) {
+            min-height: 912px;
+        }
         @media (max-width: $width__min) {
             gap: 0;
             flex-direction: column;
@@ -183,7 +186,7 @@
             .case-study {
                 &--hover-image {
                     transform: scale(1.4);
-                    opacity: 1;
+                    opacity: 1 !important;
                 }
                 &--industry {
                     opacity: .5;

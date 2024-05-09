@@ -35,6 +35,7 @@ final class Theme {
         add_filter( 'excerpt_length', function(){ return 25; });
         add_filter( 'term_links-project-category', array($this, 'project_category_term_links') );
 
+
         $this->enqueue();
         $this->check_updates();
         $this->disable_comments();
@@ -42,6 +43,7 @@ final class Theme {
         $this->remove_from_admin_bar( array('customize', 'updates', 'comments') );
         $this->page_for_terms_and_conditions();
         $this->use_wpcf7_popup();
+        $this->defer_wpcf7_scripts();
         $this->styles_in_wp_footer('core-block-supports');
         $this->setup_pagination();
         $this->use_shortcodes( array('contact', 'menu') );

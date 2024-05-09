@@ -58,6 +58,11 @@ $ npm install
 
 ### Versions
 
+Version 1.1.1
+
+- added defer to wpcf7 scripts
+- bug fixes
+
 Version 1.1.0
 
 - security update (also added =404 in nginx & Options -Indexes in apache)

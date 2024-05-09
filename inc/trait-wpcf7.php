@@ -24,6 +24,17 @@ trait WPCF7 {
         } );
     }
 
+    public function defer_wpcf7_scripts() {
+
+        add_filter( 'script_loader_tag', function ( $tag, $handle ) {
+
+            if ( false === strpos( $handle, 'contact-form-7' ) )
+                return $tag;
+
+            return str_replace( ' src', ' defer="defer" src', $tag );
+        }, 10, 2 );
+    }
+
     protected function wpcf7_popup() {
 
         exit(do_shortcode(sprintf('[contact-form-7 id="%d"]', intval($_REQUEST['form_id']))));

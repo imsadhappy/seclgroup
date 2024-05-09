@@ -25,7 +25,6 @@ $industry = get_field('project_industry', $post_id);
 ?>
 
 <li id="project-<?php echo $post_id ?>"
-    onclick="goToProject(this)"
     data-url="<?php echo esc_url($post_permalink) ?>"
     <?php post_class(array('project-item', 'go-to-project'), $post_id); ?>>
 
