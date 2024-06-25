@@ -8,7 +8,7 @@ html, body, .site {
     flex-direction: column;
 }
 
-body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+body .is-layout-constrained:not([class*="wp-container-core-group-is-layout-"]) > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
     @extend .base-mobile-padding;
 }
 

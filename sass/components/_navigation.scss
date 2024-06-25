@@ -55,6 +55,22 @@ nav ul.sub-menu {
 .menu-mobile-container {
 	position: relative;
 	z-index: -1;
+	margin: 0 0 0 auto;
+	.site-header.mobile &:not(.show) {
+		min-width: 60px;
+		min-height: 40px;
+		cursor: pointer;
+		z-index: 1;
+		&:before {
+			content: ' ';
+			width: 40px;
+			height: 40px;
+			display: block;
+			margin: 0 0 0 auto;
+			cursor: pointer;
+			@extend .hand-wave-icon;
+		}
+	}
 }
 
 .comment-navigation,

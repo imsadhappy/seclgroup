@@ -20,7 +20,9 @@ final class Theme {
         Pagination,
         StyleToStylesheet,
         Shortcodes,
-        Enqueue;
+        Enqueue,
+        CookieNotice,
+        YoastSEO;
 
     function __construct() {
 
@@ -34,19 +36,24 @@ final class Theme {
         add_filter( 'excerpt_more', function($more){ return preg_replace('/\[|\]/', '', $more); });
         add_filter( 'excerpt_length', function(){ return 25; });
         add_filter( 'term_links-project-category', array($this, 'project_category_term_links') );
-
+        add_filter( 'wpseo_canonical', array($this, 'fix_rel_canonical'), 999, 2 );
 
         $this->enqueue();
         $this->check_updates();
         $this->disable_comments();
         $this->avif_support();
         $this->remove_from_admin_bar( array('customize', 'updates', 'comments') );
-        $this->page_for_terms_and_conditions();
+        $this->page_for_('terms_and_conditions', 'Terms & Conditions Page');
+        $this->page_for_('cookie_policy', 'Cookie Policy Page');
         $this->use_wpcf7_popup();
         $this->defer_wpcf7_scripts();
         $this->styles_in_wp_footer('core-block-supports');
         $this->setup_pagination();
         $this->use_shortcodes( array('contact', 'menu') );
+        $this->setup_cookie_notice();
+        $this->enchanced_schema_author_graph();
+        $this->uppercase_url_redirect();
+        $this->fill_void_image_alt();
     }
 
     /**
@@ -159,7 +166,7 @@ final class Theme {
     public function get_search_form( $form ) {
 
         $location = single_post_title( '', false );
-        $path = preg_replace("/\/page\/(\d+)/", '', get_current_request_url() );
+        //$path = preg_replace("/\/page\/(\d+)/", '', get_current_request_url() );
 
         if ( empty($location) )
             $location = post_type_archive_title( '', false );
@@ -168,16 +175,14 @@ final class Theme {
             $location = single_term_title( '', false );
 
         $old_action = esc_url( home_url( '/' ) );
-        $new_action = esc_url( home_url( $path ) );
-        $old_placeholder = sprintf('placeholder="%s"', esc_attr_x( 'Search &hellip;', 'placeholder' ));
-        $new_placeholder = sprintf('placeholder="%s %s"',
-                                    esc_attr_x( 'Search in', 'seclgroup' ),
-                                    esc_attr($location));
+        $new_action = esc_url( get_post_type_archive_link( 'post' ) );
+        //$old_placeholder = sprintf('placeholder="%s"', esc_attr_x( 'Search &hellip;', 'placeholder' ));
+        //$new_placeholder = sprintf('placeholder="%s %s"', esc_attr_x( 'Search in', 'seclgroup' ), esc_attr($location));
 
         $form = str_replace($old_action, $new_action, $form);
 
-        if ( ! empty($location) )
-            $form = str_replace($old_placeholder, $new_placeholder, $form);
+        //if ( ! empty($location) )
+            //$form = str_replace($old_placeholder, $new_placeholder, $form);
 
         return $form;
     }

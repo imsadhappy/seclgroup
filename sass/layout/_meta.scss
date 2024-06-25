@@ -112,8 +112,12 @@
         a {
             @extend .h7;
             transition: color .3s ease;
+            white-space: nowrap;
             &:hover, &:focus {
                 color: $Primary__150
+            }
+            @media (min-width: 1024px) and (max-width: 1160px), (max-width: 360px) {
+                font-size: 100%;
             }
         }
 
@@ -137,6 +141,7 @@
         &Email, &Phone {
             float: none;
             width: auto;
+            line-height: 1;
         }
     }
 }

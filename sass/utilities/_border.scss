@@ -1,0 +1,21 @@
+.border-radius-20 {
+    border-radius: 20px;
+}
+
+.border-radius-default,
+.border-radius-10,
+.border-radius {
+    border-radius: 10px;
+}
+
+.border-2blue {
+    border: 2px solid $BG__Blue;
+}
+
+.border-dashed-pink {
+    border: 1px dashed $Primary__150;
+}
+
+.border-tertiary {
+    border: 1px solid $Text__Tertiary;
+}

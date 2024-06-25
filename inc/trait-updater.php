@@ -21,8 +21,6 @@ trait Updater {
         if ( empty($current_theme_github) )
             return;
 
-
-
         $this->{'theme'} = get_stylesheet();
         $this->{'current_version'} = wp_get_theme()->get('Version');
 

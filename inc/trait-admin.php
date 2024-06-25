@@ -66,20 +66,20 @@ trait Admin {
         } );
     }
 
-    protected function page_for_terms_and_conditions() {
+    protected function page_for_( $id, $title ) {
 
-        if ( ! function_exists('get_the_terms_and_conditions_link') )
-            return _doing_it_wrong(__FUNCTION__, 'Define function get_the_terms_and_conditions_link', '1.0');
+        if ( ! function_exists("get_the_{$id}_link") )
+            return _doing_it_wrong(__FUNCTION__, "Define function get_the_{$id}_link", '1.0');
 
-        $skey = 'wp_page_for_terms_and_conditions';
+        $skey = "wp_page_for_$id";
 
-        add_action( 'admin_init', function () use ($skey) {
+        add_action( 'admin_init', function () use ( $skey, $title ) {
 
             register_setting( 'reading', $skey );
 
             add_settings_field(
                 $skey,
-                '<label for="' . $skey . '">' . __( 'Terms & Conditions Page', 'seclgroup' ) . ':</label>',
+                '<label for="' . $skey . '">' . __( $title, 'seclgroup' ) . ':</label>',
                 function () use ($skey) {
                     echo wp_dropdown_pages(
                         array(
@@ -95,10 +95,10 @@ trait Admin {
             );
         } );
 
-        add_filter( 'display_post_states', function ( $post_states, $post ) use ($skey) {
+        add_filter( 'display_post_states', function ( $post_states, $post ) use ( $skey, $title ) {
 
             if ( intval( get_option($skey) ) === intval($post->ID) )
-                $post_states[$skey] = __( 'Terms & Conditions Page', 'seclgroup' );
+                $post_states[$skey] = __( $title, 'seclgroup' );
 
             return $post_states;
         }, 10, 2 );

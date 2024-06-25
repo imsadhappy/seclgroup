@@ -78,7 +78,7 @@
             @extend .hover-color-logos;
         }
 
-        @media (max-height: 667px), (max-width: 480px) {
+        @media (max-height: 667px), (max-width: $width__min) {
             > * {
                 margin-right: 10px !important;
                 margin-left: 10px !important;
@@ -106,4 +106,18 @@
         @include custom-hover(#6A67DB, 'stars.svg', 50%, 10%, 200px, 80%);
     }
 
+    p.has-pink-150-color[style="font-size:140px"] strong { //Work Process 1,2,3
+        display: block;
+        width: 25vw;
+        max-width: 110px;
+    }
+    /* Work Process quick fix */
+    @media (min-width: $width__mobile) {
+        .work-process-h4 ~ & > .mobile {
+            &-full-width,
+            &-flex-1 {
+                max-width: 30%;
+            }
+        }
+    }
 }

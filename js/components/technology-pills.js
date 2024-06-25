@@ -15,9 +15,9 @@
                         y2 = window.innerHeight * .60 + rect.height,
                         y = rect.y
                     if (y > y1 && y < y2) { cl = 'add' }
-                    container.classList[cl]('no-grayscale')
+                    container.classList[cl]('no-grayscale', 'in-view')
                 }, 100)
             })
         })(target)
     })
-})(document.querySelectorAll('.technology-pill-container'))
+})(document.querySelectorAll('.technology-pill-container, .click-child, .hover-color-logos'))

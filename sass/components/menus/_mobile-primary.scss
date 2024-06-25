@@ -216,17 +216,40 @@
 						@extend .pineaple-marker, .hidden-scrollbar;
 						position: fixed;
 						height: 100%;
-						padding-bottom: 100px;
+						padding-bottom: 60px;
 						overflow: auto;
 
+
 						> li > a {
-							background: none !important;
+							&[href="#"] {
+								background: none !important;
+								color: inherit !important;
+							}
+							//@media (any-hover: hover) {
+								//background: none !important;
+							//}
 						}
 
 						ul.techno-list {
 							> li {
 								> a {
 									padding: 0 !important;
+									-webkit-tap-highlight-color: transparent;
+								}
+							}
+						}
+
+
+						.yspl_win_wrap {
+							.wp-block-columns {
+								@media (max-width: $width__mobile) {
+									gap: 0;
+									> *:not(:last-child) {
+										border-bottom: $border__grey;
+									}
+								}
+								li > a {
+									background: none !important;
 								}
 							}
 						}

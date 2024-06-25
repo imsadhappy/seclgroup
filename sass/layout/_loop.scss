@@ -56,6 +56,21 @@
 		&.current {
 			@extend .pill.active;
 		}
+
+		@media (max-width: $width__mobile) {
+			&.dots ~ *,
+			&.current + * {
+				&:not(.current):not(.dots):not(:nth-last-child(2)):not(:last-child) {
+					display: none;
+				}
+			}
+		}
+
+		@media (max-width: 400px) {
+			&:not(.prev):not(.next) {
+				display: none;
+			}
+		}
 	}
 }
 

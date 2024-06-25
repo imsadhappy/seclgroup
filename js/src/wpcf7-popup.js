@@ -8,14 +8,15 @@ export default event => {
     const closePopup = () => document.body.classList.remove(`${x}shown`)
 
     const createPopup = (html, buttonText) => {
-        let overlay = document.createElement('a')
+        const overlay = document.createElement('a')
         overlay.addEventListener('click', closePopup)
         overlay.classList.add(`${x}overlay`)
-        let close = document.createElement('a')
+        overlay.href = '#'
+        const close = document.createElement('a')
         close.href = '#'
         close.addEventListener('click', closePopup)
         close.classList.add(`${x}close`)
-        let content = document.createElement('div')
+        const content = document.createElement('div')
         content.classList.add(`${x}content`)
         content.innerHTML = html
         content.querySelector('[name="ref_url"]').setAttribute('value', window.location.href)
@@ -61,7 +62,7 @@ export default event => {
         event.preventDefault()
         if (typeof window.wpcf7 !== 'object') return
         const formId = event.target.rel.replace(x, '')
-        let popup = document.getElementById(x+formId)
+        const popup = document.getElementById(x+formId)
         if (popup) {
             document.body.classList.add(`${x}shown`)
         } else {

@@ -63,7 +63,7 @@ else : ?>
         <div class="team-member" id="<?php echo $member_id ?>">
 
             <?php if ( $is_preview ) : ?>
-                <img src="<?php echo get_the_post_thumbnail_url($member) ?>" class="img_0">
+                <img src="<?php echo get_the_post_thumbnail_url($member) ?>" class="img_0" alt="">
             <?php endif ?>
 
             <div class="team-member--details">
@@ -78,7 +78,7 @@ else : ?>
     <?php endforeach; ?>
 
     <?php if (!$is_preview) : ?>
-        <script>document.dispatchEvent(
+        <script class="our-team--init-event">document.dispatchEvent(
             new CustomEvent(
                 'ourTeam:init', <?php
                     echo "{ detail: { $block_id: { $team_json } } }"

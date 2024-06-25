@@ -5,10 +5,15 @@
                 &.invisible {
                     display: none;
                 }
-                a {
-                    background: none !important;
-                }
             }
         }
+        a[href="#"] {
+            background: none !important;
+        }
     }
+}
+
+.yspl-widget-area .techno-list li a {
+    background: none !important;
+    -webkit-tap-highlight-color: transparent;
 }

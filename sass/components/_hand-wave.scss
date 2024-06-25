@@ -9,6 +9,14 @@
   100% { transform: rotate(0.0deg) }
 }
 
+.hand-wave-icon {
+	background: transparent url('assets/images/request-hand-wave.png') no-repeat center;
+	animation-name: wave-animation;
+	animation-duration: 2.5s;
+	animation-iteration-count: infinite;
+	transform-origin: 50% 100%;
+}
+
 .request-hand-wave-button {
 	padding: 16px 24px !important;
 	border-radius: 40px;
@@ -19,13 +27,9 @@
 		display: inline-block;
 		width: 32px;
 		height: 32px;
-		background: transparent url('assets/images/request-hand-wave.png') no-repeat center;
 		vertical-align: -10px;
 		margin-right: 10px;
-		animation-name: wave-animation;
-		animation-duration: 2.5s;
-		animation-iteration-count: infinite;
-		transform-origin: 50% 100%;
+		@extend .hand-wave-icon;
 	}
 	&:hover,
 	&:active,

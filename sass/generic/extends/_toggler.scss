@@ -49,7 +49,9 @@
             display: none;
         }
         .is-hovered &,
+		.in-view &,
         &.is-hovered,
+		&.in-view,
         &:hover {
             figure:first-child {
                 display: none;

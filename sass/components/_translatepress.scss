@@ -1,6 +1,9 @@
 .trp {
 	&_language_switcher_shortcode {
 		margin: 0 0 0 auto;
+		.site-header.mobile & {
+			margin: 0;
+		}
 		padding-left: 24px;
 		padding-left: clamp(12px, 1.5vw, 32px);
 		position: relative;
@@ -23,6 +26,9 @@
 			line-height: 1;
 			-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 		}
+		a > * {
+			pointer-events: none;
+		}
 		a[href="javascript:void(0)"],
 		a[href="#"] {
 			color: inherit !important;
@@ -38,6 +44,9 @@
 				margin-left: 6px;
 				vertical-align: -6px;
 			}
+			&.is-clicked ~ a:not([href="javascript:void(0)"]):not([href="#"]) {
+				display: block;
+			}
 		}
 
 		a:not([href="javascript:void(0)"]):not([href="#"]) {
@@ -47,10 +56,12 @@
 			padding: 4px 0;
 		}
 
-		&:hover {
-			//transform: translateY(-50%);
-			a:not([href="javascript:void(0)"]):not([href="#"]) {
-				display: block;
+		@media (any-hover: hover) {
+			&:hover {
+				//transform: translateY(-50%);
+				a:not([href="javascript:void(0)"]):not([href="#"]) {
+					display: block;
+				}
 			}
 		}
 	}

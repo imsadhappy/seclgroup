@@ -6,7 +6,9 @@
 
         position: relative;
         max-width: none;
-
+        @media (max-width: $width__mobile) {
+            transform: scale(.8);
+        }
         svg {
             max-width: none !important;
             [class*="address-"] {

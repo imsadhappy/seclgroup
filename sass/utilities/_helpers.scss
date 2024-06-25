@@ -8,6 +8,9 @@
 
 .background-primary { background-color: $color__primary }
 
+.children-background-transparent > *,
+.children-background-transparent > .is-reusable > * { background: transparent !important }
+
 .offset {
     position: absolute;
     left: -100500px;
@@ -83,23 +86,7 @@
 
 @import "width-height";
 
-.border-radius-20 {
-    border-radius: 20px;
-}
-
-.border-radius-default,
-.border-radius-10,
-.border-radius {
-    border-radius: 10px;
-}
-
-.border-2blue {
-    border: 2px solid $BG__Blue;
-}
-
-.border-dashed-pink {
-    border: 1px dashed $Primary__150;
-}
+@import "border";
 
 .custom-counter-with-gradient {
 	font-size: 35px;

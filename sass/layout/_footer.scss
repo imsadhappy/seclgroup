@@ -1,5 +1,6 @@
 .site-footer {
 
+  margin-top: -1px;
   flex-shrink: 0;
   background: $color__background-footer;
 
@@ -7,9 +8,16 @@
     color: $color__text-footer;
   }
 
-  #copyright {
-    padding: 40px 0;
+  #copyright,
+  #terms {
+    padding: 0 0 40px;
     @extend .wrapper;
     text-align: center;
+    a {
+      text-decoration: underline;
+      + a {
+        margin-left: 20px;
+      }
+    }
   }
 }

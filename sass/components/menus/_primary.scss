@@ -64,7 +64,8 @@
 			padding: 30px 0 31px;
 		}
 		&.current-menu-item,
-		&.current-menu-ancestor {
+		&.current-menu-ancestor,
+		&.current-page-ancestor {
 			//box-shadow:0 -16px 0 $BG__White inset,  0 -18px 0 $Primary__150 inset;
 			> a {
 				text-decoration: underline;
@@ -261,6 +262,7 @@
 											> li {
 												> a {
 													padding: 0 30px 0 0 !important;
+													-webkit-tap-highlight-color: transparent;
 													&::after {
 														margin-right: -35px !important;
 													}
@@ -301,5 +303,10 @@
 			border-radius: 15px;
 			padding: 1px 6px;
 		}
+	}
+
+	li.notext {
+		padding: 6px !important;
+		a { display: none }
 	}
 }

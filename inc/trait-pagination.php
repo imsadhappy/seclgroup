@@ -35,9 +35,11 @@ trait Pagination {
 
     public function paginate_links_output($r) {
 
-        if (strpos($r, 'class="prev ') === false) {
+        if (str_starts_with ($r, '<span aria-current="page"')) {
             $r = sprintf('<span class="prev disabled page-numbers">%s</span>', self::$svg['prev_text']) . $r;
-        } elseif (strpos($r, 'class="next ') === false) {
+        }
+
+        if (str_ends_with($r, '</span>')) {
             $r .= sprintf('<span class="next disabled page-numbers">%s</span>', self::$svg['next_text']);
         }
 
@@ -45,6 +47,14 @@ trait Pagination {
     }
 
     public function paginate_block($block_content, $block) {
+
+        if (isset($block['blockName']) && 'core/query-pagination-previous' === $block['blockName']) {
+            $block_content = \str_replace('←', self::$svg['prev_text'], $block_content);
+        }
+
+        if (isset($block['blockName']) && 'core/query-pagination-next' === $block['blockName']) {
+            $block_content = \str_replace('→', self::$svg['next_text'], $block_content);
+        }
 
         $prefix = 'Page ';
         $block_name = $this->get_block_name($block);

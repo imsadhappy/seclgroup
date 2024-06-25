@@ -1,4 +1,7 @@
 &-spacer {
+    &.negative:not(.ready) {
+        height: 0 !important;
+    }
     @media (max-width: $width__mobile), (max-height: $height__mobile) {
         &.mobile-height-20 {
             height: 20px !important;
@@ -17,6 +20,13 @@
         }
         &.mobile-height-100vw {
             height: 100vw !important;
+        }
+    }
+    &.project-spacer {
+        @media (max-width: 800px) {
+            height: calc(200px + 25vw) !important;
+            margin-top: calc((200px + 50vw) * -1) !important;
+            margin-bottom: -50px;
         }
     }
 }

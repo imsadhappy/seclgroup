@@ -58,6 +58,13 @@ $ npm install
 
 ### Versions
 
+Version 1.2.0
+
+- added cookie policy page setting
+- added cookie notice feature
+- author page design
+- bug fixes
+
 Version 1.1.1
 
 - added defer to wpcf7 scripts

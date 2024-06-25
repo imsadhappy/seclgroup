@@ -4,4 +4,21 @@
         border: 1px solid $Text__Tertiary;
         border-radius: 50%;
     }
+
+    &.has-normal-icon-size li a {
+        padding: 8px;
+    }
+
+    &.hover-pinked li {
+        transition: all .2s ease;
+        &:hover,
+        &:focus {
+            transform: none;
+            background-color: $Primary__150 !important;
+            border-color: $Primary__150 !important;
+            svg {
+                fill: $BG__White !important;
+            }
+        }
+    }
 }

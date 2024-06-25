@@ -65,6 +65,10 @@ if ( ! function_exists( 'posted_by' ) ) {
 		$role = get_field( 'user_role', "user_$author_id" );
 		$author =  esc_html( get_the_author() );
 		$image = is_array($avatar) ? sprintf('<img src="%s" alt="%s">', $avatar['sizes']['thumbnail'], $author) : '';
+		$author_url = get_field( 'author_page', "user_$author_id" );
+
+		if ( empty($author_url) )
+			$author_url = get_author_posts_url( $author_id );
 
 		$about = $phone = $email = $social_links_html = '';
 
@@ -90,13 +94,12 @@ if ( ! function_exists( 'posted_by' ) ) {
 			if ( ! empty($social_links) )
 				foreach ( $social_links as $social_link )
 					$social_links_html .= sprintf('<a href="%s" target="_blank" rel="me" title="%s">%s</a>', $social_link['url'], $author, $social_link['icon']);
-
 		}
 
 		$html = sprintf('<div class="posted-by byline template-tags--posted_by">
 							<span class="author vcard">
 								<span class="authorSocialLinks">%s</span>
-								<a class="url fn n" href="#" data-exhref="%s" rel="nofollow noindex">
+								<a class="url fn n" href="%s">
 									%s <span class="name authorName">%s</span><br>
 									<span class="position role authorPosition">%s</span>
 								</a>
@@ -107,7 +110,7 @@ if ( ! function_exists( 'posted_by' ) ) {
 							</div>
 						</div>',
 						$social_links_html,
-						esc_url( get_author_posts_url( $author_id ) ),
+						esc_url( $author_url ),
 						$image,
 						$author,
 						$role,
@@ -548,6 +551,64 @@ if ( ! function_exists( 'the_terms_and_conditions_link' ) ) {
 	 */
 	function the_terms_and_conditions_link( $before = '', $after = '' ) {
 		echo get_the_terms_and_conditions_link( $before, $after );
+	}
+}
+
+if ( ! function_exists( 'get_the_cookie_policy_link' ) ) {
+
+	/**
+	 * Returns the cookie policy link with formatting, when applicable.
+	 *
+	 * @param string $before Optional. Display before cookie policy link. Default empty.
+	 * @param string $after  Optional. Display after cookie policy link. Default empty.
+	 * @return string Markup for the link and surrounding elements. Empty string if it
+	 *                doesn't exist.
+	 */
+	function get_the_cookie_policy_link( $before = '', $after = '' ) {
+
+		$link = '';
+		$page_id = (int) get_option( 'wp_page_for_cookie_policy' );
+		$page_title = $page_id ? get_the_title( $page_id ) : '';
+		$page_url = $page_id ? get_permalink($page_id) : '';
+
+		if ( $page_url && $page_title ) {
+			$link = sprintf(
+				'<a class="cookie-policy-link" href="%s">%s</a>',
+				esc_url( $page_url ),
+				esc_html( $page_title )
+			);
+		}
+
+		/**
+		 * Filters the cookie policy link.
+		 *
+		 * @since 4.9.6
+		 *
+		 * @param string $link               The cookie policy link. Empty string if it
+		 *                                   doesn't exist.
+		 * @param string $page_url The URL of the cookie policy. Empty string
+		 *                                   if it doesn't exist.
+		 */
+		$link = apply_filters( 'the_cookie_policy_link', $link, $page_url );
+
+		if ( $link ) {
+			return $before . $link . $after;
+		}
+
+		return '';
+	}
+}
+
+if ( ! function_exists( 'the_cookie_policy_link' ) ) {
+
+	/**
+	 * Displays the cookie policy link with formatting, when applicable.
+	 *
+	 * @param string $before Optional. Display before cookie policy link. Default empty.
+	 * @param string $after  Optional. Display after cookie policy link. Default empty.
+	 */
+	function the_cookie_policy_link( $before = '', $after = '' ) {
+		echo get_the_cookie_policy_link( $before, $after );
 	}
 }
 

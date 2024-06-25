@@ -1,0 +1,91 @@
+#cookie-notice {
+
+    .cookie-notice-container {
+        display: flex;
+        @extend .wrapper;
+        max-width: $width__wide;
+        justify-content: space-between;
+        align-items: center;
+        padding: 28px 0 18px;
+        gap: 8px;
+        @media (max-width: $width__mobile) {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+    }
+
+    .cn-button:not(.cn-button-custom) {
+        padding: 10px 30px;
+        text-transform: uppercase;
+        border-radius: 30px;
+        font-size: 20px;
+        font-family: $font__main;
+        line-height: 24px;
+        margin: 0 8px 8px 0;
+    }
+
+    #cn-notice-text {
+
+        margin: 0;
+        text-align: left;
+        font-size: $font__size;
+        line-height: 1.8;
+        font-family: $font__main;
+
+        .h7 {
+            line-height: 1;
+        }
+
+        a {
+            color: $Primary__150;
+            text-decoration: underline;
+        }
+
+        &--inner {
+
+            display: flex;
+
+            > img {
+                @media (max-width: $width__mobile) {
+                    display: none;
+                }
+            }
+
+            > div {
+                @media (min-width: $width__mobile) {
+                    padding: 0 16px;
+                    flex-basis: 80%;
+                    margin: 0 auto;
+                }
+                @media (max-width: $width__mobile) {
+                    margin: 0;
+                }
+            }
+        }
+    }
+
+    #cn-close-notice {
+        display: none;
+    }
+
+    #cn-notice-buttons {
+        display: flex;
+        flex-direction: row-reverse;
+        margin-top: 8px;
+        @media (max-width: 520px) {
+            width: 100%;
+            align-items: stretch;
+            > .cn-button {
+                flex-basis: 50%;
+            }
+        }
+        @media (max-width: 360px) {
+            flex-direction: column-reverse;
+        }
+    }
+
+    #cn-refuse-cookie {
+        background-color: transparent !important;
+        border: 1px solid $color__secondary !important;
+    }
+}

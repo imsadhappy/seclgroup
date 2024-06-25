@@ -25,7 +25,7 @@ export default () => {
 
 	const navigationResize = () => {
 		let set = menu.clientWidth >= menuContainer.clientWidth ? 'add':'remove'
-		if (window.innerWidth >= 1224) { set = 'remove' }
+		if (window.innerWidth >= 1180) { set = 'remove' }
 		if (window.innerWidth <= 480) { set = 'add' }
 		menu.classList[set]('invisible')
 		menuContainer.classList[set]('pointer')
@@ -33,43 +33,45 @@ export default () => {
 		mobileMenu.classList.remove('show')
 	}
 
-	const setupMultilayerMenu = ul => {
+	const setupMultilayerMenu = (ul, withMaxHeight) => {
 		let t = 0
 		ul.querySelectorAll(':scope > .menu-item-has-children').forEach(li1 => {
-
 			let a1 = li1.firstChild, ul1 = a1.nextElementSibling
 			if (!ul1 || !ul1.classList.contains('sub-menu')) return
-
 			ul1.setAttribute('data-name', a1.textContent)
 			ul1.addEventListener('deselect', () => {
 				ul1.querySelectorAll('.menu-item-has-children').forEach((li2) => {
-						li2.classList.remove('active')
-						li2.querySelector('a')?.blur()
-					})
+					li2.classList.remove('active')
+					li2.querySelector('a')?.blur()
+				})
 			})
 			ul1.querySelectorAll('.menu-item-has-children').forEach((li2, i) => {
+				let ul2 = li2.querySelector(':scope > .sub-menu')
 				let activate = () => {
+					if (li2.classList.contains('active')) return
 					ul1.dispatchEvent(new Event('deselect'))
 					li2.classList.add('active')
-					const ul2 = li2.querySelector(':scope > .sub-menu')
 					if (ul2) ul2.scrollTop = 0
+					if (withMaxHeight) setMaxHeight()
+				}
+				let setMaxHeight = () => {
+					if (ul2) ul2.style.maxHeight = `${window.innerHeight - ul2.offsetTop}px`
 				}
 				if (i === 0) {
 					li2.classList.add('active', 'first-active')
 					ul1.classList.add('multilayer')
 					li1.classList.add('has-multilayer')
 				}
+				if (withMaxHeight) setMaxHeight()
 				li2.addEventListener('mouseenter', activate)
 				li2.addEventListener('click', activate)
 			})
-
 			li1.addEventListener('mouseenter', () => {
 				clearTimeout(t)
 				header.classList.add('dropdown-menu-shown')
 			})
 			li1.addEventListener('mouseleave', () => {
-				t = setTimeout(() =>
-					header.classList.remove('dropdown-menu-shown'), 100)
+				t = setTimeout(() => header.classList.remove('dropdown-menu-shown'), 100)
 			})
 		})
 	}
@@ -83,7 +85,6 @@ export default () => {
 			clearTimeout(t)
 			t = setTimeout(navigationResize, 100)
 		})
-
 		document.addEventListener('click', event => {
 			const targetClass = event?.target?.classList
 			if (!targetClass) return
@@ -95,9 +96,7 @@ export default () => {
 					container.classList.remove('has-touched', 'has-touched-multilayer')
 				} else {
 					container.querySelectorAll(':scope > .touched')
-							.forEach(targetSibling =>
-								targetSibling.classList.remove('touched')
-							)
+							 .forEach(targetSibling => targetSibling.classList.remove('touched'))
 					targetClass.add('touched')
 					container.classList.add('has-touched')
 					if (targetClass.contains('has-multilayer')) {
@@ -109,14 +108,14 @@ export default () => {
 				document.body.classList.toggle('mobile-menu-active')
 				if (!mobileMenu.classList.contains('show')) {
 					setTimeout(() => {
-						mobileMenu.querySelectorAll('.touched, .has-touched').forEach(
-							touched => touched.classList.remove('touched', 'has-touched', 'has-touched-multilayer')
-						)
-						mobileMenu.querySelectorAll('.active, .first-active').forEach(
-							active => active.classList[active.classList.contains('first-active') ? 'add' : 'remove']('active')
-						)
+						mobileMenu.querySelectorAll('.touched, .has-touched')
+								  .forEach(touched => touched.classList.remove('touched', 'has-touched', 'has-touched-multilayer'))
+						mobileMenu.querySelectorAll('.active, .first-active')
+								  .forEach(active => active.classList[active.classList.contains('first-active') ? 'add' : 'remove']('active'))
 					}, 333)
 				}
+			} else if (event.target == mobileMenu) {
+				mobileMenu.querySelector('.request-button a').click()
 			}
 		})
 	}
@@ -124,7 +123,7 @@ export default () => {
 	setupMultilayerMenu(menu)
 	createMobileMenu(menuContainer)
 	setTimeout(() => {
-		setupMultilayerMenu(mobileMenu.firstChild)
+		setupMultilayerMenu(mobileMenu.firstChild, true)
 		navigationResize()
 		attachEventListeners()
 		menuContainer.classList.add('ready')

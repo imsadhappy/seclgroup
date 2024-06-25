@@ -23,6 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<link rel="preconnect" href="https://www.gstatic.com" crossorigin>
 	<?php wp_head(); ?>
 	<?php print(get_field('head', 'options')) ?>
+
 </head>
 <body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">
 

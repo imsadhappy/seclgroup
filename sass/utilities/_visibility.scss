@@ -34,3 +34,15 @@
         display: none !important;
     }
 }
+
+@media (max-width: 1280px) {
+    .visible-over-1280 {
+        display: none !important;
+    }
+}
+
+@media (min-width: 1280px) {
+    .visible-under-1280 {
+        display: none !important;
+    }
+}

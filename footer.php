@@ -24,8 +24,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<span>&mdash;</span>
 			<span itemprop="copyrightYear"><?php echo date('Y'); ?></span>,
 			<span itemprop="copyrightHolder"><?php bloginfo( 'description' ); ?></span>
+		</div>
+
+		<div id="terms">
 			<?php the_terms_and_conditions_link() ?>
 			<?php the_privacy_policy_link() ?>
+			<?php the_cookie_policy_link() ?>
 		</div>
 
 	</footer><!-- #colophon -->

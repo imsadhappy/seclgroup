@@ -36,13 +36,18 @@
         }
         updateNavigation()
         container.addEventListener('animationComplete', updateNavigation)
+        container.addEventListener('animationStart', () => {
+            next.classList.add('disabled')
+            prev.classList.add('disabled')
+        })
     }
 
     const animate = (active, container, instant) => {
-        let complete = false
-        let y = 5 / window.devicePixelRatio
-        let y1 = Math.round(active.getBoundingClientRect().x)
-        let y2 = window.innerWidth > 800 ? Math.round((window.innerWidth - 800) / 2) : 0
+        let complete = false,
+            y = 5 / window.devicePixelRatio,
+            y1 = Math.round(active.getBoundingClientRect().x),
+            y2 = window.innerWidth > 800 ? Math.round((window.innerWidth - 800) / 2) : 0,
+            previousScrollLeft = container.scrollLeft;
         if (y1 === y2) {
             complete = true
         } else {
@@ -59,7 +64,7 @@
                 complete = true
             }
         }
-        if (complete) {
+        if (complete || previousScrollLeft === container.scrollLeft) {
             clearInterval(t1)
             container.dispatchEvent(new Event('animationComplete'))
         }
@@ -108,6 +113,8 @@
                 active = children[Math.round(n / 2)-1]
                 if (active) active.classList.add('active')
             }
+            clearInterval(t1)
+            container.dispatchEvent(new Event('animationStart'))
             animate(active, container, true)
             if (first) {
                 onscroll(container)
@@ -122,11 +129,12 @@
         if (target.classList.contains('active')) return
         const container = target.parentElement
         if (container && container.classList.contains(x)) {
-            clearInterval(t1)
             for (let i = 0; i <= container.children.length; i++) {
                 container.children[i]?.classList?.remove('active')
             }
             target.classList.add('active')
+            clearInterval(t1)
+            container.dispatchEvent(new Event('animationStart'))
             t1 = setInterval(() => {
                 animate(target, container, instant)
             }, 1)

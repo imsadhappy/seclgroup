@@ -42,8 +42,10 @@
 				display: block;
 				width: 100%;
 				padding-right: 50px;
-				background: url('assets/images/arrow-up-right-in-circle.svg') no-repeat 99% center;
-				background-size: 30px;
+				&:not([href="#"]) {
+					background: url('assets/images/arrow-up-right-in-circle.svg') no-repeat 99% center;
+					background-size: 30px;
+				}
 			}
 		}
 	}

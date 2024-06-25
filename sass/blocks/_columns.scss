@@ -43,6 +43,10 @@
             &.has-a:focus {
                 border-color: $Text__Primary;
                 cursor: pointer;
+            }
+            &.has-a:hover,
+            &.has-a:focus,
+            &.has-a.in-view {
                 a {
                     text-decoration: underline;
                     text-decoration-style: dashed;
@@ -135,6 +139,10 @@
                 gap: 0;
             }
         }
+    }
+
+    &s.technologies-row-1 & {
+        align-self: flex-start !important;
     }
 
     @import "../components/about-us";

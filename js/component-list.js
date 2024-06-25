@@ -28,7 +28,9 @@ if ( !('ontouchstart' in window) &&
         loadComponent('hoverscrollers')
     }
 
-if (document.querySelector('.technology-pill-container')) {
+if (document.querySelector('.technology-pill-container') ||
+    document.querySelector('.click-child') ||
+    document.querySelector('.hover-color-logos')) {
     loadComponent('technology-pills')
 }
 
@@ -74,10 +76,6 @@ if (document.querySelector('video')) {
 
 if (document.querySelector('.has-view-more')) {
     loadComponent('view-more')
-}
-
-if (document.querySelector('.wp-block-spacer.negative')) {
-    loadComponent('negative-spacer')
 }
 
 if (document.querySelector('.go-to-project')) {

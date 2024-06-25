@@ -26,6 +26,10 @@
 
             @extend .base-mobile-padding;
 
+            /* a, p, ul, ol, li, b, strong, cite, blockquote, span {
+                font-family: $default__fonts;
+            } */
+
             h1, h2, h3, h4, h5 {
                 @extend h6;
                 @media (min-width: 1024px) {
@@ -42,7 +46,6 @@
             }
 
             a {
-
                 color: $Primary__150;
                 text-decoration: underline;
                 text-underline-offset: 4px;
@@ -188,7 +191,7 @@
                     @extend .button-right-arrow;
                     color: $Primary__150;
                     font-size: 18px;
-                    padding: 12px 20px 12px 0;
+                    padding: 12px 30px 12px 0;
                     display: block;
                 }
                 + li {

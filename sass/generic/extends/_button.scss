@@ -47,14 +47,15 @@
 	background-image: url('assets/images/arrow-up-right-in-circle.svg');
 }
 
-.arrow-up-right-in-circle-on-hover {
+.arrow-up-right-in-circle-on-hover:not([href="#"]) {
 	&:focus,
 	&.is-selected,
 	&:hover {
 		background: url('assets/images/arrow-up-right-in-circle.svg') no-repeat 99% center;
 		background-size: 30px;
 	}
-	@media (max-width: $width__min) {
+	@media (max-width: $width__min), (any-hover: none) {
+		display: block !important;
 		background: url('assets/images/arrow-up-right-in-circle.svg') no-repeat 99% center;
 		background-size: 30px;
 	}

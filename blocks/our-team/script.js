@@ -8,29 +8,47 @@
     if (W.adminpage) return;
 
     const instance = {
-        done: false,
-        loaded: false,
         container: null,
         items: [],
-        canTouch: ('ontouchstart' in W) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0),
-        is(value) {
-            this.container.classList.add(value)
+        currentItemInViewport: null,
+        scrollEventTimeout: null,
+        $(className, target) {
+            (target || this.container).classList.add(className)
         },
-        not(value) {
-            this.container.classList.remove(value)
+        _(className, target) {
+            (target || this.container).classList.remove(className)
         },
-        data(from) {
-            let {i, row, col} = from.dataset
+        is(className, target) {
+            return (target || this.container).classList.contains(className)
+        },
+        x(target) {
+            let {i, row, col} = target.dataset
             return {i: parseInt(i, 10),
                     row: parseInt(row, 10),
                     col: parseInt(col, 10)}
         },
-        getColCount() {
+        canTouch() {
+            return ('ontouchstart' in W) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)
+        },
+        colCount() {
             return (W.innerWidth < 781 ? (W.innerWidth < 480 ? 1 : 3) : 5)
         },
-        getAltImageNumber(target, row, col) {
-            let x = this.data(target).row,
-                y = this.data(target).col,
+        trigger(event, detail) {
+            this.container.dispatchEvent(new CustomEvent(`${M}:${event}`, {detail}))
+        },
+        next(item) {
+            let i = this.x(item).i
+            i = i+1 > I ? I : i+1
+            item.dataset.i = i
+            return i
+        },
+        stop() {
+            this._('hovered')
+            setTimeout(() => this.$('done'), 333)
+        },
+        altImageNumber(target, row, col) {
+            let x = this.x(target).row,
+                y = this.x(target).col,
                 n = 0;
             if (x < row) { //row before: 4, 5, 6
                 n = y <= col ? (y < col ? 4 : 5) : 6
@@ -41,7 +59,7 @@
             }
             return n
         },
-        getImage(key, item, data) {
+        loadImage(key, item, data) {
             if (!data[key]) return
             let image = item.querySelector(`img.${key}`)
             if (!image) {
@@ -49,118 +67,159 @@
                 image.src = data[key].url
                 image.width = data[key].width
                 image.height = data[key].height
-                image.style.opacity = 0
-                image.onload = () => (image.style.opacity = 1)
+                image.alt = `${M} ${item.id} ${key}`
+                //image.style.opacity = 0
+                //image.onload = () => (image.style.opacity = 1)
                 item.appendChild(image)
-                image.classList.add(key)
+                this.$(key, image)
             }
             return image
         },
-        activate(key, item, data) {
-            let image = this.getImage(key, item, data)
+        deactivateAllImages(inside) {
+            inside.querySelectorAll('img.active').forEach(img => this._('active', img))
+        },
+        activateImage(key, item, data) {
+            this.deactivateAllImages(item)
+            let image = this.loadImage(key, item, data)
             if (!image) return
-            image.classList.add('active')
+            this.$('active', image)
         },
-        trigger(event, detail) {
-            this.container.dispatchEvent(new CustomEvent(`${M}:${event}`, {detail}))
-        },
-        onmouseenter(item) {
-            if (this.done) return
-            let i = this.data(item).i
-            i = i+1 > I ? I : i+1
-            item.dataset.i = i
-            this.container.querySelectorAll('img').forEach(img => {
-                img.classList.remove('active')
-            })
-            this.trigger('activate', {
-                item, i,
-                row: i == I ? 3 /* max rows: 5 */ : this.data(item).row,
-                col: i == I ? Math.ceil(this.getColCount() / 2) : this.data(item).col
-            })
-            this.is('hovered')
-            if (i == I) {
-                setTimeout(() => this.is('done'), 333)
+        activateItem(item, i, data) {
+            let cols = this.colCount()
+            if (cols === 1 && i == I) {
+                this.activateImage(`img_${I}_alt_5`, item, data)
+            } else {
+                this.trigger('activate', {
+                    item, i,
+                    row: i == I ? 3 /* max rows: 5 */ : this.x(item).row,
+                    col: i == I ? Math.ceil(cols / 2) : this.x(item).col
+                })
             }
         },
-        onmouseleave(item) {
-            this.not('hovered')
-            if (item.dataset.i == I) {
-                this.done = true
-            }
+        deactivateItem(item) {
+            if (this.is('done')) return
+            this._('hovered')
             this.trigger('deactivate', {
                 item,
-                i: this.data(item).i,
-                row: this.data(item).row,
-                col: this.data(item).col
+                i: this.x(item).i,
+                row: this.x(item).row,
+                col: this.x(item).col
             })
         },
-        onactivate(item, data, detail) {
-            let {i, row, col} = detail
-            if (detail.item == item && i != I) {
-                this.activate(`img_${i}`, item, data)
-            } else {
-                this.activate(/*i === I ? `img_${I}` :*/ `img_${i}_alt_${this.getAltImageNumber(item, row, col)}`, item, data)
-            }
-        },
-        ondeactivate(item, data, detail) {
-            let {i, row, col} = detail
-            if (detail.item == item) {
-                this.getImage(`img_${i+1}`, item, data)
-            } else {
-                this.getImage(i+1 === I ? `img_${I}` : `img_${i+1}_alt_${this.getAltImageNumber(item, row, col)}`, item, data)
-            }
-        },
-        onresize() {
-            if (this.done) return
+        setColsRows(){
             this.rows = 1
             this.cols = 1
             this.items.forEach(({item}) => {
                 item.dataset.row = this.rows
                 item.dataset.col = this.cols
-                if (this.cols == this.getColCount()) {
+                if (this.cols == this.colCount()) {
                     this.cols = 1
                     this.rows++
                 } else {
                     this.cols++
                 }
-
             })
         },
+        setMinMax(){
+            this.min = 0 //reset!
+            let e = this.container.parentNode
+            if (e.offsetParent) {
+                do {
+                    this.min += e.offsetTop;
+                    e = e.offsetParent;
+                } while (e);
+            }
+        },
+        maybeLoadImages() {
+            if (
+                this.is('loaded') ||
+                this.is('done') ||
+                this.min > W.scrollY + W.innerHeight * 2
+            ) return
+            this.items.forEach(({item, data}) => {
+                if (this.is('watching', item)) return
+                this.watch(item, data)
+                this.$('watching', item)
+                this.activateImage(`img_0`, item, data)
+                this.loadImage(`img_1`, item, data) //preload
+            })
+            this.$('loaded')
+        },
         onscroll() {
-            if (this.done) return
-            let offset = this.container.getBoundingClientRect().y - W.innerHeight
-            if (this.loaded) {
-                if (!this.canTouch || window.innerWidth > 480) return
-                if (offset < 200) {
-                    this.is('hovered')
-                    this.items.forEach(({item, data}, n) => {
-                        item.querySelectorAll('img.active').forEach(img => img.classList.remove('active'))
-                        if (n+1 === this.items.length && item.getBoundingClientRect().y < W.innerHeight) {
-                            this.is('done')
-                        } else {
-                            if (item.getBoundingClientRect().y < W.innerHeight / 2 || n === 0) {
-                                this.activate(`img_0`, item, data)
-                            } else {
-                                this.activate(`img_1_alt_1`, item, data)
-                            }
-                        }
-                    })
+            this.maybeLoadImages()
+            if (
+                this.is('done') ||
+                (W.scrollY + W.innerHeight / 2) < this.min
+            ) return
+            this.$('hovered')
+            let endAnimation = false
+            this.items.forEach(({item, data}, n) => {
+                if (this.is('animating', item)) return
+                if (this.x(item).i === I) {
+                    endAnimation = true
+                    return
                 }
-            } else if (offset - 200 < 0) {
-                this.items.forEach(({item, data}) => {
-                    this.watch(item, data)
-                    this.activate(`img_0`, item, data) //load
-                    //this.getImage(`img_1`, item, data) //preload
+                let {y, height} = item.getBoundingClientRect()
+                if (height < 1) return
+                if (y < 50 || y + (height / 2) > W.innerHeight) return
+                let i = this.next(item)
+                //if (i === I) { endAnimation = true }
+                this.activateImage(`img_${i}`, item, data)
+                this.loadImage(`img_${i+1}`, item, data) //preload
+                this.$('animating', item)
+                setTimeout(() => {
+                    this._('animating', item)
+                }, 999)
+            })
+            if (endAnimation) {
+                this.stop()
+                this.items.forEach(({item, data}, n) => {
+                    item.dataset.i = I
+                    this.activateItem(item, I, data)
                 })
-                this.loaded = true
             }
         },
         watch(item, data) {
-            item.addEventListener('mouseenter', () => this.onmouseenter(item))
-            item.addEventListener('mouseleave', () => this.onmouseleave(item))
+            this.container.addEventListener(`${M}:activate`, ({detail}) => {
+                let {i, row, col} = detail
+                if (detail.item == item && i != I) {
+                    this.activateImage(`img_${i}`, item, data)
+                } else {
+                    this.activateImage(`img_${i}_alt_${this.altImageNumber(item, row, col)}`, item, data)
+                }
+            })
+            this.container.addEventListener(`${M}:deactivate`, ({detail}) => {
+                let {i, row, col} = detail
+                if (detail.item == item) {
+                    this.loadImage(`img_${i+1}`, item, data)
+                } else {
+                    //this.loadImage(i+1 === I ? `img_${I}` : `img_${i+1}_alt_${this.altImageNumber(item, row, col)}`, item, data)
+                }
+            })
             item.addEventListener('click', () => item.classList.toggle('clicked'))
-            this.container.addEventListener(`${M}:activate`, ({detail}) => this.onactivate(item, data, detail))
-            this.container.addEventListener(`${M}:deactivate`, ({detail}) => this.ondeactivate(item, data, detail))
+            if (!this.canTouch()) {
+                const mouseenterEventListener = mouseenter => {
+                    if (this.is('done')) {
+                        item.removeEventListener('mouseenter', mouseenterEventListener)
+                        return
+                    }
+                    this.$('hovered')
+                    this.deactivateAllImages(this.container)
+                    let i = this.next(item)
+                    this.activateItem(item, i, data)
+                    if (i == I) this.stop()
+                }
+                const mouseleaveEventListener = mouseleave => {
+                    if (this.is('done')) {
+                        item.removeEventListener('mouseleave', mouseleaveEventListener)
+                        return
+                    }
+                    this._('hovered')
+                    this.deactivateItem(item)
+                }
+                item.addEventListener('mouseenter', mouseenterEventListener)
+                item.addEventListener('mouseleave', mouseleaveEventListener)
+            }
         },
         init(detail) {
             for (let id in detail) {
@@ -172,16 +231,40 @@
                     this.items.push({item, data})
                 }
             }
-            this.onresize()
-            this.onscroll()
-            let t1, t2;
+            this.setColsRows()
+            this.setMinMax()
+            this.maybeLoadImages()
+            let resizeEventTimeout
             W.addEventListener('resize', () => {
-                clearTimeout(t1)
-                t1 = setTimeout(() => this.onresize(), 100)
+                clearTimeout(resizeEventTimeout)
+                resizeEventTimeout = setTimeout(() => {
+                    this._('loaded')
+                    this.setColsRows()
+                    this.setMinMax()
+                    this.maybeLoadImages()
+                    if (this.is('done')) {
+                        this.items.forEach(({item, data}, n) => this.activateItem(item, I, data))
+                    }
+                }, 111)
             })
-            W.addEventListener('scroll', () => {
-                clearTimeout(t2)
-                t2 = setTimeout(() => this.onscroll(), 100)
+            let scrollEventTimeout
+            const windowScrollEventListener = () => {
+                clearTimeout(scrollEventTimeout)
+                if (this.is('done')) {
+                    W.removeEventListener('scroll', windowScrollEventListener)
+                } else {
+                    if (this.canTouch()) {
+                        scrollEventTimeout = setTimeout(() => this.onscroll(), 111)
+                    } else {
+                        this.maybeLoadImages()
+                    }
+                }
+            }
+            W.addEventListener('scroll', windowScrollEventListener)
+            D.addEventListener('DOMContentLoaded', () => {
+                this.setColsRows()
+                this.setMinMax()
+                this.maybeLoadImages()
             })
         }
     }
