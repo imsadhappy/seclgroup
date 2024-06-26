@@ -85,7 +85,11 @@
     }
 
     #cn-refuse-cookie {
+        display: none;
         background-color: transparent !important;
         border: 1px solid $color__secondary !important;
+        body.wp-page-for-cookie-policy & {
+            display: block;
+        }
     }
 }
