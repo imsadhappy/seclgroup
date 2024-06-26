@@ -513,7 +513,7 @@ if ( ! function_exists( 'get_the_terms_and_conditions_link' ) ) {
 		$page_title = $page_id ? get_the_title( $page_id ) : '';
 		$page_url = $page_id ? get_permalink($page_id) : '';
 
-		if ( $page_url && $page_title ) {
+		if ( get_post_status( $page_id ) === 'publish' && $page_url && $page_title ) {
 			$link = sprintf(
 				'<a class="terms-and-conditions-link" href="%s">%s</a>',
 				esc_url( $page_url ),
@@ -571,7 +571,7 @@ if ( ! function_exists( 'get_the_cookie_policy_link' ) ) {
 		$page_title = $page_id ? get_the_title( $page_id ) : '';
 		$page_url = $page_id ? get_permalink($page_id) : '';
 
-		if ( $page_url && $page_title ) {
+		if ( get_post_status( $page_id ) === 'publish' && $page_url && $page_title ) {
 			$link = sprintf(
 				'<a class="cookie-policy-link" href="%s">%s</a>',
 				esc_url( $page_url ),

@@ -58,6 +58,10 @@ $ npm install
 
 ### Versions
 
+Version 1.2.1
+
+- hotfixes
+
 Version 1.2.0
 
 - added cookie policy page setting

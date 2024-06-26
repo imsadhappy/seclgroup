@@ -111,12 +111,26 @@
         width: 25vw;
         max-width: 110px;
     }
+
     /* Work Process quick fix */
-    @media (min-width: $width__mobile) {
-        .work-process-h4 ~ & > .mobile {
-            &-full-width,
-            &-flex-1 {
-                max-width: 30%;
+    .work-process-h4 ~ & {
+
+        @extend .base-mobile-padding;
+
+        > :first-child {
+            align-items: center;
+        }
+
+        > .mobile {
+            &-full-width, &-flex-1 {
+                @media (min-width: $width__mobile) {
+                    max-width: 30%;
+                }
+                @media (max-width: $width__mobile) {
+                    > *, .mobile-full-width {
+                        max-width: none !important;
+                    }
+                }
             }
         }
     }

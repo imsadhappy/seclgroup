@@ -26,11 +26,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<span itemprop="copyrightHolder"><?php bloginfo( 'description' ); ?></span>
 		</div>
 
-		<div id="terms">
-			<?php the_terms_and_conditions_link() ?>
-			<?php the_privacy_policy_link() ?>
-			<?php the_cookie_policy_link() ?>
-		</div>
+		<div id="terms"><?php
+			the_terms_and_conditions_link();
+			the_privacy_policy_link();
+			the_cookie_policy_link();
+		?></div>
 
 	</footer><!-- #colophon -->
 
