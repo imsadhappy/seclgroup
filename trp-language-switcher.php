@@ -5,34 +5,34 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-if (!function_exists('trp_custom_language_switcher')) {
+if ( ! function_exists('trp_custom_language_switcher') ) {
     function trp_custom_language_switcher () {
+        $uri = get_template_directory_uri();
         return [
             'en_US' => [
                 'language_name' => 'USA',
                 'language_code' => 'en_US',
                 'short_language_name' => 'en',
-                'flag_link' => get_template_directory_uri() . '/assets/flags/us.svg',
+                'flag_link' => $uri . '/assets/flags/us.svg',
                 'current_page_url' => '#'
             ],
             'uk' => [
                 'language_name' => 'UA',
                 'language_code' => 'uk',
                 'short_language_name' => 'uk',
-                'flag_link' => get_template_directory_uri() . '/assets/flags/ua.svg',
+                'flag_link' => $uri . '/assets/flags/ua.svg',
                 'current_page_url' => 'https://secl.com.ua/'
             ]
         ];
     }
 }
 
-if (function_exists('trp_custom_language_switcher')) :
-
-$print_language_link = function($language, $disabled = false){
-    ?><a href="<?php echo get_locale() == $language['language_code'] ? '#' : $language['current_page_url']?>"
+$print_language_link = function ($language, $disabled = false) {
+    $locale = get_locale();
+    ?><a href="<?php echo $locale == $language['language_code'] ? '#' : $language['current_page_url']?>"
         <?php if ($disabled) echo 'class="trp-ls-shortcode-disabled-language trp-ls-disabled-language"' ?>
         rel="alternate"
-        hreflang="<?php echo get_locale() == $language['language_code'] ? 'x-default' : $language['short_language_name']?>"
+        hreflang="<?php echo $locale == $language['language_code'] ? 'x-default' : $language['short_language_name']?>"
         title="<?php echo $language['language_name'] ?>">
         <img class="trp-flag-image"
                 src="<?php echo $language['flag_link'] ?>"
@@ -69,5 +69,3 @@ $languages = call_user_func('trp_custom_language_switcher'); ?>
         }
     })(document.querySelectorAll('.trp_language_switcher_shortcode .trp-language-switcher'))
 </script */ ?>
-
-<?php endif;

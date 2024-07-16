@@ -21,8 +21,7 @@
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        @extend .wrapper;
-        max-width: var(--wp--style--global--wide-size);
+        @extend .wrapper-wider;
 
         .site-branding {
             svg {

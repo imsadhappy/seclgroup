@@ -1,0 +1,22 @@
+#breadcrumbs {
+
+    @extend .wrapper-wider;
+
+    font-size: 14px;
+    margin-top: 40px;
+    margin-bottom: 0;
+    white-space: nowrap;
+
+    :not(.breadcrumb_last) {
+        color: $Text__Secondary;
+    }
+
+    .breadcrumb_last {
+        color: $Text__Primary;
+        max-width: 40vw;
+        overflow: hidden;
+        display: inline-block;
+        vertical-align: bottom;
+        text-overflow: ellipsis;
+    }
+}

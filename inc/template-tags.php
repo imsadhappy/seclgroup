@@ -612,6 +612,64 @@ if ( ! function_exists( 'the_cookie_policy_link' ) ) {
 	}
 }
 
+if ( ! function_exists( 'get_the_projects_link' ) ) {
+
+	/**
+	 * Returns the projects link with formatting, when applicable.
+	 *
+	 * @param string $before Optional. Display before projects link. Default empty.
+	 * @param string $after  Optional. Display after projects link. Default empty.
+	 * @return string Markup for the link and surrounding elements. Empty string if it
+	 *                doesn't exist.
+	 */
+	function get_the_projects_link( $before = '', $after = '' ) {
+
+		$link = '';
+		$page_id = (int) get_option( 'wp_page_for_projects' );
+		$page_title = $page_id ? get_the_title( $page_id ) : '';
+		$page_url = $page_id ? get_permalink($page_id) : '';
+
+		if ( get_post_status( $page_id ) === 'publish' && $page_url && $page_title ) {
+			$link = sprintf(
+				'<a class="projects-link" href="%s">%s</a>',
+				esc_url( $page_url ),
+				esc_html( $page_title )
+			);
+		}
+
+		/**
+		 * Filters the projects link.
+		 *
+		 * @since 4.9.6
+		 *
+		 * @param string $link               The projects link. Empty string if it
+		 *                                   doesn't exist.
+		 * @param string $page_url The URL of the projects. Empty string
+		 *                                   if it doesn't exist.
+		 */
+		$link = apply_filters( 'the_projects_link', $link, $page_url );
+
+		if ( $link ) {
+			return $before . $link . $after;
+		}
+
+		return '';
+	}
+}
+
+if ( ! function_exists( 'the_projects_link' ) ) {
+
+	/**
+	 * Displays the projects link with formatting, when applicable.
+	 *
+	 * @param string $before Optional. Display before projects link. Default empty.
+	 * @param string $after  Optional. Display after projects link. Default empty.
+	 */
+	function the_projects_link( $before = '', $after = '' ) {
+		echo get_the_projects_link( $before, $after );
+	}
+}
+
 if ( ! function_exists( 'load_more_button' ) ) {
 
 	function load_more_button( $post_type = 'post' ) {
@@ -667,5 +725,12 @@ if ( ! function_exists( 'project_stain' ) ) {
 						wp_get_theme()->get('Version')) ?>"
 			alt="<?php esc_attr_e(get_the_title($post_id)) ?>"
 			style="opacity: 0"><?php
+	}
+}
+
+if ( ! function_exists( 'code_snippets' ) ) {
+	function code_snippets( $location, $group = 'options') {
+		$html = get_field($location, $group);
+		if (!empty($html)) echo apply_filters('code_snippets_filter', $html, $location, $group);
 	}
 }

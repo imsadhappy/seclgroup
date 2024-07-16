@@ -93,4 +93,21 @@ trait YoastSEO {
             return $attr;
         } );
     }
+
+    public function custom_post_type_breadcrumb( $post_type, $text, $url ) {
+
+        add_filter( 'wpseo_breadcrumb_links', function ( $links ) use ( $post_type, $text, $url ) {
+
+            if ( get_post_type() === $post_type ) {
+                $breadcrumb[] = array(
+                    'url' => $url,
+                    'text' => $text,
+                );
+
+                array_splice( $links, 1, -2, $breadcrumb );
+            }
+
+            return $links;
+        } );
+    }
 }

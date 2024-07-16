@@ -21,7 +21,7 @@
 
         .entry-content {
 
-           max-width: 644px !important;
+           max-width: $width__narrow !important;
            margin: 0 auto;
 
             @extend .base-mobile-padding;
@@ -81,7 +81,7 @@
 
         .entry-footer {
 
-            max-width: 644px;
+            max-width: $width__narrow;
             margin: 76px auto 0;
 
             @media (max-width: 1024px) {

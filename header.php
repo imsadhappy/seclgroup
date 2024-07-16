@@ -22,15 +22,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<link rel="preconnect" href="https://www.google.com">
 	<link rel="preconnect" href="https://www.gstatic.com" crossorigin>
 	<?php wp_head(); ?>
-	<?php print(get_field('head', 'options')) ?>
-
+	<?php code_snippets('head') ?>
 </head>
 <body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">
-
-<?php print(get_field('body_start', 'options')) ?>
-
-<?php wp_body_open(); ?>
-
+<?php
+	code_snippets('body_start');
+	wp_body_open();
+?>
 <script>if (window.location.hash) scroll(0,0);</script>
 
 <div id="page" class="site">

@@ -19,13 +19,17 @@ get_header();
 
 	<?php
 
+		if ( function_exists('yoast_breadcrumb') && ! is_front_page() )
+			yoast_breadcrumb( '<p id="breadcrumbs">','</p>' );
+
 		while ( have_posts() ) :
 
-		the_post();
+			the_post();
 
-		get_template_part( 'template-parts/content', get_post_type() );
+			get_template_part( 'template-parts/content', get_post_type() );
 
-	endwhile; // End of the loop.
+		endwhile; // End of the loop.
+
 	?>
 
 	</main><!-- #main -->

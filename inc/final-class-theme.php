@@ -37,6 +37,7 @@ final class Theme {
         add_filter( 'excerpt_length', function(){ return 25; });
         add_filter( 'term_links-project-category', array($this, 'project_category_term_links') );
         add_filter( 'wpseo_canonical', array($this, 'fix_rel_canonical'), 999, 2 );
+        add_filter( 'render_block', array($this, 'fix_x_svg_path'), 999, 2 );
 
         $this->enqueue();
         $this->check_updates();
@@ -45,6 +46,7 @@ final class Theme {
         $this->remove_from_admin_bar( array('customize', 'updates', 'comments') );
         $this->page_for_('terms_and_conditions', 'Terms & Conditions Page');
         $this->page_for_('cookie_policy', 'Cookie Policy Page');
+        $this->page_for_('projects', 'Projects Page');
         $this->use_wpcf7_popup();
         $this->defer_wpcf7_scripts();
         $this->styles_in_wp_footer('core-block-supports');
@@ -54,6 +56,7 @@ final class Theme {
         $this->enchanced_schema_author_graph();
         $this->uppercase_url_redirect();
         $this->fill_void_image_alt();
+        $this->projects_breadcrumbs();
     }
 
     /**
@@ -194,5 +197,24 @@ final class Theme {
             $link = str_replace('rel="tag"', 'rel="nofollow noindex"', $link);
             return $link;
         }, $links );
+    }
+
+    public function projects_breadcrumbs() {
+
+		$page_id = (int) get_option( 'wp_page_for_projects' );
+
+        if ( ! $page_id || get_post_status( $page_id ) !== 'publish' )
+            return;
+
+        $this->custom_post_type_breadcrumb( 'project', get_the_title( $page_id ), get_permalink($page_id) );
+    }
+
+    public function fix_x_svg_path( $block_content, $block ) {
+
+        if ( isset($block['blockName']) && "core/social-link" === $block['blockName'] ) {
+            $block_content = str_replace('/></svg>', '></path></svg>', $block_content);
+        }
+
+        return $block_content;
     }
 }

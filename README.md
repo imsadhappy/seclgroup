@@ -58,6 +58,12 @@ $ npm install
 
 ### Versions
 
+Version 1.3.0
+
+- added breadcrumbs
+- added page for projects
+- enhanced code snippets / cookie scripts output
+
 Version 1.2.1
 
 - hotfixes

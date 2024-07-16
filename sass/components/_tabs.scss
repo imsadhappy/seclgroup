@@ -234,30 +234,3 @@
         }
     }
 }
-
-@keyframes circleExpandAnimation {
-    from {
-        r: 0
-    }
-}
-
-.circle-expand-animation {
-
-    &, path {
-        opacity: 0;
-        transition: opacity 1s ease;
-    }
-
-    &.active {
-        opacity: 1;
-        transition-delay: .1s;
-        circle {
-            animation: circleExpandAnimation 2s forwards;
-        }
-        path {
-            opacity: 1;
-            transition-delay: 1s;
-            fill: $Text__Primary;
-        }
-    }
-}

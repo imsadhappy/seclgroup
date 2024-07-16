@@ -8,6 +8,7 @@
  *
  * @package SECLGroup
  */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	http_response_code(403);
 	exit; // Exit if accessed directly.
@@ -35,11 +36,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</footer><!-- #colophon -->
 
 </div><!-- #page -->
-
-<?php wp_footer(); ?>
-
-<?php print(get_field('body_end', 'options')) ?>
-
+<?php
+	wp_footer();
+	code_snippets('body_end');
+?>
 </body>
 
 </html>

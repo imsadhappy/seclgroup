@@ -22,7 +22,12 @@ get_header();
 
 <main id="primary" class="site-main <?php echo have_posts() ? 'has' : 'no' ?>-posts">
 
-	<?php if ( ! is_singular() ) : ?><div class="two-columns">
+	<?php
+
+	if ( function_exists('yoast_breadcrumb') && ! is_front_page() )
+		yoast_breadcrumb( '<p id="breadcrumbs">','</p>' );
+
+	if ( ! is_singular() ) : ?><div class="two-columns">
 
 		<aside class="uses-widget--blog-aside"><?php
 			dynamic_sidebar('blog-aside')

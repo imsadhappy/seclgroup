@@ -23,6 +23,10 @@ trait CookieNotice {
         }, 100500 );
 
         add_action( 'admin_footer', function () { $this->fix_cookie_notice_admin_fields(); }, 999 );
+
+        add_filter( 'code_snippets_filter', function ( $html ) {
+            return Cookie_Notice()->cookies_accepted() ? str_replace(' type="text/if-cookie-notice-accepted"', '', $html) : $html;
+        } );
     }
 
     private function fix_cookie_notice_admin_fields() {

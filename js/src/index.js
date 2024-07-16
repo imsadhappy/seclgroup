@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 100)
     }
     /* Work Process quick fix */
-    const workProcessH4XPathResult = document.evaluate("//h4[contains(., 'Work Process')]", document, null, XPathResult.ANY_TYPE, null);
+    const workProcessH4XPathResult = document.evaluate("//h4[contains(., 'Work Process')]", document, null, XPathResult.ANY_TYPE, null)
     const workProcessH4 = workProcessH4XPathResult.iterateNext()
     if (workProcessH4) workProcessH4.classList.add('work-process-h4')
 })

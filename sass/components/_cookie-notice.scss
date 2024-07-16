@@ -34,6 +34,8 @@
 
         .h7 {
             line-height: 1;
+            display: block;
+            margin-bottom: 12px;
         }
 
         a {
@@ -41,24 +43,20 @@
             text-decoration: underline;
         }
 
-        &--inner {
+        .inner {
 
             display: flex;
 
-            > img {
-                @media (max-width: $width__mobile) {
-                    display: none;
-                }
+            @media (max-width: $width__mobile) {
+                > img { display: none; }
+                > span { margin: 0; }
             }
 
-            > div {
-                @media (min-width: $width__mobile) {
+            @media (min-width: $width__mobile) {
+                > span {
                     padding: 0 16px;
                     flex-basis: 80%;
                     margin: 0 auto;
-                }
-                @media (max-width: $width__mobile) {
-                    margin: 0;
                 }
             }
         }
