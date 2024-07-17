@@ -27,6 +27,7 @@ trait Pagination {
         add_filter( 'get_page_of_block', array($this, 'get_page_of_block') );
         add_filter( 'the_blocks_pagination', array($this, 'the_blocks_pagination') );
         add_filter( 'render_block', array($this, 'paginate_block'), 10, 2 );
+        add_filter( 'render_block', array($this, 'fix_pagination_block'), 9, 2 );
     }
 
     public function the_posts_pagination() {
@@ -46,15 +47,27 @@ trait Pagination {
         return $r;
     }
 
+    public function fix_pagination_block($block_content, $block) {
+
+        if ( ! isset($block['blockName']) )
+            return $block_content;
+
+        switch ($block['blockName']) {
+            case 'core/query-pagination-previous':
+                $block_content = str_replace('←', self::$svg['prev_text'], $block_content);
+                break;
+            case 'core/query-pagination-next':
+                $block_content = str_replace('→', self::$svg['next_text'], $block_content);
+                break;
+            case 'core/query-pagination-numbers':
+                $block_content = str_replace('href="?', 'rel="noindex nofollow" href="?', $block_content);
+                break;
+        }
+
+        return $block_content;
+    }
+
     public function paginate_block($block_content, $block) {
-
-        if (isset($block['blockName']) && 'core/query-pagination-previous' === $block['blockName']) {
-            $block_content = \str_replace('←', self::$svg['prev_text'], $block_content);
-        }
-
-        if (isset($block['blockName']) && 'core/query-pagination-next' === $block['blockName']) {
-            $block_content = \str_replace('→', self::$svg['next_text'], $block_content);
-        }
 
         $prefix = 'Page ';
         $block_name = $this->get_block_name($block);

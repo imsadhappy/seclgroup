@@ -729,8 +729,12 @@ if ( ! function_exists( 'project_stain' ) ) {
 }
 
 if ( ! function_exists( 'code_snippets' ) ) {
+
 	function code_snippets( $location, $group = 'options') {
-		$html = get_field($location, $group);
-		if (!empty($html)) echo apply_filters('code_snippets_filter', $html, $location, $group);
+
+		$code_snippet = get_field($location, $group);
+
+		if (!empty($code_snippet))
+			echo apply_filters('code_snippets_filter', $code_snippet, $location, $group);
 	}
 }

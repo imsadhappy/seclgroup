@@ -58,6 +58,12 @@ $ npm install
 
 ### Versions
 
+Version 1.3.1
+
+- fix breadcrumbs z-index
+- pagination noindex/nofollow on author page (publications block)
+- refac
+
 Version 1.3.0
 
 - added breadcrumbs
