@@ -57,6 +57,7 @@ final class Theme {
         $this->uppercase_url_redirect();
         $this->fill_void_image_alt();
         $this->projects_breadcrumbs();
+        $this->noindex_override();
     }
 
     /**

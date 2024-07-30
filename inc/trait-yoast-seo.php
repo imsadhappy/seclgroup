@@ -110,4 +110,16 @@ trait YoastSEO {
             return $links;
         } );
     }
+
+    public function noindex_override() {
+
+        add_filter('wpseo_robots', function ($robots_string) {
+
+            if (isset($_GET['query-0-page'])) {
+                $robots_string = "noindex, nofollow";
+            }
+
+            return $robots_string;
+        });
+    }
 }

@@ -58,6 +58,9 @@ $ npm install
 
 ### Versions
 
+Version 1.3.2
+- added noindex_override
+
 Version 1.3.1
 
 - fix breadcrumbs z-index
