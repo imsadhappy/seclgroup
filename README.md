@@ -60,6 +60,7 @@ $ npm install
 
 Version 1.3.2
 - added noindex_override
+- refac fix_rel_canonical
 
 Version 1.3.1
 

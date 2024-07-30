@@ -39,13 +39,16 @@ trait YoastSEO {
         }
     }
 
-    public function fix_rel_canonical( $canonical, $presentation ) {
+    public function fix_rel_canonical() {
 
-        if ('category' === $presentation?->model?->object_sub_type) {
-            return get_post_type_archive_link( 'post' );
-        }
+        add_filter( 'wpseo_canonical', function ( $canonical, $presentation ) {
 
-        return $canonical;
+            if ('category' === $presentation?->model?->object_sub_type) {
+                return get_post_type_archive_link( 'post' );
+            }
+
+            return $canonical;
+        }, 999, 2 );
     }
 
     public function enchanced_schema_author_graph() {

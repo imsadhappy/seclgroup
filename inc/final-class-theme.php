@@ -36,7 +36,6 @@ final class Theme {
         add_filter( 'excerpt_more', function($more){ return preg_replace('/\[|\]/', '', $more); });
         add_filter( 'excerpt_length', function(){ return 25; });
         add_filter( 'term_links-project-category', array($this, 'project_category_term_links') );
-        add_filter( 'wpseo_canonical', array($this, 'fix_rel_canonical'), 999, 2 );
         add_filter( 'render_block', array($this, 'fix_x_svg_path'), 999, 2 );
 
         $this->enqueue();
@@ -58,6 +57,7 @@ final class Theme {
         $this->fill_void_image_alt();
         $this->projects_breadcrumbs();
         $this->noindex_override();
+        $this->fix_rel_canonical();
     }
 
     /**
