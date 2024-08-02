@@ -3,27 +3,27 @@ blockquote,
     background: $color__background-body-alt;
     background-size: auto 100%;
     margin: 0 auto;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
     padding: 50px 74px 100px;
     @media (max-width: $width__mobile) {
       padding: 30px 35px 50px;
     }
-    border-radius: 10px;
-    position: relative;
-    overflow: hidden;
     &:before {
         content: '';
         width: 60px;
         height: 46px;
         display: block;
         margin-bottom: 40px;
+        background: transparent center no-repeat;
+        background-image: url('assets/blockquote.svg');
+        background-size: contain;
         @media (max-width: $width__mobile) {
           width: 40px;
           margin-bottom: 20px;
           height: 32px;
         }
-        background: transparent center no-repeat;
-        background-image: url('assets/blockquote.svg');
-        background-size: contain;
     }
     &.is-style-plain {
       background: $color__white;

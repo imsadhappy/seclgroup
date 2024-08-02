@@ -1,5 +1,9 @@
 &-separator {
 
+    &.thin {
+        border-top: 1px solid;
+    }
+
     &.is-style-default {
         border-left: 0 !important;
         border-right: 0 !important;

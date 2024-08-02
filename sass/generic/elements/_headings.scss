@@ -3,23 +3,14 @@ h2,
 h3,
 h4,
 h5,
-h6 {
-	color: $color__primary;
-	font-weight: 500;
-	line-height: 1.2;
-	font-family: 'Halvar Breit Md', $default__fonts;
-	clear: both;
-	letter-spacing: 0em;
-}
-
-.h7 {
+h6,
+.h7,
+.h8 {
 	color: $color__primary;
 	font-family: 'Halvar Breit Md', $default__fonts;
-	font-size: 20px;
 	font-weight: 500;
 	clear: both;
 	letter-spacing: 0em;
-	line-height: 2;
 }
 
 .bolder {
@@ -33,13 +24,13 @@ h6 {
 	&:not(.not-responsive) {
 		@media (max-width: $width__mobile), (max-height: $height__mobile) {
 			font-size: #{$fs * $mobile}px;
-			margin-top: #{$fs * ($mobile / 2)}px;
-			margin-bottom:  #{$fs * ($mobile / 2)}px;
+			margin-top: #{$fs * calc($mobile / 2)}px;
+			margin-bottom:  #{$fs * calc($mobile / 2)}px;
 		}
 		@media (max-width: $width__min), (max-height: 400px) {
 			font-size: #{$fs * $min}px;
-			margin-top: #{$fs * ($min / 2)}px;
-			margin-bottom:  #{$fs * ($min / 2)}px;
+			margin-top: #{$fs * calc($min / 2)}px;
+			margin-bottom:  #{$fs * calc($min / 2)}px;
 		}
 	}
 }
@@ -66,6 +57,14 @@ h5 {
 
 h6 {
 	@include responsive-heading(24, .9, .8);
+}
+
+.h7 {
+	@include responsive-heading(20, .9, .8);
+}
+
+.h8 {
+	@include responsive-heading(18, .9, .8);
 }
 
 .hero {

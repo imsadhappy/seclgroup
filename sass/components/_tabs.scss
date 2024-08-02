@@ -12,6 +12,9 @@
 
     @extend .overflow-x-auto, .no-scrollbar, .wrapped-by-padding;
 
+    justify-content: space-between;
+    flex-wrap: nowrap !important;
+
     html body & {
         max-width: none !important;
     }
@@ -19,9 +22,6 @@
     &[data-block] {
         padding: 0 !important;
     }
-
-    justify-content: space-between;
-    flex-wrap: nowrap !important;
 
     &.as-select {
         display: grid;
@@ -106,6 +106,8 @@
         &:not(.wp-block) {
             position: relative;
             padding: 0 80px;
+            display: inline-block;
+            flex-wrap: nowrap;
             @media (max-width: $width__mobile) {
                 padding: 0 40px;
             }
@@ -114,8 +116,6 @@
                 padding: 0 30px;
                 margin-left: -10px;
             }
-            display: inline-block;
-            flex-wrap: nowrap;
             > * {
                 user-select: none;
                 word-break: keep-all;
@@ -123,39 +123,39 @@
                 &:not(.active) {
                     position: absolute;
                     background: transparent;
+                    height: 100%;
+                    overflow: hidden;
+                    left: 0;
                     padding-left: 40px;
                     width: 40px;
                     @media (max-width: $width__mobile) {
                         width: 20px;
                         padding-left: 20px;
                     }
-                    height: 100%;
-                    overflow: hidden;
-                    left: 0;
                     &::before {
                         content: '';
                         z-index: 2;
                         position: relative;
                         display: block;
                         height: 100%;
+                        transform: rotate(180deg);
+                        background: rgba(255,255,255,.9) url('assets/chevron-right-xl-red.svg') center no-repeat;
+                        background-size: contain;
                         width: 40px;
                         margin-left: -40px;
                         @media (max-width: $width__mobile) {
                             width: 20px;
                             margin-left: -20px;
                         }
-                        transform: rotate(180deg);
-                        background: rgba(255,255,255,.9) url('assets/chevron-right-xl-red.svg') center no-repeat;
-                        background-size: contain;
                     }
                 }
                 &.active {
                     //flex: 1 1 auto !important;
                     max-width: calc(100vw - 100px);
+                    overflow: hidden;
                     @media (max-width: $width__min) {
                         max-width: calc(100vw - 30px);
                     }
-                    overflow: hidden;
                     & + * {
                         z-index: 2 !important;
                     }
@@ -227,9 +227,9 @@
         .wp-block-post-content & {
             > * {
                 @extend .active-custom-tab;
-                @include editor-hidden('edit tab content');
                 margin-top: 20px;
                 min-height: 100px;
+                @include editor-hidden('edit tab content');
             }
         }
     }

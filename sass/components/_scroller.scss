@@ -14,7 +14,7 @@
 
     @media (max-width: $width__mobile) {
         margin: $margin 0 0;
-        padding-left: $margin / 2;
+        padding-left: calc($margin / 2);
         box-shadow: none !important;
     }
 
@@ -43,7 +43,7 @@
     padding: 0 !important;
     width: $margin;
     height: $margin;
-    border-radius: $margin / 2;
+    border-radius: calc($margin / 2);
     right: 5vw;
     margin-top: $margin * -1;
     outline: none;

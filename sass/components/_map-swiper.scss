@@ -68,11 +68,11 @@
 
     > * {
         opacity: .6;
+        transition: opacity .4s ease !important;
         padding: 140px 0;
         @media (max-height: 800px), (max-width: $width__mobile) {
             padding: 100px 0;
         }
-        transition: opacity .4s ease !important;
         &.active,
         &.is-selected,
         &.has-child-selected {
@@ -82,24 +82,22 @@
 
     &:not([class*="block-editor"]) > * {
 
-        * { pointer-events: none }
-
         min-width: 300px;
         max-width: 800px;
         cursor: pointer;
         //flex-basis: content !important;
+
+        * { pointer-events: none }
 
         @media (max-width: $width__mobile) {
             min-width: 220px;
         }
 
         figure {
-
             //max-width: 240px;
             //width: 100%;
             margin-left: auto !important;
             margin-right: auto !important;
-
             img {
                 //height: calc(80vw) !important;
                 max-height: calc(80vh - 200px);

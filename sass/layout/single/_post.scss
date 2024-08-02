@@ -90,7 +90,7 @@
 
             .entry-categories {
                 a:first-child {
-                    @extend .pill.active;
+                    @extend .pill-active;
                 }
             }
         }
@@ -162,7 +162,7 @@
         }
 
         .posted-in a:first-child {
-            @extend .pill.active
+            @extend .pill-active
         }
     }
 

@@ -10,11 +10,11 @@
 
   #copyright,
   #terms {
+    @extend .wrapper;
+    text-align: center;
     &:not(:empty) {
       padding: 0 0 40px;
     }
-    @extend .wrapper;
-    text-align: center;
     a {
       text-decoration: underline;
       + a {

@@ -1,12 +1,12 @@
 .trp {
 	&_language_switcher_shortcode {
+		padding-left: 24px;
+		padding-left: clamp(12px, 1.5vw, 32px);
+		position: relative;
 		margin: 0 0 0 auto;
 		.site-header.mobile & {
 			margin: 0;
 		}
-		padding-left: 24px;
-		padding-left: clamp(12px, 1.5vw, 32px);
-		position: relative;
 	}
 	&-language-switcher {
 		width: auto;

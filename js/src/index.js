@@ -30,6 +30,10 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.ananas-cols > *').forEach(col => col.classList.add('ready'))
         }, 100)
     }
+    if (document.querySelector('.new-faq')) {
+        document.querySelectorAll('.new-faq').forEach(faq =>
+            faq.addEventListener('click', _ => faq.classList.toggle('active')))
+    }
     /* Work Process quick fix */
     const workProcessH4XPathResult = document.evaluate("//h4[contains(., 'Work Process')]", document, null, XPathResult.ANY_TYPE, null)
     const workProcessH4 = workProcessH4XPathResult.iterateNext()

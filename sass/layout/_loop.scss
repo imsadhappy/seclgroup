@@ -14,7 +14,7 @@
     @import "loop/search";
 
 	body.blog & .posted-in a:first-child {
-		@extend .pill.active;
+		@extend .pill-active;
 	}
 }
 
@@ -54,7 +54,7 @@
 		}
 
 		&.current {
-			@extend .pill.active;
+			@extend .pill-active;
 		}
 
 		@media (max-width: $width__mobile) {

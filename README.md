@@ -58,6 +58,10 @@ $ npm install
 
 ### Versions
 
+Version 1.3.3
+- migrated from node-sass to dart sass
+- added .new-faq design
+
 Version 1.3.2
 - added noindex_override
 - refac fix_rel_canonical

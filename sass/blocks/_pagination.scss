@@ -1,14 +1,14 @@
 &-query-pagination {
 
     &-numbers {
+        @extend .hidden-scrollbar;
+        white-space: nowrap;
+        max-width: calc(100% - 100px);
+        overflow: auto;
         margin: 0 !important;
         > *:not(.disabled) {
             margin: 0 4px !important
         }
-        white-space: nowrap;
-        @extend .hidden-scrollbar;
-        max-width: calc(100% - 100px);
-        overflow: auto;
     }
 
     &-previous {
@@ -16,6 +16,8 @@
         border-color: $BG__Grey;
         background: $BG__Grey;
         padding: 8px 6px 2px;
+        width: 36px;
+        height: 36px;
         &-arrow {
             font-size: 0;
 			svg path {
@@ -23,8 +25,6 @@
 				stroke-width: 1.5
 			}
         }
-        width: 36px;
-        height: 36px;
     }
 
     &-next {
@@ -32,6 +32,8 @@
         border-color: $BG__Grey;
         background: $BG__Grey;
         padding: 8px 6px 2px;
+        width: 36px;
+        height: 36px;
         &-arrow {
             font-size: 0;
 			svg path {
@@ -39,7 +41,5 @@
 				stroke-width: 1.5
 			}
         }
-        width: 36px;
-        height: 36px;
     }
 }

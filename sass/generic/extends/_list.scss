@@ -36,6 +36,8 @@
 		position: relative;
 		margin: 0 !important;
 		cursor: default;
+		//text-indent: 24px;
+		padding: 0;
 
 		+ li {
 			border-top: $border__grey;
@@ -51,10 +53,6 @@
 			left: 0;
 			background: transparent url('assets/images/pineaple-list.svg') no-repeat center;
 		}
-
-		//text-indent: 24px;
-
-		padding: 0;
 
 		a {
 			@extend .arrow-up-right-in-circle-on-hover;
@@ -126,11 +124,11 @@ ul.no-marker {
 			display: table-cell;
 			vertical-align: middle;
 			padding: 0 30px 0 0 !important;
+			position: relative;
+			-webkit-tap-highlight-color: transparent;
 			@media (any-hover: hover) {
 				background: none !important;
 			}
-			position: relative;
-			-webkit-tap-highlight-color: transparent;
 			&::after {
 				content: '';
 				display: none;

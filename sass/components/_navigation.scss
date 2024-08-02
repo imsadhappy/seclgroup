@@ -6,6 +6,7 @@ nav ul.sub-menu {
 }
 
 .menu-header-container {
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 	&:not(.ready) {
 		overflow: hidden;
 		visibility: hidden;
@@ -14,7 +15,6 @@ nav ul.sub-menu {
 			flex: 0 0 40px !important;
 		}
 	}
-	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 	&.pointer {
 		cursor: pointer;
 		max-width: 40px;

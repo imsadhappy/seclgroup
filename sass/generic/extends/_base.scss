@@ -17,6 +17,8 @@
         outline: none;
         font-size: 18px;
         border: 0; //$input__border;
+        border-radius: 30px;
+        height: 55px;
 
         .border-bottom &,
         &.border-bottom {
@@ -26,11 +28,8 @@
             padding: 0;
         }
 
-        border-radius: 30px;
         .no-border-radius &,
         &.no-border-radius { border-radius: 0 }
-
-        height: 55px;
 
         .height-40 &,
         &.height-40 {
@@ -48,7 +47,7 @@
             max-width: calc(100vw - #{$margin}) !important;
         }
         @media (max-width: $width__min) {
-            max-width: calc(100vw - #{$margin / 2}) !important;
+            max-width: calc(100vw - #{calc($margin / 2)}) !important;
         }
     }
 

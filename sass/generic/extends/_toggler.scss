@@ -9,12 +9,12 @@
 		margin-top: 0px;
 		z-index: -1;
 		transform: translateX(-25%);
+		transition: opacity .2s ease;
+		transition-delay: .1s;
 		@media (max-width: $width__desktop) {
 			transform: none;
 			left: 0;
 		}
-		transition: opacity .2s ease;
-		transition-delay: .1s;
 	}
 	&.is-selected,
 	a:hover,

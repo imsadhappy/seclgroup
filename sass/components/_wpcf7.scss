@@ -129,14 +129,14 @@ $wpcf7_error: #F84F3A;
             z-index: 2;
             width: 90%;
             max-width: 660px;
-            padding: 50px;
-            @media (max-width: 540px) {
-                padding: 30px;
-            }
             background: $color__white;
             box-shadow: 0px 0px 10px 0px rgba($color__primary, 0.15);
             max-height: 100vh;
             overflow: auto;
+            padding: 50px;
+            @media (max-width: 540px) {
+                padding: 30px;
+            }
             .visible-only-in-popup {
                 display: block;
             }

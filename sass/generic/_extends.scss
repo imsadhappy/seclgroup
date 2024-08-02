@@ -18,10 +18,14 @@
 	&:focus,
 	&.active,
 	&[rel*="current"] {
-		background: $Text__Primary;
-		color: $Text__White;
-		border-color: $Text__Primary;
+		@extend .pill-active;
 	}
+}
+
+.pill-active {
+	background: $Text__Primary;
+	color: $Text__White;
+	border-color: $Text__Primary;
 }
 
 @media (max-width: $width__mobile) {

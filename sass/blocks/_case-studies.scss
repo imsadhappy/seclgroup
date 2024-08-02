@@ -6,6 +6,9 @@
 
 .wp-block-case-studies {
 
+    overflow-x: clip;
+    overflow-y: visible;
+
     @media (max-width: $width__min) {
         padding: 0 !important;
     }
@@ -29,10 +32,14 @@
         }
     }
 
-    overflow-x: clip;
-    overflow-y: visible;
-
     .case-study {
+
+        position: relative;
+        display: inline-block;
+        flex-shrink: 0;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        cursor: pointer;
 
         &:not(.ready) {
             display: none !important;
@@ -41,13 +48,6 @@
         .acf-block-preview & {
             display: inline-block !important;
         }
-
-        position: relative;
-        display: inline-block;
-        flex-shrink: 0;
-        padding-top: 40px;
-        padding-bottom: 40px;
-        cursor: pointer;
 
         &:nth-child(odd) > * {
             max-width: 450px;
@@ -159,16 +159,16 @@
             left: 10px;
             right: 10px;
             bottom: 10px;
-            padding: 0 40px 30px 40px;
-            @media (max-height: 900px) {
-                padding: 0 20px 15px 20px;
-                font-size: 14px;
-            }
             max-height: calc(100% - 20px);
             background: black;
             transform: translateY(50%);
             transition: transform .2s ease-in, opacity .4s ease;
             overflow: auto;
+            padding: 0 40px 30px 40px;
+            @media (max-height: 900px) {
+                padding: 0 20px 15px 20px;
+                font-size: 14px;
+            }
             > * {
                 color: white;
                 margin-top: 30px;

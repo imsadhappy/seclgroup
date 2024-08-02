@@ -22,15 +22,15 @@
                 margin: 0 20px 30px 0 !important;
                 padding: 0 28px;
                 font-size: 18px !important;
-                line-height: 3;
-                @media (max-width: $width__desktop) {
-                    line-height: 2.5;
-                }
                 font-weight: 800;
                 background-color: rgba($color__white, .85);
                 border-radius: 30px;
                 margin-bottom: 30px;
                 margin-right: 30px;
+                line-height: 3;
+                @media (max-width: $width__desktop) {
+                    line-height: 2.5;
+                }
                 a {
                     padding-right: 30px;
                     background: url('assets/arrow-right.svg') no-repeat center right;

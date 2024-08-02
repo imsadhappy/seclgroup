@@ -26,6 +26,7 @@
 
 		@media (max-width: $width__mobile), (max-height: $height__mobile) {
 
+			background: none !important;
 			margin: 20px 0 40px 0;
 
 			&:last-child::after {
@@ -35,8 +36,6 @@
 			&:not(:first-child)::before {
 				margin-top: -20px;
 			}
-
-			background: none !important;
 
 			a {
 				display: block;

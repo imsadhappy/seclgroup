@@ -59,11 +59,11 @@
         &.left {
             right: auto;
             left: 48px;
+            transform: translateY(-130%);
             @media (max-width: $width__min) {
                 left: 36px;
                 padding: 18px 18px 12px;
             }
-            transform: translateY(-130%);
             &::before {
                 right: auto;
                 left: -1px;

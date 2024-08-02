@@ -71,11 +71,11 @@
 
         &.mobile {
 
+            float: left;
+
             @media (min-width: $width__mobile) {
                 display: none;
             }
-
-            float: left;
 
             a {
                 display: block;

@@ -3,7 +3,7 @@
     &.taxonomy-project-category a {
         @extend .pill;
         &:first-child {
-            @extend .pill.active;
+            @extend .pill-active;
         }
     }
 

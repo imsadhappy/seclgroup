@@ -112,6 +112,83 @@
         max-width: 110px;
     }
 
+    &.abstract-cta {
+        background-repeat: no-repeat;
+        background-position: center right;
+        background-size: auto 105%;
+        &.blue {
+            background-image: url('assets/abstract-cta-blue.svg');
+        }
+        &.pink {
+            background-image: url('assets/abstract-cta-pink.svg');
+        }
+    }
+
+    &.new-faq {
+        cursor: pointer;
+        border-top: $border__grey;
+        padding: 15px 15px 15px 40px;
+        position: relative;
+        &::before {
+            content: '';
+            pointer-events: none;
+            display: block;
+            position: absolute;
+            top: 28px;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            background-image: url('assets/new-faq-arrow.svg');
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: transform .2s ease;
+        }
+        &.active::before {
+            transform: rotate(180deg);
+        }
+        &:not([data-block]) {
+            &:not(.active) {
+                > * {
+                    display: none;
+                }
+                > .wp-block-heading:first-of-type {
+                    pointer-events: none;
+                    display: block !important;
+                }
+                &:not(.pineaple) > * {
+                    color: $Text__Secondary;
+                }
+            }
+            &.active {
+                padding-bottom: 30px;
+            }
+        }
+        &.pineaple {
+            border-top: 0;
+            border-bottom: $border__grey;
+            padding: 10px 40px;
+            &::before {
+                left: auto;
+                right: 0;
+                top: 20px;
+            }
+            &::after {
+                content: '';
+                pointer-events: none;
+                display: block;
+                position: absolute;
+                top: 20px;
+                left: 0;
+                width: 24px;
+                height: 24px;
+                background-image: url('assets/images/pineaple-list.svg');
+                background-repeat: no-repeat;
+                background-position: center;
+                transition: transform .2s ease;
+            }
+        }
+    }
+
     /* Work Process quick fix */
     .work-process-h4 ~ & {
 

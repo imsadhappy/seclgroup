@@ -123,10 +123,10 @@
         label,
         legend {
             font-size: 18px;
+            color: $color__primary;
             &:not(.gform-field-label--type-inline) {
                 font-weight: 400;
             }
-            color: $color__primary;
         }
 
         .button,

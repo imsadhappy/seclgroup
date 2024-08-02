@@ -11,9 +11,14 @@
     align-items: center;
 }
 
-.mobile-justify-start {
+.mobile-justify {
     @media (max-width: $width__mobile) {
-        justify-content: flex-start !important;
+        &-start {
+            justify-content: flex-start !important;
+        }
+        &-center {
+            justify-content: center !important;
+        }
     }
 }
 
