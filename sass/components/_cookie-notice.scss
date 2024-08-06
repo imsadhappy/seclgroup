@@ -2,12 +2,15 @@
 
     .cookie-notice-container {
         display: flex;
+        gap: 8px;
         @extend .wrapper;
         max-width: $width__wide;
         justify-content: space-between;
         align-items: center;
         padding: 28px 0 18px;
-        gap: 8px;
+        @media (min-width: 520px) {
+            padding: 8vh 0;
+        }
         @media (max-width: $width__mobile) {
             align-items: flex-start;
             flex-direction: column;
@@ -22,6 +25,9 @@
         font-family: $font__main;
         line-height: 24px;
         margin: 0 8px 8px 0;
+        @media (min-width: $width__desktop) {
+            min-width: 240px;
+        }
     }
 
     #cn-notice-text {
@@ -52,6 +58,12 @@
                 > span { margin: 0; }
             }
 
+            @media (min-width: $width__desktop) {
+                > img {
+                    margin-right: 100px;
+                }
+            }
+
             @media (min-width: $width__mobile) {
                 > span {
                     padding: 0 16px;
@@ -67,9 +79,12 @@
     }
 
     #cn-notice-buttons {
-        display: flex;
-        flex-direction: row-reverse;
         margin-top: 8px;
+        display: flex;
+        flex-direction: row;
+        @media (min-width: $width__mobile) {
+            flex-direction: column;
+        }
         @media (max-width: 520px) {
             width: 100%;
             align-items: stretch;

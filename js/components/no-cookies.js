@@ -1,4 +1,4 @@
-((deleteCookie, setFooterOffset, loadCookieScripts) => {
+((deleteCookie, setFooterOffset, loadCookieScripts, GAConsentGranted) => {
     if (document.cookie.indexOf('cookie_notice_accepted=true') < 0) {
         document.addEventListener('DOMContentLoaded', () => {
             localStorage.clear()
@@ -15,12 +15,12 @@
             })
         })
     } else {
-        loadCookieScripts()
+        GAConsentGranted()
     }
     document.addEventListener('DOMContentLoaded', () => setTimeout(setFooterOffset, 1000))
     window.addEventListener('resize', () => setTimeout(setFooterOffset, 1000))
     document.addEventListener('setCookieNotice', ({detail}) => {
-        if (detail.value.toString() === 'true') loadCookieScripts()
+        if (detail.value.toString() === 'true') GAConsentGranted()
     })
 })( /* deleteCookie */ (name, path, domain) => {
     [`.${domain}`, `${domain}`, ''].forEach(d => {
@@ -42,4 +42,13 @@
         x.parentNode.insertBefore(s, x)
         x.outerHTML = ''
     })
+}, /* GAConsentGranted */ () => {
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'update', {
+        'ad_storage': 'granted',
+        'ad_user_data': 'granted',
+        'ad_personalization': 'granted',
+        'analytics_storage': 'granted'
+    });
 })

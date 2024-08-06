@@ -58,6 +58,9 @@ $ npm install
 
 ### Versions
 
+Version 1.3.4
+- updated cookie consent
+
 Version 1.3.3
 - migrated from node-sass to dart sass
 - added .new-faq design
