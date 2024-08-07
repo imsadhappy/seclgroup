@@ -44,20 +44,19 @@ trait StyleToStylesheet {
 
         if ( empty($css) ) return;
 
-        $css = implode("\n", $css);
         extract($this->inline_css_paths());
+        $css = implode("\n", $css);
         $uri = explode("?", $_SERVER['REQUEST_URI']);
         $filename = md5(reset($uri)) . '.css';
 
         if (!file_exists($dir))
             mkdir(untrailingslashit($dir), 0755);
 
-        file_put_contents($dir.$filename, $css);
-
-        // error_log("saved " . reset($uri) . " - " . $filename);
+        if (!file_exists($dir.$filename))
+            file_put_contents($dir.$filename, $css);
 
         $wp_styles->remove($handle);
-        $wp_styles->add($handle, $url.$filename);
+        $wp_styles->add($handle, $url.$filename, array(), filemtime($dir.$filename));
     }
 
     protected function inline_css_in_wp_footer( $handles = array() ) {
@@ -78,7 +77,5 @@ trait StyleToStylesheet {
 
         if (file_exists($dir.$filename))
             unlink($dir.$filename);
-
-        // error_log("purged " . $uri . " - " . $filename);
     }
 }
