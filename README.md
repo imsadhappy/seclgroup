@@ -58,6 +58,9 @@ $ npm install
 
 ### Versions
 
+Version 1.3.5
+- purge inline_css on post save
+
 Version 1.3.4
 - updated cookie consent
 
