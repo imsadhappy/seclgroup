@@ -61,6 +61,7 @@ $ npm install
 Version 1.3.6
 - added DMCA to footer
 - helper css classes added
+- cookie notices visual update
 
 Version 1.3.5
 - purge inline_css on post save

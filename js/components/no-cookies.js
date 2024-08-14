@@ -17,9 +17,10 @@
     } else {
         GAConsentGranted()
     }
-    document.addEventListener('DOMContentLoaded', () => setTimeout(setFooterOffset, 1000))
-    window.addEventListener('resize', () => setTimeout(setFooterOffset, 1000))
+    document.addEventListener('DOMContentLoaded', setFooterOffset)
+    window.addEventListener('resize', setFooterOffset)
     document.addEventListener('setCookieNotice', ({detail}) => {
+        setFooterOffset()
         if (detail.value.toString() === 'true') GAConsentGranted()
     })
 })( /* deleteCookie */ (name, path, domain) => {
@@ -30,11 +31,13 @@
         })
     })
 }, /* setFooterOffset */ () => {
-    let target = document.querySelector('body.cookies-not-set #colophon'),
-        notice = document.getElementById('cookie-notice')
-    if (target && notice) {
-        target.style.paddingBottom = `${notice.clientHeight}px`
-    }
+    setTimeout(() => {
+        let notice = document.getElementById('cookie-notice'),
+            colophon = document.getElementById('colophon')
+        if (colophon && notice) {
+            colophon.style.paddingBottom = `${notice.clientHeight}px`
+        }
+    }, 1000)
 }, /* loadCookieScripts */ () => {
     document.querySelectorAll('[type="text/if-cookie-notice-accepted"]').forEach(x => {
         let s = document.createElement('script')
