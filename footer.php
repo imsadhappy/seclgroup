@@ -25,6 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<span>&mdash;</span>
 			<span itemprop="copyrightYear"><?php echo date('Y'); ?></span>,
 			<span itemprop="copyrightHolder"><?php bloginfo( 'description' ); ?></span>
+			<img src="<?php echo get_template_directory_uri() ?>/assets/dmca.webp" alt="DMCA" style="margin: 10px 0 -5px 5px">
 		</div>
 
 		<div id="terms"><?php

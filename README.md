@@ -58,6 +58,10 @@ $ npm install
 
 ### Versions
 
+Version 1.3.6
+- added DMCA to footer
+- helper css classes added
+
 Version 1.3.5
 - purge inline_css on post save
 
