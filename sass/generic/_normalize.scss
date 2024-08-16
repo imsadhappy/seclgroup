@@ -347,3 +347,8 @@ template {
 [hidden] {
 	display: none;
 }
+
+:where(.wp-block-cover-image.is-light:not(.has-text-color)),
+:where(.wp-block-cover.is-light:not(.has-text-color)) {
+    color: $Text__Primary;
+}
