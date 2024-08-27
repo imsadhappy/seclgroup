@@ -54,6 +54,7 @@ else : ?>
 
                         <?php if (!empty($image)) : ?>
                             <img class="review-slide--image"
+                                loading="lazy"
                                 src="<?php echo esc_url($image['url']) ?>"
                                 alt="<?php esc_attr_e($author) ?>"
                                 width="<?php echo intval($image['width']) ?>"

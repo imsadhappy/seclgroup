@@ -33,10 +33,12 @@ final class Theme {
         add_action( 'widgets_init', array($this, 'register_widgets') );
         add_filter( 'the_category', array($this, 'the_category') );
         add_filter( 'get_search_form', array($this, 'get_search_form') );
-        add_filter( 'excerpt_more', function($more){ return preg_replace('/\[|\]/', '', $more); });
-        add_filter( 'excerpt_length', function(){ return 25; });
+        add_filter( 'excerpt_more', fn($more) => preg_replace('/\[|\]/', '', $more));
+        add_filter( 'excerpt_length', fn() => 25 );
         add_filter( 'term_links-project-category', array($this, 'project_category_term_links') );
         add_filter( 'render_block', array($this, 'fix_x_svg_path'), 999, 2 );
+        add_filter( 'render_block', array($this, 'add_block_img_loading_lazy'), 999, 2 );
+        add_filter( 'post_thumbnail_html', array($this, 'add_img_loading_lazy'), 999 );
 
         $this->enqueue();
         $this->check_updates();
@@ -217,5 +219,23 @@ final class Theme {
         }
 
         return $block_content;
+    }
+
+    public function add_block_img_loading_lazy( $block_content, $block ) {
+
+        $image_blocks = array('core/image', 'core/cover', 'core/post-featured-image');
+
+        if ( isset($block['blockName']) && in_array($block['blockName'], $image_blocks) ) {
+            $block_content = $this->add_img_loading_lazy($block_content);
+        }
+
+        return $block_content;
+    }
+
+    public function add_img_loading_lazy( $html ) {
+
+        return strpos($html, 'loading=') === false && strpos($html, 'fetchpriority=') === false ?
+                str_replace('<img ', '<img loading="lazy" ', $html) :
+                $html;
     }
 }

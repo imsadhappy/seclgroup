@@ -64,7 +64,7 @@ if ( ! function_exists( 'posted_by' ) ) {
 		$avatar = get_field( 'user_avatar', "user_$author_id" );
 		$role = get_field( 'user_role', "user_$author_id" );
 		$author =  esc_html( get_the_author() );
-		$image = is_array($avatar) ? sprintf('<img src="%s" alt="%s">', $avatar['sizes']['thumbnail'], $author) : '';
+		$image = is_array($avatar) ? sprintf('<img loading="lazy" src="%s" alt="%s">', $avatar['sizes']['thumbnail'], $author) : '';
 		$author_url = get_field( 'author_page', "user_$author_id" );
 
 		if ( empty($author_url) )
@@ -709,7 +709,7 @@ if ( ! function_exists( 'project_logo' ) ) {
 	function project_logo( $img, $block = [] ) {
 
 		?><figure class="wp-block-project-logo" <?php block_class('wp-block-project-logo', $block) ?>>
-			<img src="<?php echo esc_url($img['url']) ?>" alt="<?php echo esc_attr($img['alt']) ?>" />
+			<img loading="lazy" src="<?php echo esc_url($img['url']) ?>" alt="<?php echo esc_attr($img['alt']) ?>" />
 		</figure><?php
 	}
 }
@@ -724,6 +724,7 @@ if ( ! function_exists( 'project_stain' ) ) {
 						intval(get_field('project_style', $post_id)),
 						wp_get_theme()->get('Version')) ?>"
 			alt="<?php esc_attr_e(get_the_title($post_id)) ?>"
+			loading="lazy"
 			style="opacity: 0"><?php
 	}
 }

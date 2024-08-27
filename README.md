@@ -58,6 +58,9 @@ $ npm install
 
 ### Versions
 
+Version 1.3.7
+- added lazy loading to img
+
 Version 1.3.6
 - added DMCA to footer
 - helper css classes added

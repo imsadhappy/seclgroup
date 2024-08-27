@@ -38,6 +38,7 @@ $print_language_link = function ($language, $disabled = false) {
                 src="<?php echo $language['flag_link'] ?>"
                 width="24"
                 height="16"
+                loading="lazy"
                 alt="<?php echo $language['language_name'] ?>"
                 title="<?php echo $language['language_name'] ?>"><?php
             echo strtoupper($language['language_name'])
