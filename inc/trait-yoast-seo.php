@@ -119,7 +119,7 @@ trait YoastSEO {
         add_filter('wpseo_robots', function ($robots_string) {
 
             if (isset($_GET['query-0-page'])) {
-                $robots_string = "noindex, nofollow";
+                $robots_string = "noindex";
             }
 
             return $robots_string;
