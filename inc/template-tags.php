@@ -61,10 +61,31 @@ if ( ! function_exists( 'posted_by' ) ) {
 			return;
 		}
 
+		$template = (object) [
+			'image' 	=> '<img loading="lazy" src="%s" alt="%s" width="%3$d" height="%3$d">',
+			'about' 	=> '<div class="authorBio">%s</div>',
+			'phone' 	=> '<div class="authorPhone">%2$s<br><a href="tel:%1$s" target="_blank" rel="nofollow">%1$s</a></div>',
+			'email' 	=> '<div class="authorEmail">%2$s<br><a href="mailto:%1$s" target="_blank" rel="nofollow">%1$s</a></div>',
+			'social' 	=> '<a href="%s" target="_blank" rel="me" title="%s">%s</a>',
+			'container' => '<div class="posted-by byline template-tags--posted_by">
+								<span class="author vcard">
+									<span class="authorSocialLinks">%s</span>
+									<a class="url fn n" href="%s">
+										%s <span class="name authorName">%s</span><br>
+										<span class="position role authorPosition">%s</span>
+									</a>
+								</span>
+								<div class="extended">
+									<span class="authorSocialLinks mobile">%1$s</span>
+									%s %s %s
+								</div>
+							</div>'
+		];
+
 		$avatar = get_field( 'user_avatar', "user_$author_id" );
 		$role = get_field( 'user_role', "user_$author_id" );
 		$author =  esc_html( get_the_author() );
-		$image = is_array($avatar) ? sprintf('<img loading="lazy" src="%s" alt="%s">', $avatar['sizes']['thumbnail'], $author) : '';
+		$image = is_array($avatar) ? sprintf($template->image, $avatar['sizes']['thumbnail'], $author, $extended ? 64 : 44) : '';
 		$author_url = get_field( 'author_page', "user_$author_id" );
 
 		if ( empty($author_url) )
@@ -74,49 +95,29 @@ if ( ! function_exists( 'posted_by' ) ) {
 
 		if ($extended) {
 
-			$about = get_field( 'user_about', "user_$author_id" );
+			$about = get_field('user_about', "user_$author_id");
 
 			if ( !empty($about) )
-				$about = sprintf('<div class="authorBio">%s</div>', $about);
+				$about = sprintf($template->about, $about);
 
-			$phone = get_field( 'user_phone', "user_$author_id" );
+			$phone = get_field('user_phone', "user_$author_id");
 
 			if ( !empty($phone) )
-				$phone = sprintf('<div class="authorPhone">%2$s<br><a href="tel:%1$s" target="_blank" rel="nofollow">%1$s</a></div>', $phone, esc_html__('Phone', 'seclgroup'));
+				$phone = sprintf($template->phone, $phone, esc_html__('Phone', 'seclgroup'));
 
-			$email = get_field( 'user_email', "user_$author_id" );
+			$email = get_field('user_email', "user_$author_id");
 
 			if ( !empty($email) )
-				$email = sprintf('<div class="authorEmail">%2$s<br><a href="mailto:%1$s" target="_blank" rel="nofollow">%1$s</a></div>', $email, esc_html__('Email', 'seclgroup'));
+				$email = sprintf($template->email, $email, esc_html__('Email', 'seclgroup'));
 
-			$social_links = get_field( 'user_social_links', "user_$author_id" );
+			$social_links = get_field('user_social_links', "user_$author_id");
 
 			if ( ! empty($social_links) )
 				foreach ( $social_links as $social_link )
-					$social_links_html .= sprintf('<a href="%s" target="_blank" rel="me" title="%s">%s</a>', $social_link['url'], $author, $social_link['icon']);
+					$social_links_html .= sprintf($template->social, $social_link['url'], $author, $social_link['icon']);
 		}
 
-		$html = sprintf('<div class="posted-by byline template-tags--posted_by">
-							<span class="author vcard">
-								<span class="authorSocialLinks">%s</span>
-								<a class="url fn n" href="%s">
-									%s <span class="name authorName">%s</span><br>
-									<span class="position role authorPosition">%s</span>
-								</a>
-							</span>
-							<div class="extended">
-								<span class="authorSocialLinks mobile">%1$s</span>
-								%s %s %s
-							</div>
-						</div>',
-						$social_links_html,
-						esc_url( $author_url ),
-						$image,
-						$author,
-						$role,
-						$phone,
-						$email,
-						$about);
+		$html = sprintf($template->container, $social_links_html, esc_url( $author_url ), $image, $author, $role, $phone, $email, $about);
 
 		wp_cache_set($cache_key, $html);
 

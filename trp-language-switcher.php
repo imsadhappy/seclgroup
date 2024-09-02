@@ -47,7 +47,7 @@ $print_language_link = function ($language, $disabled = false) {
 
 $languages = call_user_func('trp_custom_language_switcher'); ?>
 
-<div class="trp_language_switcher_shortcode">
+<div class="trp_language_switcher_shortcode" style="height:24px">
     <div class="trp-language-switcher trp-language-switcher-container" data-no-translation="">
         <?php /* div class="trp-ls-shortcode-current-language">
             <?php $print_language_link($languages[get_locale()], true) ?>
