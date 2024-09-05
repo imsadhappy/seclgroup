@@ -39,6 +39,7 @@ final class Theme {
         add_filter( 'render_block', array($this, 'fix_x_svg_path'), 999, 2 );
         add_filter( 'render_block', array($this, 'add_block_img_loading_lazy'), 999, 2 );
         add_filter( 'post_thumbnail_html', array($this, 'add_img_loading_lazy'), 999 );
+        add_filter( 'body_class', array($this, 'body_class') );
 
         $this->enqueue();
         $this->check_updates();
@@ -239,5 +240,20 @@ final class Theme {
         return strpos($html, 'loading=') === false && strpos($html, 'fetchpriority=') === false ?
                 str_replace('<img ', '<img loading="lazy" ', $html) :
                 $html;
+    }
+
+    public function body_class( $classes ) {
+
+        $user_agent = $_SERVER['HTTP_USER_AGENT'];
+
+        if (preg_match('/linux/i', $user_agent)) {
+            $classes[] = 'os-linux';
+        } elseif (preg_match('/macintosh|mac os x/i', $user_agent)) {
+            $classes[] = 'os-mac';
+        } elseif (preg_match('/windows|win32/i', $user_agent)) {
+            $classes[] = 'os-windows';
+        }
+
+        return $classes;
     }
 }

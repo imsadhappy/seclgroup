@@ -58,6 +58,9 @@ $ npm install
 
 ### Versions
 
+Version 1.3.8
+- experimental: CLS fix for linux
+
 Version 1.3.7
 - added lazy loading to img
 
