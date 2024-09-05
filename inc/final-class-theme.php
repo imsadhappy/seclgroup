@@ -60,6 +60,8 @@ final class Theme {
         $this->projects_breadcrumbs();
         $this->noindex_override();
         $this->fix_rel_canonical();
+
+        add_filter( 'disable_wpseo_json_ld_search', '__return_true' );
     }
 
     /**
