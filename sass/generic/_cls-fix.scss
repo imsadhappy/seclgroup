@@ -12,22 +12,27 @@
 
 body:not(.fonts-ready) {
 
-	&.os-linux .site-main {
+	&.os-linux,
+	&.os-windows,
+	&.os-mac {
 
-		p, ul, li, a, span,
-        h1, h2, h3, h4, h5, h6, .h7, .h8, b, strong {
-			font-family: system-ui !important;
+		.site-main {
+
+			p, ul, li, a, span,
+			h1, h2, h3, h4, h5, h6, .h7, .h8, b, strong {
+				font-family: system-ui !important;
+			}
+
+			p, ul, li, a, span { @include cls-letter-spacing(.14, .14, .14); }
+			h1 { @include cls-letter-spacing(.12, .12, .12); }
+			h2 { @include cls-letter-spacing(.12, .12, .12); }
+			h3 { @include cls-letter-spacing(.12, .12, .12); }
+			h4 { @include cls-letter-spacing(.12, .12, .12); }
+			h5 { @include cls-letter-spacing(.12, .12, .12); }
+			h6 { @include cls-letter-spacing(.12, .12, .12); }
+			.h7 { @include cls-letter-spacing(.12, .12, .12); }
+			.h8 { @include cls-letter-spacing(.12, .12, .12); }
+			b, strong { @include cls-letter-spacing(.1, .2, .2); }
 		}
-
-		p, ul, li, a, span { @include cls-letter-spacing(.14, .14, .14); }
-        h1 { @include cls-letter-spacing(.12, .12, .12); }
-        h2 { @include cls-letter-spacing(.12, .12, .12); }
-        h3 { @include cls-letter-spacing(.12, .12, .12); }
-        h4 { @include cls-letter-spacing(.12, .12, .12); }
-        h5 { @include cls-letter-spacing(.12, .12, .12); }
-        h6 { @include cls-letter-spacing(.12, .12, .12); }
-        .h7 { @include cls-letter-spacing(.12, .12, .12); }
-        .h8 { @include cls-letter-spacing(.12, .12, .12); }
-		b, strong { @include cls-letter-spacing(.1, .2, .2); }
-    }
+	}
 }

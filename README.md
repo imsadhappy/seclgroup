@@ -58,6 +58,9 @@ $ npm install
 
 ### Versions
 
+Version 1.3.9
+- experimental: CLS fix for window & mac
+
 Version 1.3.8
 - experimental: CLS fix for linux
 
