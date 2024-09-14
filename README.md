@@ -58,6 +58,10 @@ $ npm install
 
 ### Versions
 
+Version 1.3.10
+- experimental: CLS fix for all
+- sanitize/check server vars
+
 Version 1.3.9
 - experimental: CLS fix for window & mac
 

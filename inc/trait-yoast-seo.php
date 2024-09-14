@@ -19,21 +19,16 @@ trait YoastSEO {
         if (is_admin() || wp_doing_ajax() || wp_doing_cron()) return;
 
         $url = $_SERVER['REQUEST_URI'];
-        $params = (isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '');
 
         // If URL contains a period, halt (likely contains a filename and filenames are case specific)
         if ( preg_match('/[\.]/', $url) ) return;
 
-        // If URL contains a capital letter
         if ( preg_match('/[A-Z]/', $url) ) {
 
-            $lc_url = empty($params)
-                        ? strtolower($url)
-                        : strtolower(substr($url, 0, strrpos($url, '?'))).'?'.$params;
+            $lc_url = empty($_SERVER['QUERY_STRING']) ? strtolower($url) : strtolower( strtok($url, '?') ) . '?' . $_SERVER['QUERY_STRING'];
 
-            // if url was modified, re-direct
             if ($lc_url !== $url) {
-                header('Location: '.$lc_url, TRUE, 301);
+                header("Location: " . sanitize_url($lc_url), TRUE, 301);
                 exit;
             }
         }

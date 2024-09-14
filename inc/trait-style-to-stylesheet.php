@@ -37,10 +37,11 @@ trait StyleToStylesheet {
 
     protected function inline_css_filename($uri = null) {
 
-        $uri = str_replace(home_url('/'), '/', $uri ? $uri : $_SERVER['REQUEST_URI']);
-        $uri = explode("?", $uri);
+        $uri = str_replace( home_url('/'), 
+                            '/',
+                            !empty($uri) ? $uri : sanitize_url($_SERVER['REQUEST_URI']) );
 
-        return md5(reset($uri)) . '.css';
+        return md5( strtok($uri, '?') ) . '.css';
     }
 
     protected function save_inline_css($handle) {

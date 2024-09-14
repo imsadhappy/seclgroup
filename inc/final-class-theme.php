@@ -161,12 +161,22 @@ final class Theme {
         );
     }
 
+    /**
+     * Replace URL for cat|tag|tax (if is current)
+     * to blog URL - making it a x link (i.e. return to blog)
+     *
+     * @param string $thelist
+     *
+     * @return string
+     */
     public function the_category( $thelist ) {
 
         if ( is_category() || is_tag() || is_tax() ) {
-            $blog_bath = str_replace(home_url(), '', get_permalink( get_option( 'page_for_posts' ) ) );
-            $thelist = \str_replace($_SERVER['REQUEST_URI'].'" rel="',
-                                    $blog_bath.'" rel="current ', $thelist);
+            $blog_bath = str_replace( home_url(), '', get_permalink( get_option('page_for_posts') ) );
+            $request_url = strtok( sanitize_url($_SERVER['REQUEST_URI']), '?' );
+            $thelist = str_replace( $request_url.'" rel="', 
+                                    $blog_bath.'" rel="current ', 
+                                    $thelist );
         }
 
         return $thelist;
@@ -244,7 +254,7 @@ final class Theme {
 
     public function body_class( $classes ) {
 
-        $user_agent = $_SERVER['HTTP_USER_AGENT'];
+        $user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? sanitize_text_field($_SERVER['HTTP_USER_AGENT']) : '';
 
         if (preg_match('/linux/i', $user_agent)) {
             $classes[] = 'os-linux';
