@@ -15,7 +15,7 @@
 
     .breadcrumb_last {
         color: $Text__Primary;
-        max-width: 40vw;
+        max-width: calc(100% - 120px);
         overflow: hidden;
         display: inline-block;
         vertical-align: bottom;
