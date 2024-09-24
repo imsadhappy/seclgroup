@@ -51,7 +51,7 @@ final class Theme {
         $this->page_for_('projects', 'Projects Page');
         $this->use_wpcf7_popup();
         $this->defer_wpcf7_scripts();
-        $this->inline_css_in_wp_footer('core-block-supports');
+        $this->inline_css_in_wp_footer(['core-block-supports', 'block-style-variation-styles']);
         $this->setup_pagination();
         $this->use_shortcodes( array('contact', 'menu') );
         $this->setup_cookie_notice();

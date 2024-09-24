@@ -67,6 +67,7 @@ trait Enqueue {
                 wp_register_script( $this->theme.'-customizer', "$uri/js/customizer.js", array( 'customize-preview' ), $version, array( 'in_footer' => true ) );
                     break;
             default:
+                wp_register_style( $this->theme.'-fonts', "$uri/assets/fonts/style.css", array(), $version );
                 wp_register_style( $this->theme.'-style', get_stylesheet_uri(), array(), $version );
                 wp_register_script( $this->theme.'-component-loader', "$uri/js/component-loader.js", array(), $version, array( 'in_footer' => false ) );
                 wp_register_script( $this->theme.'-component-list', "$uri/js/component-list.js", array($this->theme.'-component-loader'), $version, array( 'in_footer' => true ) );
@@ -88,6 +89,7 @@ trait Enqueue {
                 wp_enqueue_style( $this->theme.'-admin-style' );
                     break;
             case 'wp_enqueue_scripts':
+                wp_enqueue_style( $this->theme.'-fonts' );
                 if ( $this->strategy != 'inline') {
                     wp_enqueue_style( $this->theme.'-style' );
                     wp_style_add_data( $this->theme.'-style', 'rtl', 'replace' );

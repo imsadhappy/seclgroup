@@ -17,8 +17,8 @@ trait Pagination {
     private $pages = 0;
 
     private static $svg = array(
-        'prev_text' => '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="18" viewBox="0 0 22 18"><path d="M22 9L2 9M2 9L10 17M2 9L10 0.999999" /></svg>',
-        'next_text' => '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="18" viewBox="0 0 22 18"><path d="M0 9H20M20 9L12 1M20 9L12 17" /></svg>'
+        'prev_text' => '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="18" viewBox="0 0 22 18"><path d="M22 9L2 9M2 9L10 17M2 9L10 0.999999"></path></svg>',
+        'next_text' => '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="18" viewBox="0 0 22 18"><path d="M0 9H20M20 9L12 1M20 9L12 17"></path></svg>'
     );
 
     public function setup_pagination() {

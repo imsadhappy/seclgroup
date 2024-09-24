@@ -1,0 +1,25 @@
+@font-face {
+    font-family: 'Halvar Breit Md';
+    src: url('HalvarBreit-Md.eot');
+    src: local('Halvar Breitschrift Medium'), local('HalvarBreit-Md'),
+        url('HalvarBreit-Md.eot?#iefix') format('embedded-opentype'),
+        url('HalvarBreit-Md.woff2') format('woff2'),
+        url('HalvarBreit-Md.woff') format('woff'),
+        url('HalvarBreit-Md.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Halvar Breit Rg';
+    src: url('HalvarBreit-Rg.eot');
+    src: local('Halvar Breitschrift Regular'), local('HalvarBreit-Rg'),
+        url('HalvarBreit-Rg.eot?#iefix') format('embedded-opentype'),
+        url('HalvarBreit-Rg.woff2') format('woff2'),
+        url('HalvarBreit-Rg.woff') format('woff'),
+        url('HalvarBreit-Rg.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}

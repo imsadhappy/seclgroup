@@ -58,6 +58,15 @@ $ npm install
 
 ### Versions
 
+Version 1.3.12
+- added block-style-variation-styles to inline_css_in_wp_footer
+- changed generation logic for inline_css
+- moved @font-face into file (+ changed enqueue ordering)
+- css/html fixes
+
+Version 1.3.11
+- minor css fixes
+
 Version 1.3.10
 - experimental: CLS fix for all
 - sanitize/check server vars

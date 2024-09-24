@@ -32,46 +32,61 @@ trait StyleToStylesheet {
         $dir = $uploads['basedir'] . $this->folder;
         $url = $uploads['baseurl'] . $this->folder;
 
-        return compact('dir', 'url');;
+        return compact('dir', 'url');
     }
 
     protected function inline_css_filename($uri = null) {
 
-        $uri = str_replace( home_url('/'), 
-                            '/',
+        $uri = str_replace( home_url('/'),  '/',
                             !empty($uri) ? $uri : sanitize_url($_SERVER['REQUEST_URI']) );
 
         return md5( strtok($uri, '?') ) . '.css';
     }
 
-    protected function save_inline_css($handle) {
+    protected function extract_inline_css($handle) {
 
-        /** @var \WP_Styles $wp_styles */
         global $wp_styles;
-
+        
         $css = $wp_styles->get_data($handle, 'after');
 
-        if ( empty($css) ) return;
+        if (empty($css)) return;
+
+        $wp_styles->remove($handle);
+        $wp_styles->dequeue($handle);
+
+        return implode("\n", $css);
+    }
+
+    protected function save_inline_css($css) {
+
+        if (empty($css)) return;
 
         extract($this->inline_css_paths());
-        $css = implode("\n", $css);
-        $filename = $this->inline_css_filename();
 
         if (!file_exists($dir))
             mkdir(untrailingslashit($dir), 0755);
 
-        if (!file_exists($dir.$filename))
-            file_put_contents($dir.$filename, $css);
+        $fn = $this->inline_css_filename();
 
-        $wp_styles->remove($handle);
-        $wp_styles->add($handle, $url.$filename, array(), filemtime($dir.$filename));
+        if (!file_exists($dir.$fn))
+            file_put_contents($dir.$fn, $css);
+
+        global $wp_styles;
+
+        $id = str_replace("\\", '-', strtolower(__TRAIT__));
+
+        $wp_styles->enqueue($id);
+        $wp_styles->add($id, $url.$fn, array(), filemtime($dir.$fn));
     }
 
     protected function inline_css_in_wp_footer($handles = array()) {
 
         add_action('wp_footer', function () use ($handles) {
-            foreach ((array) $handles as $handle)
-                $this->save_inline_css($handle);
+            $css = "";
+            foreach ((array) $handles as $handle) {
+                $css .= $this->extract_inline_css($handle);
+            }
+            $this->save_inline_css($css);
         });
 
         add_action('save_post', array($this, 'purge_inline_css'));
@@ -80,9 +95,9 @@ trait StyleToStylesheet {
     public function purge_inline_css($post_id) {
 
         $dir = $this->inline_css_paths()['dir'];
-        $filename = $this->inline_css_filename(get_permalink($post_id));
+        $fn = $this->inline_css_filename(get_permalink($post_id));
 
-        if (file_exists($dir.$filename))
-            unlink($dir.$filename);
+        if (file_exists($dir.$fn))
+            unlink($dir.$fn);
     }
 }

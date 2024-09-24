@@ -1,29 +1,3 @@
-@font-face {
-    font-family: 'Halvar Breit Md';
-    src: url('assets/fonts/HalvarBreit-Md.eot');
-    src: local('Halvar Breitschrift Medium'), local('HalvarBreit-Md'),
-        url('assets/fonts/HalvarBreit-Md.eot?#iefix') format('embedded-opentype'),
-        url('assets/fonts/HalvarBreit-Md.woff2') format('woff2'),
-        url('assets/fonts/HalvarBreit-Md.woff') format('woff'),
-        url('assets/fonts/HalvarBreit-Md.ttf') format('truetype');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Halvar Breit Rg';
-    src: url('assets/fonts/HalvarBreit-Rg.eot');
-    src: local('Halvar Breitschrift Regular'), local('HalvarBreit-Rg'),
-        url('assets/fonts/HalvarBreit-Rg.eot?#iefix') format('embedded-opentype'),
-        url('assets/fonts/HalvarBreit-Rg.woff2') format('woff2'),
-        url('assets/fonts/HalvarBreit-Rg.woff') format('woff'),
-        url('assets/fonts/HalvarBreit-Rg.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
 $default__fonts: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 
 $font__main: 'Halvar Breit Rg', $default__fonts;

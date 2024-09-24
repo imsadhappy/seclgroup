@@ -709,7 +709,7 @@ if ( ! function_exists( 'project_logo' ) ) {
 
 	function project_logo( $img, $block = [] ) {
 
-		?><figure class="wp-block-project-logo" <?php block_class('wp-block-project-logo', $block) ?>>
+		?><figure <?php block_class('wp-block-project-logo', $block) ?>>
 			<img loading="lazy" src="<?php echo esc_url($img['url']) ?>" alt="<?php echo esc_attr($img['alt']) ?>" />
 		</figure><?php
 	}

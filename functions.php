@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-$dir = \get_template_directory();
+(function($dir){
 
 /**
  * Template tags.
@@ -44,3 +44,5 @@ new Theme;
  * Custom Post Types.
  */
 //require_once "$dir/inc/abstract-class-post-type.php";
+
+})(get_template_directory());
