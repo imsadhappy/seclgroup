@@ -58,6 +58,9 @@ $ npm install
 
 ### Versions
 
+Version 1.3.14
+- detect safari, not os
+
 Version 1.3.12
 - added block-style-variation-styles to inline_css_in_wp_footer
 - changed generation logic for inline_css

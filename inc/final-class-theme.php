@@ -256,12 +256,13 @@ final class Theme {
 
         $user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? sanitize_text_field($_SERVER['HTTP_USER_AGENT']) : '';
 
-        if (preg_match('/linux/i', $user_agent)) {
-            $classes[] = 'os-linux';
-        } elseif (preg_match('/macintosh|mac os x/i', $user_agent)) {
-            $classes[] = 'os-mac';
-        } elseif (preg_match('/windows|win32/i', $user_agent)) {
-            $classes[] = 'os-windows';
+        // Chrome's user agent contains Safari but Safari's user agent doesn't contain Chrome
+        if (stripos( $user_agent, 'Chrome') !== false) {
+            $classes[] = 'browser-chrome';
+        } elseif (stripos( $user_agent, 'Firefox') !== false) {
+            $classes[] = 'browser-firefox';
+        } elseif (stripos( $user_agent, 'Safari') !== false) {
+            $classes[] = 'browser-safari';
         }
 
         return $classes;
