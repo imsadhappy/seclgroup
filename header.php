@@ -25,11 +25,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<?php code_snippets('head') ?>
 </head>
 <body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">
+<script>
+if (window.location.hash) scroll(0,0);
+!((ua) => document.body.classList.add('browser-' + (
+	ua("Chrome") ? 'chrome' : 
+	ua("Safari") ? 'safari' : 
+	ua("Firefox") ? 'firefox' : 'unknown')
+))((x) => navigator.userAgent.includes(x));
+</script>
 <?php
 	code_snippets('body_start');
 	wp_body_open();
 ?>
-<script>if (window.location.hash) scroll(0,0);</script>
 
 <div id="page" class="site">
 

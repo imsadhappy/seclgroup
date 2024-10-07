@@ -39,7 +39,6 @@ final class Theme {
         add_filter( 'render_block', array($this, 'fix_x_svg_path'), 999, 2 );
         add_filter( 'render_block', array($this, 'add_block_img_loading_lazy'), 999, 2 );
         add_filter( 'post_thumbnail_html', array($this, 'add_img_loading_lazy'), 999 );
-        add_filter( 'body_class', array($this, 'body_class') );
 
         $this->enqueue();
         $this->check_updates();
@@ -250,21 +249,5 @@ final class Theme {
         return strpos($html, 'loading=') === false && strpos($html, 'fetchpriority=') === false ?
                 str_replace('<img ', '<img loading="lazy" ', $html) :
                 $html;
-    }
-
-    public function body_class( $classes ) {
-
-        $user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? sanitize_text_field($_SERVER['HTTP_USER_AGENT']) : '';
-
-        // Chrome's user agent contains Safari but Safari's user agent doesn't contain Chrome
-        if (stripos( $user_agent, 'Chrome') !== false) {
-            $classes[] = 'browser-chrome';
-        } elseif (stripos( $user_agent, 'Firefox') !== false) {
-            $classes[] = 'browser-firefox';
-        } elseif (stripos( $user_agent, 'Safari') !== false) {
-            $classes[] = 'browser-safari';
-        }
-
-        return $classes;
     }
 }
