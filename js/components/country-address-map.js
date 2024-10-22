@@ -3,7 +3,7 @@
  */
 ((setCoords, newXHR, a, b, c) => {
     document.querySelectorAll(`.${a}-${b}-map`).forEach(x => {
-        newXHR(window.ComponentLoader.themeURL + "/assets/offices.svg", (xhr) => {
+        newXHR(window.ComponentLoader.themeURL + "/assets/offices.svg?v=2", (xhr) => {
             let div = document.createElement('div')
             div.innerHTML = xhr.responseText
             x.querySelector(`.${c}`).appendChild(div)

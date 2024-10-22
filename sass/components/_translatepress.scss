@@ -31,6 +31,7 @@
 		}
 		a[href="javascript:void(0)"],
 		a[href="#"] {
+			order: -1;
 			color: inherit !important;
 			&:after {
 				content: '';
@@ -60,10 +61,14 @@
 			&:hover {
 				//transform: translateY(-50%);
 				a:not([href="javascript:void(0)"]):not([href="#"]) {
+					position: relative;
 					display: block;
 				}
 			}
 		}
+	}
+	&-ls-shortcode-language {
+		display: grid !important;
 	}
 	&-flag-image {
 		vertical-align: -2px;

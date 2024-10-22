@@ -28,10 +28,10 @@ trait WPCF7 {
 
         add_filter( 'script_loader_tag', function ( $tag, $handle ) {
 
-            if ( false === strpos( $handle, 'contact-form-7' ) )
-                return $tag;
+            $matches = array_filter(['google-recaptcha', 'contact-form-7', 'wpcf7-recaptcha'],
+                                    fn($x) => false !== strpos($handle, $x));
 
-            return str_replace( ' src', ' defer="defer" src', $tag );
+            return empty($matches) ? $tag : str_replace( ' src', ' defer="defer" src', $tag );
         }, 10, 2 );
     }
 

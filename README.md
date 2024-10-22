@@ -58,6 +58,10 @@ $ npm install
 
 ### Versions
 
+Version 1.4.0
+- added multisite trait
+- defered wpcf7/recaptcha
+
 Version 1.3.14
 - detect safari, not os; detect on client, not server
 
