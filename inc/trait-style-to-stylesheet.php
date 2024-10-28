@@ -40,7 +40,7 @@ trait StyleToStylesheet {
         $uri = str_replace( home_url('/'),  '/',
                             !empty($uri) ? $uri : sanitize_url($_SERVER['REQUEST_URI']) );
 
-        return md5( strtok($uri, '?') ) . '.css';
+        return get_current_blog_id() . '-' . md5( strtok($uri, '?') ) . '.css';
     }
 
     protected function extract_inline_css($handle) {
@@ -90,14 +90,19 @@ trait StyleToStylesheet {
         });
 
         add_action('save_post', array($this, 'purge_inline_css'));
+
+        add_filter('wp_super_cache_clear_post_cache', array($this, 'purge_inline_css'));
     }
 
     public function purge_inline_css($post_id) {
 
         $dir = $this->inline_css_paths()['dir'];
-        $fn = $this->inline_css_filename(get_permalink($post_id));
+        $url = get_permalink($post_id);
+        $fn = $this->inline_css_filename($url);
 
         if (file_exists($dir.$fn))
             unlink($dir.$fn);
+
+        error_log("Purged inline_css for $url");
     }
 }

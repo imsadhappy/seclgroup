@@ -61,13 +61,10 @@ final class Theme {
         $this->projects_breadcrumbs();
         $this->noindex_override();
         $this->fix_rel_canonical();
+        $this->fix_permalink_redirect();
 
         if (is_multisite()) {
             $this->use_multisite();
-        } else {
-            add_filter( 'trp_custom_language_switcher', function($langs) {
-                return array_filter($langs, fn($ln) => $ln !== 'nl_NL', ARRAY_FILTER_USE_KEY);
-            } );
         }
 
         add_filter( 'disable_wpseo_json_ld_search', '__return_true' );

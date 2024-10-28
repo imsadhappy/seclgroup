@@ -740,3 +740,46 @@ if ( ! function_exists( 'code_snippets' ) ) {
 			echo apply_filters('code_snippets_filter', $code_snippet, $location, $group);
 	}
 }
+
+if ( ! function_exists('trp_custom_language_switcher') ) {
+
+    function trp_custom_language_switcher () {
+		
+		$switcher = [];
+		$is_dev = defined('IS_DEV');
+		$flags = get_template_directory_uri() . '/assets/flags';
+
+        $domain = $is_dev ? 'dev.secl.pw' : 'seclgroup.com';
+        $switcher['en_US'] = [
+            'language_name' => 'USA',
+            'language_code' => 'en_US',
+            'short_language_name' => 'en',
+            'flag_link' => "$flags/us.svg",
+            'current_page_url' => "https://$domain"
+        ];
+
+		$domain = 'secl.com.ua';
+        $switcher['uk'] = [
+            'language_name' => 'UA',
+            'language_code' => 'uk',
+            'short_language_name' => 'uk',
+            'flag_link' => "$flags/ua.svg",
+            'current_page_url' => 'https://secl.com.ua/'
+        ];
+
+        $domain = $is_dev ? 'nl.dev.secl.pw' : 'seclgroup.nl';
+        $domain_blog_id = get_blog_id_from_url( $domain );
+        if ( current_user_can('administrator') ||
+             $domain_blog_id === get_current_blog_id() || 
+             get_blog_status( $domain_blog_id, 'public' ) )
+                $switcher['nl_NL'] = [
+                    'language_name' => 'NL',
+                    'language_code' => 'nl_NL',
+                    'short_language_name' => 'nl',
+                    'flag_link' => "$flags/nl.svg",
+                    'current_page_url' => "https://$domain"
+                ];
+
+        return apply_filters( 'trp_custom_language_switcher', $switcher );
+    }
+}

@@ -58,6 +58,9 @@ $ npm install
 
 ### Versions
 
+Version 1.4.1
+- fixed permalink redirects
+
 Version 1.4.0
 - added multisite trait
 - defered wpcf7/recaptcha

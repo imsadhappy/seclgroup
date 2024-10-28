@@ -120,4 +120,26 @@ trait YoastSEO {
             return $robots_string;
         });
     }
+
+    public function fix_permalink_redirect() {
+
+        add_action('init', function(){
+
+            if ('/%postname%/' !== get_option('permalink_structure')) return;
+            
+            $blog_slug = get_post(get_option('page_for_posts'))->post_name;
+
+            $pattern = sprintf('/^\/%s\/\d{4}\/\d{2}\/\d{2}\/(.*)$/', $blog_slug);
+            if (preg_match($pattern, $_SERVER['REQUEST_URI'], $matches)) {
+                wp_redirect(site_url($matches[1]));
+                exit;
+            }
+
+            $pattern = sprintf('/^\/%s\/project\/(.*)$/', $blog_slug);
+            if (preg_match($pattern, $_SERVER['REQUEST_URI'], $matches)) {
+                wp_redirect(site_url($matches[1]));
+                exit;
+            }
+        });
+    }
 }
