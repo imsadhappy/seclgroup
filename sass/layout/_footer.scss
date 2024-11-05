@@ -17,8 +17,18 @@
     }
     a {
       text-decoration: underline;
+      white-space: nowrap;
       + a {
         margin-left: 20px;
+      }
+    }
+  }
+
+  #terms {
+    word-break: break-all;
+    @media (max-width: $width__min) {
+      a { 
+        font-size: 75%;
       }
     }
   }

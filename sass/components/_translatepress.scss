@@ -46,6 +46,7 @@
 				vertical-align: -6px;
 			}
 			&.is-clicked ~ a:not([href="javascript:void(0)"]):not([href="#"]) {
+				position: relative;
 				display: block;
 			}
 		}
@@ -59,7 +60,6 @@
 
 		@media (any-hover: hover) {
 			&:hover {
-				//transform: translateY(-50%);
 				a:not([href="javascript:void(0)"]):not([href="#"]) {
 					position: relative;
 					display: block;

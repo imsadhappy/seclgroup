@@ -486,14 +486,16 @@ if ( ! function_exists( 'inline_style' ) ) {
 
 if ( ! function_exists( 'thumbnail_with_alt' ) ) {
 
-	function thumbnail_with_alt( $post_id = null, $size = 'post-thumbnail' ) {
+	function thumbnail_with_alt( $post_id = null, $size = 'post-thumbnail', $attributes = [] ) {
 
-		return get_the_post_thumbnail( $post_id, $size, array(
-			'alt' => the_title_attribute( array(
+		if (!isset($attributes['alt'])) {
+			$attributes['alt'] = the_title_attribute( array(
 				'echo' => false,
 				'post' => $post_id
-			) )
-		) );
+			) );
+		}
+
+		return get_the_post_thumbnail( $post_id, $size, $attributes );
 	}
 }
 
@@ -779,6 +781,12 @@ if ( ! function_exists('trp_custom_language_switcher') ) {
                     'flag_link' => "$flags/nl.svg",
                     'current_page_url' => "https://$domain"
                 ];
+		
+		$locale = get_locale();
+
+		if (isset($switcher[$locale])) {
+			$switcher = [$locale => $switcher[$locale]] + $switcher;
+		}
 
         return apply_filters( 'trp_custom_language_switcher', $switcher );
     }

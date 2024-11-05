@@ -26,20 +26,26 @@ if ( boolval( get_field('as_slider') ) ) : ?>
 
         <?php
 
-            $args = array(
-                'fields' => 'ids',
-                'post_type' => 'project',
-                'numberposts' => -1
-            );
-            $selected_items = get_field('selected_items');
+            $get_block_posts = function() {
 
-            if ( !empty($selected_items) ) {
-                $args['include'] = $selected_items;
-                $args['orderby'] = 'post__in';
-                $args['order'] = 'DESC';
-            }
+                $args = array(
+                    'fields' => 'ids',
+                    'post_type' => 'project',
+                    'numberposts' => -1
+                );
 
-            foreach (get_posts($args) as $post_id) :
+                $selected_items = get_field('selected_items');
+
+                if ( !empty($selected_items) ) {
+                    $args['include'] = $selected_items;
+                    $args['orderby'] = 'post__in';
+                    $args['order'] = 'DESC';
+                }
+
+                return get_posts($args);
+            };
+
+            foreach ($get_block_posts() as $post_id) :
 
                 $post_permalink = get_permalink($post_id);
                 $post_title = get_the_title($post_id);
@@ -94,7 +100,7 @@ if ( boolval( get_field('as_slider') ) ) : ?>
 
             </div>
 
-        <?php endforeach; ?>
+        <?php endforeach; unset( $get_block_posts, $post_id ); ?>
 
     </div>
 

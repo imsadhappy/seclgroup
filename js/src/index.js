@@ -38,5 +38,4 @@ document.addEventListener('DOMContentLoaded', () => {
     const workProcessH4XPathResult = document.evaluate("//h4[contains(., 'Work Process')]", document, null, XPathResult.ANY_TYPE, null)
     const workProcessH4 = workProcessH4XPathResult.iterateNext()
     if (workProcessH4) workProcessH4.classList.add('work-process-h4')
-    document.fonts.ready.then(() => document.body.classList.add('fonts-ready'))
 })

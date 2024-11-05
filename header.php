@@ -21,23 +21,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="preconnect" href="https://www.google.com">
 	<link rel="preconnect" href="https://www.gstatic.com" crossorigin>
-	<?php wp_head(); ?>
-	<?php code_snippets('head') ?>
+	<?php foreach ( array('HalvarBreit-Md','HalvarBreit-Rg') as $fset ) : ?>
+	<link rel="preload" as="font" type="font/woff2" crossorigin 
+			href="<?php 
+				echo get_template_directory_uri();
+			?>/assets/fonts/<?php echo $fset ?>.woff2">
+	<?php endforeach; 
+		unset($fset);
+		wp_head();
+		code_snippets('head');
+	?>
 </head>
 <body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">
-<script>
-if (window.location.hash) scroll(0,0);
-!((ua) => document.body.classList.add('browser-' + (
-	ua("Chrome") ? 'chrome' : 
-	ua("Safari") ? 'safari' : 
-	ua("Firefox") ? 'firefox' : 'unknown')
-))((x) => navigator.userAgent.includes(x));
-</script>
 <?php
 	code_snippets('body_start');
 	wp_body_open();
 ?>
-
 <div id="page" class="site">
 
 	<header id="masthead" class="site-header">

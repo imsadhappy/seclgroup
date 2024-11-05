@@ -60,6 +60,8 @@ $ npm install
 
 Version 1.4.1
 - fixed permalink redirects
+- moved header scripts (inc. document.fonts) to admin code_snippets setting
+- map-swiper refac
 
 Version 1.4.0
 - added multisite trait
