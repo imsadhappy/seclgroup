@@ -58,6 +58,12 @@ $ npm install
 
 ### Versions
 
+Version 1.4.2
+- i18n: added pot & nl_NL po/mo
+- defered/asynced wpcf7/recaptcha
+- minor bugfix custom-tabs.js
+- map swiper minor redesign
+
 Version 1.4.1
 - fixed permalink redirects
 - moved header scripts (inc. document.fonts) to admin code_snippets setting

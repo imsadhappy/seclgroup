@@ -1,0 +1,205 @@
+# Copyright (C) 2024 SECLGroup
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: SECLGroup 1.4.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/seclgroup\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2024-11-05T15:21:02+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.10.0\n"
+"X-Domain: seclgroup\n"
+
+#. Theme Name of the theme
+#. Author of the theme
+#: style.css
+msgid "SECLGroup"
+msgstr ""
+
+#. Theme URI of the theme
+#. Author URI of the theme
+#: style.css
+msgid "https://seclgroup.com/"
+msgstr ""
+
+#. Description of the theme
+#: style.css
+msgid "SECLGroup Theme"
+msgstr ""
+
+#: 404.php:31
+#: 404.php:33
+msgid "Return to homepage"
+msgstr ""
+
+#: blocks/our-team/template.php:44
+msgid "Please add images"
+msgstr ""
+
+#: blocks/project-list/template.php:74
+msgid "Project details"
+msgstr ""
+
+#: blocks/project-logo/template.php:25
+msgid "Please add logo"
+msgstr ""
+
+#: blocks/review-slider/template.php:27
+msgid "Please add reviews"
+msgstr ""
+
+#: footer.php:22
+msgid "Copyright"
+msgstr ""
+
+#: inc/blocks.php:25
+msgctxt "block category"
+msgid "SECLGroup"
+msgstr ""
+
+#: inc/blocks.php:41
+msgid "Team Members"
+msgstr ""
+
+#: inc/blocks.php:42
+msgid "Grid outputs Team Members (custom post type) Name, Position & Photo."
+msgstr ""
+
+#: inc/blocks.php:52
+msgid "Reviews"
+msgstr ""
+
+#: inc/blocks.php:53
+msgid "A custom slider with Title, Image & Review Text."
+msgstr ""
+
+#: inc/blocks.php:63
+msgid "Project Logo"
+msgstr ""
+
+#: inc/blocks.php:64
+msgid "A custom project logo set in project"
+msgstr ""
+
+#: inc/blocks.php:73
+msgid "Project List"
+msgstr ""
+
+#: inc/blocks.php:74
+msgid "A custom project list"
+msgstr ""
+
+#: inc/blocks.php:84
+msgid "Pagination"
+msgstr ""
+
+#: inc/blocks.php:85
+msgid "A custom block pagination"
+msgstr ""
+
+#: inc/final-class-theme.php:145
+msgid "Header"
+msgstr ""
+
+#: inc/final-class-theme.php:158
+msgid "Blog Aside"
+msgstr ""
+
+#: inc/final-class-theme.php:160
+msgid "Add widgets here."
+msgstr ""
+
+#: inc/template-tags.php:106
+msgid "Phone"
+msgstr ""
+
+#: inc/template-tags.php:111
+msgid "Email"
+msgstr ""
+
+#: inc/template-tags.php:290
+msgid "Related Publications"
+msgstr ""
+
+#: inc/template-tags.php:323
+msgid "Relevant to"
+msgstr ""
+
+#: inc/template-tags.php:685
+msgid "Load more items"
+msgstr ""
+
+#: inc/template-tags.php:686
+msgid "No more items"
+msgstr ""
+
+#: index.php:79
+msgid "Clear search"
+msgstr ""
+
+#: template-parts/content-post.php:65
+msgid "Author"
+msgstr ""
+
+#: template-parts/loop-project.php:70
+msgid "Explore"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "White to Grey"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Pink 150"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Pink 100"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Pink 50"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "BG/White"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "BG/Blue"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "BG/Grey"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "BG/Pink"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Text/Primary"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Text/Secondary"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Text/Tertiary"
+msgstr ""

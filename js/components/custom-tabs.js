@@ -48,14 +48,14 @@ document.querySelectorAll(`.${x}-container`).forEach(container => {
 
     tabs.addEventListener('mouseover', () => tabs.classList.remove('is-changed'))
 
-    document.addEventListener('click', event => {
-        if (event.target.classList.contains(`${x}-switcher`) ||
-            event.target.parentNode.classList.contains(`${x}-switcher`)) {
+    document.addEventListener('click', click => {
+        if (click.target.classList.contains(`${x}-switcher`) ||
+            click.target.parentNode?.classList.contains(`${x}-switcher`)) {
             var nexTab = tabs.querySelector('.active').nextElementSibling;
             if (!nexTab) {
                 nexTab = tabs.children[0];
             }
-            nexTab.dispatchEvent(new CustomEvent('click', {detail:'scripts.js'}));
+            nexTab.dispatchEvent(new CustomEvent('click', {detail:'custom-tabs.js'}));
         }
     });
 })

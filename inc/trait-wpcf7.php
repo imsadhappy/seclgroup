@@ -31,7 +31,7 @@ trait WPCF7 {
             $matches = array_filter(['google-recaptcha', 'contact-form-7', 'wpcf7-recaptcha'],
                                     fn($x) => false !== strpos($handle, $x));
 
-            return empty($matches) ? $tag : str_replace( ' src', ' defer="defer" src', $tag );
+            return empty($matches) ? $tag : str_replace( ' src=', ' async defer src=', $tag );
         }, 10, 2 );
     }
 

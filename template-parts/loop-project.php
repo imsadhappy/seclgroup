@@ -67,7 +67,7 @@ $industry = get_field('project_industry', $post_id);
         <?php if ( $show_explore ) : ?>
             <div class="project--explore wp-block-button is-style-outline has-arrow-right mobile-full-width has-medium-font-size">
                 <a href="<?php echo esc_url( $post_permalink ) ?>" class="wp-element-button"><?php
-                    esc_html_e('Explore', 'seclgroup')
+                    esc_html_e( 'Explore', 'seclgroup' )
                 ?></a>
             </div>
         <?php endif ?>
