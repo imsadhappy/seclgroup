@@ -30,6 +30,27 @@ trait Admin {
         });
     }
 
+    protected function disable_post_type() {
+        
+        add_action( 'template_redirect', function() {
+
+            if ( ! is_post_type_archive('post') && 'post' !== get_post_type() )
+                return;
+
+            wp_redirect( home_url(), 307 );
+
+            exit;
+        } );
+
+        add_filter( 'display_post_states', function ( $post_states, $post ) {
+
+            if ( 'post' === $post->post_type )
+                $post_states['wp_no_page_for_posts'] = __( "No blog", 'seclgroup' );
+
+            return $post_states;
+        }, 10, 2 );
+    }
+
     protected function remove_from_admin_bar( $nodes = array() ) {
 
         add_action( 'wp_before_admin_bar_render', function () use ($nodes) {
@@ -42,25 +63,12 @@ trait Admin {
         } );
     }
 
-    protected function avif_support() {
+    protected function add_support_for_( $additional_mime_types = array() ) {
 
-        add_filter( 'upload_mimes', function($mime_types) {
+        add_filter( 'upload_mimes', function($mime_types) use ($additional_mime_types ) {
 
-            $mime_types['avif'] = 'image/avif';
-            $mime_types['avifs'] = 'image/avif-sequence';
-
-            return $mime_types;
-        } );
-    }
-
-    protected function heix_support() {
-
-        add_filter( 'upload_mimes', function($mime_types) {
-
-            $mime_types['heic'] = 'image/heic';
-            $mime_types['heif'] = 'image/heif';
-            $mime_types['heics'] = 'image/heic-sequence';
-            $mime_types['heifs'] = 'image/heif-sequence';
+            foreach ($additional_mime_types  as $key => $value)
+                $mime_types[$key] = $value;
 
             return $mime_types;
         } );

@@ -25,7 +25,7 @@ trait CookieNotice {
         add_action( 'admin_footer', function () { $this->fix_cookie_notice_admin_fields(); }, 999 );
 
         add_filter( 'code_snippets_filter', function ( $html ) {
-            return Cookie_Notice()->cookies_accepted() ? str_replace(' type="text/if-cookie-notice-accepted"', '', $html) : $html;
+            return \Cookie_Notice()->cookies_accepted() ? str_replace(' type="text/if-cookie-notice-accepted"', '', $html) : $html;
         } );
     }
 
@@ -59,6 +59,6 @@ trait CookieNotice {
     }
 
     private function get_cookie_notice_( $setting ) {
-        return Cookie_Notice()->options['general'][$setting];
+        return \Cookie_Notice()->options['general'][$setting];
     }
 }

@@ -28,9 +28,9 @@ setTimeout(() => {
         video.addEventListener('suspend', () => {
             if (!video.playing) video.play()
         })
-        window.addEventListener('scroll', () => {
-            //if (!video.playing) video.play()
-        })
+        // window.addEventListener('scroll', () => {
+        //     //if (!video.playing) video.play()
+        // })
         if (video.classList.contains('lazy')) {
             lazyVideoObserver.observe(video)
         }

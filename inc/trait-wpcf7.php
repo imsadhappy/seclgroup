@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 trait WPCF7 {
 
-    public function use_wpcf7_popup() {
+    public function setup_wpcf7_popup() {
 
         add_action( 'wp_ajax_wpcf7_popup', function(){
             $this->wpcf7_popup();

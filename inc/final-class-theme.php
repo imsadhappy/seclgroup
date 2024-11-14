@@ -22,7 +22,6 @@ final class Theme {
         Shortcodes,
         Enqueue,
         CookieNotice,
-        YoastSEO,
         Multisite;
 
     function __construct() {
@@ -44,30 +43,33 @@ final class Theme {
         $this->enqueue();
         $this->check_updates();
         $this->disable_comments();
-        $this->avif_support();
         $this->remove_from_admin_bar( array('customize', 'updates', 'comments') );
+        $this->inline_css_in_wp_footer(['core-block-supports', 'block-style-variation-styles']);
         $this->page_for_('terms_and_conditions', 'Terms & Conditions Page');
         $this->page_for_('cookie_policy', 'Cookie Policy Page');
         $this->page_for_('projects', 'Projects Page');
-        $this->use_wpcf7_popup();
         $this->defer_wpcf7_scripts();
-        $this->inline_css_in_wp_footer(['core-block-supports', 'block-style-variation-styles']);
+        $this->setup_wpcf7_popup();
         $this->setup_pagination();
-        $this->use_shortcodes( array('contact', 'menu') );
+        $this->setup_shortcodes( array('contact', 'menu') );
         $this->setup_cookie_notice();
-        $this->enchanced_schema_author_graph();
-        $this->uppercase_url_redirect();
-        $this->fill_void_image_alt();
-        $this->projects_breadcrumbs();
-        $this->noindex_override();
-        $this->fix_rel_canonical();
-        $this->fix_permalink_redirect();
 
         if (is_multisite()) {
-            $this->use_multisite();
+            $this->setup_multisite();
         }
 
-        add_filter( 'disable_wpseo_json_ld_search', '__return_true' );
+        if (!get_option('page_for_posts')) {
+            $this->disable_post_type();
+        }
+
+        $this->add_support_for_( array( 'avif' => 'image/avif',
+                                        'avifs' => 'image/avif-sequence',
+                                        'heic' => 'image/heic',
+                                        'heif' => 'image/heif',
+                                        'heics' => 'image/heic-sequence',
+                                        'heifs' => 'image/heif-sequence' ) );
+
+        new YoastSEOService;
     }
 
     /**
@@ -176,15 +178,19 @@ final class Theme {
      */
     public function the_category( $thelist ) {
 
-        if ( is_category() || is_tag() || is_tax() ) {
-            $blog_bath = str_replace( home_url(), '', get_permalink( get_option('page_for_posts') ) );
-            $request_url = strtok( sanitize_url($_SERVER['REQUEST_URI']), '?' );
-            $thelist = str_replace( $request_url.'" rel="', 
-                                    $blog_bath.'" rel="current ', 
-                                    $thelist );
-        }
+        if (!is_category() && !is_tag() && !is_tax())
+            return $thelist;
+        
+        $blog_id = get_option('page_for_posts');
+        
+        if (!$blog_id) return $thelist;
+        
+        $blog_bath = str_replace( home_url(), '', get_permalink( $blog_id ) );
+        $request_url = strtok( sanitize_url($_SERVER['REQUEST_URI']), '?' );
 
-        return $thelist;
+        return str_replace( $request_url.'" rel="', 
+                            $blog_bath.'" rel="current ', 
+                            $thelist );
     }
 
     public function get_search_form( $form ) {
@@ -218,16 +224,6 @@ final class Theme {
             $link = str_replace('rel="tag"', 'rel="nofollow noindex"', $link);
             return $link;
         }, $links );
-    }
-
-    public function projects_breadcrumbs() {
-
-		$page_id = (int) get_option( 'wp_page_for_projects' );
-
-        if ( ! $page_id || get_post_status( $page_id ) !== 'publish' )
-            return;
-
-        $this->custom_post_type_breadcrumb( 'project', get_the_title( $page_id ), get_permalink($page_id) );
     }
 
     public function fix_x_svg_path( $block_content, $block ) {

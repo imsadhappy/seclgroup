@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 trait Shortcodes {
 
-    public function use_shortcodes( $shotcodes = array() ) {
+    public function setup_shortcodes( $shotcodes = array() ) {
 
         foreach ( $shotcodes as $shotcode ) {
             $f = $shotcode.'_shortcode';
@@ -79,10 +79,15 @@ trait Shortcodes {
         $menu = false;
         $class = isset($atts['class']) ? esc_attr($atts['class']) : '';
 
-        if ( isset($atts['name']) )
-            $menu = wp_get_nav_menu_items('header');
+        if ( !isset($atts['name']) || empty($atts['name']) )
+            return $html;
+        
+        $menu = wp_get_nav_menu_items($atts['name']);
 
-        if ( !empty($menu) && isset($atts['parent']) ) {
+        if ( empty($menu) )
+            return $html;
+
+        if ( isset($atts['parent']) ) {
 
             $parents = array_values( array_filter($menu, function($item) use ($atts) {
                 return strtolower($item->title) === strtolower($atts['parent']);
@@ -95,7 +100,7 @@ trait Shortcodes {
         }
 
         $uid = uniqid('shortcode-');
-        $html = sprintf( '<ul class="menu shortcode-menu %s">%s</ul>',
+        $html = sprintf('<ul class="menu shortcode-menu %s">%s</ul>',
                         $class,
                         walk_nav_menu_tree($menu, 0, (object) array(
                             'after'       => '', 'before'      => '',

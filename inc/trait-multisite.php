@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 trait Multisite {
 
-    public function use_multisite() {
+    public function setup_multisite() {
 
         $this->use_shared_uploads();
     }

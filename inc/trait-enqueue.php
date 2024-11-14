@@ -36,13 +36,12 @@ trait Enqueue {
         add_action( 'wp_enqueue_scripts',       array($this, 'select_action'), 1000 );
         add_action( 'wp_head',                  array($this, 'select_action'), 999 );
         add_action( 'wp_footer',                array($this, 'select_action') );
+        add_action( 'wp_body_open',             fn () => inline_script('/js/pre-scripts.js'));
 
         // customizer
         add_action( 'customize_preview_init',   array($this, 'register'), 999 );
         add_action( 'customize_preview_init',   array($this, 'select_action'), 1000 );
-        add_action( 'customize_register', function ($wp_customize) {
-            $this->customize_register($wp_customize);
-        } );
+        add_action( 'customize_register',       fn ($wp_customize) => $this->customize_register($wp_customize));
     }
 
     public function register() {

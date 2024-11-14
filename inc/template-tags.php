@@ -694,10 +694,11 @@ if ( ! function_exists( 'blog_content' ) ) {
 
 	function blog_content() {
 
+		$blog_id = get_option( 'page_for_posts' );
 		$the_content = wp_cache_get('blog_content');
 
-		if ( $the_content == false ) {
-			$the_content = apply_filters( 'the_content', get_post( get_option( 'page_for_posts' ) )->post_content );
+		if ( $the_content == false && $blog_id ) {
+			$the_content = apply_filters( 'the_content', get_post( $blog_id )->post_content );
 			wp_cache_set('blog_content', $the_content);
 		}
 

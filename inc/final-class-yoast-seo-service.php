@@ -1,6 +1,6 @@
 <?php
 /**
- * YoastSEO trait
+ * YoastSEO Service
  *
  * @package SECLGroup
  */
@@ -12,9 +12,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-trait YoastSEO {
+final class YoastSEOService {
 
-    public function uppercase_url_redirect() {
+    function __construct()
+    {
+        $this->enchanced_schema_author_graph();
+        $this->uppercase_url_redirect();
+        $this->fill_void_image_alt();
+        $this->projects_breadcrumbs();
+        $this->noindex_override();
+        $this->fix_rel_canonical();
+        $this->fix_permalink_redirect();
+        $this->draft_breadcrumb_single_link();
+
+        add_filter( 'disable_wpseo_json_ld_search', '__return_true' );
+    }
+
+    private function uppercase_url_redirect() {
 
         if (is_admin() || wp_doing_ajax() || wp_doing_cron()) return;
 
@@ -34,7 +48,7 @@ trait YoastSEO {
         }
     }
 
-    public function fix_rel_canonical() {
+    private function fix_rel_canonical() {
 
         add_filter( 'wpseo_canonical', function ( $canonical, $presentation ) {
 
@@ -46,7 +60,7 @@ trait YoastSEO {
         }, 999, 2 );
     }
 
-    public function enchanced_schema_author_graph() {
+    private function enchanced_schema_author_graph() {
 
         add_filter( 'wpseo_schema_author', function ( $graph_piece, $context, $graph_piece_generator, $graph_piece_generators ) {
 
@@ -64,7 +78,7 @@ trait YoastSEO {
         }, 10, 4 );
     }
 
-    public function fill_void_image_alt() {
+    private function fill_void_image_alt() {
 
         $n = 0;
         $alt = '%s, Image %d';
@@ -72,7 +86,7 @@ trait YoastSEO {
 
         add_action( 'wp_body_open', function () use ( &$page_title ) {
             if (!function_exists('YoastSEO')) return;
-            $page_title = YoastSEO()->meta->for_current_page()->title;
+            $page_title = \YoastSEO()->meta->for_current_page()->title;
             $page_title = preg_replace("/[^A-Za-z0-9 ]/", '', $page_title);
             $page_title = preg_replace('!\s+!', ' ', $page_title);
             $page_title = esc_attr($page_title);
@@ -92,7 +106,7 @@ trait YoastSEO {
         } );
     }
 
-    public function custom_post_type_breadcrumb( $post_type, $text, $url ) {
+    private function custom_post_type_breadcrumb( $post_type, $text, $url ) {
 
         add_filter( 'wpseo_breadcrumb_links', function ( $links ) use ( $post_type, $text, $url ) {
 
@@ -109,7 +123,17 @@ trait YoastSEO {
         } );
     }
 
-    public function noindex_override() {
+    private function projects_breadcrumbs() {
+
+		$page_id = (int) get_option( 'wp_page_for_projects' );
+
+        if ( ! $page_id || get_post_status( $page_id ) !== 'publish' )
+            return;
+
+        $this->custom_post_type_breadcrumb( 'project', get_the_title( $page_id ), get_permalink($page_id) );
+    }
+
+    private function noindex_override() {
 
         add_filter('wpseo_robots', function ($robots_string) {
 
@@ -121,13 +145,17 @@ trait YoastSEO {
         });
     }
 
-    public function fix_permalink_redirect() {
+    private function fix_permalink_redirect() {
 
         add_action('init', function(){
 
+            $blog_id = get_option('page_for_posts');
+
+            if (!$blog_id) return;
+
             if ('/%postname%/' !== get_option('permalink_structure')) return;
             
-            $blog_slug = get_post(get_option('page_for_posts'))->post_name;
+            $blog_slug = get_post($blog_id)->post_name;
 
             $pattern = sprintf('/^\/%s\/\d{4}\/\d{2}\/\d{2}\/(.*)$/', $blog_slug);
             if (preg_match($pattern, $_SERVER['REQUEST_URI'], $matches)) {
@@ -141,5 +169,26 @@ trait YoastSEO {
                 exit;
             }
         });
+    }
+
+    private function draft_breadcrumb_single_link() {
+
+        add_filter( 'wpseo_breadcrumb_links', function ( $links ) {
+
+            global $wpdb;
+
+            $ids = join(',', array_filter(array_map(fn ($link) => isset($link['id']) ? $link['id'] : 0, $links)));
+            $statuses = $wpdb->get_results("SELECT ID, post_status FROM $wpdb->posts WHERE ID IN ($ids)", OBJECT_K);
+
+            foreach ($links as &$link) {
+                if (empty($link['id'])) continue;
+                if (!isset($statuses[$link['id']])) continue;
+                if (!isset($statuses[$link['id']]->post_status)) continue;
+                if ($statuses[$link['id']]->post_status === 'publish') continue;
+                $link['url'] = '#';
+            }
+
+            return $links;
+        }, 99 );
     }
 }

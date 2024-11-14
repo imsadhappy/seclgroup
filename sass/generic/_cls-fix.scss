@@ -22,7 +22,7 @@ body:not(.fonts-ready) {
 			}
 
 			p, ul, li, a, span { @include cls-letter-spacing(.14, .14, .14); }
-			h1 { @include cls-letter-spacing(.12, .12, .12); }
+			h1 { @include cls-letter-spacing(.125, .125, .125); }
 			h2 { @include cls-letter-spacing(.12, .12, .12); }
 			h3 { @include cls-letter-spacing(.12, .12, .12); }
 			h4 { @include cls-letter-spacing(.12, .12, .12); }

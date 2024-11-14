@@ -58,6 +58,14 @@ $ npm install
 
 ### Versions
 
+Version 1.5.0
+- moved YoastSEO trait to service
+- refactored page_for_posts checks
+- 307 posts when page_for_posts not set
+- CLS fix
+- used requestAnimationFrame in technology-pills.js
+- moved body open code_snippets into pre-scripts.js + added grecaptcha fix
+
 Version 1.4.2
 - i18n: added pot & nl_NL po/mo
 - defered/asynced wpcf7/recaptcha

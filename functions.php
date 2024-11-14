@@ -35,7 +35,7 @@ require_once "$dir/inc/trait-style-to-stylesheet.php";
 require_once "$dir/inc/trait-shortcodes.php";
 require_once "$dir/inc/trait-enqueue.php";
 require_once "$dir/inc/trait-cookie-notice.php";
-require_once "$dir/inc/trait-yoast-seo.php";
+require_once "$dir/inc/final-class-yoast-seo-service.php";
 require_once "$dir/inc/trait-multisite.php";
 require_once "$dir/inc/final-class-theme.php";
 
