@@ -1,4 +1,4 @@
-((deleteCookie, setFooterOffset, loadCookieScripts, GAConsentGranted) => {
+((deleteCookie, setFooterOffset, GAConsentGranted) => {
     if (document.cookie.indexOf('cookie_notice_accepted=true') < 0) {
         document.addEventListener('DOMContentLoaded', () => {
             localStorage.clear()
@@ -38,20 +38,14 @@
             colophon.style.paddingBottom = `${notice.clientHeight}px`
         }
     }, 1000)
-}, /* loadCookieScripts */ () => {
-    document.querySelectorAll('[type="text/if-cookie-notice-accepted"]').forEach(x => {
-        let s = document.createElement('script')
-        s.innerHTML = x.innerHTML
-        x.parentNode.insertBefore(s, x)
-        x.outerHTML = ''
-    })
 }, /* GAConsentGranted */ () => {
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('consent', 'update', {
         'ad_storage': 'granted',
+        'analytics_storage': 'granted',
         'ad_user_data': 'granted',
-        'ad_personalization': 'granted',
-        'analytics_storage': 'granted'
+        'ad_personalization': 'granted'
     });
+    dataLayer.push({event: 'Consent Updated'});
 })

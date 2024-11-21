@@ -1,24 +1,26 @@
 <?php
 /**
- * Enqueue trait
+ * Enqueue
  *
  * @package SECLGroup
  */
 
 namespace SECLGroup;
 
-if ( ! defined( 'ABSPATH' ) ) {
-    http_response_code(403);
-	exit; // Exit if accessed directly.
-}
+include 'exit.php';
 
-trait Enqueue {
+class Enqueue {
 
     private $registered = false;
     private $strategy = null;
     private $theme = null;
 
-    public function enqueue( $strategy = 'enqueue' ) {
+    /**
+     * Setup enqueue
+     *
+     * @param string $strategy 'enqueue' or 'inline'
+     */
+    function __construct( $strategy = 'enqueue' ) {
 
         $this->theme = strtolower(wp_get_theme()->get('Name'));
         $this->strategy = get_theme_mod($this->theme.'_enqueue_strategy', $strategy);
@@ -36,7 +38,7 @@ trait Enqueue {
         add_action( 'wp_enqueue_scripts',       array($this, 'select_action'), 1000 );
         add_action( 'wp_head',                  array($this, 'select_action'), 999 );
         add_action( 'wp_footer',                array($this, 'select_action') );
-        add_action( 'wp_body_open',             fn () => inline_script('/js/pre-scripts.js'));
+        add_action( 'wp_body_open',             fn () => inline_script('/js/pre-scripts.js'), -1 );
 
         // customizer
         add_action( 'customize_preview_init',   array($this, 'register'), 999 );

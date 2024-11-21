@@ -1,20 +1,17 @@
 <?php
 /**
- * Shortcodes trait
+ * Shortcodes
  *
  * @package SECLGroup
  */
 
 namespace SECLGroup;
 
-if ( ! defined( 'ABSPATH' ) ) {
-    http_response_code(403);
-	exit; // Exit if accessed directly.
-}
+include 'exit.php';
 
-trait Shortcodes {
+class Shortcodes {
 
-    public function setup_shortcodes( $shotcodes = array() ) {
+    function __construct( $shotcodes = array() ) {
 
         foreach ( $shotcodes as $shotcode ) {
             $f = $shotcode.'_shortcode';
@@ -25,7 +22,7 @@ trait Shortcodes {
         }
     }
 
-    protected function contact_shortcode( $atts ) {
+    private function contact_shortcode( $atts ) {
 
         if ( !isset($atts['type']) || !isset($atts['location']) || !function_exists('get_field') )
             return '';
@@ -73,7 +70,7 @@ trait Shortcodes {
         return sprintf($template, $location, $value);
     }
 
-    protected function menu_shortcode( $atts ) {
+    private function menu_shortcode( $atts ) {
 
         $html = '';
         $menu = false;

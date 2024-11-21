@@ -7,69 +7,42 @@
 
 namespace SECLGroup;
 
-if ( ! defined( 'ABSPATH' ) ) {
-    http_response_code(403);
-	exit; // Exit if accessed directly.
-}
+include 'exit.php';
 
 final class Theme {
 
-    use Admin,
-        WPCF7,
-        Updater,
-        Pagination,
-        StyleToStylesheet,
-        Shortcodes,
-        Enqueue,
-        CookieNotice,
-        Multisite;
-
     function __construct() {
 
-        add_filter( 'max_srcset_image_width', '__return_false' );
-        add_filter( 'wp_calculate_image_srcset', '__return_false' );
-        add_action( 'after_setup_theme', array($this, 'setup') );
-        add_action( 'after_setup_theme', array($this, 'register_menus') );
-        add_action( 'widgets_init', array($this, 'register_widgets') );
-        add_filter( 'the_category', array($this, 'the_category') );
-        add_filter( 'get_search_form', array($this, 'get_search_form') );
-        add_filter( 'excerpt_more', fn($more) => preg_replace('/\[|\]/', '', $more));
-        add_filter( 'excerpt_length', fn() => 25 );
-        add_filter( 'term_links-project-category', array($this, 'project_category_term_links') );
-        add_filter( 'render_block', array($this, 'fix_x_svg_path'), 999, 2 );
-        add_filter( 'render_block', array($this, 'add_block_img_loading_lazy'), 999, 2 );
-        add_filter( 'post_thumbnail_html', array($this, 'add_img_loading_lazy'), 999 );
-
-        $this->enqueue();
-        $this->check_updates();
-        $this->disable_comments();
-        $this->remove_from_admin_bar( array('customize', 'updates', 'comments') );
-        $this->inline_css_in_wp_footer(['core-block-supports', 'block-style-variation-styles']);
-        $this->page_for_('terms_and_conditions', 'Terms & Conditions Page');
-        $this->page_for_('cookie_policy', 'Cookie Policy Page');
-        $this->page_for_('projects', 'Projects Page');
-        $this->defer_wpcf7_scripts();
-        $this->setup_wpcf7_popup();
-        $this->setup_pagination();
-        $this->setup_shortcodes( array('contact', 'menu') );
-        $this->setup_cookie_notice();
-
-        if (is_multisite()) {
-            $this->setup_multisite();
-        }
-
-        if (!get_option('page_for_posts')) {
-            $this->disable_post_type();
-        }
-
-        $this->add_support_for_( array( 'avif' => 'image/avif',
+        $this->add_upload_mimes( array( 'avif' => 'image/avif',
                                         'avifs' => 'image/avif-sequence',
                                         'heic' => 'image/heic',
                                         'heif' => 'image/heif',
                                         'heics' => 'image/heic-sequence',
                                         'heifs' => 'image/heif-sequence' ) );
 
-        new YoastSEOService;
+        $this->remove_from_admin_bar( array('customize', 'updates', 'comments') );
+
+        add_action( 'wp_head', array($this, 'preload_fonts'), -1 );
+        add_action( 'after_setup_theme', array($this, 'setup') );
+        add_action( 'widgets_init', array($this, 'register_widgets') );
+        add_action( 'after_setup_theme', array($this, 'register_menus') );
+        add_action( 'after_setup_theme', function() {
+            load_theme_textdomain( 'seclgroup', get_template_directory() . '/languages' );
+        } );
+        add_action( 'after_setup_theme', function() {
+            remove_action( 'wp_body_open', 'wp_global_styles_render_svg_filters' );
+            remove_action( 'in_admin_header', 'wp_global_styles_render_svg_filters' );
+        } );
+        add_filter( 'excerpt_length', fn() => 25 );
+        add_filter( 'excerpt_more', fn($more) => preg_replace('/\[|\]/', '', $more));
+        add_filter( 'max_srcset_image_width', '__return_false' );
+        add_filter( 'wp_calculate_image_srcset', '__return_false' );
+        add_filter( 'the_category', array($this, 'the_category_filter') );
+        add_filter( 'get_search_form', array($this, 'get_search_form_filter') );
+        add_filter( 'term_links-project-category', array($this, 'project_category_term_links') );
+        add_filter( 'render_block', array($this, 'social_link_svg_path_filter'), 999, 2 );
+        add_filter( 'render_block', array($this, 'block_img_loading_lazy_filter'), 999, 2 );
+        add_filter( 'post_thumbnail_html', array($this, 'img_loading_lazy_filter'), 999 );
     }
 
     /**
@@ -81,61 +54,25 @@ final class Theme {
      */
     public function setup() {
 
-        load_theme_textdomain( 'seclgroup', get_template_directory() . '/languages' );
-
         add_theme_support( 'editor-styles' );
         add_editor_style( 'editor-style.css' );
 
-        /*
-            * Let WordPress manage the document title.
-            * By adding theme support, we declare that this theme does not use a
-            * hard-coded <title> tag in the document head, and expect WordPress to
-            * provide it for us.
-            */
         add_theme_support( 'title-tag' );
-
-        /*
-            * Enable support for Post Thumbnails on posts and pages.
-            *
-            * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
-            */
         add_theme_support( 'post-thumbnails' );
-
-        /*
-            * Switch default core markup for search form, comment form, and comments
-            * to output valid HTML5.
-            */
-        add_theme_support(
-            'html5',
-            array(
-                'search-form',
-                'comment-form',
-                'comment-list',
-                'gallery',
-                'caption',
-                'style',
-                'script',
-            )
-        );
-
-        // Add theme support for selective refresh for widgets.
         add_theme_support( 'customize-selective-refresh-widgets' );
-
-        /**
-         * Add support for core custom logo.
-         *
-         * @link https://codex.wordpress.org/Theme_Logo
-         */
-        add_theme_support(
-            'custom-logo',
-            array(
-                'flex-width'  => true,
-                'flex-height' => true,
-            )
-        );
-
-        remove_action( 'wp_body_open', 'wp_global_styles_render_svg_filters' );
-        remove_action( 'in_admin_header', 'wp_global_styles_render_svg_filters' );
+        add_theme_support( 'html5', array(
+            'search-form',
+            'comment-form',
+            'comment-list',
+            'gallery',
+            'caption',
+            'style',
+            'script',
+        ) );
+        add_theme_support( 'custom-logo', array(
+            'flex-width'  => true,
+            'flex-height' => true,
+        ) );
     }
 
     /**
@@ -168,6 +105,38 @@ final class Theme {
         );
     }
 
+    private function add_upload_mimes( $additional_mime_types = array() ) {
+
+        add_filter( 'upload_mimes', function($mime_types) use ($additional_mime_types ) {
+
+            foreach ($additional_mime_types  as $key => $value)
+                $mime_types[$key] = $value;
+
+            return $mime_types;
+        } );
+    }
+
+    private function remove_from_admin_bar( $nodes = array() ) {
+
+        add_action( 'wp_before_admin_bar_render', function () use ($nodes) {
+
+            /** @var \WP_Admin_Bar $wp_admin_bar */
+            global $wp_admin_bar;
+
+            foreach ( $nodes as $node )
+                $wp_admin_bar->remove_node($node);
+        } );
+    }
+
+    public function preload_fonts() {
+
+        foreach ( array('HalvarBreit-Md','HalvarBreit-Rg') as $fset ) {
+            printf('<link rel="preload" as="font" type="font/woff2" crossorigin href="%s/assets/fonts/%s.woff2">'."\n",
+                    get_template_directory_uri(),
+                    $fset);
+        }
+    }
+    
     /**
      * Replace URL for cat|tag|tax (if is current)
      * to blog URL - making it a x link (i.e. return to blog)
@@ -176,7 +145,7 @@ final class Theme {
      *
      * @return string
      */
-    public function the_category( $thelist ) {
+    public function the_category_filter( $thelist ) {
 
         if (!is_category() && !is_tag() && !is_tax())
             return $thelist;
@@ -185,18 +154,16 @@ final class Theme {
         
         if (!$blog_id) return $thelist;
         
-        $blog_bath = str_replace( home_url(), '', get_permalink( $blog_id ) );
-        $request_url = strtok( sanitize_url($_SERVER['REQUEST_URI']), '?' );
+        $blog_path = str_replace( home_url(), '', get_permalink( $blog_id ) );
 
-        return str_replace( $request_url.'" rel="', 
-                            $blog_bath.'" rel="current ', 
+        return str_replace( get_request_uri().'" rel="', 
+                            $blog_path.'" rel="current ', 
                             $thelist );
     }
 
-    public function get_search_form( $form ) {
+    public function get_search_form_filter( $form ) {
 
         $location = single_post_title( '', false );
-        //$path = preg_replace("/\/page\/(\d+)/", '', get_current_request_url() );
 
         if ( empty($location) )
             $location = post_type_archive_title( '', false );
@@ -226,7 +193,7 @@ final class Theme {
         }, $links );
     }
 
-    public function fix_x_svg_path( $block_content, $block ) {
+    public function social_link_svg_path_filter( $block_content, $block ) {
 
         if ( isset($block['blockName']) && "core/social-link" === $block['blockName'] ) {
             $block_content = str_replace('/></svg>', '></path></svg>', $block_content);
@@ -235,18 +202,18 @@ final class Theme {
         return $block_content;
     }
 
-    public function add_block_img_loading_lazy( $block_content, $block ) {
+    public function block_img_loading_lazy_filter( $block_content, $block ) {
 
         $image_blocks = array('core/image', 'core/cover', 'core/post-featured-image');
 
         if ( isset($block['blockName']) && in_array($block['blockName'], $image_blocks) ) {
-            $block_content = $this->add_img_loading_lazy($block_content);
+            $block_content = $this->img_loading_lazy_filter($block_content);
         }
 
         return $block_content;
     }
 
-    public function add_img_loading_lazy( $html ) {
+    public function img_loading_lazy_filter( $html ) {
 
         return strpos($html, 'loading=') === false && strpos($html, 'fetchpriority=') === false ?
                 str_replace('<img ', '<img loading="lazy" ', $html) :

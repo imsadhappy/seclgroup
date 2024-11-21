@@ -1,28 +1,25 @@
 <?php
 /**
- * Updater trait
- *
- * @package SECLGroup
+ * Theme Update Service
  */
-
-namespace SECLGroup;
 
 if ( ! defined( 'ABSPATH' ) ) {
     http_response_code(403);
 	exit; // Exit if accessed directly.
 }
 
-trait Updater {
+#[AllowDynamicProperties]
+class ThemeUpdateService {
 
-    public function check_updates() {
+    function __construct($theme, $version) {
 
         global $current_theme_github;
 
         if ( empty($current_theme_github) )
             return;
 
-        $this->{'theme'} = get_stylesheet();
-        $this->{'current_version'} = wp_get_theme()->get('Version');
+        $this->{'theme'} = $theme;
+        $this->{'current_version'} = $version;
 
         foreach ( $current_theme_github as $key => $value )
             $this->{$key} = $value;

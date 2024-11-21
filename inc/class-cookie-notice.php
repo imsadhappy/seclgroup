@@ -1,20 +1,17 @@
 <?php
 /**
- * CookieNotice trait
+ * CookieNotice
  *
  * @package SECLGroup
  */
 
 namespace SECLGroup;
 
-if ( ! defined( 'ABSPATH' ) ) {
-    http_response_code(403);
-	exit; // Exit if accessed directly.
-}
+include 'exit.php';
 
-trait CookieNotice {
+class CookieNotice {
 
-    public function setup_cookie_notice() {
+    function __construct() {
 
         if ( ! function_exists('Cookie_Notice') ) return;
 

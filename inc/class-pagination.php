@@ -1,18 +1,15 @@
 <?php
 /**
- * Pagination trait
+ * Pagination
  *
  * @package SECLGroup
  */
 
 namespace SECLGroup;
 
-if ( ! defined( 'ABSPATH' ) ) {
-    http_response_code(403);
-	exit; // Exit if accessed directly.
-}
+include 'exit.php';
 
-trait Pagination {
+class Pagination {
 
     private $pages = 0;
 
@@ -21,7 +18,7 @@ trait Pagination {
         'next_text' => '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="18" viewBox="0 0 22 18"><path d="M0 9H20M20 9L12 1M20 9L12 17"></path></svg>'
     );
 
-    public function setup_pagination() {
+    function __construct() {
         add_filter( 'the_posts_pagination', array($this, 'the_posts_pagination') );
         add_filter( 'paginate_links_output', array($this, 'paginate_links_output') );
         add_filter( 'get_page_of_block', array($this, 'get_page_of_block') );

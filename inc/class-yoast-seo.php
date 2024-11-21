@@ -1,18 +1,15 @@
 <?php
 /**
- * YoastSEO Service
+ * YoastSEO
  *
  * @package SECLGroup
  */
 
 namespace SECLGroup;
 
-if ( ! defined( 'ABSPATH' ) ) {
-    http_response_code(403);
-	exit; // Exit if accessed directly.
-}
+include 'exit.php';
 
-final class YoastSEOService {
+class YoastSEO {
 
     function __construct()
     {
@@ -32,14 +29,15 @@ final class YoastSEOService {
 
         if (is_admin() || wp_doing_ajax() || wp_doing_cron()) return;
 
-        $url = $_SERVER['REQUEST_URI'];
+        $url = get_request_uri();
 
         // If URL contains a period, halt (likely contains a filename and filenames are case specific)
         if ( preg_match('/[\.]/', $url) ) return;
 
         if ( preg_match('/[A-Z]/', $url) ) {
 
-            $lc_url = empty($_SERVER['QUERY_STRING']) ? strtolower($url) : strtolower( strtok($url, '?') ) . '?' . $_SERVER['QUERY_STRING'];
+            $q = $_SERVER['QUERY_STRING'];
+            $lc_url = strtolower($url) . empty($q) ? '' : ('?' . $q);
 
             if ($lc_url !== $url) {
                 header("Location: " . sanitize_url($lc_url), TRUE, 301);
@@ -85,7 +83,6 @@ final class YoastSEOService {
         $page_title = esc_attr(get_bloginfo('name'));
 
         add_action( 'wp_body_open', function () use ( &$page_title ) {
-            if (!function_exists('YoastSEO')) return;
             $page_title = \YoastSEO()->meta->for_current_page()->title;
             $page_title = preg_replace("/[^A-Za-z0-9 ]/", '', $page_title);
             $page_title = preg_replace('!\s+!', ' ', $page_title);
@@ -155,16 +152,17 @@ final class YoastSEOService {
 
             if ('/%postname%/' !== get_option('permalink_structure')) return;
             
+            $uri = get_request_uri();
             $blog_slug = get_post($blog_id)->post_name;
 
             $pattern = sprintf('/^\/%s\/\d{4}\/\d{2}\/\d{2}\/(.*)$/', $blog_slug);
-            if (preg_match($pattern, $_SERVER['REQUEST_URI'], $matches)) {
+            if (preg_match($pattern, $uri, $matches)) {
                 wp_redirect(site_url($matches[1]));
                 exit;
             }
 
             $pattern = sprintf('/^\/%s\/project\/(.*)$/', $blog_slug);
-            if (preg_match($pattern, $_SERVER['REQUEST_URI'], $matches)) {
+            if (preg_match($pattern, $uri, $matches)) {
                 wp_redirect(site_url($matches[1]));
                 exit;
             }

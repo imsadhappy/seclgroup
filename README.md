@@ -58,6 +58,11 @@ $ npm install
 
 ### Versions
 
+Version 1.5.1
+- conditional classes instead of traits
+- request button ajax loading indication
+- cookie notice consent event added
+
 Version 1.5.0
 - moved YoastSEO trait to service
 - refactored page_for_posts checks

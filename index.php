@@ -76,7 +76,7 @@ get_header();
 
 				<div class="no-selection">
 					<?php esc_html_e( 'No posts found.' ); ?>
-					<a href="<?php echo home_url(get_current_request_url()) ?>" rel="nofollow" class="underline"><?php esc_html_e( 'Clear search', 'seclgroup' ); ?></a>
+					<a href="<?php echo home_url(get_request_uri()) ?>" rel="nofollow" class="underline"><?php esc_html_e( 'Clear search', 'seclgroup' ); ?></a>
 				</div>
 
 			<?php endif; ?>

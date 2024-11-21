@@ -5,15 +5,12 @@
  * @package SECLGroup
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	http_response_code(403);
-	exit; // Exit if accessed directly.
-}
+include 'exit.php';
 
-if ( ! function_exists( 'get_current_request_url' ) ) {
+if ( ! function_exists( 'get_request_uri' ) ) {
 
-	function get_current_request_url(){
-		return add_query_arg( array(), $GLOBALS['wp']->request );
+	function get_request_uri(){
+		return strtok( sanitize_url($_SERVER['REQUEST_URI']), '?' ); //add_query_arg( array(), $GLOBALS['wp']->request );
 	}
 }
 

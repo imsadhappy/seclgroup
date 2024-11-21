@@ -43,6 +43,7 @@ body p > a {
 .custom-logo-link {
 	display: inline-block;
 	line-height: 1;
+	> * { pointer-events: none; }
 	img {
 		max-width: 173px;
 		vertical-align: middle;

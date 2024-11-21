@@ -1,10 +1,24 @@
 /**
  * Ajax Contact Form 7 Popup
  */
-export default event => {
+window.wpcf7ShowPopup = window.wpcf7ShowPopup || function (x, button) {
 
-    const x = 'wpcf7-popup--'
+    const formId = button?.rel?.replace(x, '')
 
+    if (!formId) return
+
+    let popup = document.getElementById(x+formId)
+
+    if (button.classList.contains('loading')) return
+
+    if (popup) {
+        button.classList.remove('is-clicked')
+        document.body.classList.add(`${x}shown`)
+        return
+    }
+
+    button.classList.add('loading')
+    
     const closePopup = () => document.body.classList.remove(`${x}shown`)
 
     const createPopup = (html, buttonText) => {
@@ -28,45 +42,48 @@ export default event => {
         return {overlay, content}
     }
 
-    const fetchPopup = (popup, formId, buttonText) => {
-        const request = new XMLHttpRequest(),
-            q = new URLSearchParams({
-                'action': 'wpcf7_popup',
-                'form_id': formId
-            }).toString()
-        request.onreadystatechange = function() {
-            let requestResult = this
-            if (requestResult.readyState !== 4 || requestResult.status !== 200) {
-                return
-            } else {
-                if (requestResult.responseText != '') {
-                    popup = document.createElement('div')
-                    popup.setAttribute('id', x+formId)
-                    popup.classList.add(`${x}container`)
-                    let {overlay, content} = createPopup(requestResult.responseText, buttonText)
-                    popup.appendChild(overlay)
-                    popup.appendChild(content)
-                    document.body.appendChild(popup)
-                    window.wpcf7.init(popup.querySelector('form'))
-                    setTimeout(() => {
-                        document.body.classList.add(`${x}shown`)
-                    }, 100)
-                }
-            }
+    const attachPopup = html => {
+        popup = document.createElement('div')
+        popup.setAttribute('id', x+formId)
+        popup.classList.add(`${x}container`)
+        let {overlay, content} = createPopup(html, button.textContent)
+        popup.appendChild(overlay)
+        popup.appendChild(content)
+        document.body.appendChild(popup)
+        if (typeof window.wpcf7?.init === 'function') {
+            window.wpcf7.init(popup.querySelector('form'))
         }
-        request.open('GET', ajaxurl+'?'+q)
-        request.send()
+        setTimeout(() => {
+            button.classList.remove('loading', 'is-clicked')
+            document.body.classList.add(`${x}shown`)
+        }, 333)
+        return popup
+    }
+    
+    const request = new XMLHttpRequest()
+
+    request.onreadystatechange = function() {
+        let requestResult = this
+        if (requestResult.readyState !== 4 || requestResult.status !== 200) {
+            return
+        }
+        if (requestResult.responseText != '' && typeof window.wpcf7 === 'object') {
+            popup = attachPopup(requestResult.responseText)
+        }
     }
 
-    if (event.target.rel && event.target.rel.indexOf(x) === 0){
-        event.preventDefault()
-        if (typeof window.wpcf7 !== 'object') return
-        const formId = event.target.rel.replace(x, '')
-        const popup = document.getElementById(x+formId)
-        if (popup) {
-            document.body.classList.add(`${x}shown`)
-        } else {
-            fetchPopup(popup, formId, event.target.textContent)
-        }
+    request.open('GET', ajaxurl+'?'+(new URLSearchParams({
+        'action': 'wpcf7_popup',
+        'form_id': formId
+    }).toString()))
+
+    request.send()
+}
+
+export default buttonClick => {
+    const x = 'wpcf7-popup--'
+    if (buttonClick?.target?.rel?.indexOf(x) >= 0) {
+        buttonClick.preventDefault()
+        window.wpcf7ShowPopup(x, buttonClick.target)
     }
 }

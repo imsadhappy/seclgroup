@@ -25,12 +25,15 @@ const lazyVideoObserver = 'IntersectionObserver' in window ? new IntersectionObs
 
 setTimeout(() => {
     document.querySelectorAll('video').forEach(video => {
-        video.addEventListener('suspend', () => {
-            if (!video.playing) video.play()
+        video.addEventListener('suspend', suspend => {
+            // console.log(suspend, video)
+            // let playPromise = video.play()
+            // if (playPromise !== undefined && !video.playing) {
+            //     playPromise.then(_ => {
+            //     // Automatic playback started!
+            //     })
+            // }
         })
-        // window.addEventListener('scroll', () => {
-        //     //if (!video.playing) video.play()
-        // })
         if (video.classList.contains('lazy')) {
             lazyVideoObserver.observe(video)
         }

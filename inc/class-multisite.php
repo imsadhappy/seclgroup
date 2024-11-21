@@ -1,25 +1,17 @@
 <?php
 /**
- * Multisite trait
+ * Multisite
  *
  * @package SECLGroup
  */
 
 namespace SECLGroup;
 
-if ( ! defined( 'ABSPATH' ) ) {
-    http_response_code(403);
-	exit; // Exit if accessed directly.
-}
+include 'exit.php';
 
-trait Multisite {
+class Multisite extends Factory {
 
-    public function setup_multisite() {
-
-        $this->use_shared_uploads();
-    }
-
-    private function use_shared_uploads() {
+    protected function setup_shared_uploads() {
 
         /**
          * Force all network uploads to reside in "wp-content/uploads", and by-pass

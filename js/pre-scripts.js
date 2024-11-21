@@ -11,16 +11,18 @@ if (window.location.hash) scroll(0,0);
 document.fonts.ready.then(() => document.body.classList.add('fonts-ready'));
 
 !((x, y, z) => {
-    let c = () => typeof x[y]?.execute === 'function';
-    if (c()) return;
-    let i = setInterval(() => {
-        if (c() && x[y+z]) {
-            clearInterval(i);
+    let a, b = () => typeof x[y]?.execute === 'function';
+    if (b()) return;
+    let c = () => {
+        if (b() && x[y+z]) {
+            clearInterval(a);
             x[y+z].forEach(f => x[y].ready(f));
             x[y+z] = null;
         } else {
             x[y+z] = x[y+z] || [];
             x[y] = x[y] || { ready: f => x[y+z].push(f) };
         }
-    }, 100)
+    };
+    c();
+    a = setInterval(c, 100);
 })(window, 'grecaptcha', '_check');

@@ -5,10 +5,7 @@
  * @package SECLGroup
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-    http_response_code(403);
-	exit; // Exit if accessed directly.
-}
+include 'exit.php';
 
 add_filter( 'style_loader_src', function( $src, $handle ) {
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * Inline style to stylesheet (link) trait
+ * Inline style to stylesheet (link)
  *
  * What is the purpose? W3C Validator spits errors
  * on inline <style> tags if placed in <body>.
@@ -17,14 +17,26 @@
 
 namespace SECLGroup;
 
-if ( ! defined( 'ABSPATH' ) ) {
-    http_response_code(403);
-	exit; // Exit if accessed directly.
-}
+include 'exit.php';
 
-trait StyleToStylesheet {
+class StyleToStylesheet {
 
     protected $folder = '/inline_css/';
+
+    function __construct($handles = array()) {
+
+        add_action('wp_footer', function () use ($handles) {
+            $css = "";
+            foreach ((array) $handles as $handle) {
+                $css .= $this->extract_inline_css($handle);
+            }
+            $this->save_inline_css($css);
+        });
+
+        add_action('save_post', array($this, 'purge_inline_css'));
+
+        add_filter('wp_super_cache_clear_post_cache', array($this, 'purge_inline_css'));
+    }
 
     protected function inline_css_paths() {
         
@@ -37,10 +49,9 @@ trait StyleToStylesheet {
 
     protected function inline_css_filename($uri = null) {
 
-        $uri = str_replace( home_url('/'),  '/',
-                            !empty($uri) ? $uri : sanitize_url($_SERVER['REQUEST_URI']) );
+        $uri = str_replace( home_url('/'),  '/', empty($uri) ? get_request_uri() : $uri );
 
-        return get_current_blog_id() . '-' . md5( strtok($uri, '?') ) . '.css';
+        return get_current_blog_id() . '-' . md5( $uri ) . '.css';
     }
 
     protected function extract_inline_css($handle) {
@@ -77,21 +88,6 @@ trait StyleToStylesheet {
 
         $wp_styles->enqueue($id);
         $wp_styles->add($id, $url.$fn, array(), filemtime($dir.$fn));
-    }
-
-    protected function inline_css_in_wp_footer($handles = array()) {
-
-        add_action('wp_footer', function () use ($handles) {
-            $css = "";
-            foreach ((array) $handles as $handle) {
-                $css .= $this->extract_inline_css($handle);
-            }
-            $this->save_inline_css($css);
-        });
-
-        add_action('save_post', array($this, 'purge_inline_css'));
-
-        add_filter('wp_super_cache_clear_post_cache', array($this, 'purge_inline_css'));
     }
 
     public function purge_inline_css($post_id) {

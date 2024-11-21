@@ -21,13 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="preconnect" href="https://www.google.com">
 	<link rel="preconnect" href="https://www.gstatic.com" crossorigin>
-	<?php foreach ( array('HalvarBreit-Md','HalvarBreit-Rg') as $fset ) : ?>
-	<link rel="preload" as="font" type="font/woff2" crossorigin 
-			href="<?php 
-				echo get_template_directory_uri();
-			?>/assets/fonts/<?php echo $fset ?>.woff2">
-	<?php endforeach; 
-		unset($fset);
+	<?php 
 		wp_head();
 		code_snippets('head');
 	?>
