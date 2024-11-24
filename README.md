@@ -58,7 +58,10 @@ $ npm install
 
 ### Versions
 
-Version 1.5.1
+Version 1.6.1
+- breadcrumbs overscroll
+
+Version 1.6.0
 - conditional classes instead of traits
 - request button ajax loading indication
 - cookie notice consent event added

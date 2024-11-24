@@ -1,6 +1,6 @@
 #breadcrumbs {
 
-    @extend .wrapper-wider;
+    @extend .wrapper-wider, .overflow-x-auto, .no-scrollbar;
 
     font-size: 14px;
     margin-top: 40px;
@@ -15,7 +15,7 @@
 
     .breadcrumb_last {
         color: $Text__Primary;
-        max-width: calc(100% - 120px);
+        //max-width: calc(100%);
         overflow: hidden;
         display: inline-block;
         vertical-align: bottom;
