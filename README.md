@@ -58,6 +58,10 @@ $ npm install
 
 ### Versions
 
+Version 1.6.2
+- curve-line quick fix
+- form validation message fix
+
 Version 1.6.1
 - breadcrumbs overscroll
 

@@ -211,4 +211,10 @@
             }
         }
     }
+
+    /* curve-line quick fix */
+
+    span.responsive[style*="curve-line2.svg"] {
+        display: inline-block;
+    }
 }
