@@ -58,6 +58,9 @@ $ npm install
 
 ### Versions
 
+Version 1.6.3
+- language selector background
+
 Version 1.6.2
 - curve-line quick fix
 - form validation message fix
