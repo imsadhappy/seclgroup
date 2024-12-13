@@ -43,6 +43,7 @@ final class Theme {
         add_filter( 'render_block', array($this, 'social_link_svg_path_filter'), 999, 2 );
         add_filter( 'render_block', array($this, 'block_img_loading_lazy_filter'), 999, 2 );
         add_filter( 'post_thumbnail_html', array($this, 'img_loading_lazy_filter'), 999 );
+        add_filter( 'nav_menu_link_attributes', array($this, 'localize_rel_atts') );
     }
 
     /**
@@ -218,5 +219,19 @@ final class Theme {
         return strpos($html, 'loading=') === false && strpos($html, 'fetchpriority=') === false ?
                 str_replace('<img ', '<img loading="lazy" ', $html) :
                 $html;
+    }
+
+    public function localize_rel_atts ( $atts ) {
+
+        /** for composer.json make-pot script */
+        $localize = [
+            __('Back to menu', 'seclgroup')
+        ];
+
+        if (isset($atts['rel']) && !empty($atts['rel'])) {
+            $atts['rel'] = esc_attr__($atts['rel'], 'seclgroup');
+        }
+
+        return $atts;
     }
 }

@@ -22,14 +22,15 @@
     a {
       text-decoration: underline;
       white-space: nowrap;
-      + a {
-        margin-left: 20px;
-      }
     }
   }
 
   #terms {
     word-break: break-all;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
     @media (max-width: $width__min) {
       a { 
         font-size: 75%;

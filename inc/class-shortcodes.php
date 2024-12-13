@@ -86,8 +86,10 @@ class Shortcodes {
 
         if ( isset($atts['parent']) ) {
 
-            $parents = array_values( array_filter($menu, function($item) use ($atts) {
-                return strtolower($item->title) === strtolower($atts['parent']);
+            $pre_filter = fn($x) => strtolower( str_replace('&amp;', '&', $x) );
+
+            $parents = array_values( array_filter($menu, function($item) use ($atts, $pre_filter) {
+                return $pre_filter($item->title) === $pre_filter($atts['parent']);
             } ) );
 
             if ( ! empty( $parents ) )

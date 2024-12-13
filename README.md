@@ -58,6 +58,13 @@ $ npm install
 
 ### Versions
 
+Version 1.6.5
+- fixed footer links wrapping
+- added menu rel localization
+
+Version 1.6.4
+- ukrainian localization
+
 Version 1.6.3
 - language selector background
 

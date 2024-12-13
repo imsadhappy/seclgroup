@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: SECLGroup 1.4.1\n"
+"Project-Id-Version: SECLGroup 1.6.5\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/seclgroup\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-11-05T15:21:02+00:00\n"
+"POT-Creation-Date: 2024-12-13T09:32:53+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: seclgroup\n"
@@ -56,84 +56,92 @@ msgstr ""
 msgid "Copyright"
 msgstr ""
 
-#: inc/blocks.php:25
+#: inc/blocks.php:22
 msgctxt "block category"
 msgid "SECLGroup"
 msgstr ""
 
-#: inc/blocks.php:41
+#: inc/blocks.php:38
 msgid "Team Members"
 msgstr ""
 
-#: inc/blocks.php:42
+#: inc/blocks.php:39
 msgid "Grid outputs Team Members (custom post type) Name, Position & Photo."
 msgstr ""
 
-#: inc/blocks.php:52
+#: inc/blocks.php:49
 msgid "Reviews"
 msgstr ""
 
-#: inc/blocks.php:53
+#: inc/blocks.php:50
 msgid "A custom slider with Title, Image & Review Text."
 msgstr ""
 
-#: inc/blocks.php:63
+#: inc/blocks.php:60
 msgid "Project Logo"
 msgstr ""
 
-#: inc/blocks.php:64
+#: inc/blocks.php:61
 msgid "A custom project logo set in project"
 msgstr ""
 
-#: inc/blocks.php:73
+#: inc/blocks.php:70
 msgid "Project List"
 msgstr ""
 
-#: inc/blocks.php:74
+#: inc/blocks.php:71
 msgid "A custom project list"
 msgstr ""
 
-#: inc/blocks.php:84
+#: inc/blocks.php:81
 msgid "Pagination"
 msgstr ""
 
-#: inc/blocks.php:85
+#: inc/blocks.php:82
 msgid "A custom block pagination"
 msgstr ""
 
-#: inc/final-class-theme.php:145
+#: inc/class-no-blog.php:31
+msgid "No blog"
+msgstr ""
+
+#: inc/final-class-theme.php:85
 msgid "Header"
 msgstr ""
 
-#: inc/final-class-theme.php:158
+#: inc/final-class-theme.php:98
 msgid "Blog Aside"
 msgstr ""
 
-#: inc/final-class-theme.php:160
+#: inc/final-class-theme.php:100
 msgid "Add widgets here."
 msgstr ""
 
-#: inc/template-tags.php:106
+#: inc/final-class-theme.php:228
+msgid "Back to menu"
+msgstr ""
+
+#: inc/template-tags.php:103
 msgid "Phone"
 msgstr ""
 
-#: inc/template-tags.php:111
+#: inc/template-tags.php:108
 msgid "Email"
 msgstr ""
 
-#: inc/template-tags.php:290
+#: inc/template-tags.php:287
 msgid "Related Publications"
 msgstr ""
 
-#: inc/template-tags.php:323
+#: inc/template-tags.php:320
 msgid "Relevant to"
 msgstr ""
 
-#: inc/template-tags.php:685
+#: inc/template-tags.php:682
 msgid "Load more items"
 msgstr ""
 
-#: inc/template-tags.php:686
+#: inc/template-tags.php:683
 msgid "No more items"
 msgstr ""
 
