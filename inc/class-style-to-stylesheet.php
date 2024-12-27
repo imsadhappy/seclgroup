@@ -34,7 +34,6 @@ class StyleToStylesheet {
         });
 
         add_action('save_post', array($this, 'purge_inline_css'));
-
         add_filter('wp_super_cache_clear_post_cache', array($this, 'purge_inline_css'));
     }
 
@@ -92,13 +91,16 @@ class StyleToStylesheet {
 
     public function purge_inline_css($post_id) {
 
-        $dir = $this->inline_css_paths()['dir'];
         $url = get_permalink($post_id);
         $fn = $this->inline_css_filename($url);
 
-        if (file_exists($dir.$fn))
-            unlink($dir.$fn);
+        if (empty($fn)) return;
+        
+        $dir = $this->inline_css_paths()['dir'];
 
-        error_log("Purged inline_css for $url");
+        if (file_exists($dir.$fn)) {
+            unlink($dir.$fn);
+            error_log("Purged inline_css for $url in action " . current_filter());
+        }
     }
 }

@@ -16,13 +16,10 @@ class NoBlog {
         if (get_option('page_for_posts')) return;
         
         add_action( 'template_redirect', function() {
-
-            if ( ! is_post_type_archive('post') && 'post' !== get_post_type() )
-                return;
-
-            wp_redirect( home_url(), 307 );
-
-            exit;
+            if ( is_post_type_archive('post') || 'post' === get_post_type() ) {
+                wp_redirect( home_url(), 307 );
+                exit;
+            }
         } );
 
         add_filter( 'display_post_states', function ( $post_states, $post ) {

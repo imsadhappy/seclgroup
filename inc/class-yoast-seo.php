@@ -36,11 +36,14 @@ class YoastSEO {
 
         if ( preg_match('/[A-Z]/', $url) ) {
 
-            $q = $_SERVER['QUERY_STRING'];
-            $lc_url = strtolower($url) . empty($q) ? '' : ('?' . $q);
+            $lc_url = strtolower($url);
 
-            if ($lc_url !== $url) {
-                header("Location: " . sanitize_url($lc_url), TRUE, 301);
+            if (!empty($_SERVER['QUERY_STRING'])) {
+                $lc_url .= '?' . $_SERVER['QUERY_STRING'];
+            }
+
+            if (!empty($lc_url) && $lc_url !== $url) {
+                wp_redirect( sanitize_url($lc_url), 301 );
                 exit;
             }
         }
