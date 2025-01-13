@@ -1,21 +1,24 @@
-.border-radius-20 {
-    border-radius: 20px;
-}
+.border {
 
-.border-radius-default,
-.border-radius-10,
-.border-radius {
-    border-radius: 10px;
-}
+    &-radius-20 {
+        border-radius: 20px;
+    }
 
-.border-2blue {
-    border: 2px solid $BG__Blue;
-}
+    &-radius-default,
+    &-radius-10,
+    &-radius {
+        border-radius: 10px;
+    }
 
-.border-dashed-pink {
-    border: 1px dashed $Primary__150;
-}
+    &-2blue {
+        border: 2px solid $BG__Blue;
+    }
 
-.border-tertiary {
-    border: 1px solid $Text__Tertiary;
+    &-dashed-pink {
+        border: 1px dashed $Primary__150;
+    }
+
+    &-tertiary {
+        border: 1px solid $Text__Tertiary;
+    }
 }

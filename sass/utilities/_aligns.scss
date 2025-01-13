@@ -1,86 +1,83 @@
-.float-left { float: left }
-
-.float-right { float: right }
-
-.float-none { float: none }
-
-.clear-both:before,
-.clear-both:after {
-    content: " ";
-    display: table;
+.float {
+	&-left { float: left }
+	&-right { float: right }
+	&-none { float: none }
 }
-
-.clear-both:after { clear: both; }
 
 .clear-both {
-    clear: both;
-}
-
-.align-left { text-align: left }
-
-.align-right { text-align: right }
-
-.align-all-center *,
-.align-center { text-align: center }
-
-.align-justify { text-align: justify }
-
-.alignfull {
-	overflow: hidden;
-	overflow-x: clip;
-	overflow-y: visible;
-}
-
-.alignleft {
-
-	/*rtl:ignore*/
-	float: left;
-
-	/*rtl:ignore*/
-	margin-right: 1.5em;
-	margin-bottom: 1.5em;
-}
-
-.alignright {
-
-	/*rtl:ignore*/
-	float: right;
-
-	/*rtl:ignore*/
-	margin-left: 1.5em;
-	margin-bottom: 1.5em;
-}
-
-.aligncenter {
-	clear: both;
-	@include center-block;
-	margin-bottom: 1.5em;
-}
-
-.alignwide {
-	margin-left: auto !important;
-	margin-right: auto !important;
-	@extend .base-mobile-padding;
-	@media (min-width: $width__desktop) {
-		max-width: $width__wide !important;
+	&, &:after { clear: both; }
+	&:before, &:after {
+		content: " ";
+		display: table;
 	}
-	@media (max-width: #{$width__wide + 60px}) {
-		max-width: calc(100vw - 60px) !important;
+}
+
+.align {
+
+	&-left { text-align: left }
+
+	&-right { text-align: right }
+
+	&-center, &-all-center * { text-align: center }
+
+	&-justify { text-align: justify }
+
+	&full {
+		overflow: hidden;
+		overflow-x: clip;
+		overflow-y: visible;
+	}
+
+	&left {
+		/*rtl:ignore*/
+		float: left;
+		/*rtl:ignore*/
+		margin-right: 1.5em;
+		margin-bottom: 1.5em;
+	}
+
+	&right {
+		/*rtl:ignore*/
+		float: right;
+		/*rtl:ignore*/
+		margin-left: 1.5em;
+		margin-bottom: 1.5em;
+	}
+
+	&center {
+		clear: both;
+		@include center-block;
+		margin-bottom: 1.5em;
+	}
+
+	&wide {
+		margin-left: auto !important;
+		margin-right: auto !important;
+		@extend .base-mobile-padding;
+		@media (min-width: $width__desktop) {
+			max-width: $width__wide !important;
+		}
+		@media (max-width: #{$width__wide + 60px}) {
+			max-width: calc(100vw - 60px) !important;
+		}
 	}
 }
 
 @media (max-width: $width__mobile) {
 
-    .mobile-alignfull {
-        width: 100%;
-		max-width: none !important;
-    }
+	.mobile {
 
-    .mobile-align-center,
-    .mobile-center,
-    .mobile-align-all-center * { text-align: center !important }
+		&-alignfull {
+			width: 100%;
+			max-width: none !important;
+		}
 
-    .mobile-align-left,
-    .mobile-textleft,
-    .mobile-align-all-left * { text-align: left !important }
+		&-align-center,
+		&-center,
+		&-align-all-center * { text-align: center !important }
+
+		&-align-left,
+		&-textleft,
+		&-align-all-left * { text-align: left !important }
+	}
 }
